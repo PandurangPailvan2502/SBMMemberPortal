@@ -7,6 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SBMMember.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace SBMMember.Web
 {
@@ -23,11 +26,14 @@ namespace SBMMember.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<SBMMemberDBContext>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddFile("Logs/SBMRestAPI-{Date}.txt");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

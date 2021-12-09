@@ -4,4 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SBMMember.Data\SBMMember.Data.csproj" />
+    <ProjectReference Include="..\SBMMember.Models\SBMMember.Models.csproj" />
+  </ItemGroup>
+
 </Project>
