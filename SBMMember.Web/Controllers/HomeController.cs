@@ -1,25 +1,40 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SBMMember.Web.Helper;
 using SBMMember.Web.Models;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using SBMMember.Data.DataFactory;
+using SBMMember.Models;
 
 namespace SBMMember.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IMemberDataFactory dataFactory;
+        public HomeController(ILogger<HomeController> logger,IMemberDataFactory memberDataFactory)
         {
             _logger = logger;
+            dataFactory = memberDataFactory;
         }
 
         public IActionResult Index()
         {
+            var data = dataFactory.GetMembers();
+            Members member = new Members()
+            {
+                FirstName="Pandurang",
+                MiddleName="Gokul",
+                LastName="Pailvan",
+                Mobile="9226718970",
+                Password="Ishan@2020",
+                Status="Active",
+                Createdate=System.DateTime.Now,
+                UpdateDate=System.DateTime.Now
+            };
+            dataFactory.AddMember(member);
+            string otp = SMSHelper.GenerateOTP();
+           // SMSHelper.SendSMS();
             return View();
         }
 

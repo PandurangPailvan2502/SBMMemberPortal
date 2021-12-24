@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 using SBMMember.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-
+using SBMMember.Data.DataFactory;
+using Microsoft.EntityFrameworkCore.SqlServer;
 namespace SBMMember.Web
 {
     public class Startup
@@ -27,7 +28,18 @@ namespace SBMMember.Web
         {
             services.AddControllersWithViews();
             services.AddDbContext<SBMMemberDBContext>(options =>
-             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+             sqlServerOptionsAction: sqlOptions =>
+             {
+                 sqlOptions.EnableRetryOnFailure(
+                 maxRetryCount: 10,
+                 maxRetryDelay: TimeSpan.FromSeconds(30),
+                 errorNumbersToAdd: null);
+             }
+             
+             )           
+             );
+            services.AddScoped<IMemberDataFactory, MemberDataFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
