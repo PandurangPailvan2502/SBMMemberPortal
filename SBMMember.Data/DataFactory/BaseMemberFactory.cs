@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SBMMember.Models;
 
 namespace SBMMember.Data.DataFactory
 {
-    public class BaseMemberFactory
+    public abstract class BaseMemberFactory<T>
     {
-        public readonly SBMMemberDBContext memberDBContext;
-        public BaseMemberFactory( SBMMemberDBContext dBContext)
-        {
-            memberDBContext = dBContext;
-        }
+        public abstract ResponseDTO AddDetails(T t);
+        public abstract ResponseDTO UpdateDetails(T t);
+        public abstract T GetDetailsByMemberId(int MemberId);
     }
+
+
 }

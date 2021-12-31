@@ -40,6 +40,7 @@ namespace SBMMember.Web
              )           
              );
             services.AddScoped<IMemberDataFactory, MemberDataFactory>();
+            services.AddScoped<IMemberContactDetailsDataFactory, MemberContactDetailsDataFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

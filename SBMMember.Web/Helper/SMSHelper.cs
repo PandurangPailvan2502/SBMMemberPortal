@@ -11,7 +11,7 @@ namespace SBMMember.Web.Helper
     {
         public static string SendSMS()
         {
-            Uri targetUri = new Uri("http://trans.dreamztechnolgy.org/smsstatuswithid.aspx?mobile=9823091141&pass=td2200bsiv&senderid=SBMPCM&to=9226718970&msg=testmessage");
+            Uri targetUri = new Uri("http://trans.dreamztechnolgy.org/smsstatuswithid.aspx?mobile=9823091141&pass=td2200bsiv&senderid=SBMPCM&to=9172293692&msg=testmessage");
             HttpWebRequest webRequest =( HttpWebRequest)System.Net.HttpWebRequest.Create(targetUri);
             webRequest.Method = WebRequestMethods.Http.Get;
             try
