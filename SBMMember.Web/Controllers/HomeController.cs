@@ -34,7 +34,7 @@ namespace SBMMember.Web.Controllers
             //};
             //dataFactory.AddMember(member);
             //string otp = SMSHelper.GenerateOTP();
-            SMSHelper.SendSMS();
+            //SMSHelper.SendSMS();
             return View();
         }
 

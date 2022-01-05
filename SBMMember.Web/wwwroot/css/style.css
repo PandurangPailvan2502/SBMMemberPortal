@@ -12,6 +12,235 @@
   background-image: -ms-linear-gradient(0deg, #ee390f 0%, #f9b700 100%);
 }
 
+
+/*************Tab vertical menu for member registration************************/
+.photo-container1{
+  position: relative;
+  background: #FFFFFF;
+  width: 150px;
+  height: 30vh;
+  float: left;
+  z-index: 20;
+
+}
+
+
+.yel{background:#ffd446}
+.lblu{background:#8fbcff}
+.grn{background:#58b158}
+.purp{background:#b44790}
+.brn{background:#ac8b5a}
+.tabs-container{
+  position: relative;
+  background: #7c0053;
+  width: 150px;
+  height: 100vh;
+  float: left;
+  z-index: 20;
+
+}
+/* tabs names */
+.tabs-container label{
+  position: relative;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: block;
+  font-size: 16px;
+  color: #000000;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Hover effect on tabs names */
+.tabs-container label:hover{
+ background: rgba(0, 0, 0, 0.2);
+
+}
+/* Content area for tabs */
+.tab-content{
+  position: relative;
+  background: #ffffff;
+  width: calc(100% - 150px);
+  min-height: 100vh;
+  padding: 15px;
+  float: left;
+  box-sizing: border-box;
+  z-index: 19;
+  display: none;
+}
+
+.tab-content:after{
+  content: "";
+  clear: both;
+
+}
+/* Hide input radio from users */
+input[name="tab"]{
+ display: none;
+}
+/* Show tab when input checked */
+input[name="tab"]:checked + .tab-content{
+   display: block;
+ animation: slide 0.5s forwards;
+
+}
+
+/* Slide animation for tab contents */
+@keyframes slide{
+   from{
+       left: -100%;
+       opacity: 0;
+   }
+   to{
+       left: 0;
+       opacity: 1;
+   }
+
+}
+/* ******************************************************
+	Script Header
+*********************************************************/
+
+.ScriptHeader {
+  float: left;
+  width: 100%;
+  padding: 2em 0;
+}
+.rt-heading {
+  margin: 0 auto;
+text-align:center;
+}
+.Scriptcontent{
+line-height:28px;	
+}
+.ScriptHeader h1{
+font-family: "brandon-grotesque", "Brandon Grotesque", "Source Sans Pro", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+text-rendering: optimizeLegibility;
+-webkit-font-smoothing: antialiased;
+  color: #6a4aed;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+  line-height: normal;
+
+}
+.ScriptHeader h2 {
+  color: #312c8f;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 5px 0 0;
+  line-height: normal;
+
+}
+.ScriptHeader h1 span {
+  display: block;
+  padding: 0;
+  font-size: 22px;
+  opacity: 0.7;
+  margin-top: 5px;
+
+}
+.ScriptHeader span {
+  display: block;
+  padding: 0;
+  font-size: 22px;
+  opacity: 0.7;
+  margin-top: 5px;
+}
+
+* ******************************************************
+	Responsive Grids
+*********************************************************/
+
+.rt-container {
+	margin: 0 auto;
+    overflow: hidden;
+}
+.rt-row:before, .rt-row:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.rt-row:after {
+  clear: both;
+}
+[class^="col-rt-"] {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+ 
+  min-height: 1px;
+  position: relative;
+}
+
+
+@media (min-width: 768px) {
+  .rt-container {
+    width: 750px;
+  }
+  [class^="col-rt-"] {
+    float: left;
+    width: 49.9999999999%;
+  }
+  .col-rt-6, .col-rt-12 {
+    width: 100%;
+  }
+  
+}
+
+@media (min-width: 1200px) {
+	.rt-container {
+		width: 1170px;
+	}
+	.col-rt-1 {
+		width:16.6%;
+	}
+	.col-rt-2 {
+		width:30.33%;
+	}
+	.col-rt-3 {
+		width:50%;
+	}
+	.col-rt-4 {
+		width: 67.664%;
+	}
+	.col-rt-5 {
+		width: 83.33%;
+	}
+	
+
+}
+
+@media only screen and (min-width:240px) and (max-width: 768px){
+	 .ScriptTop h1, .ScriptTop ul {
+		text-align: center;
+	}
+	.ScriptTop h1{
+		margin-top:0;
+		margin-bottom:15px;
+	}
+	.ScriptTop ul{
+		 margin-top:12px;		
+	}
+	
+	.ScriptHeader h1,
+	.ScriptHeader h2, 
+	.scriptnav ul{
+		text-align:center;	
+	}
+	.scriptnav ul{
+		 margin-top:12px;		
+	}
+	#float-right{
+		float:none;	
+	}
+	
+}
+/*************End of Tab vertical menu for member registration************************/
+
 /**************** extend css start ****************/
 /**************** common css start ****************/
 /* line 3, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
@@ -24,6 +253,21 @@ body {
 .login-type
 {
   padding:20px; margin:10px;
+}
+.myinputbox
+{
+  border-radius:5px;
+  border:1px solid #000000;
+  height:45px;
+  font-size:18px;
+}
+.myinputarea
+{
+  border-radius:5px;
+  border:1px solid #000000;
+  height:100px;
+  width:100%;
+  font-size:18px;
 }
 .myinputlogin
 {
@@ -563,33 +807,29 @@ ul {
 }
 
 /* line 24, E:/172 Etrain Education/172_Etrain_Education_html/sass/_button.scss */
-.btn_1 {
+.btn_1bell {
   display: inline-block;
-  padding: 13.5px 45px;
-  border-radius: 50px;
-  font-size: 14px;
-  color: #fff;
-  -o-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
-  text-transform: capitalize;
-  background-size: 200% auto;
+  padding: 13.5px 25px;
+  border-radius: 20px;
+  font-size: 25px;
+  color: #000000;
+  Background-color:#ffffff;
+  
   border: 1px solid transparent;
-  box-shadow: 0px 12px 20px 0px rgba(255, 126, 95, 0.15);
-}
+  }
 
 /* line 38, E:/172 Etrain Education/172_Etrain_Education_html/sass/_button.scss */
 .btn_1:hover {
   color: #fff !important;
   background-position: right center;
-  box-shadow: 0px 10px 30px 0px rgba(193, 34, 10, 0.2);
+  
 }
 
 @media (max-width: 576px) {
   /* line 24, E:/172 Etrain Education/172_Etrain_Education_html/sass/_button.scss */
   .btn_1 {
     padding: 10px 30px;
-    margin-top: 25px;
+    margin-top: 0px;
   }
 }
 
@@ -597,7 +837,7 @@ ul {
   /* line 24, E:/172 Etrain Education/172_Etrain_Education_html/sass/_button.scss */
   .btn_1 {
     padding: 10px 30px;
-    margin-top: 30px;
+    margin-top: 0px;
   }
 }
 
@@ -605,7 +845,7 @@ ul {
   /* line 24, E:/172 Etrain Education/172_Etrain_Education_html/sass/_button.scss */
   .btn_1 {
     padding: 10px 30px;
-    margin-top: 30px;
+    margin-top: 0px;
   }
 }
 
@@ -2204,7 +2444,7 @@ ul {
 
 /* line 12, E:/172 Etrain Education/172_Etrain_Education_html/sass/_menu.scss */
 .main_menu .navbar {
-  padding: 20px 0px;
+  padding: 10px 0px;
 }
 
 /* line 15, E:/172 Etrain Education/172_Etrain_Education_html/sass/_menu.scss */
@@ -3274,11 +3514,20 @@ ul {
 border:1px solid #ee390f;
 }
 
+.myborderlg{
+  border-right:2px solid #ee390f;
+  }
+
 .myborder1{
   border:2px solid #c00000;
   }
 .learnimg{
   margin:30px 10px 30px 10px;
+}
+
+.learnimg1{
+  margin:30px 0px 30px 0px;
+  padding:30px 0px 30px 0px;
 }
 
 

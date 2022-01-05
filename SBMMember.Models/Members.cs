@@ -13,6 +13,7 @@ namespace SBMMember.Models
         public string Mobile { get; set; }
         public string Password { get; set; }
         public string Status  { get; set; }
+        public string Mpin { get; set; }
         public DateTime Createdate { get; set; }
         public DateTime UpdateDate { get; set; }
     }

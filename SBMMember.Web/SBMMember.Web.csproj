@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\img\icon\color_star.svg" />
+    <None Include="wwwroot\img\icon\left.svg" />
+    <None Include="wwwroot\img\icon\play.svg" />
+    <None Include="wwwroot\img\icon\quate.svg" />
+    <None Include="wwwroot\img\icon\right.svg" />
+    <None Include="wwwroot\img\icon\star.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
     <PackageReference Include="System.Net.Requests" Version="4.3.0" />

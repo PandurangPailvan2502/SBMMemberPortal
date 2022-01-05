@@ -10,11 +10,11 @@ namespace SBMMember.Data.DataFactory
     public class MemberContactDetailsDataFactory : BaseMemberFactory<Member_ContactDetails>, IMemberContactDetailsDataFactory
     {
         private readonly SBMMemberDBContext dBContext;
-        private ILogger Logger;
-        public MemberContactDetailsDataFactory(SBMMemberDBContext memberDBContext, ILogger logger)
+        private ILogger<MemberContactDetailsDataFactory> logger;
+        public MemberContactDetailsDataFactory(SBMMemberDBContext memberDBContext, ILogger<MemberContactDetailsDataFactory> _logger)
         {
             dBContext = memberDBContext;
-            Logger = logger;
+            logger = _logger;
         }
 
         public override ResponseDTO AddDetails(Member_ContactDetails member_ContactDetails)
@@ -37,7 +37,7 @@ namespace SBMMember.Data.DataFactory
             catch (Exception ex)
             {
 
-                Logger.LogError($"Error occured while adding member contact details. Exception:{ex.Message}");
+                logger.LogError($"Error occured while adding member contact details. Exception:{ex.Message}");
                 responseDTO = new ResponseDTO()
                 {
                     Result = "Failed",
@@ -60,7 +60,7 @@ namespace SBMMember.Data.DataFactory
             catch (Exception ex)
             {
 
-                Logger.LogError($"Error occured while Get member contact details by memberId. Exception:{ex.Message}");
+                logger.LogError($"Error occured while Get member contact details by memberId. Exception:{ex.Message}");
 
             }
 
@@ -88,7 +88,7 @@ namespace SBMMember.Data.DataFactory
             catch (Exception ex)
             {
 
-                Logger.LogError($"Error occured while updating member contact details. Exception:{ex.Message}");
+                logger.LogError($"Error occured while updating member contact details. Exception:{ex.Message}");
                 responseDTO = new ResponseDTO()
                 {
                     Result = "Failed",

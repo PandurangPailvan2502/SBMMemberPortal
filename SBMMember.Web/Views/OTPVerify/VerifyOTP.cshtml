@@ -1,0 +1,93 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "VerifyOTP";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+<script>
+
+    $(document).ready(function () {
+
+        $("#btnContinue").click(function () {
+
+
+        });
+    });
+</script>
+
+<section class="blog_area single-post-area section_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 posts-list">
+                @if (!Model.IsOTPVerified)
+                {
+                    <div class="single-post">
+                        <div class="blog_details">
+                            <p class="excert">
+                                Enter 6 digit OTP received on your mobile number @ViewBag.MaskedMobile
+                            </p>
+                            <div class="login-icon">
+                                <img src="~/img/OTP.jpg" width="110px" height="110px">
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="login-type">
+                    <div class="form-group" style="text-align:center">
+                        @if (!Model.IsOTPVerified)
+                        {
+                            @if (Model.IsOTPMismatch)
+                            {
+                                <div class="row"><p id="lblError" style="color:red;margin-left:40px;">Please enter valid OTP recived on your mobile.</p></div>
+                            }
+                            <form method="post" enctype="multipart/form-data" asp-action="VerifyOTP" asp-controller="OTPVerify">
+                                <input asp-for="MobileNumber" type="hidden" />
+                                <input asp-for="SentOTP" type="hidden" />
+                                <div class="input-group mb-3">
+
+                                    <input type="text" asp-for="OTPInput" name="OTPInput" class="form-control myinputlogin" placeholder='6 digit code' onfocus="this.placeholder = ''" onblur="this.placeholder = '6 digit code'">
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn_121a" type="submit" text="Send OTP">Verify OTP</button>
+                                    </div>
+
+
+                                </div>
+                            </form>
+                        }
+                        @if (Model.IsOTPVerified)
+                        {
+                            <p class="excert">
+                                Congratulation!
+                            </p>
+                            <h3 style="color:#f500b8">Your mobile is verified successfully</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form method="post" enctype="multipart/form-data" asp-action="RedirectToSetMPIN" asp-controller="OTPVerify">
+                                        <input asp-for="MobileNumber" type="hidden" />
+                                        <button class="btn btn_121a" id="btnContinue" type="submit" text="Continue">Continue</button>
+                                    </form>
+                                </div>
+
+
+                            </div>
+                            <p> Continue to proceed with your membership form</p>
+                        }
+                    </div>
+
+                </div>
+
+                <div class="navigation-top">
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+</section>
