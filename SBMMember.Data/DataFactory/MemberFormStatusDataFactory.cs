@@ -10,8 +10,8 @@ namespace SBMMember.Data.DataFactory
     public class MemberFormStatusDataFactory : BaseMemberFactory<Member_FormStatus>, IMemberFormStatusDataFactory
     {
         private readonly SBMMemberDBContext dBContext;
-        private readonly ILogger Logger;
-        public MemberFormStatusDataFactory(SBMMemberDBContext memberDBContext,ILogger logger)
+        private readonly ILogger<MemberFormStatusDataFactory> Logger;
+        public MemberFormStatusDataFactory(SBMMemberDBContext memberDBContext,ILogger<MemberFormStatusDataFactory> logger)
         {
             dBContext = memberDBContext;
             Logger = logger;

@@ -41,6 +41,12 @@ namespace SBMMember.Web
              );
             services.AddScoped<IMemberDataFactory, MemberDataFactory>();
             services.AddScoped<IMemberContactDetailsDataFactory, MemberContactDetailsDataFactory>();
+            services.AddScoped<IMemberBusinessDataFactory, MemberBusinessDataFactory>();
+            services.AddScoped<IMemberEducationEmploymentDataFactory, MemberEducationEmploymentDataFactory>();
+            services.AddScoped<IMemberFamilyDetailsDataFactory, MemberFamilyDetailsDataFactory>();
+            services.AddScoped<IMemberFormStatusDataFactory, MemberFormStatusDataFactory>();
+            services.AddScoped<IMemberPaymentsDataFactory, MemberPaymentsDataFactory>();
+            services.AddScoped<IMemberPersonalDataFactory, MemberPersonalDataFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

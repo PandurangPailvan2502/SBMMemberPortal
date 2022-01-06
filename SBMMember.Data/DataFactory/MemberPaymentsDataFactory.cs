@@ -10,8 +10,8 @@ namespace SBMMember.Data.DataFactory
     public class MemberPaymentsDataFactory : BaseMemberFactory<Member_PaymentsAndReciepts>, IMemberPaymentsDataFactory
     {
         private readonly SBMMemberDBContext dBContext;
-        private readonly ILogger Logger;
-        public MemberPaymentsDataFactory(SBMMemberDBContext memberDBContext,ILogger logger)
+        private readonly ILogger<MemberPaymentsDataFactory> Logger;
+        public MemberPaymentsDataFactory(SBMMemberDBContext memberDBContext,ILogger<MemberPaymentsDataFactory> logger)
         {
             dBContext = memberDBContext;
             Logger = logger;

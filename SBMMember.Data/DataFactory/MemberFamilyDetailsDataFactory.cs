@@ -10,8 +10,8 @@ namespace SBMMember.Data.DataFactory
     public class MemberFamilyDetailsDataFactory : BaseMemberFactory<Member_FamilyDetails>, IMemberFamilyDetailsDataFactory
     {
         private readonly SBMMemberDBContext dBContext;
-        private readonly ILogger Logger;
-        public MemberFamilyDetailsDataFactory(SBMMemberDBContext memberDBContext,ILogger logger)
+        private readonly ILogger<MemberFamilyDetailsDataFactory> Logger;
+        public MemberFamilyDetailsDataFactory(SBMMemberDBContext memberDBContext,ILogger<MemberFamilyDetailsDataFactory> logger)
         {
             dBContext = memberDBContext;
             Logger = logger;

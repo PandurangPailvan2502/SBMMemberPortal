@@ -10,8 +10,8 @@ namespace SBMMember.Data.DataFactory
     public class MemberPersonalDataFactory : IMemberPersonalDataFactory
     {
         private readonly SBMMemberDBContext dBContext;
-        private readonly ILogger logger;
-        public MemberPersonalDataFactory(SBMMemberDBContext memberDBContext, ILogger _logger)
+        private readonly ILogger<MemberPersonalDataFactory> logger;
+        public MemberPersonalDataFactory(SBMMemberDBContext memberDBContext, ILogger<MemberPersonalDataFactory> _logger)
         {
             dBContext = memberDBContext;
             logger = _logger;

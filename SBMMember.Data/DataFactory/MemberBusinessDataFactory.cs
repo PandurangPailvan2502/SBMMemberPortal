@@ -7,11 +7,11 @@ using Microsoft.Extensions.Logging;
 using SBMMember.Models;
 namespace SBMMember.Data.DataFactory
 {
-    public class MemberBusinessDataFactory : BaseMemberFactory<Member_BusinessDetails>
+    public class MemberBusinessDataFactory : BaseMemberFactory<Member_BusinessDetails>, IMemberBusinessDataFactory
     {
         private readonly SBMMemberDBContext dBContext;
-        private readonly ILogger Logger;
-        public MemberBusinessDataFactory(SBMMemberDBContext memberDBContext,ILogger logger)
+        private readonly ILogger<MemberBusinessDataFactory> Logger;
+        public MemberBusinessDataFactory(SBMMemberDBContext memberDBContext, ILogger<MemberBusinessDataFactory> logger)
         {
             dBContext = memberDBContext;
             Logger = logger;
@@ -97,5 +97,12 @@ namespace SBMMember.Data.DataFactory
 
             return responseDTO;
         }
+    }
+
+    public interface IMemberBusinessDataFactory
+    {
+        ResponseDTO AddDetails(Member_BusinessDetails member_Business);
+        Member_BusinessDetails GetDetailsByMemberId(int MemberId);
+        ResponseDTO UpdateDetails(Member_BusinessDetails member_BusinessDetails);
     }
 }

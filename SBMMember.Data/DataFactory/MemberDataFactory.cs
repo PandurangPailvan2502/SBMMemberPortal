@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using SBMMember.Models;
 namespace SBMMember.Data.DataFactory
 {
     public class MemberDataFactory: IMemberDataFactory
     {
         private readonly SBMMemberDBContext memberDBContext;
-        public MemberDataFactory(SBMMemberDBContext dBContext)
+        private readonly ILogger<MemberDataFactory> Logger;
+        public MemberDataFactory(SBMMemberDBContext dBContext,ILogger<MemberDataFactory> logger)
         {
             memberDBContext = dBContext;
+            Logger = logger;
         }
 
         public Members AddMember(Members member)
