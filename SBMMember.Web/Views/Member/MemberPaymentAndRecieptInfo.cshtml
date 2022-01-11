@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewData["Title"] = "MemberPaymentAndRecieptInfo";
+    Layout = "~/Views/Shared/_LayoutMemberForm.cshtml";
+}
+
+<input name="tab" id="tab5" type="radio" checked />
+<section class="tab-content">
+    <h2> सभासदत्व माहिती </h2>
+    <div class="section-top-border">
+        <div class="row">
+            <div class="col-lg-10 col-md-10">
+                <form action="#">
+               
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="charges_paid" placeholder="Charges Paid" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Charges Paid'"
+                               required class="single-input">
+                    </div>
+                    <div class="input-group-icon mt-10">
+                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                        <div class="form-select" id="default-select">
+                            <select>
+                                <option value="0">Paid Through</option>
+                                <option value="2">Cash</option>
+                                <option value="3">Online</option>
+                                <option value="4">Cheque</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="TransactionID" placeholder="Transaction ID/ Ref. ID" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Transaction ID/ Ref. ID'"
+                               required class="single-input">
+                    </div>
+
+                    <div class="input-group-icon mt-10">
+                        <label>Transaction Date</label>
+                        <input type="date" name="DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                               required class="single-input">
+                    </div>
+
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="RecieptNo." placeholder="RecieptNo" onfocus="this.placeholder = ''" onblur="this.placeholder = 'RecieptNo'"
+                               required class="single-input">
+                    </div>
+
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="Membership Number" placeholder="Membership Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Membership Number'"
+                               required class="single-input">
+                    </div>
+
+                    
+
+                    <div class="mt-10 center">
+                        <a href="#" class="genric-btn primary-border">Submit</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>

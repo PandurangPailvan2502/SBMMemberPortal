@@ -26,7 +26,8 @@ namespace SBMMember.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            
             services.AddDbContext<SBMMemberDBContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
              sqlServerOptionsAction: sqlOptions =>
@@ -71,7 +72,7 @@ namespace SBMMember.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Member}/{action=MemberPaymentAndRecieptInfo}/{id?}");
             });
         }
     }

@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewData["Title"] = "MemberPersonalInfo";
+    Layout = "~/Views/Shared/_LayoutMemberForm.cshtml";
+}
+
+<input name="tab" id="tab1" type="radio" checked />
+
+<section class="tab-content">
+    <br>
+    <h2>वैयक्तिक माहिती </h2>
+    <div class="section-top-border">
+        <div class="row">
+            <div class="col-lg-10 col-md-10">
+                <form action="#">
+                    <div class="input-group-icon mt-10">
+                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                        <div class="form-select" id="default-select">
+                            <select>
+                                <option value="0">Title</option>
+                                <option value="1">Shree</option>
+                                <option value="2">Sou.</option>
+                                <option value="3">Shreemati</option>
+                                <option value="4">Doctor</option>
+                                <option value="5">Adv.</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="Fname" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'"
+                               required class="single-input">
+                    </div>
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="mname" placeholder="Middle Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Middle Name'"
+                               required class="single-input">
+                    </div>
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="lname" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'"
+                               required class="single-input">
+                    </div>
+
+                    <div class="input-group-icon mt-10">
+                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                        <div class="form-select" id="default-select">
+                            <select>
+                                <option value="0">Gender</option>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group-icon mt-10">
+                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                        <div class="form-select" id="default-select">
+                            <select>
+                                <option value="0">Marital Status</option>
+                                <option value="1">Married</option>
+                                <option value="2">Unmarried</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group-icon mt-10">
+                        <label>Date of Birth</label>
+                        <input type="date" name="DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                               required class="single-input">
+                    </div>
+                    <div class="input-group-icon mt-10">
+                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                        <div class="form-select" id="default-select">
+                            <select>
+                                <option value="0">Blood Group</option>
+                                <option value="1">A positive (A+)</option>
+                                <option value="2">A Negative (A-)</option>
+                                <option value="3">B Positive (B+)</option>
+                                <option value="4">B Negative (B-)</option>
+                                <option value="5">O Positive (O+)</option>
+                                <option value="6">O Negative (O-)</option>
+                                <option value="7">AB positive (AB+)</option>
+                                <option value="8">AB Negative (AB-)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'"
+                               required class="single-input">
+                    </div>
+
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="area" placeholder="Area" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Area'"
+                               required class="single-input">
+                    </div>
+
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="city" placeholder="City" onfocus="this.placeholder = ''" onblur="this.placeholder = 'City'"
+                               required class="single-input">
+                    </div>
+
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="pincode" placeholder="Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pincode'"
+                               required class="single-input">
+                    </div>
+
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="taluka" placeholder="Taluka" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Taluka'"
+                               required class="single-input">
+                    </div>
+
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="district" placeholder="District" onfocus="this.placeholder = ''" onblur="this.placeholder = 'District'"
+                               required class="single-input">
+                    </div>
+
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="state" placeholder="State" onfocus="this.placeholder = ''" onblur="this.placeholder = 'State'"
+                               required class="single-input">
+                    </div>
+
+
+
+
+
+                    <div class="mt-10 center">
+                        <button type="submit" class="genric-btn primary-border fa-align-right">Save & Continue</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+

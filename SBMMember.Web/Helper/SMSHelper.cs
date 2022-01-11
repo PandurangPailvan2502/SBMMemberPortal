@@ -32,11 +32,11 @@ namespace SBMMember.Web.Helper
             }
             catch (System.Net.WebException ex)
             {
-                return "Request-Timeout";
+                return "Request-Timeout:"+ex.Message;
             }
             catch (Exception ex)
             {
-                return "error";
+                return "error:"+ex.Message;
             }
             finally { webRequest.Abort(); }
         }

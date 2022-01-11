@@ -34,7 +34,31 @@ namespace SBMMember.Web.Controllers
                 UpdateDate = DateTime.Now
 
             };
-         var member=   memberDataFactory.AddMember(members);
+            var member=   memberDataFactory.AddMember(members);
+            return View("MemberPersonalInfo");
+        }
+
+        public IActionResult MemberPersonalInfo()
+        {
+            return View();
+        }
+        public IActionResult MemberContactInfo()
+        {
+            return View();
+        }
+
+        public IActionResult MemberEduEmpInfo()
+        {
+            return View();
+        }
+
+        public IActionResult MemberFamilyInfo()
+        {
+            return View();
+        }
+
+        public IActionResult MemberPaymentAndRecieptInfo()
+        {
             return View();
         }
     }

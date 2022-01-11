@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "MemberEduEmpInfo";
+    Layout = "~/Views/Shared/_LayoutMemberForm.cshtml";
+}
+
+<input name="tab" id="tab3" type="radio" checked />
+<section class="tab-content">
+    <h2> शिक्षण / नोकरी</h2>
+    <div class="section-top-border">
+        <div class="row">
+            <div class="col-lg-10 col-md-10">
+                <form action="#">
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="Qualification" placeholder="Qualification" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Qualification'"
+                               required class="single-input">
+                    </div>
+                    <div class="input-group-icon mt-10">
+                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                        <div class="form-select" id="default-select">
+                            <select>
+                                <option value="0">Occupation</option>
+                                <option value="1">Business</option>
+                                <option value="2">Job</option>
+                                <option value="3">Farmer</option>
+                                <option value="4">Student</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="Company Name" placeholder="Company/Business Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company/Business Name'"
+                               required class="single-input">
+                    </div>
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="Company Address" placeholder="Company/Business Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company/Business Address'"
+                               required class="single-input">
+                    </div>
+                   
+                    <div class="mt-10 center">
+                        <button type="button" class="genric-btn primary-border">Save & Continue..</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+

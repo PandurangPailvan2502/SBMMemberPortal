@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewData["Title"] = "MemberFamilyInfo";
+    Layout = "~/Views/Shared/_LayoutMemberForm.cshtml";
+}
+
+<input name="tab" id="tab4" type="radio" checked/>
+<section class="tab-content">
+    <h2> कुटुंबाविषयी माहिती</h2>
+    <div class="section-top-border">
+
+        <div class="row">
+            <div class="col-lg-10 col-md-10">
+                <form action="#">
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="Family member Name" placeholder="Family member Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Name'"
+                               required class="single-input">
+                    </div>
+                    <div class="input-group-icon mt-10">
+                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                        <div class="form-select" id="default-select">
+                            <select>
+                                <option value="0">Relations</option>
+                                <option value="1">Husband</option>
+                                <option value="2">Wife</option>
+                                <option value="3">Daughter</option>
+                                <option value="4">Son</option>
+                                <option value="4">Father</option>
+                                <option value="4">Mother</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="Family member Education" placeholder="Family member Education" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Education'"
+                               required class="single-input">
+                    </div>
+                    <div class="input-group-icon mt-10">
+                        <div class="form-select" id="default-select">
+                            <select>
+                                <option value="0">Family Member Occupation</option>
+                                <option value="1">Working</option>
+                                <option value="2">Business</option>
+                                <option value="3">Housewife</option>
+                                <option value="4">Student</option>
+                                <option value="4">retired</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group-icon mt-10">
+                       Date of Birth: <input type="date" name="DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                               required class="single-input">
+                    </div>
+
+                    <div class="input-group-icon mt-10">
+                        Blood Group :
+                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                        <div class="form-select" id="default-select">
+                            <select>
+                                <option value="0">-- Select Blood Group --</option>
+                                <option value="1">A positive (A+)</option>
+                                <option value="2">A Negative (A-)</option>
+                                <option value="3">B Positive (B+)</option>
+                                <option value="4">B Negative (B-)</option>
+                                <option value="5">O Positive (O+)</option>
+                                <option value="6">O Negative (O-)</option>
+                                <option value="7">AB positive (AB+)</option>
+                                <option value="8">AB Negative (AB-)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group-icon mt-10">
+                        Member Photo:<input type="file" name="Family member Name" placeholder="Family member Photo" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Photo'"
+                               required class="single-input">
+                    </div>
+                    <div class="mt-10 center">
+                        <button class="genric-btn primary-border">Add to List</button>
+                    </div>
+                    <div class="mt-10 right">
+                        <button class="genric-btn primary-border">Save & Continue..</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
