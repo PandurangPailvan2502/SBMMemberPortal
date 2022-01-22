@@ -1,4 +1,4 @@
-﻿
+﻿@model MemberEducationEmploymentInfoViewModel
 @{
     ViewData["Title"] = "MemberEduEmpInfo";
     Layout = "~/Views/Shared/_LayoutMemberForm.cshtml";
@@ -10,35 +10,43 @@
     <div class="section-top-border">
         <div class="row">
             <div class="col-lg-10 col-md-10">
-                <form action="#">
+                <form asp-action="MemberEduEmpInfo" asp-controller="Member" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="MemberId" />
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="Qualification" placeholder="Qualification" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Qualification'"
+                        <input type="text" name="Qualification" asp-for="Qualification" placeholder="Qualification" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Qualification'"
                                required class="single-input">
                     </div>
                     <div class="input-group-icon mt-10">
                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                         <div class="form-select" id="default-select">
-                            <select>
+                            <select asp-for="Proffession">
                                 <option value="0">Occupation</option>
-                                <option value="1">Business</option>
-                                <option value="2">Job</option>
-                                <option value="3">Farmer</option>
-                                <option value="4">Student</option>
+                                <option value="Business">Business</option>
+                                <option value="Job">Job</option>
+                                <option value="Farmer">Farmer</option>
+                                <option value="Student">Student</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="Company Name" placeholder="Company/Business Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company/Business Name'"
+                        <input type="text" name="CompanyName" asp-for="CompanyName" placeholder="Company Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Name'"
                                required class="single-input">
                     </div>
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="Company Address" placeholder="Company/Business Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company/Business Address'"
+                        <input type="text" name="CompanyAddress" asp-for="CompanyAddress" placeholder="Company Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Address'"
                                required class="single-input">
                     </div>
-                   
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="BusinessName" asp-for="BusinessName" placeholder="Business Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Name'"
+                               required class="single-input">
+                    </div>
+                    <div class="input-group-icon mt-10">
+                        <input type="text" name="BusinessAddress" asp-for="BusinessAddress" placeholder="Business Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Address'"
+                               required class="single-input">
+                    </div>
                     <div class="mt-10 center">
-                        <button type="button" class="genric-btn primary-border">Save & Continue..</button>
+                        <button type="submit" class="genric-btn primary-border">Save & Continue..</button>
                     </div>
                 </form>
             </div>

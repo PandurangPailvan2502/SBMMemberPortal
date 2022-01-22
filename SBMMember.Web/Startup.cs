@@ -26,8 +26,11 @@ namespace SBMMember.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddDbContext<SBMMemberDBContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
              sqlServerOptionsAction: sqlOptions =>
@@ -53,6 +56,7 @@ namespace SBMMember.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseSession();
             loggerFactory.AddFile("Logs/SBMMember-{Date}.txt");
             if (env.IsDevelopment())
             {
@@ -72,7 +76,9 @@ namespace SBMMember.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Member}/{action=MemberPaymentAndRecieptInfo}/{id?}");
+                     //pattern: "{controller=Home}/{action=MemberHome}/{id?}");
+                     pattern: "{controller=Payment}/{action=AcceptMemberPayment}/{id?}");
+
             });
         }
     }

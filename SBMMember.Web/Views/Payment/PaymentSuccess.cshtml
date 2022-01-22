@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "PaymentSuccess";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<section class="blog_area single-post-area section_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 posts-list">
+                <div class="single-post">
+                    <div class="blog_details">
+                        <h3>Payment recieved !</h3>
+                        <h4 class="excert">Reference No: </h4>
+                        <h5>
+                            Thank you very much for becoming Samata Bhratru mandal lifetime member. We will review your profile and activate soon.
+                            You will be notified with your membership number on your registered mobile
+                        </h5>
+                        <h6>Note:Please note down reference no for any payment related queries. You will be redirected home page in 60 seconds. Other wise you can click below to go to the home.</h6>
+                        <a class="" asp-action="MemberHome" asp-controller="Home">Member Home page</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+           
+            setTimeout(function () {
+                window.location = "/Home/MemberHome";
+            }, 60000);
+        });
+</script>

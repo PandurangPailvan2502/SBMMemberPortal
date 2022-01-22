@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
 
 namespace SBMMember.Web.Controllers
 {
@@ -57,8 +57,8 @@ namespace SBMMember.Web.Controllers
         [HttpPost]
         public IActionResult RedirectToSetMPIN(LoginViewModel model)
         {
-
-            return RedirectToActionPermanent("SetPasswordAndPin","Member", model);
+            HttpContext.Session.SetString("Mobile", model.MobileNumber);
+            return RedirectToAction("SetPasswordAndPin","Member",model);
         }
 
     }

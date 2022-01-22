@@ -1,4 +1,4 @@
-﻿
+﻿@model MemberPerosnalInfoViewModel
 @{
     ViewData["Title"] = "MemberPersonalInfo";
     Layout = "~/Views/Shared/_LayoutMemberForm.cshtml";
@@ -12,106 +12,106 @@
     <div class="section-top-border">
         <div class="row">
             <div class="col-lg-10 col-md-10">
-                <form action="#">
+                <form asp-action="MemberPersonalInfo" asp-controller="Member" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="MemberId" />
                     <div class="input-group-icon mt-10">
                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                         <div class="form-select" id="default-select">
-                            <select>
-                                <option value="0">Title</option>
-                                <option value="1">Shree</option>
-                                <option value="2">Sou.</option>
-                                <option value="3">Shreemati</option>
-                                <option value="4">Doctor</option>
-                                <option value="5">Adv.</option>
+                            <select asp-for="Prefix">
+                                <option value="Title">Title</option>
+                                <option value="Shree">Shree</option>
+                                <option value="Sou">Sou</option>
+                                <option value="Shreemati">Shreemati</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Adv">Adv</option>
                             </select>
                         </div>
                     </div>
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="Fname" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'"
+                        <input type="text" name="FirstName" asp-for="FirstName" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'"
                                required class="single-input">
                     </div>
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="mname" placeholder="Middle Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Middle Name'"
+                        <input type="text" name="MiddleName" asp-for="MiddleName" placeholder="Middle Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Middle Name'"
                                required class="single-input">
                     </div>
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="lname" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'"
+                        <input type="text" name="LastName" asp-for="LastName" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'"
                                required class="single-input">
                     </div>
 
                     <div class="input-group-icon mt-10">
                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                         <div class="form-select" id="default-select">
-                            <select>
-                                <option value="0">Gender</option>
-                                <option value="1">Male</option>
-                                <option value="2">Female</option>
+                            <select asp-for="Gender">
+                                <option value="Gender">Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                             </select>
                         </div>
                     </div>
                     <div class="input-group-icon mt-10">
                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                         <div class="form-select" id="default-select">
-                            <select>
+                            <select asp-for="MarritalStatus">
                                 <option value="0">Marital Status</option>
-                                <option value="1">Married</option>
-                                <option value="2">Unmarried</option>
+                                <option value="Married">Married</option>
+                                <option value="Married">Unmarried</option>
                             </select>
                         </div>
                     </div>
                     <div class="input-group-icon mt-10">
                         <label>Date of Birth</label>
-                        <input type="date" name="DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
-                               required class="single-input">
+                        <input type="date"  name="BirthDate" asp-for="BirthDate" class="single-input">
                     </div>
                     <div class="input-group-icon mt-10">
                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                         <div class="form-select" id="default-select">
-                            <select>
+                            <select asp-for="BloodGroup">
                                 <option value="0">Blood Group</option>
-                                <option value="1">A positive (A+)</option>
-                                <option value="2">A Negative (A-)</option>
-                                <option value="3">B Positive (B+)</option>
-                                <option value="4">B Negative (B-)</option>
-                                <option value="5">O Positive (O+)</option>
-                                <option value="6">O Negative (O-)</option>
-                                <option value="7">AB positive (AB+)</option>
-                                <option value="8">AB Negative (AB-)</option>
+                                <option value="A+">A positive (A+)</option>
+                                <option value="A-">A Negative (A-)</option>
+                                <option value="B+">B Positive (B+)</option>
+                                <option value="B-">B Negative (B-)</option>
+                                <option value="O+">O Positive (O+)</option>
+                                <option value="O-">O Negative (O-)</option>
+                                <option value="AB+">AB positive (AB+)</option>
+                                <option value="AB-">AB Negative (AB-)</option>
                             </select>
                         </div>
                     </div>
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'"
+                        <input type="text" name="address" asp-for="Address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'"
                                required class="single-input">
                     </div>
 
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="area" placeholder="Area" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Area'"
+                        <input type="text" name="area" asp-for="Area" placeholder="Area" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Area'"
                                required class="single-input">
                     </div>
 
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="city" placeholder="City" onfocus="this.placeholder = ''" onblur="this.placeholder = 'City'"
+                        <input type="text" name="city" asp-for="City" placeholder="City" onfocus="this.placeholder = ''" onblur="this.placeholder = 'City'"
                                required class="single-input">
                     </div>
 
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="pincode" placeholder="Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pincode'"
+                        <input type="text" name="pincode" asp-for="Pincode" placeholder="Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pincode'"
                                required class="single-input">
                     </div>
 
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="taluka" placeholder="Taluka" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Taluka'"
+                        <input type="text" name="taluka" asp-for="Taluka" placeholder="Taluka" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Taluka'"
                                required class="single-input">
                     </div>
 
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="district" placeholder="District" onfocus="this.placeholder = ''" onblur="this.placeholder = 'District'"
+                        <input type="text" name="district" asp-for="District" placeholder="District" onfocus="this.placeholder = ''" onblur="this.placeholder = 'District'"
                                required class="single-input">
                     </div>
 
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="state" placeholder="State" onfocus="this.placeholder = ''" onblur="this.placeholder = 'State'"
+                        <input type="text" name="state" asp-for="State" placeholder="State" onfocus="this.placeholder = ''" onblur="this.placeholder = 'State'"
                                required class="single-input">
                     </div>
 

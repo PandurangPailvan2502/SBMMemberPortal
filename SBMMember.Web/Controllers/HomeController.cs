@@ -37,7 +37,10 @@ namespace SBMMember.Web.Controllers
             //SMSHelper.SendSMS();
             return View();
         }
-
+        public IActionResult MemberHome()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

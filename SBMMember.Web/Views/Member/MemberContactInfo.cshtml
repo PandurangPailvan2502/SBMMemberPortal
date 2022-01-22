@@ -1,4 +1,4 @@
-﻿
+﻿@model MemberContactInfoViewModel 
 @{
     ViewData["Title"] = "MemberContactInfo";
     Layout = "~/Views/Shared/_LayoutMemberForm.cshtml";
@@ -9,51 +9,52 @@
     <div class="section-top-border">
         <div class="row">
             <div class="col-lg-10 col-md-10">
-                <form action="#">
+                <form asp-controller="Member" asp-action="MemberContactInfo" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="MemberId" />
                     <div class="input-group-icon mt-3">
-                        <input type="text" name="nativePlace" placeholder="Native Place" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place'"
+                        <input type="text" name="NativePlace" asp-for="NativePlace" placeholder="Native Place" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place'"
                                required class="single-input">
                     </div>
 
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="nativePlaceTaluka" placeholder="Native Place Taluka" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place Taluka'"
+                        <input type="text" name="NativePlaceTaluka" asp-for="NativePlaceTaluka" placeholder="Native Place Taluka" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place Taluka'"
                                required class="single-input">
                     </div>
 
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="nativePlaceDistrict" placeholder="Native Place District" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place District'"
+                        <input type="text" name="NativePlaceDist" asp-for="NativePlaceDist" placeholder="Native Place District" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place District'"
                                required class="single-input">
                     </div>
 
 
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="mobile" placeholder="Personal Mobile 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 1'"
+                        <input type="text" name="Mobile1" asp-for="Mobile1" placeholder="Personal Mobile 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 1'"
                                required class="single-input">
                     </div>
 
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="mobile" placeholder="Personal Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 2'"
+                        <input type="text" name="Mobile2" asp-for="Mobile2" placeholder="Personal Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 2'"
                                required class="single-input">
                     </div>
 
                     <div class="input-group-icon mt-10">
-                        <input type="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'"
+                        <input type="email" name="EmailId" asp-for="EmailId" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'"
                                required class="single-input">
                     </div>
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="Fname" placeholder="Ref. Full Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ref. Full Name'"
+                        <input type="text" name="RelativeName" asp-for="RelativeName" placeholder="Ref. Full Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ref. Full Name'"
                                required class="single-input">
                     </div>
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="address" placeholder="Reference / Relative full address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference / Relative full address'"
+                        <input type="text" name="RelativeAddress" asp-for="RelativeAddress" placeholder="Reference / Relative full address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference / Relative full address'"
                                required class="single-input">
                     </div>
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="mobile1" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 1'"
+                        <input type="text" name="RelativeContact1" asp-for="RelativeContact1" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 1'"
                                required class="single-input">
                     </div>
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="mobile2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
+                        <input type="text" name="RelativeContact2" asp-for="RelativeContact2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
                                required class="single-input">
                     </div>
                     <div class="mt-10 center">

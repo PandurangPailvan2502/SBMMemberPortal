@@ -6,63 +6,20 @@
 <script>
 
 
-        $(document).ready(function () {
+    $(document).ready(function () {
 
-            $('#mobileNumber').keypress(function (e) {
+        $('#mobileNumber').keypress(function (e) {
 
-                var charCode = (e.which) ? e.which : event.keyCode
+            var charCode = (e.which) ? e.which : event.keyCode
 
-                if (String.fromCharCode(charCode).match(/[^0-9]/g))
+            if (String.fromCharCode(charCode).match(/[^0-9]/g))
 
-                    return false;
+                return false;
 
-            });
+        });
 
-            //$("#btnSendOtp").click(function () {
-            //    alert($("#mobileNumber").val());
-            //    var dataToPost = "{ mobile:'" + $("#mobileNumber").val() + "'}";
-            //    $.ajax({
-            //        type: "POST",
-            //        url: "/OTPVerify/SendOTP",
-            //        data: dataToPost,
-            //        contentType: "application/json; charset=utf-8",
-            //        dataType: "json",
-            //        success: function (response) {
-            //           // alert("Hello: " + response.Name + " .\nCurrent Date and Time: " + response.DateTime);
-            //        },
-            //        failure: function (response) {
-            //            alert(response.responseText);
-            //        },
-            //        error: function (response) {
-            //            alert(response.responseText);
-            //        }
-            //    });
-            //});
 
-            @*$("#btnSendOtp").click(function () {
-
-                var mobileNum = $("#mobileNumber").val();
-                var validateMobNum = /^\d*(?:\.\d{1,2})?$/;
-                if (mobileNum.length == 10)
-                {
-                    //alert("Valid Mobile Number");
-
-                    var url = '@Url.Action("SendOTP", "OTPVerify")';
-                    var data = { mobile: mobileNum };
-
-                $.post(url, data, function (result) {
-                    // do something
-                    if (result.status == "success") {
-                        window.location = '@Url.Action("VerifyOTP", "OTPVerify")';
-                    }
-                });
-                }
-                else {
-                    //alert("Invalid Mobile Number");
-                    $("#lblError").text("Invalid Mobile Number");
-                }
-            });*@
-        });//document close
+    });//document close
 
 </script>
 <section class="blog_area single-post-area section_padding">
@@ -75,7 +32,7 @@
                             To proceed with the one time registration first we will verify your mobile number
                         </p>
                         <div class="login-icon">
-                            <img src="img/login-icon.png" width="110px" height="110px">
+                            <img src="~/img/login-icon.png" width="110px" height="110px">
                         </div>
                     </div>
                 </div>
@@ -87,7 +44,8 @@
                         <form method="post" enctype="multipart/form-data" asp-controller="OTPVerify" asp-action="SendOTP">
                             <div class="input-group mb-3">
 
-                                <input id="mobileNumber" type="text" name="mobile" class="form-control myinputlogin" maxlength="10" placeholder='Enter Mobile No.' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Mobile No.'">
+                                <input id="mobileNumber" type="text" required oninvalid="this.setCustomValidity('Enter mobile number to procced further')"
+                                       oninput="this.setCustomValidity('')" name="mobile" class="form-control myinputlogin" maxlength="10" placeholder='Enter Mobile No.' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Mobile No.'">
                             </div>
 
                             <div class="row">

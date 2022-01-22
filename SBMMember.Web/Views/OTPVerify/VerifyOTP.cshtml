@@ -45,7 +45,9 @@
                                 <input asp-for="SentOTP" type="hidden" />
                                 <div class="input-group mb-3">
 
-                                    <input type="text" asp-for="OTPInput" name="OTPInput" class="form-control myinputlogin" placeholder='6 digit code' onfocus="this.placeholder = ''" onblur="this.placeholder = '6 digit code'">
+                                    <input type="text" asp-for="OTPInput"  name="OTPInput"
+                                    required oninvalid="this.setCustomValidity('Enter 6 digit OTP recived on your mobile @ViewBag.MaskedMobile')"
+                                       oninput="this.setCustomValidity('')" class="form-control myinputlogin" placeholder='6 digit code' onfocus="this.placeholder = ''" onblur="this.placeholder = '6 digit code'">
 
                                 </div>
                                 <div class="row">
