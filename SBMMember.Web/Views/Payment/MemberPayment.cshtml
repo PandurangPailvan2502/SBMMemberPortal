@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 <form asp-action="AfterPayment">
+    <input type="hidden" name="MemberId" asp-for="MemberId" />
     <input type="hidden" name="orderid" id="orderid" />
     <input type="hidden" name="paymentid" id="paymentid" />
     <input type="hidden" name="signature" id="signature" />

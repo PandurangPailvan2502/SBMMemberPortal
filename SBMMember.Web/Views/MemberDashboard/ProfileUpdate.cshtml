@@ -1,0 +1,503 @@
+﻿
+@{
+    ViewData["Title"] = "ProfileUpdate";
+    Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
+}
+
+<section class="blog_area single-post-area section_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 posts-list">
+                <div class="single-post">
+                    <div class="blog_details">
+                        <p class="excert">
+                            Update Member Profile
+                        </p>
+                    </div>
+                </div>
+
+
+
+                <section>
+                    <div class="rt-container">
+                        <div class="col-rt-12">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="photo-container1">
+                                        <i class="ti-edit"></i>
+                                        <img src="img/img-1.png" style="margin:25px">
+                                    </div>
+                                    <section class="data-content1" style="background:#7c0053; width: calc(100% - 150px); padding:20px; color:#ffffff">
+                                        <label>सभासदाचे नाव: </label><br><br>
+                                        <label>सभासद क्रमांक: </label><br><br>
+                                        <label>जन्म तारीख: </label><br><br>
+                                        <label>मोबाईल: </label>
+
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="Scriptcontent">
+
+                                <section class="tabs-container">
+                                    <label for="tab1" class="yel"> वयक्तिक माहिती </label>
+                                    <label for="tab2" class="lblu"> मुळगाव व संपर्क</label>
+                                    <label for="tab3" class="grn"> शिक्षण / नोकरी </label>
+                                    <label for="tab4" class="purp"> कुटुंबाविषयी माहिती </label>
+                                    <label for="tab5" class="brn"> सभासदत्व माहिती</label>
+
+                                </section>
+
+                                <input name="tab" id="tab1" type="radio" checked />
+
+                                <section class="tab-content">
+                                    <br>
+                                    <h2> वयक्तिक माहिती </h2>
+                                    <div class="section-top-border">
+                                        <div class="row">
+                                            <div class="col-lg-10 col-md-10">
+                                                <form action="#">
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="Fname" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="mname" placeholder="Middle Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Middle Name'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="lname" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">Title</option>
+                                                                <option value="1">Shree</option>
+                                                                <option value="2">Sou.</option>
+                                                                <option value="3">Shreemati</option>
+                                                                <option value="4">Doctor</option>
+                                                                <option value="5">Adv.</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">Area</option>
+                                                                <option value="1">Area 1</option>
+                                                                <option value="2">Area 2</option>
+                                                                <option value="3">Area 3</option>
+                                                                <option value="4">Area 4</option>
+                                                                <option value="5">Area 5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">City</option>
+                                                                <option value="1">City 1</option>
+                                                                <option value="2">City 2</option>
+                                                                <option value="3">City 3</option>
+                                                                <option value="4">City 4</option>
+                                                                <option value="5">City 5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">Pincode</option>
+                                                                <option value="1">Pincode 1</option>
+                                                                <option value="2">Pincode 2</option>
+                                                                <option value="3">Pincode 3</option>
+                                                                <option value="4">Pincode 4</option>
+                                                                <option value="5">Pincode 5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">Taluka</option>
+                                                                <option value="1">Taluka 1</option>
+                                                                <option value="2">Taluka 2</option>
+                                                                <option value="3">Taluka 3</option>
+                                                                <option value="4">Taluka 4</option>
+                                                                <option value="5">Taluka 5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">District</option>
+                                                                <option value="1">District 1</option>
+                                                                <option value="2">District 2</option>
+                                                                <option value="3">District 3</option>
+                                                                <option value="4">District 4</option>
+                                                                <option value="5">District 5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">State</option>
+                                                                <option value="1">State 1</option>
+                                                                <option value="2">State 2</option>
+                                                                <option value="3">State 3</option>
+                                                                <option value="4">State 4</option>
+                                                                <option value="5">State 5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">Blood Group</option>
+                                                                <option value="1">A positive (A+)</option>
+                                                                <option value="2">A Negative (A-)</option>
+                                                                <option value="3">B Positive (B+)</option>
+                                                                <option value="4">B Negative (B-)</option>
+                                                                <option value="5">O Positive (O+)</option>
+                                                                <option value="6">O Negative (O-)</option>
+                                                                <option value="7">AB positive (AB+)</option>
+                                                                <option value="8">AB Negative (AB-)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="date" name="DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="mt-10 center">
+                                                        <a href="#" class="genric-btn primary-border">Submit</a>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </section>
+
+
+                                <input name="tab" id="tab2" type="radio" />
+                                <section class="tab-content">
+                                    <h2> मुळगाव व संपर्क</h2>
+                                    <div class="section-top-border">
+                                        <div class="row">
+                                            <div class="col-lg-10 col-md-10">
+                                                <form action="#">
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">Native Place</option>
+                                                                <option value="1">Native Place1</option>
+                                                                <option value="2">Native Place2</option>
+                                                                <option value="3">Native Place3</option>
+                                                                <option value="4">Native Place4</option>
+                                                                <option value="5">Native Place5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">Native Place Taluka </option>
+                                                                <option value="1">Native Place Taluka 1</option>
+                                                                <option value="2">Native Place Taluka 2</option>
+                                                                <option value="3">Native Place Taluka 3</option>
+                                                                <option value="4">Native Place Taluka 4</option>
+                                                                <option value="5">Native Place Taluka 5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">Native Place District </option>
+                                                                <option value="1">Native Place District 1</option>
+                                                                <option value="2">Native Place District 2</option>
+                                                                <option value="3">Native Place District 3</option>
+                                                                <option value="4">Native Place District 4</option>
+                                                                <option value="5">Native Place District 5</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="mobile" placeholder="Mobile 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mobile 1'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="mobile" placeholder="Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mobile 2'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="email" name="email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="mt-10 center">
+                                                        <a href="#" class="genric-btn primary-border">Submit</a>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <input name="tab" id="tab3" type="radio" />
+                                <section class="tab-content">
+                                    <h2> शिक्षण / नोकरी</h2>
+                                    <div class="section-top-border">
+                                        <div class="row">
+                                            <div class="col-lg-10 col-md-10">
+                                                <form action="#">
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="Qualification" placeholder="Qualification" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Qualification'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">Occupation</option>
+                                                                <option value="1">Business</option>
+                                                                <option value="2">Job</option>
+                                                                <option value="3">Farmer</option>
+                                                                <option value="4">Student</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="Company Name" placeholder="Company Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Name'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="Company Address" placeholder="Company Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Address'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+                                                        <input type="text" name="Business Name" placeholder="Business Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Name'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+                                                        <input type="text" name="Business Address" placeholder="Business Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Address'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="mt-10 center">
+                                                        <a href="#" class="genric-btn primary-border">Primary</a>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <input name="tab" id="tab4" type="radio" />
+                                <section class="tab-content">
+                                    <h2> कुटुंबाविषयी माहिती</h2>
+                                    <div class="section-top-border">
+
+                                        <div class="row">
+                                            <div class="col-lg-10 col-md-10">
+                                                <form action="#">
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="Family member Name" placeholder="Family member Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Name'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">Relations</option>
+                                                                <option value="1">Husband</option>
+                                                                <option value="2">Wife</option>
+                                                                <option value="3">Daughter</option>
+                                                                <option value="4">Son</option>
+                                                                <option value="4">Father</option>
+                                                                <option value="4">Mother</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="Family member Education" placeholder="Family member Education" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Education'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">Family Member Occupation</option>
+                                                                <option value="1">Working</option>
+                                                                <option value="2">Business</option>
+                                                                <option value="3">Housewife</option>
+                                                                <option value="4">Student</option>
+                                                                <option value="4">retired</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="date" name="DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">Blood Group</option>
+                                                                <option value="1">A positive (A+)</option>
+                                                                <option value="2">A Negative (A-)</option>
+                                                                <option value="3">B Positive (B+)</option>
+                                                                <option value="4">B Negative (B-)</option>
+                                                                <option value="5">O Positive (O+)</option>
+                                                                <option value="6">O Negative (O-)</option>
+                                                                <option value="7">AB positive (AB+)</option>
+                                                                <option value="8">AB Negative (AB-)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-10 center">
+                                                        <a href="#" class="genric-btn primary-border">Submit</a>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <input name="tab" id="tab5" type="radio" />
+                                <section class="tab-content">
+                                    <h2> सभासदत्व माहिती </h2>
+                                    <div class="section-top-border">
+                                        <div class="row">
+                                            <div class="col-lg-10 col-md-10">
+                                                <form action="#">
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="Fname" placeholder="Ref. Full Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ref. Full Name'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="address" placeholder="Reference / Relative full address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference / Relative full address'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="mobile1" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 1'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="mobile2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="charges_paid" placeholder="Charges Paid" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Charges Paid'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">Paid Through</option>
+                                                                <option value="2">Cash</option>
+                                                                <option value="3">Online</option>
+                                                                <option value="4">Cheque</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="TransactionID" placeholder="Transaction ID/ Ref. ID" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Transaction ID/ Ref. ID'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <label>Transaction Date</label>
+                                                        <input type="date" name="DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="RecieptNo." placeholder="RecieptNo" onfocus="this.placeholder = ''" onblur="this.placeholder = 'RecieptNo'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="Membership Number" placeholder="Membership Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Membership Number'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <label>Membership Date (auto fill while approval)</label>
+                                                        <input type="date" name="DOB" placeholder="Date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date'" readonly
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select>
+                                                                <option value="0">Male</option>
+                                                                <option value="2">Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mt-10 center">
+                                                        <a href="#" class="genric-btn primary-border">Submit</a>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+
+                    </div>
+                    </section>
+            </div>
+            </div>
+        </div>
+</section>
+

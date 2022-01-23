@@ -7,6 +7,7 @@ namespace SBMMember.Web.Models
 {
     public class RazorPayOptionsModel
     {
+        public int MemberId { get; set; }
         public string Key { get; set; }
         public decimal AmountInSubUnits { get; set; }
         public string Currency { get; set; }

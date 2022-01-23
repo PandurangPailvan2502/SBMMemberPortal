@@ -12,6 +12,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SBMMember.Data.DataFactory;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+
 namespace SBMMember.Web
 {
     public class Startup
@@ -26,9 +30,15 @@ namespace SBMMember.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSession(options => {
+            services.AddSession(options =>
+            {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = new PathString("/Login/Login");
+            });
+
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddDbContext<SBMMemberDBContext>(options =>
@@ -40,8 +50,8 @@ namespace SBMMember.Web
                  maxRetryDelay: TimeSpan.FromSeconds(30),
                  errorNumbersToAdd: null);
              }
-             
-             )           
+
+             )
              );
             services.AddScoped<IMemberDataFactory, MemberDataFactory>();
             services.AddScoped<IMemberContactDetailsDataFactory, MemberContactDetailsDataFactory>();
@@ -68,6 +78,8 @@ namespace SBMMember.Web
             }
             app.UseStaticFiles();
 
+            app.UseAuthentication();
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -76,8 +88,9 @@ namespace SBMMember.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                     //pattern: "{controller=Home}/{action=MemberHome}/{id?}");
-                     pattern: "{controller=Payment}/{action=AcceptMemberPayment}/{id?}");
+        // pattern: "{controller=Home}/{action=MemberHome}/{id?}");
+        //pattern: "{controller=Payment}/{action=AcceptMemberPayment}/{id?}");
+        pattern: "{controller=MemberDashboard}/{action=ProfileUpdate}/{id?}");
 
             });
         }

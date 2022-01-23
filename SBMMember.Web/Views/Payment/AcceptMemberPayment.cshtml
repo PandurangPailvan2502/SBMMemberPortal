@@ -19,21 +19,24 @@
                 <div class="login-type">
                     <div class="form-group">
                         <div class="container">
+                            <div class="row">
+                                <h3>Samata Bharatru Mandal Lifetime Member Registration Fess.</h3>
+                            </div>
                             <form asp-action="MemberPayment" asp-controller="Payment" method="post" enctype="multipart/form-data">
-                                
+                                <input type="hidden" asp-for="MemberId" />
                                 <div class="row">
 
                                     <div class="col-lg-4 col-md-4 mt-sm-50">
                                         <input type="text" name="MemberName" asp-for="MemberName" placeholder="Enter Member Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Member Name'"
-                                               required class="single-input-primary">
+                                               required class="single-input-primary" readonly>
                                     </div>
                                     <div class="col-lg-4 col-md-4 mt-sm-50">
                                         <input type="text" name="Mobile" asp-for="Mobile" placeholder="Mobile" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mobile'"
-                                               required class="single-input-primary">
+                                               required class="single-input-primary" readonly>
                                     </div>
                                     <div class="col-lg-4 col-md-4 mt-sm-50">
                                         <input type="text" name="Email" asp-for="Email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'"
-                                               required class="single-input-primary">
+                                               required class="single-input-primary" readonly>
                                     </div>
                                     <div class="col-lg-4 col-md-4 mt-sm-50">
                                         Rs.@Model.Amount.ToString("0.00")

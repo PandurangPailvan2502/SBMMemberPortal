@@ -7,6 +7,7 @@ namespace SBMMember.Web.Models
 {
     public class MemberPaymentViewModel
     {
+        public int MemberId { get; set; }
         public string MemberName { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using SBMMember.Data;
 using SBMMember.Data.DataFactory;
@@ -22,6 +23,7 @@ namespace SBMMember.Web.Controllers
         private readonly IMapper mapper;
         private static List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
         private readonly SBMMemberDBContext dBContext;
+        private readonly IConfiguration configuration;
         public MemberController(IMemberDataFactory dataFactory,
             IMemberPersonalDataFactory memberPersonalDataFactory,
             IMemberContactDetailsDataFactory memberContactDetailsDataFactory,
@@ -29,7 +31,8 @@ namespace SBMMember.Web.Controllers
             IMemberFamilyDetailsDataFactory memberFamilyDetailsDataFactory,
             ILogger<MemberController> logger,
             IMapper Mapper,
-            SBMMemberDBContext memberDBContext)
+            SBMMemberDBContext memberDBContext,
+            IConfiguration _configuration)
         {
             Logger = logger;
             mapper = Mapper;
@@ -39,6 +42,7 @@ namespace SBMMember.Web.Controllers
             educationEmploymentDataFactory = memberEducationEmploymentDataFactory;
             familyDetailsDataFactory = memberFamilyDetailsDataFactory;
             dBContext = memberDBContext;
+            configuration = _configuration;
 
         }
 
@@ -199,10 +203,11 @@ namespace SBMMember.Web.Controllers
                            ).FirstOrDefault();
             MemberPaymentViewModel memberPayment = new MemberPaymentViewModel()
             {
+                MemberId=model.MemberId,
                 MemberName = data.Name,
                 Mobile = data.Conatct,
                 Email = data.Email,
-                Amount = 1000
+                Amount =Convert.ToInt32( configuration.GetSection("SubscriptionCharges"))
             };
 
             return RedirectToAction("AcceptMemberPayment","Payment",memberPayment);
