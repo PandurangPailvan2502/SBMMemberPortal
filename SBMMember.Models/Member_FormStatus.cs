@@ -11,12 +11,13 @@ namespace SBMMember.Models
     {
         [Key]
         public int MemberId { get; set; }
-        public string FormStatus { get; set; }
-        public DateTime FormSubmitDate { get; set; }
-        public DateTime VerifiedDate { get; set; }
-        public string VerifiedBy { get; set; }
-        public DateTime ApprovedDate { get; set; }
-        public string ApprovedBy { get; set; }
-        public string AdminComments { get; set; }
+#nullable enable
+        public string? FormStatus { get; set; }
+        public DateTime? FormSubmitDate { get; set; }
+        public DateTime? VerifiedDate { get; set; }
+        public string? VerifiedBy { get; set; }
+        public DateTime? ApprovedDate { get; set; }
+        public string? ApprovedBy { get; set; }
+        public string? AdminComments { get; set; }
     }
 }

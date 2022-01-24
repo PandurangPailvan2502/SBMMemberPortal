@@ -87,6 +87,7 @@ namespace SBMMember.Web.Controllers
 
             Member_PersonalDetails personalDetails = mapper.Map<Member_PersonalDetails>(model);
             //personalDetails.CreateDate = DateTime.Now;
+            memberDataFactory.UpdateName(personalDetails.MemberId, personalDetails.FirstName, personalDetails.MiddleName, personalDetails.LastName);
             var response = personalDataFactory.AddMemberPersonalDetails(personalDetails);
             if (response.Result == "Success")
             {
@@ -207,7 +208,7 @@ namespace SBMMember.Web.Controllers
                 MemberName = data.Name,
                 Mobile = data.Conatct,
                 Email = data.Email,
-                Amount =Convert.ToInt32( configuration.GetSection("SubscriptionCharges"))
+                Amount =Convert.ToInt32( configuration.GetSection("SubscriptionCharges").Value)
             };
 
             return RedirectToAction("AcceptMemberPayment","Payment",memberPayment);

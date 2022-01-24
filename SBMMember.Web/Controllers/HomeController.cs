@@ -5,6 +5,8 @@ using SBMMember.Web.Models;
 using System.Diagnostics;
 using SBMMember.Data.DataFactory;
 using SBMMember.Models;
+using System;
+using Microsoft.Extensions.Configuration;
 
 namespace SBMMember.Web.Controllers
 {
@@ -12,10 +14,12 @@ namespace SBMMember.Web.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IMemberDataFactory dataFactory;
-        public HomeController(ILogger<HomeController> logger,IMemberDataFactory memberDataFactory)
+        private readonly IConfiguration configuration;
+        public HomeController(ILogger<HomeController> logger,IMemberDataFactory memberDataFactory,IConfiguration _config)
         {
             _logger = logger;
             dataFactory = memberDataFactory;
+            configuration = _config;
         }
 
         public IActionResult Index()
@@ -39,6 +43,7 @@ namespace SBMMember.Web.Controllers
         }
         public IActionResult MemberHome()
         {
+            //int subcharge =Convert.ToInt32(configuration.GetSection("SubscriptionCharges").Value);
             return View();
         }
         public IActionResult Privacy()

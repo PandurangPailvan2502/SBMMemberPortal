@@ -14,7 +14,7 @@ namespace SBMMember.Web.Models
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string Gender { get; set; }
-        public string MarritalStatus { get; set; }
+        public string MaritalStatus { get; set; }
         [DataType(DataType.Date)]
         public DateTime? BirthDate { get; set; }
         public string BloodGroup { get; set; }

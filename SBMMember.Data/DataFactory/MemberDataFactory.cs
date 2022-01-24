@@ -123,6 +123,25 @@ namespace SBMMember.Data.DataFactory
 
             return responseDTO;
         }
+
+        public void UpdateName(int MemberId,String FirstName,String MiddleName,string LastName)
+        {
+            try
+            {
+                Members memberData = memberDBContext.Members.Where(x => x.MemberId == MemberId).FirstOrDefault();
+                memberData.FirstName = FirstName;
+                memberData.MiddleName = MiddleName;
+                memberData.LastName = LastName;
+
+                int affectedRows = 0;
+                affectedRows = memberDBContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                Logger.LogError($"Error occured while updating member Name details. Exception:{ex.Message}");
+            }
+        }
     }
 
     public interface IMemberDataFactory
@@ -133,5 +152,6 @@ namespace SBMMember.Data.DataFactory
         ResponseDTO UpdateDetails(Members _member);
         Members GetDetailsByMemberId(int MemberId);
         Members GetDetailsByMemberMobile(string mobile);
+        void UpdateName(int MemberId, String FirstName, String MiddleName, string LastName);
     }
 }

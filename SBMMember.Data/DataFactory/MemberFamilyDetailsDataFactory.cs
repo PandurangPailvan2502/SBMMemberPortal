@@ -51,7 +51,10 @@ namespace SBMMember.Data.DataFactory
         {
             throw new NotImplementedException();
         }
-
+        public List< Member_FamilyDetails> GetFamilyDetailsByMemberId(int MemberId)
+        {
+            return dBContext.Member_FamilyDetails.Where(x => x.MemberID == MemberId).ToList();
+        }
         public override ResponseDTO UpdateDetails(Member_FamilyDetails member_FamilyDetails)
         {
             ResponseDTO responseDTO = new ResponseDTO();
@@ -89,5 +92,7 @@ namespace SBMMember.Data.DataFactory
     {
         ResponseDTO AddDetails(Member_FamilyDetails member_FamilyDetails);
         ResponseDTO UpdateDetails(Member_FamilyDetails member_FamilyDetails);
+        Member_FamilyDetails GetDetailsByMemberId(int MemberId);
+        List<Member_FamilyDetails> GetFamilyDetailsByMemberId(int MemberId);
     }
 }

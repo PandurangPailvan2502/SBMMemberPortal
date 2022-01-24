@@ -10,8 +10,8 @@
         <!------------icon dashbaord row-1--------------->
         <div class="container">
             <div class="row ">
-                <div class="col-xs-4 r1c1 dashboard">
-                    <img src="~/img/updating.png" class="dashboard-icon">
+                <div class="col-xs-4 r1c1 dashboard" id="profileUpdate">
+                    <img src="~/img/updating.png" class="dashboard-icon" style="cursor:pointer">
                     <h3>Profile Update</h3>
                 </div>
                 <div class="col-xs-4 r1c2 dashboard">
@@ -142,5 +142,15 @@
         </div>
     </div>
 </div>
-
 <!--------------end of dashboard-------------->
+<script type="text/javascript">
+    $(document).ready(function () {
+        //
+        $("#profileUpdate").click(function () {
+            //alert("Test");
+            window.location.href = '/MemberDashboard/ProfileUpdate'
+        });
+
+
+    });
+</script>
