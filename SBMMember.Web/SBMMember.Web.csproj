@@ -29,4 +29,8 @@
     <ProjectReference Include="..\SBMMember.Models\SBMMember.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Shared\PartialViews\" />
+  </ItemGroup>
+
 </Project>

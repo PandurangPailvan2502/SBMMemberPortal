@@ -3,7 +3,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
 }
-
+<div class="seperate"></div>
 <div class="container ">
 <div class="row">
     <div class="col-lg-12" style="text-align:center">
@@ -15,10 +15,10 @@
                     <h3>Profile Update</h3>
                 </div>
                 <div class="col-xs-4 r1c2 dashboard">
-                    <img src="~/img/updating.png" class="dashboard-icon">
+                    <img src="~/img/updating.png" class="dashboard-icon" style="cursor:pointer">
                     <h3>Doctor Search</h3>
                 </div>
-                <div class="col-xs-4 r1c3 dashboard">
+                <div class="col-xs-4 r1c3 dashboard" id="memberSerach" style="cursor:pointer">
                     <img src="~/img/updating.png" class="dashboard-icon">
                     <h3>Member Search</h3>
                 </div>
@@ -38,15 +38,15 @@
             <div class="container">
                 <div class="row ">
                     <div class="col-xs-4 r2c1 dashboard">
-                        <img src="~/img/updating.png" class="dashboard-icon">
+                        <img src="~/img/updating.png" class="dashboard-icon" style="cursor:pointer">
                         <h3>Blood Search</h3>
                     </div>
                     <div class="col-xs-4 r2c2 dashboard">
-                        <img src="~/img/updating.png" class="dashboard-icon">
+                        <img src="~/img/updating.png" class="dashboard-icon" style="cursor:pointer">
                         <h3>Job Search</h3>
                     </div>
                     <div class="col-xs-4 r2c3 dashboard">
-                        <img src="~/img/updating.png" class="dashboard-icon">
+                        <img src="~/img/updating.png" class="dashboard-icon" style="cursor:pointer">
                         <h3>Business Directory</h3>
                     </div>
 
@@ -66,15 +66,15 @@
             <div class="container">
                 <div class="row ">
                     <div class="col-xs-4 r3c1 dashboard">
-                        <img src="~/img/updating.png" class="dashboard-icon">
+                        <img src="~/img/updating.png" class="dashboard-icon" style="cursor:pointer">
                         <h3>Matrimony</h3>
                     </div>
                     <div class="col-xs-4 r3c2 dashboard">
-                        <img src="~/img/updating.png" class="dashboard-icon">
+                        <img src="~/img/updating.png" class="dashboard-icon" style="cursor:pointer">
                         <h3>Advertisement</h3>
                     </div>
                     <div class="col-xs-4 r3c3 dashboard">
-                        <img src="~/img/updating.png" class="dashboard-icon">
+                        <img src="~/img/updating.png" class="dashboard-icon" style="cursor:pointer">
                         <h3>Our Events</h3>
                     </div>
 
@@ -150,7 +150,9 @@
             //alert("Test");
             window.location.href = '/MemberDashboard/ProfileUpdate'
         });
-
+        $("#memberSerach").click(function () {
+            window.location.href = '/MemberDashboard/MemberSearchDashBoard'
+        });
 
     });
 </script>

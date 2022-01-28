@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewData["Title"] = "MemberSearchDashBoard";
+    Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="scroll" style="background-color:darkred">
+                <p> Welcome to Member's Database</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="seperate"></div>
+
+<!--------------dashboard-------------->
+<div class="container ">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <!------------icon dashbaord row-1--------------->
+            <div class="container">
+                <div class="row ">
+                    <div class="col-xs-6 r1c1 dashboard" style="cursor:pointer" id="SearchByName">
+                        <img src="~/img/search.png" class="dashboard-icon">
+                        <h3>Search by Name</h3>
+                    </div>
+                    <div class="col-xs-6 r1c2 dashboard">
+                        <img src="~/img/location.png" class="dashboard-icon" style="cursor:pointer" id="searchByArea">
+                        <h3>Search by Area</h3>
+                    </div>
+                </div>
+            </div>
+            <!------------End of icon dashbaord row-1--------------->
+        </div>
+    </div>
+</div>
+<div class="seperate"></div>
+
+<div class="container ">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <!------------icon dashbaord row-2--------------->
+            <div class="container">
+                <div class="row ">
+                    <div class="col-xs-6 r2c1 dashboard">
+                        <img src="~/img/search-location.png" class="dashboard-icon" id="searchByNative" style="cursor:pointer">
+                        <h3>Search by Native Place</h3>
+                    </div>
+                    <div class="col-xs-6 r2c2 dashboard">
+                        <img src="~/img/characteristic.png" class="dashboard-icon" style="cursor:pointer" id="serachByQualification">
+                        <h3>Search by Qualification</h3>
+                    </div>
+                </div>
+            </div>
+            <!------------End of icon dashbaord row-2--------------->
+        </div>
+    </div>
+</div>
+<div class="seperate"></div>
+
+<div class="container ">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <!------------icon dashbaord row-2--------------->
+            <div class="container">
+                <div class="row ">
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/img/banner-2.jpg" class="banner-img">
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                </div>
+            </div>
+            <!------------End of icon dashbaord row-2--------------->
+        </div>
+    </div>
+</div>
+<!--------------end of dashboard-------------->
+<script type="text/javascript">
+    $(document).ready(function () {
+        //
+        $("#SearchByName").click(function () {
+            //alert("Test");
+            window.location.href = '/MemberDashboard/MemberSearchByName'
+        });
+        $("#searchByArea").click(function () {
+            window.location.href = '/MemberDashboard/MemberSearchByArea'
+        });
+
+        $("#searchByNative").click(function () {
+            window.location.href = '/MemberDashboard/MemberSearchByNative'
+        });
+
+        $("#serachByQualification").click(function () {
+            window.location.href = '/MemberDashboard/MemberSearchByQualification'
+        });
+        
+
+    });
+</script>

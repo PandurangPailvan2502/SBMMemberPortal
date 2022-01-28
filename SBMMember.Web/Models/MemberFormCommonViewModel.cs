@@ -11,6 +11,6 @@ namespace SBMMember.Web.Models
         public MemberContactInfoViewModel MemberConatctInfo { get; set; }
         public MemberEducationEmploymentInfoViewModel MemberEducationEmploymentInfo { get; set; }
         public MemberFamilyInfoViewModel MemberFamilyInfo { get; set; }
-        public MemberPaymentViewModel MemberPaymentInfo { get; set; }
+        public MemberPaymentRecieptsViewModel MemberPaymentInfo { get; set; }
     }
 }

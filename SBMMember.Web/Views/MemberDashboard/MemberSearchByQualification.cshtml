@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewData["Title"] = "MemberSearchByQualification";
+    Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
+}
+
+<div class="seperate"></div>
+<!--------------dashboard-------------->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="search-box">
+                <div class="container ">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Search Member by Qualification</h4>
+                            <br>
+                            <!------------icon dashbaord row-1--------------->
+                            <div class="container">
+                                <div class="row ">
+
+                                    <div class="col-sm-3">
+                                        <input text="text" name="Qualification" class="search-box_input" placeholder="MBA" onfocus="this.placeholder = ''" onblur="this.placeholder = 'MBA'">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input text="text" name="Business/Job/Farmer/Student" class="search-box_input" placeholder="Business/Job/Farmer/Student" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business/Job/Farmer/Student'">
+                                    </div>
+                                    <div class="col-sm-3">
+
+                                    </div>
+                                    <div class="col-sm-3">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!------------End of icon dashbaord row-1--------------->
+                        </div>
+                    </div>
+                </div>
+                <div class="seperate"></div>
+                <div class="container ">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <br>
+                            <!------------icon dashbaord row-1--------------->
+                            <div class="container">
+                                <div class="row ">
+                                    <div class="col-sm-3">
+                                        <input type="Reset" class="genric-btn danger submit-btn" style="margin-left:50%; border-radius:10px">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="submit" class="genric-btn success submit-btn" style="margin-left:50%; border-radius:10px">
+                                    </div>
+                                    <div class="col-sm-3">
+
+                                    </div>
+                                    <div class="col-sm-3">
+                                    </div>
+                                </div>
+                            </div>
+                            <!------------End of icon dashbaord row-1--------------->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="seperate"></div>
+
+<!------------Search Result--------------->
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="container search_result">
+                <div class="row">
+                    <div class="col-xs-3 search_pic" class="">
+                        <img src="~/img/avatar7.png" class="pic_img">
+                    </div>
+                    <div class="col-xs-9 pic_content">
+                        <div class="table-responsive search_cont">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="icon_cole1"><i class="ti-user"></i></div></td>
+                                        <td><div class="labe">Full Name:</div></td>
+                                        <td><div class="labep">Suresh Kumar Vadekar</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="icon_cole1"><i class="ti-archive"></i></div></td>
+                                        <td><div class="labe">Qualification:</div></td>
+                                        <td><div class="labep">B-Tech IT</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="icon_cole1"><i class="ti-dashboard"></i></div></td>
+                                        <td><div class="labe">Age:</div></td>
+                                        <td><div class="labep">26 Years</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="icon_cole1"><i class="ti-mobile"></i></div></td>
+                                        <td><div class="labe">Mobile:</div></td>
+                                        <td><div class="labep">9933662211 (Whatsapp)</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="icon_cole1"><i class="ti-mobile"></i></div></td>
+                                        <td><div class="labe">Area City:</div></td>
+                                        <td><div class="labep">Indira Nagar, Lucknow</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td><div class="icon_cole1"><i class="ti-pin2"></i></div></td>
+                                        <td><div class="labe">Native Place:</div></td>
+                                        <td><div class="labep">Indira Nagar, Lucknow</div></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><div class="labe"><input type="button" value="View" class="genric-btn success submit-btn"></div></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

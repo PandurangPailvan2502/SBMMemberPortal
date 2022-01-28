@@ -53,7 +53,8 @@ namespace SBMMember.Web
 
              )
              );
-            services.AddScoped<IMemberDataFactory, MemberDataFactory>();
+            services.AddTransient<IMemberDataFactory, MemberDataFactory>();
+            services.AddTransient<IMemberSearchDataFactory, MemberSearchDataFactory>();
             services.AddScoped<IMemberContactDetailsDataFactory, MemberContactDetailsDataFactory>();
             services.AddScoped<IMemberBusinessDataFactory, MemberBusinessDataFactory>();
             services.AddScoped<IMemberEducationEmploymentDataFactory, MemberEducationEmploymentDataFactory>();

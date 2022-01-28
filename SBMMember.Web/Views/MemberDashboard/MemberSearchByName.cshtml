@@ -1,0 +1,82 @@
+﻿@using SBMMember.Web.Models.MemberSearchModels
+@model MemberSearchByNameViewModel
+@{
+    ViewData["Title"] = "MemberSearchByName";
+    Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
+}
+
+<!--------------dashboard-------------->
+<div class="seperate"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="search-box">
+                <form asp-action="MemberSearchByName" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
+                    <div class="container ">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Search Member by Name</h4>
+                                <br>
+                                <!------------icon dashbaord row-1--------------->
+                                <div class="container">
+                                    <div class="row ">
+
+                                        <div class="col-sm-3">
+                                            <input text="text" name="FirstName" asp-for="FirstName" class="search-box_input" placeholder="FirstName" onfocus="this.placeholder = ''" onblur="this.placeholder = 'FirstName'">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input text="text" name="MiddleName" asp-for="MiddleName" class="search-box_input" placeholder="MiddleName" onfocus="this.placeholder = ''" onblur="this.placeholder = 'MiddleName'">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input text="text" name="LastName" asp-for="LastName" class="search-box_input" placeholder="LastName" onfocus="this.placeholder = ''" onblur="this.placeholder = 'LastName'">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input text="text" name="MemberId" asp-for="MemberId" class="search-box_input" placeholder="MemberID" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Member ID'">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!------------End of icon dashbaord row-1--------------->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="seperate"></div>
+                    <div class="container ">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <br>
+                                <!------------icon dashbaord row-1--------------->
+                                <div class="container">
+                                    <div class="row ">
+                                        <div class="col-sm-3">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="Reset" class="genric-btn danger submit-btn" style="margin-left:50%; border-radius:10px">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="submit" class="genric-btn success submit-btn" style="margin-left:50%; border-radius:10px">
+                                        </div>
+                                        <div class="col-sm-3">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!------------End of icon dashbaord row-1--------------->
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="seperate"></div>
+@if (Model.MemberList != null)
+{
+    <!------------Search Result--------------->
+    @foreach (MemberSearchResponseViewModel model in Model.MemberList)
+    {
+        @await Html.PartialAsync("_PartialMemberInfo", model)
+    }
+}
+
+
+

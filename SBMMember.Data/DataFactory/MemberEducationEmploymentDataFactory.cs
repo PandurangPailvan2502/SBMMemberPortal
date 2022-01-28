@@ -72,7 +72,20 @@ namespace SBMMember.Data.DataFactory
             try
             {
                 Member_EducationEmploymentDetails member_Education = dBContext.Member_EducationEmploymentDetails.Where(x => x.MemberId == educationEmploymentDetails.MemberId).First();
-                member_Education = educationEmploymentDetails;
+                //member_Education = educationEmploymentDetails;
+                member_Education.BusinessAddress = educationEmploymentDetails.BusinessAddress;
+                member_Education.BusinessAddressM = educationEmploymentDetails.BusinessAddressM;
+                member_Education.BusinessName = educationEmploymentDetails.BusinessName;
+                member_Education.BusinessNameM = educationEmploymentDetails.BusinessNameM;
+                member_Education.CompanyAddress = educationEmploymentDetails.CompanyAddress;
+                member_Education.CompanyAddressM = educationEmploymentDetails.CompanyAddressM;
+                member_Education.CompanyName = educationEmploymentDetails.CompanyName;
+                member_Education.CompanyNameM = educationEmploymentDetails.CompanyNameM;
+                member_Education.Proffession = educationEmploymentDetails.Proffession;
+                member_Education.ProffessionM = educationEmploymentDetails.ProffessionM;
+                member_Education.Qualification = educationEmploymentDetails.Qualification;
+                member_Education.QualificationM = educationEmploymentDetails.QualificationM;
+                
                 int affectedRows = 0;
                 affectedRows = dBContext.SaveChanges();
                 if (affectedRows > 0)

@@ -61,7 +61,18 @@ namespace SBMMember.Data.DataFactory
             try
             {
                 Member_FamilyDetails member_Family = dBContext.Member_FamilyDetails.Where(x => x.FamilyDetailsID == member_FamilyDetails.FamilyDetailsID).First();
-                member_Family = member_FamilyDetails;
+                //member_Family = member_FamilyDetails;
+                member_Family.BloodGroup = member_FamilyDetails.BloodGroup;
+                member_Family.BloodGroupM = member_FamilyDetails.BloodGroupM;
+                member_Family.DOB = member_FamilyDetails.DOB;
+                member_Family.Education = member_FamilyDetails.Education;
+                member_Family.EducationM = member_FamilyDetails.EducationM;
+                member_Family.Name = member_FamilyDetails.Name;
+                member_Family.NameM = member_FamilyDetails.NameM;
+                member_Family.Occupation = member_FamilyDetails.Occupation;
+                member_Family.OccupationM = member_FamilyDetails.OccupationM;
+                member_Family.Relation = member_FamilyDetails.Relation;
+                member_Family.RelationM = member_FamilyDetails.RelationM;
                 int affectedRows = 0;
                 affectedRows = dBContext.SaveChanges();
                 if (affectedRows > 0)

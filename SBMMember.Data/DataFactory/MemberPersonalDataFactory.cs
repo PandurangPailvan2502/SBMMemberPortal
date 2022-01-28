@@ -54,8 +54,47 @@ namespace SBMMember.Data.DataFactory
             try
             {
                 Member_PersonalDetails personalDetails = dBContext.Member_PersonalDetails.Where(x => x.MemberId == member_Personal.MemberId).First();
-                personalDetails = member_Personal;
-                int affectedRows = 0;               
+                 //personalDetails = member_Personal;
+                personalDetails.Address = member_Personal.Address;
+                personalDetails.AddressM = member_Personal.AddressM;
+                personalDetails.Age = member_Personal.Age;
+                personalDetails.AgeM = member_Personal.AgeM;
+                personalDetails.Area = member_Personal.Area;
+                personalDetails.AreaM = member_Personal.AreaM;
+                personalDetails.BirthDate = member_Personal.BirthDate;
+                personalDetails.BirthDateM = member_Personal.BirthDateM;
+                personalDetails.BloodGroup = member_Personal.BloodGroup;
+                personalDetails.BloodGroupM = member_Personal.BloodGroupM;
+                personalDetails.City = member_Personal.City;
+                personalDetails.CityM = member_Personal.CityM;
+                personalDetails.District = member_Personal.District;
+                personalDetails.DistrictM = member_Personal.DistrictM;
+                personalDetails.FirstName = member_Personal.FirstName;
+                personalDetails.FirstNameM = member_Personal.FirstNameM;
+                personalDetails.Gender = member_Personal.Gender;
+                personalDetails.GenderM = member_Personal.GenderM;
+                personalDetails.LandMark = member_Personal.LandMark;
+                personalDetails.LandMarkM = member_Personal.LandMarkM;
+                personalDetails.LastName = member_Personal.LastName;
+                personalDetails.LastNameM = member_Personal.LastNameM;
+                personalDetails.MaritalStatus = member_Personal.MaritalStatus;
+                personalDetails.MaritalStatusM = member_Personal.MaritalStatusM;
+                personalDetails.MiddleName = member_Personal.MiddleName;
+                personalDetails.MiddleNameM = member_Personal.MiddleNameM;
+                personalDetails.Pincode = member_Personal.Pincode;
+                personalDetails.PincodeM = member_Personal.PincodeM;
+                personalDetails.Prefix = member_Personal.Prefix;
+                personalDetails.PrefixM = member_Personal.PrefixM;
+                personalDetails.State = member_Personal.State;
+                personalDetails.StateM = member_Personal.State;
+                personalDetails.SubArea = member_Personal.SubArea;
+                personalDetails.SubAreaM = member_Personal.SubAreaM;
+                personalDetails.Taluka = member_Personal.Taluka;
+                personalDetails.TalukaM = member_Personal.TalukaM;
+
+
+                int affectedRows = 0;
+                //dBContext.Update(personalDetails);
                 affectedRows = dBContext.SaveChanges();
                 if (affectedRows > 0)
                 {
