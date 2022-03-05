@@ -12,6 +12,260 @@
   background-image: -ms-linear-gradient(0deg, #ee390f 0%, #f9b700 100%);
 }
 
+/***** Register buisness *******/
+.photo-container1 {
+    position: relative;
+    background: #FFFFFF;
+    width: 150px;
+    height: 16vh;
+    float: left;
+    z-index: 20;
+}
+
+.logo {
+    padding: 10px;
+    position: relative;
+}
+
+.logo-box {
+    width: 30%;
+    height: auto;
+    text-align: center;
+    padding: 10px 0px 0px 0px;
+}
+
+.title-box {
+    width: 50%;
+    height: auto;
+    text-align: center;
+    padding: 30px 0px 0px 0px;
+    text-align: center
+}
+
+    .title-box h2 {
+        color: rgb(224, 90, 1);
+        font-weight: bold
+    }
+
+.toolbar {
+    width: 20%;
+    height: auto;
+    text-align: center;
+    ;
+    padding: 40px 0px 0px 0px;
+}
+
+    .toolbar h4 {
+        color: rgb(224, 90, 1);
+        font-weight: 600
+    }
+
+.sp {
+    color: #000000
+}
+
+.scroll {
+    height: 45px;
+    background-color: #630036cb;
+    text-align: center;
+    color: #ffffff;
+}
+
+    .scroll p {
+        text-align: center;
+        color: #ffffff;
+        padding: 10px 0px 10px 0px
+    }
+
+@media only screen and (min-width: 1201px) {
+    .logo {
+        width: 35%;
+        padding: 5px
+    }
+
+    .title-box h2 {
+        font-size: 45px
+    }
+
+    .ic {
+        font-size: 35px
+    }
+
+    .scroll p {
+        font-size: 20px
+    }
+
+    .menu-icon {
+        width: 30%
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .logo {
+        width: 46%;
+        padding: 5px
+    }
+
+    .title-box h2 {
+        font-size: 45px
+    }
+
+    .ic {
+        font-size: 35px
+    }
+
+    .scroll p {
+        font-size: 18px
+    }
+
+    .menu-icon {
+        width: 30%
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .logo {
+        width: 46%;
+        padding: 0px
+    }
+
+    .title-box h2 {
+        font-size: 35px
+    }
+
+    .ic {
+        font-size: 30px
+    }
+
+    .scroll p {
+        font-size: 16px
+    }
+
+    .menu-icon {
+        width: 30%
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .logo {
+        width: 70%;
+        padding: 5px
+    }
+
+    .title-box h2 {
+        font-size: 30px
+    }
+
+    .ic {
+        font-size: 25px
+    }
+
+    .scroll p {
+        font-size: 14px
+    }
+
+    .menu-icon {
+        width: 30%
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .logo {
+        min-width: 50%;
+        max-width: 70%;
+        padding: 5px
+    }
+
+    .title-box h2 {
+        font-size: 25px
+    }
+
+    .ic {
+        font-size: 20px
+    }
+
+    .scroll p {
+        font-size: 12px
+    }
+
+    .menu-icon {
+        width: 30%
+    }
+}
+
+.modal.left .modal-dialog {
+    position: fixed;
+    right: 0;
+    margin: auto;
+    width: 320px;
+    height: 100%;
+    -webkit-transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
+}
+
+.modal.left .modal-content {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.modal.right .modal-body {
+    padding: 15px 15px 80px;
+}
+
+.modal.right.fade .modal-dialog {
+    left: -320px;
+    -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+    -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+    -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+    transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+.modal.right.fade.show .modal-dialog {
+    right: 0;
+}
+/* ----- MODAL STYLE ----- */
+.modal-content {
+    border-radius: 0;
+    border: none;
+}
+
+.modal-header {
+    border-bottom-color: #eeeeee;
+    background-color: #fafafa;
+}
+/* ----- v CAN BE DELETED v ----- */
+.demo {
+    padding-top: 60px;
+    padding-bottom: 110px;
+}
+
+.btn-demo {
+    margin: 15px;
+    padding: 10px 15px;
+    border-radius: 0;
+    font-size: 16px;
+    background-color: #ffffff;
+}
+
+    .btn-demo:focus {
+        outline: 0;
+    }
+
+.heading-box {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0px 20px 0px;
+}
+
+    .heading-box p {
+        color: #333333cb;
+        font-size: 24px;
+        font-weight: bold;
+    }
+/***** RegistrdBusiness end****/
+
 /**********************member dashboard******************************/
 
          .scroll{height:45px; background-color:#ad0160cb; text-align:center; color:#ffffff;}

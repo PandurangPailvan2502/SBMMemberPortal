@@ -1,10 +1,46 @@
-﻿
+﻿@model BannerAndMarqueeViewModel
 @{
     ViewData["Title"] = "MatrimonySearch";
     Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
 }
-
-<h1>MatrimonySearch</h1>
-<a asp-action="VarSearch" asp-controller="Matrimony">Var Search</a>
-<a asp-action="VadhuSearch" asp-controller="Matrimony">Vadhu Search</a>
-
+<script>
+    $(document).ready(function () {
+        $("#groom").click(function () {
+            window.location.href ="/Matrimony/VarSearch"
+        });
+        $("#bride").click(function () {
+            window.location.href = "/Matrimony/VadhuSearch"
+        });
+        
+    });
+</script>
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>*@
+@*<h1>MatrimonySearch</h1>
+    <a asp-action="VarSearch" asp-controller="Matrimony">Var Search</a>
+    <a asp-action="VadhuSearch" asp-controller="Matrimony">Vadhu Search</a>*@
+<div class="seperate"></div>
+<div class="container ">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <!------------icon dashbaord row-1--------------->
+            <div class="container">
+                <div class="row ">
+                    <div class="col-xs-6 r1c1 dashboard" id="groom" style="cursor:pointer">
+                        <img src="~/img/groom.png" class="dashboard-icon">
+                        <h3 style="color:#000000">वर</h3>
+                    </div>
+                    <div class="col-xs-6 r1c1a dashboard" id="bride" style="cursor:pointer">
+                        <img src="~/img/bride.png" class="dashboard-icon">
+                        <h3 style="color:#000000">वधु</h3>
+                    </div>
+                </div>
+            </div>
+            <!------------End of icon dashbaord row-1--------------->
+        </div>
+    </div>
+</div>
+<div class="seperate"><hr style="border:1px dashed #a7a7a7"></div>
+<div class="seperate"></div>
+@*@await Html.PartialAsync("_PartialSlider")*@
