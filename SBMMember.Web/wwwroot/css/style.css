@@ -237,8 +237,8 @@
 }
 /* ----- v CAN BE DELETED v ----- */
 .demo {
-    padding-top: 60px;
-    padding-bottom: 110px;
+    padding-top:0px;
+    padding-bottom:10px;
 }
 
 .btn-demo {
@@ -337,8 +337,8 @@
 
 .r1c1{max-width:32.33%;margin:1px;text-align:center; display:inline-block;border-right: 3px solid #53002e}
 .r1c1a{max-width:32.33%;margin:1px;text-align:center; display:inline-block;}
-        /*.r1c1{max-width:32.33%;margin:1px; background:ffffff; text-align:center; display:inline-block; border-right:3px #53002e solid }*/
-        .r1c2{max-width:32.33%;margin:4px; background:rgb(2, 130, 235); text-align:center; display:inline-block;box-shadow: -1px 2px 10px -1px rgba(0,0,0,0.55);
+/*.r1c1{max-width:32.33%;margin:1px; background:ffffff; text-align:center; display:inline-block; border-right:3px #53002e solid }*/
+.r1c2{max-width:32.33%;margin:4px; background:rgb(2, 130, 235); text-align:center; display:inline-block;box-shadow: -1px 2px 10px -1px rgba(0,0,0,0.55);
 -webkit-box-shadow: -1px 2px 10px -1px rgba(0,0,0,0.55);
 -moz-box-shadow: -1px 2px 10px -1px rgba(0,0,0,0.55);border-radius:15px;}
         .r1c3{max-width:32.33%;margin:1px; background:rgb(85, 148, 69); text-align:center; display:inline-block;box-shadow: -1px 2px 10px -1px rgba(0,0,0,0.55);
@@ -1470,74 +1470,25 @@ text-rendering: optimizeLegibility;
   opacity: 0.7;
   margin-top: 5px;
 }
-
 * ******************************************************
-	Responsive Grids
+	Responsive Grids - used input member-dasboard-profile update
 *********************************************************/
-
-.rt-container {
-	margin: 0 auto;
-    overflow: hidden;
-}
-.rt-row:before, .rt-row:after {
-  display: table;
-  line-height: 0;
-  content: "";
-}
-
-.rt-row:after {
-  clear: both;
-}
-[class^="col-rt-"] {
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -o-box-sizing: border-box;
-  -ms-box-sizing: border-box;
- 
-  min-height: 1px;
-  position: relative;
-}
-
-
+.rt-container {margin: 0 auto;overflow: hidden;}
+.rt-row:before, .rt-row:after {display: table;line-height: 0; content: "";}
+.rt-row:after {  clear: both;}
+[class^="col-rt-"] { box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -o-box-sizing: border-box; -ms-box-sizing: border-box;  min-height: 1px; position: relative;}
 @media (min-width: 768px) {
-  .rt-container {
-    width: 750px;
+  .rt-container {   width: 750px;  }
+  [class^="col-rt-"] {   float: left;    width: 49.9999999999%;  }  .col-rt-6, .col-rt-12 {    width: 100%;  }
   }
-  [class^="col-rt-"] {
-    float: left;
-    width: 49.9999999999%;
-  }
-  .col-rt-6, .col-rt-12 {
-    width: 100%;
-  }
-  
-}
-
 @media (min-width: 1200px) {
-	.rt-container {
-		width: 1170px;
-	}
-	.col-rt-1 {
-		width:16.6%;
-	}
-	.col-rt-2 {
-		width:30.33%;
-	}
-	.col-rt-3 {
-		width:50%;
-	}
-	.col-rt-4 {
-		width: 67.664%;
-	}
-	.col-rt-5 {
-		width: 83.33%;
-	}
-	
-
+	.rt-container {		width: 1170px;	}
+	.col-rt-1 {		width:16.6%;	}
+	.col-rt-2 {		width:30.33%;	}
+	.col-rt-3 {		width:50%;	}
+	.col-rt-4 {		width: 67.664%;	}
+	.col-rt-5 {		width: 83.33%;	}
 }
-
-
 /**************** extend css start ****************/
 /**************** common css start ****************/
 /* line 3, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
@@ -1624,7 +1575,7 @@ input:hover, input:focus {
 
 /* line 18, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
 .section_padding {
-  padding: 140px 0px;
+  padding: 0px 0px;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
