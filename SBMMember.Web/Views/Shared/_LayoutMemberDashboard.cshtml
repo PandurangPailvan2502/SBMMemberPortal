@@ -52,8 +52,35 @@
 
 </head>
 <body>
-   
     <!--------------profile name top bar---------------->
+    <div class="container">
+    <div class="row">
+       <div class="col-lg-12">
+               <!------------icon dashbaord row-1--------------->
+               <div class="container">
+                 <div class="row ">
+                     <div class="col-xs-4 logo-box">
+                      <div class="text-left">
+                        <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#exampleModal">
+                         <img src="~/img/threeline.jpg" class="menu-icon">
+                        </button>
+                        <!--img src="sbm logo-1.png" class="logo"-->
+                      </div>
+                       
+                     </div>
+                     <div class="col-xs-6 title-box">
+                      <h2>समता भ्रातृ मंडळ</h2>
+                      <h4>(पिंपरी चिंचवड, पुणे)</h4>
+                     </div>
+                     <div class="col-xs-2 toolbar">
+                     <h4 class="ic"><a asp-action="Logout" asp-controller="Login"><i class="ti-power-off"></i> <span class="sp">Logout</span></a></h4>
+                     </div>
+                 </div>
+               </div>
+               <!------------End of icon dashbaord row-1--------------->
+       </div>
+    </div>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
@@ -83,7 +110,7 @@
                         </div>
                         <div class="col-sx-4 profile-bar2">
                             <h3>Member ID:62</h3>
-                            <a asp-action="Logout" asp-controller="Login">Logout</a>
+                            
                         </div>
                     </div>
                 </div>
@@ -105,7 +132,25 @@
     
 
     <!--------------dashboard-------------->
-
+ <div class="container demo">
+    <div class="modal left fade" id="exampleModal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="nav flex-sm-column flex-row">
+                        <a class="nav-item nav-link active" href="#">Home</a>
+                        <a href="#" class="nav-item nav-link">Link</a>
+                        <a href="#" class="nav-item nav-link">Link</a>
+                        <a href="#" class="nav-item nav-link">Link</a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
     @RenderBody()
     <!--------------end of dashboard-------------->
    
