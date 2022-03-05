@@ -182,11 +182,11 @@
                         <img src="~/img/blood_search.png" class="dashboard-icon">
                         <h3 style="color:#000000">Blood Search</h3>
                     </div>
-                    <div class="col-xs-4 r1c1 dashboard">
+                    <div class="col-xs-4 r1c1 dashboard" style="cursor:pointer">
                         <img src="~/img/job-search.png" class="dashboard-icon">
                         <h3 style="color:#000000">Job Search</h3>
                     </div>
-                    <div class="col-xs-4 r1c1a dashboard">
+                    <div class="col-xs-4 r1c1a dashboard" id="business" style="cursor:pointer">
                         <img src="~/img/phone-book1.png" class="dashboard-icon">
                         <h3 style="color:#000000">Business Directory</h3>
                     </div>
@@ -302,7 +302,9 @@
 
             window.location.href = '/Matrimony/MatrimonySearch'
         });
-
+        $("#business").click(function () {
+            window.location.href = '/BusinessDashboard/BusinessDashboard'
+        });
 
     });
 
