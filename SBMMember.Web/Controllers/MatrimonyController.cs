@@ -4,13 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SBMMember.Web.Models;
+using SBMMember.Web.Helper;
+
 namespace SBMMember.Web.Controllers
 {
     public class MatrimonyController : Controller
     {
         public IActionResult MatrimonySearch()
         {
-            return View();
+            BannerAndMarqueeViewModel viewModel = new BannerAndMarqueeViewModel()
+            {
+                Banners = BannerHelper.GetBanners()
+            };
+            return View(viewModel);
         }
         public IActionResult VarSearch()
         {

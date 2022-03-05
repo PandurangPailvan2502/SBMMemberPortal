@@ -12,10 +12,61 @@
   background-image: -ms-linear-gradient(0deg, #ee390f 0%, #f9b700 100%);
 }
 
-/***** Business search start****/
+/***** Register buisness *******/
+.photo-container1 {
+    position: relative;
+    background: #FFFFFF;
+    width: 150px;
+    height: 16vh;
+    float: left;
+    z-index: 20;
+}
+
+.logo {
+    padding: 10px;
+    position: relative;
+}
+
+.logo-box {
+    width: 30%;
+    height: auto;
+    text-align: center;
+    padding: 10px 0px 0px 0px;
+}
+
+.title-box {
+    width: 50%;
+    height: auto;
+    text-align: center;
+    padding: 30px 0px 0px 0px;
+    text-align: center
+}
+
+    .title-box h2 {
+        color: rgb(224, 90, 1);
+        font-weight: bold
+    }
+
+.toolbar {
+    width: 20%;
+    height: auto;
+    text-align: center;
+    ;
+    padding: 40px 0px 0px 0px;
+}
+
+    .toolbar h4 {
+        color: rgb(224, 90, 1);
+        font-weight: 600
+    }
+
+.sp {
+    color: #000000
+}
+
 .scroll {
     height: 45px;
-    background-color: #ad0160cb;
+    background-color: #630036cb;
     text-align: center;
     color: #ffffff;
 }
@@ -26,272 +77,194 @@
         padding: 10px 0px 10px 0px
     }
 
-.myborder {
-    border: 1px solid #000000;
-    text-align: center
-}
-
-.profile-bar1 {
-    border: 1px solid #53002e;
-    width: 70%;
-    background-color: #53002e;
-}
-
-.pofile-icon {
-    width: 64px;
-    height: 64px;
-    padding: 10px;
-}
-
-.profile-bar2 {
-    border: 1px solid #ffe602;
-    width: 30%;
-    background-color: #ffe602;
-    padding: 25px 0px 0px 30px;
-}
-
-    .profile-bar2 h3 {
-        color: #000000
-    }
-
-.profile-content {
-    padding: 10px 0px 5px 20px
-}
-
-    .profile-content h4 {
-        color: #ffffff;
-    }
-
-    .profile-content h5 {
-        color: #ffffff;
-    }
-
 @media only screen and (min-width: 1201px) {
-    .profile-content h4 {
-        font-size: 22px;
+    .logo {
+        width: 35%;
+        padding: 5px
     }
 
-    .profile-content h5 {
-        font-size: 18px;
+    .title-box h2 {
+        font-size: 45px
     }
 
-    .profile-bar2 h3 {
-        font-size: 24px;
+    .ic {
+        font-size: 35px
     }
 
     .scroll p {
         font-size: 20px
     }
 
-    .dashboard h3 {
-        font-size: 20px;
-        color: #000000
-    }
-
-    .dashboard-icon {
-        width: 40%;
-        height: 40%;
-        padding: 20px 0px 0px 0px;
-    }
-
-    .notification h3 {
-        margin: 46px 115px;
-        font-size: 20px;
-        color: #ffffff
-    }
-
-    .table-button {
-        width: 50%
+    .menu-icon {
+        width: 30%
     }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-    .profile-content h4 {
-        font-size: 20px;
+    .logo {
+        width: 46%;
+        padding: 5px
     }
 
-    .profile-content h5 {
-        font-size: 16px;
+    .title-box h2 {
+        font-size: 45px
     }
 
-    .profile-bar2 h3 {
-        font-size: 18px;
+    .ic {
+        font-size: 35px
     }
 
     .scroll p {
         font-size: 18px
     }
 
-    .dashboard h3 {
-        font-size: 18px
-    }
-
-    .dashboard-icon {
-        width: 75%;
-        height: 75%;
-        padding: 20px 0px 0px 0px;
-    }
-
-    .notification h3 {
-        margin: 17px 42px;
-        font-size: 18px;
-        color: #ffffff
-    }
-
-    .table-button {
-        width: 50%
+    .menu-icon {
+        width: 30%
     }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .profile-content h4 {
-        font-size: 18px;
+    .logo {
+        width: 46%;
+        padding: 0px
     }
 
-    .profile-content h5 {
-        font-size: 16px;
+    .title-box h2 {
+        font-size: 35px
     }
 
-    .profile-bar2 h3 {
-        font-size: 16px;
+    .ic {
+        font-size: 30px
     }
 
     .scroll p {
         font-size: 16px
     }
 
-    .dashboard h3 {
-        font-size: 16px
-    }
-
-    .dashboard-icon {
-        width: 50%;
-        height: 50%;
-        padding: 20px 0px 0px 0px;
-    }
-
-    .notification h3 {
-        margin: 17px 42px;
-        font-size: 16px;
-        color: #ffffff
-    }
-
-    .table-button {
-        width: 100%
+    .menu-icon {
+        width: 30%
     }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-    .profile-content h4 {
-        font-size: 16px;
+    .logo {
+        width: 70%;
+        padding: 5px
     }
 
-    .profile-content h5 {
-        font-size: 14px;
+    .title-box h2 {
+        font-size: 30px
     }
 
-    .profile-bar2 h3 {
-        font-size: 14px;
+    .ic {
+        font-size: 25px
     }
 
     .scroll p {
         font-size: 14px
     }
 
-    .dashboard h3 {
-        font-size: 14px
-    }
-
-    .dashboard-icon {
-        width: 30%;
-        height: 30%;
-        padding: 20px 0px 0px 0px;
-    }
-
-    .notification h3 {
-        margin: 17px 42px;
-        font-size: 14px;
-        color: #ffffff
-    }
-
-    .table-button {
-        width: 100%
+    .menu-icon {
+        width: 30%
     }
 }
 
 @media only screen and (max-width: 576px) {
-    .profile-content h4 {
-        font-size: 14px;
+    .logo {
+        min-width: 50%;
+        max-width: 70%;
+        padding: 5px
     }
 
-    .profile-content h5 {
-        font-size: 12px;
+    .title-box h2 {
+        font-size: 25px
     }
 
-    .profile-bar2 h3 {
-        font-size: 12px;
+    .ic {
+        font-size: 20px
     }
 
     .scroll p {
         font-size: 12px
     }
 
-    .dashboard h3 {
-        font-size: 12px
-    }
-
-    .dashboard-icon {
-        width: 40%;
-        height: 40%;
-        padding: 20px 0px 0px 0px;
-    }
-
-    .notification h3 {
-        margin: 17px 42px;
-        font-size: 12px;
-        color: #ffffff
-    }
-
-    .table-button {
-        width: 100%
+    .menu-icon {
+        width: 30%
     }
 }
 
-.r1c1 {
-    max-width: 32.33%;
-    margin: 1px;
+.modal.left .modal-dialog {
+    position: fixed;
+    right: 0;
+    margin: auto;
+    width: 320px;
+    height: 100%;
+    -webkit-transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
+}
+
+.modal.left .modal-content {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.modal.right .modal-body {
+    padding: 15px 15px 80px;
+}
+
+.modal.right.fade .modal-dialog {
+    left: -320px;
+    -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+    -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+    -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+    transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+.modal.right.fade.show .modal-dialog {
+    right: 0;
+}
+/* ----- MODAL STYLE ----- */
+.modal-content {
+    border-radius: 0;
+    border: none;
+}
+
+.modal-header {
+    border-bottom-color: #eeeeee;
+    background-color: #fafafa;
+}
+/* ----- v CAN BE DELETED v ----- */
+.demo {
+    padding-top: 60px;
+    padding-bottom: 110px;
+}
+
+.btn-demo {
+    margin: 15px;
+    padding: 10px 15px;
+    border-radius: 0;
+    font-size: 16px;
+    background-color: #ffffff;
+}
+
+    .btn-demo:focus {
+        outline: 0;
+    }
+
+.heading-box {
+    width: 100%;
     text-align: center;
-    display: inline-block;
-    border-right: 3px solid #53002e
+    padding: 20px 0px 20px 0px;
 }
 
-.r1c1a {
-    max-width: 32.33%;
-    margin: 1px;
-    text-align: center;
-    display: inline-block;
-}
-/*.r1c1{max-width:32.33%;margin:1px; background:ffffff; text-align:center; display:inline-block; border-right:3px #53002e solid }*/
-
-.dashboard h3 {
-    color: #ffffff;
-    font-weight: 500;
-    padding: 10px 0px 20px 0px;
-}
-
-.seperate {
-    height: 25px
-}
-
-.notification h3 {
-    margin: 25px 115px;
-    font-size: 16px
-}
-
-tr, td, th {
-    border: none !important;
-}
-/***** Business search end****/
+    .heading-box p {
+        color: #333333cb;
+        font-size: 24px;
+        font-weight: bold;
+    }
+/***** RegistrdBusiness end****/
 
 /**********************member dashboard******************************/
 

@@ -18,5 +18,10 @@ namespace SBMMember.Web.Controllers
             };
             return View(viewModel);
         }
+
+        public IActionResult RegisterBusiness()
+        {
+            return View();
+        }
     }
 }
