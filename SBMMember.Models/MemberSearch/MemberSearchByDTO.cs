@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SBMMember.Models.MemberSearch
 {
-    public class MemberSearchByNameDTO
+    public class MemberSearchByDTO
     {
         public int MemberId { get; set; }
         public string MemberAppId { get; set; }
@@ -18,8 +18,13 @@ namespace SBMMember.Models.MemberSearch
         public int? Pincode { get; set; }
         public string District { get; set; }
         public string NativePlace { get; set; }
+        public string NativePlaceTaluka { get; set; }
+        public string NativePlaceDistrict { get; set; }
         public int? Age { get; set; }
         public string Qualification { get; set; }
+        public string? Proffession { get; set; }
         public string MobileNumber { get; set; }
+        public string BloodGroup { get; set; }
+        public string Gender { get; set; }
     }
 }

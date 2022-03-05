@@ -43,8 +43,14 @@ namespace SBMMember.Web.Controllers
         }
         public IActionResult MemberHome()
         {
+
+
+            BannerAndMarqueeViewModel viewModel = new BannerAndMarqueeViewModel()
+            {
+                Banners = BannerHelper.GetBanners()
+            };
             //int subcharge =Convert.ToInt32(configuration.GetSection("SubscriptionCharges").Value);
-            return View();
+            return View(viewModel);
         }
         public IActionResult Privacy()
         {

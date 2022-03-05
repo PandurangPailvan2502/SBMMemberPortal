@@ -11,6 +11,7 @@
                 <div class="row">
                     <div class="col-xs-3 search_pic" class="">
                         <img src="~/img/avatar7.png" class="pic_img">
+
                     </div>
                     <div class="col-xs-9 pic_content">
                         <div class="table-responsive search_cont">
@@ -48,8 +49,8 @@
                                     </tr>
                                     <tr>
                                         <td></td>
-                                        <td><div class="labe"><input type="button" value="View" class="genric-btn success submit-btn"></div></td>
                                         <td></td>
+                                        <td><div class="labe"><a href="@Url.ActionLink("ViewMemberProfile","MemberDashboard",new{MemberId = Model.MemberId })" value="View" class="btn btn-danger">View Details</a></div></td>
                                     </tr>
                                 </tbody>
                             </table>

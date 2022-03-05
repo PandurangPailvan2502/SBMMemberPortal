@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using SBMMember.Models;
 using SBMMember.Web.Models.MemberSearchModels;
 using SBMMember.Models.MemberSearch;
+using SBMMember.Web.Helper;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SBMMember.Web.Controllers
 {
@@ -122,7 +124,11 @@ namespace SBMMember.Web.Controllers
 
         public IActionResult MemberSearchDashBoard()
         {
-            return View();
+            BannerAndMarqueeViewModel viewModel = new BannerAndMarqueeViewModel()
+            {
+                Banners = BannerHelper.GetBanners()
+            };
+            return View(viewModel);
         }
 
         public IActionResult MemberSearchByName()
@@ -166,8 +172,8 @@ namespace SBMMember.Web.Controllers
                 keyValuePairs.Add("City", model.City);
             if (!string.IsNullOrEmpty(model.District))
                 keyValuePairs.Add("District", model.District);
-            if (model.Pincode>0)
-                keyValuePairs.Add("Pincode",Convert.ToString( model.Pincode));
+            if (model.Pincode > 0)
+                keyValuePairs.Add("Pincode", Convert.ToString(model.Pincode));
 
             List<MemberSearchResponse> memberData = searchDataFactory.GetAllMemberssSearchResultByFilterValues(keyValuePairs);
             List<MemberSearchResponseViewModel> filteredMember = new List<MemberSearchResponseViewModel>();
@@ -178,15 +184,164 @@ namespace SBMMember.Web.Controllers
             }
             model.MemberList = filteredMember;
             return View(model);
-            
+
         }
         public IActionResult MemberSearchByNative()
         {
-            return View();
+            MemberSearchByNativeViewModel viewModel = new MemberSearchByNativeViewModel();
+            return View(viewModel);
         }
+        [HttpPost]
+        public IActionResult MemberSearchByNative(MemberSearchByNativeViewModel model)
+        {
+            Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+            if (!string.IsNullOrEmpty(model.NativePlace))
+                keyValuePairs.Add("NativePlace", model.NativePlace);
+            if (!string.IsNullOrEmpty(model.NativePlaceTaluka))
+                keyValuePairs.Add("NativePlaceTaluka", model.NativePlaceTaluka);
+            if (!string.IsNullOrEmpty(model.NativePlaceDistrict))
+                keyValuePairs.Add("NativePlaceDistrict", model.NativePlaceDistrict);
+
+
+            List<MemberSearchResponse> memberData = searchDataFactory.GetAllMemberssSearchResultByFilterValues(keyValuePairs);
+            List<MemberSearchResponseViewModel> filteredMember = new List<MemberSearchResponseViewModel>();
+            foreach (MemberSearchResponse response in memberData)
+            {
+                MemberSearchResponseViewModel responseViewModel = mapper.Map<MemberSearchResponseViewModel>(response);
+                filteredMember.Add(responseViewModel);
+            }
+            model.MemberList = filteredMember;
+            return View(model);
+        }
+
         public IActionResult MemberSearchByQualification()
         {
-            return View();
+            MemberSearchByQualificationViewModel model = new MemberSearchByQualificationViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult MemberSearchByQualification(MemberSearchByQualificationViewModel model)
+        {
+            Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+            if (!string.IsNullOrEmpty(model.Qualification))
+                keyValuePairs.Add("Qualification", model.Qualification);
+            if (!string.IsNullOrEmpty(model.Proffession))
+                keyValuePairs.Add("Proffession", model.Proffession);
+
+
+
+            List<MemberSearchResponse> memberData = searchDataFactory.GetAllMemberssSearchResultByFilterValues(keyValuePairs);
+            List<MemberSearchResponseViewModel> filteredMember = new List<MemberSearchResponseViewModel>();
+            foreach (MemberSearchResponse response in memberData)
+            {
+                MemberSearchResponseViewModel responseViewModel = mapper.Map<MemberSearchResponseViewModel>(response);
+                filteredMember.Add(responseViewModel);
+            }
+            model.MemberList = filteredMember;
+            return View(model);
+        }
+
+        public IActionResult MemberDoctors()
+        {
+            List<MemberSearchResponse> memberData = searchDataFactory.GetAllDoctors();
+            List<MemberSearchResponseViewModel> filteredMember = new List<MemberSearchResponseViewModel>();
+            foreach (MemberSearchResponse response in memberData)
+            {
+                MemberSearchResponseViewModel responseViewModel = mapper.Map<MemberSearchResponseViewModel>(response);
+                filteredMember.Add(responseViewModel);
+            }
+            MemberDoctorViewModel model = new MemberDoctorViewModel()
+            {
+                MemberList = filteredMember
+            };
+            return View(model);
+        }
+
+        //[Route("/MemberBloodGroupSearch")]
+        public IActionResult MemberBloodGroupSearch()
+        {
+            List<string> areas = personalDataFactory.GetDistinctAreas();
+            List<string> cities = personalDataFactory.GetDistinctCities();
+            MemberBloodGroupSearchViewModel viewModel = new MemberBloodGroupSearchViewModel()
+            {
+                Areas = areas.Select(x=>new SelectListItem() { Value=x,Text=x}).ToList(),
+                Cities = cities.Select(x => new SelectListItem() { Value = x, Text = x }).ToList()
+            };
+            viewModel.Areas.Insert(0, new SelectListItem() { Text = " Select Area ", Value = "0" });
+            viewModel.Cities.Insert(0, new SelectListItem() { Text = " Select City ", Value = "0" });
+            return View(viewModel);
+        }
+        [HttpPost]
+        public IActionResult MemberBloodGroupSearch(MemberBloodGroupSearchViewModel searchViewModel)
+        {
+            List<string> areas = personalDataFactory.GetDistinctAreas();
+            List<string> cities = personalDataFactory.GetDistinctCities();
+
+            searchViewModel.Areas = areas.Select(x => new SelectListItem() { Value = x, Text = x }).ToList();
+            searchViewModel.Cities = cities.Select(x => new SelectListItem() { Value = x, Text = x }).ToList();
+            searchViewModel.Areas.Insert(0, new SelectListItem() { Text = " Select Area ", Value = "0" });
+            searchViewModel.Cities.Insert(0, new SelectListItem() { Text = " Select City ", Value = "0" });
+
+            Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+            if (searchViewModel.BloodGroup!="0")
+                keyValuePairs.Add("BloodGroup", searchViewModel.BloodGroup);
+            if (searchViewModel.Gender != "0")
+                keyValuePairs.Add("Gender", searchViewModel.Gender);
+            if (searchViewModel.Area != "0")
+                keyValuePairs.Add("Area", searchViewModel.Area);
+            if (searchViewModel.City != "0")
+                keyValuePairs.Add("City", searchViewModel.City);
+            if (!string.IsNullOrEmpty(searchViewModel.FirstName))
+                keyValuePairs.Add("FirstName", searchViewModel.FirstName);
+            if (!string.IsNullOrEmpty(searchViewModel.LastName))
+                keyValuePairs.Add("LastName", searchViewModel.LastName);
+
+
+
+            List<MemberSearchResponse> memberData = searchDataFactory.GetAllMemberssSearchResultByFilterValues(keyValuePairs);
+            List<MemberSearchResponseViewModel> filteredMember = new List<MemberSearchResponseViewModel>();
+            foreach (MemberSearchResponse response in memberData)
+            {
+                MemberSearchResponseViewModel responseViewModel = mapper.Map<MemberSearchResponseViewModel>(response);
+                filteredMember.Add(responseViewModel);
+            }
+            searchViewModel.MemberList = filteredMember;
+            return View(searchViewModel);
+        }
+
+        public IActionResult ViewMemberProfile(int MemberId)
+        {
+            MemberFormCommonViewModel commonViewModel = new MemberFormCommonViewModel();
+
+           // var memberId = User.Claims?.FirstOrDefault(x => x.Type.Equals("MemberId", StringComparison.OrdinalIgnoreCase))?.Value;
+            //int MemberId = Convert.ToInt32(memberId);
+
+            Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(MemberId);
+            MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
+            commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
+
+            Member_ContactDetails member_contact = contactDetailsDataFactory.GetDetailsByMemberId(MemberId);
+            MemberContactInfoViewModel contactInfoViewModel = mapper.Map<MemberContactInfoViewModel>(member_contact);
+            commonViewModel.MemberConatctInfo = contactInfoViewModel;
+
+            Member_EducationEmploymentDetails member_education = educationEmploymentDataFactory.GetDetailsByMemberId(MemberId);
+            MemberEducationEmploymentInfoViewModel educationEmploymentInfoViewModel = mapper.Map<MemberEducationEmploymentInfoViewModel>(member_education);
+            commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
+
+            List<Member_FamilyDetails> member_Family = familyDetailsDataFactory.GetFamilyDetailsByMemberId(MemberId);
+            List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
+            foreach (Member_FamilyDetails family in member_Family)
+            {
+                memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
+            }
+            ViewBag.MemberList = memberFamilies;
+
+            Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(MemberId);
+            MemberPaymentRecieptsViewModel paymentViewModel = mapper.Map<MemberPaymentRecieptsViewModel>(member_Payments);
+            commonViewModel.MemberPaymentInfo = paymentViewModel;
+
+            return View(commonViewModel);
         }
     }
 }

@@ -1,0 +1,400 @@
+﻿@model MemberFormCommonViewModel
+
+@{
+    ViewData["Title"] = "ViewMemberProfile";
+    Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
+}
+
+<section class="blog_area single-post-area section_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 posts-list">
+                <div class="single-post">
+                    <div class="blog_details">
+                        <p class="excert">
+                            View Member Profile
+                        </p>
+                    </div>
+                </div>
+
+
+
+                <section>
+                    <div class="rt-container">
+                        <div class="col-rt-12">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="photo-container1">
+                                        <i class="ti-edit"></i>
+                                        <img src="~/img/img-1.png" style="margin:25px">
+                                    </div>
+                                    <section class="data-content1" style="background:#7c0053; width: calc(100% - 150px); padding:20px; color:#ffffff">
+                                        <label>सभासदाचे नाव: @Model.MemberPersonalInfo.FirstName @Model.MemberPersonalInfo.LastName </label><br><br>
+                                        <label>सभासद क्रमांक: @Model.MemberPaymentInfo.MemberShipIdM </label><br><br>
+                                        <label>जन्म तारीख: @Model.MemberPersonalInfo.BirthDate </label><br><br>
+                                        <label>मोबाईल: @Model.MemberConatctInfo.Mobile1 </label>
+
+                                    </section>
+                                </div>
+                            </div>
+                            <div class="Scriptcontent">
+
+                                <section class="tabs-container">
+                                    <label for="tab1" class="yel"> वैयक्तिक माहिती </label>
+                                    <label for="tab2" class="lblu"> मुळगाव व संपर्क</label>
+                                    <label for="tab3" class="grn"> शिक्षण / नोकरी </label>
+                                    <label for="tab4" class="purp"> कुटुंबाविषयी माहिती </label>
+                                    <label for="tab5" class="brn"> सभासदत्व माहिती</label>
+
+                                </section>
+
+                                <input name="tab" id="tab1" type="radio" checked />
+
+                                <section class="tab-content">
+                                    <br>
+                                    <h2>वैयक्तिक माहिती </h2>
+                                    <div class="section-top-border">
+                                        <div class="row">
+                                            <div class="col-lg-10 col-md-10">
+                                                <form asp-action="MemberPersonalInfo" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
+                                                    <input type="hidden" asp-for="MemberPersonalInfo.MemberId" />
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            
+                                                            <label><b>Title:</b>@Model.MemberPersonalInfo.Prefix</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberPersonalInfo.FirstName" asp-for="MemberPersonalInfo.FirstName" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberPersonalInfo.MiddleName" asp-for="MemberPersonalInfo.MiddleName" placeholder="Middle Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Middle Name'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberPersonalInfo.LastName" asp-for="MemberPersonalInfo.LastName" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select asp-for="MemberPersonalInfo.Gender">
+                                                                <option value="Gender">Gender</option>
+                                                                <option value="Male">Male</option>
+                                                                <option value="Female">Female</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select asp-for="MemberPersonalInfo.MaritalStatus">
+                                                                <option value="0">Marital Status</option>
+                                                                <option value="Married">Married</option>
+                                                                <option value="Unmarried">Unmarried</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <label>Date of Birth</label>
+                                                        <input type="date" name="MemberPersonalInfo.BirthDate" asp-for="MemberPersonalInfo.BirthDate" class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select asp-for="MemberPersonalInfo.BloodGroup">
+                                                                <option value="0">Blood Group</option>
+                                                                <option value="A+">A positive (A+)</option>
+                                                                <option value="A-">A Negative (A-)</option>
+                                                                <option value="B+">B Positive (B+)</option>
+                                                                <option value="B-">B Negative (B-)</option>
+                                                                <option value="O+">O Positive (O+)</option>
+                                                                <option value="O-">O Negative (O-)</option>
+                                                                <option value="AB+">AB positive (AB+)</option>
+                                                                <option value="AB-">AB Negative (AB-)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberPersonalInfo.Address" asp-for="MemberPersonalInfo.Address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberPersonalInfo.Area" asp-for="MemberPersonalInfo.Area" placeholder="Area" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Area'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberPersonalInfo.City" asp-for="MemberPersonalInfo.City" placeholder="City" onfocus="this.placeholder = ''" onblur="this.placeholder = 'City'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberPersonalInfo.Pincode" asp-for="MemberPersonalInfo.Pincode" placeholder="Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pincode'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberPersonalInfo.Taluka" asp-for="MemberPersonalInfo.Taluka" placeholder="Taluka" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Taluka'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberPersonalInfo.District" asp-for="MemberPersonalInfo.District" placeholder="District" onfocus="this.placeholder = ''" onblur="this.placeholder = 'District'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberPersonalInfo.State" asp-for="MemberPersonalInfo.State" placeholder="State" onfocus="this.placeholder = ''" onblur="this.placeholder = 'State'"
+                                                               required class="single-input">
+                                                    </div>
+
+
+
+
+
+                                                   
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </section>
+
+
+                                <input name="tab" id="tab2" type="radio" />
+                                <section class="tab-content">
+                                    <h2> मुळगाव व संपर्क</h2>
+                                    <div class="section-top-border">
+                                        <div class="row">
+                                            <div class="col-lg-10 col-md-10">
+                                                <form asp-controller="MemberDashboard" asp-action="MemberContactInfo" method="post" enctype="multipart/form-data">
+                                                    <input type="hidden" asp-for="MemberConatctInfo.MemberId" />
+                                                    <div class="input-group-icon mt-3">
+                                                        <input type="text" name="MemberConatctInfo.NativePlace" asp-for="MemberConatctInfo.NativePlace" placeholder="Native Place" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberConatctInfo.NativePlaceTaluka" asp-for="MemberConatctInfo.NativePlaceTaluka" placeholder="Native Place Taluka" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place Taluka'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberConatctInfo.NativePlaceDist" asp-for="MemberConatctInfo.NativePlaceDist" placeholder="Native Place District" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place District'"
+                                                               required class="single-input">
+                                                    </div>
+
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberConatctInfo.Mobile1" asp-for="MemberConatctInfo.Mobile1" placeholder="Personal Mobile 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 1'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberConatctInfo.Mobile2" asp-for="MemberConatctInfo.Mobile2" placeholder="Personal Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 2'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="email" name="MemberConatctInfo.EmailId" asp-for="MemberConatctInfo.EmailId" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberConatctInfo.RelativeName" asp-for="MemberConatctInfo.RelativeName" placeholder="Ref. Full Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ref. Full Name'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberConatctInfo.RelativeAddress" asp-for="MemberConatctInfo.RelativeAddress" placeholder="Reference / Relative full address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference / Relative full address'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberConatctInfo.RelativeContact1" asp-for="MemberConatctInfo.RelativeContact1" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 1'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberConatctInfo.RelativeContact2" asp-for="MemberConatctInfo.RelativeContact2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    @*<div class="mt-10 center">
+                                                        <button type="submit" class="genric-btn primary-border">Update</button>
+                                                    </div>*@
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <input name="tab" id="tab3" type="radio" />
+                                <section class="tab-content">
+                                    <h2> शिक्षण / नोकरी</h2>
+                                    <div class="section-top-border">
+                                        <div class="row">
+                                            <div class="col-lg-10 col-md-10">
+                                                <form asp-action="MemberEduEmpInfo" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
+                                                    <input type="hidden" asp-for="MemberEducationEmploymentInfo.MemberId" />
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberEducationEmploymentInfo.Qualification" asp-for="MemberEducationEmploymentInfo.Qualification" placeholder="Qualification" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Qualification'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select asp-for="MemberEducationEmploymentInfo.Proffession">
+                                                                <option value="0">Occupation</option>
+                                                                <option value="Business">Business</option>
+                                                                <option value="Job">Job</option>
+                                                                <option value="Farmer">Farmer</option>
+                                                                <option value="Student">Student</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberEducationEmploymentInfo.CompanyName" asp-for="MemberEducationEmploymentInfo.CompanyName" placeholder="Company Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Name'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberEducationEmploymentInfo.CompanyAddress" asp-for="MemberEducationEmploymentInfo.CompanyAddress" placeholder="Company Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Address'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberEducationEmploymentInfo.BusinessName" asp-for="MemberEducationEmploymentInfo.BusinessName" placeholder="Business Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Name'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberEducationEmploymentInfo.BusinessAddress" asp-for="MemberEducationEmploymentInfo.BusinessAddress" placeholder="Business Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Address'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    @*<div class="mt-10 center">
+                                                        <button type="submit" class="genric-btn primary-border">Update</button>
+                                                    </div>*@
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <input name="tab" id="tab4" type="radio" />
+                                <section class="tab-content">
+                                    <h2> कुटुंबाविषयी माहिती</h2>
+                                    <div class="section-top-border">
+
+                                        <div class="row">
+                                            <div class="col-lg-10 col-md-10">
+                                                <form asp-action="AddToList" asp-controller="Member" method="post" enctype="multipart/form-data">
+                                                    <input type="hidden" asp-for="MemberFamilyInfo.MemberFamilyDetails" />
+                                                    <input type="hidden" asp-for="MemberFamilyInfo.MemberId" />
+                                                    
+                                                    @if (ViewBag.MemberList != null)
+                                                    {
+                                                        <div class="mt-10 center">
+                                                            <table class="table table-info">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <td>Name</td>
+                                                                        <td>Relation</td>
+                                                                        <td>Education</td>
+                                                                        <td>Occupation</td>
+                                                                        <td>Blood Group</td>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+
+                                                                    @foreach (var familyMember in ViewBag.MemberList)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>@familyMember.Name</td>
+                                                                            <td>@familyMember.Relation</td>
+                                                                            <td>@familyMember.Education</td>
+                                                                            <td>@familyMember.Occupation</td>
+                                                                            <td>@familyMember.BloodGroup</td>
+                                                                        </tr>
+
+                                                                    }
+
+                                                                </tbody>
+                                                            </table>
+
+                                                        </div>
+                                                    }
+
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                        
+                                    </div>
+                                </section>
+
+                                <input name="tab" id="tab5" type="radio" />
+                                <section class="tab-content">
+                                    <h2> सभासदत्व माहिती </h2>
+                                    <div class="section-top-border">
+                                        <div class="row">
+                                            <div class="col-lg-10 col-md-10">
+                                                <form action="#">
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="charges_paid" asp-for="MemberPaymentInfo.ChagesPaid" placeholder="Charges Paid" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Charges Paid'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select asp-for="MemberPaymentInfo.PaymentMode">
+                                                                <option value="0">Paid Through</option>
+                                                                <option value="Cash">Cash</option>
+                                                                <option value="Online">Online</option>
+                                                                <option value="Cheque">Cheque</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="TransactionID" asp-for="MemberPaymentInfo.TransactionNo" placeholder="Transaction ID/ Ref. ID" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Transaction ID/ Ref. ID'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <label>Transaction Date</label>
+                                                        <input type="date" name="TransactionDate" asp-for="MemberPaymentInfo.TransactionDate" placeholder="Transaction Date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Transaction Date'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="RecieptNo." asp-for="MemberPaymentInfo.RecieptNo" placeholder="RecieptNo" onfocus="this.placeholder = ''" onblur="this.placeholder = 'RecieptNo'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="Membership Number" asp-for="MemberPaymentInfo.MemberShipIdM" placeholder="Membership Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Membership Number'"
+                                                               required class="single-input">
+                                                    </div>
+
+
+
+
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+

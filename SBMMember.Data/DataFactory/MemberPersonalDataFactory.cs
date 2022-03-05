@@ -137,6 +137,16 @@ namespace SBMMember.Data.DataFactory
 
             return personalDetails;
         }
+
+       public List<string> GetDistinctAreas()
+        {
+            return dBContext.Member_PersonalDetails.Select(x => x.Area).Distinct().ToList();
+        }
+
+        public List<string> GetDistinctCities()
+        {
+            return dBContext.Member_PersonalDetails.Select(x => x.City).Distinct().ToList();
+        }
     }
 
     public interface IMemberPersonalDataFactory
@@ -144,6 +154,8 @@ namespace SBMMember.Data.DataFactory
         ResponseDTO AddMemberPersonalDetails(Member_PersonalDetails member_Personal);
         ResponseDTO UpdateMemberPersonalDetails(Member_PersonalDetails member_Personal);
         Member_PersonalDetails GetMemberPersonalDetailsByMemberId(int memberId);
+        List<string> GetDistinctAreas();
+        List<string> GetDistinctCities();
     }
 
    

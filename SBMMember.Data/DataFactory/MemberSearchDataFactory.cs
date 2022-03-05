@@ -27,11 +27,59 @@ namespace SBMMember.Data.DataFactory
             context = dBContext;
 
         }
+        public List<MemberSearchResponse> GetAllDoctors()
+        {
+            List<MemberSearchByDTO> memberSearches = (from _apppersonal in context.Member_PersonalDetails
+                                                      join _appconatct in context.Member_ContactDetails
+                                                      on _apppersonal.MemberId equals _appconatct.MemberId
+                                                      join _appqualification in context.Member_EducationEmploymentDetails
+                                                      on _apppersonal.MemberId equals _appqualification.MemberId
+                                                      join _appFormStatus in context.Member_FormStatuses
+                                                      on _apppersonal.MemberId equals _appFormStatus.MemberId
+                                                      where _appFormStatus.FormStatus == "Approved"
+                                                      select new MemberSearchByDTO
+                                                      {
+                                                          MemberId = _apppersonal.MemberId,
+                                                          FirstName = _apppersonal.FirstName,
+                                                          MiddleName = _apppersonal.MiddleName,
+                                                          LastName = _apppersonal.LastName,
+                                                          BirthDate = _apppersonal.BirthDate,
+                                                          Qualification = _appqualification.Qualification,
+                                                          Proffession = _appqualification.Proffession,
+                                                          MobileNumber = _appconatct.Mobile1,
+                                                          NativePlace = _appconatct.NativePlace,
+                                                          NativePlaceTaluka = _appconatct.NativePlaceTaluka,
+                                                          NativePlaceDistrict = _appconatct.NativePlaceDist,
+                                                          Area = _apppersonal.Area,
+                                                          City = _apppersonal.City,
+                                                          Pincode = _apppersonal.Pincode,
+                                                          District = _apppersonal.District != null ? _apppersonal.District : string.Empty,
+                                                          Age = _apppersonal.Age
+
+                                                      }).ToList();
+
+            List<MemberSearchResponse> memberSearchesFinalResult = (from s in memberSearches.Where(x => x.Qualification.ToLower().Contains("m.b.b.s") || x.Qualification.ToLower().Contains("b.a.m.s")
+                                                                    || x.Qualification.ToLower().Contains("b.h.m.s")|| x.Qualification.ToLower().Contains("b.d.s")||x.Qualification.ToLower().Contains("m.d.s")
+                                                                    ||x.Qualification.ToLower().Contains("md"))
+                                                                    select new MemberSearchResponse()
+                                                                    {
+                                                                        MemberId = s.MemberId,
+                                                                        FullName = $"{s.FirstName} {s.MiddleName} {s.LastName}",
+                                                                        Area = s.Area,
+                                                                        City = s.City,
+                                                                        MobileNumber = s.MobileNumber,
+                                                                        Age = s.Age,
+                                                                        BirthDate = s.BirthDate,
+                                                                        NativePlace = s.NativePlace,
+                                                                        Qualification = s.Qualification
+                                                                    }).ToList();
+            return memberSearchesFinalResult;
+        }
         public List<MemberSearchResponse> GetAllMemberssSearchResultByFilterValues(Dictionary<string, string> keyValuePairs)
         {
             var pr = GetDynamicExpression(keyValuePairs);
 
-            List<MemberSearchByNameDTO> memberSearches = (from _apppersonal in context.Member_PersonalDetails
+            List<MemberSearchByDTO> memberSearches = (from _apppersonal in context.Member_PersonalDetails
                                                           join _appconatct in context.Member_ContactDetails
                                                           on _apppersonal.MemberId equals _appconatct.MemberId
                                                           join _appqualification in context.Member_EducationEmploymentDetails
@@ -39,7 +87,7 @@ namespace SBMMember.Data.DataFactory
                                                           join _appFormStatus in context.Member_FormStatuses
                                                           on _apppersonal.MemberId equals _appFormStatus.MemberId
                                                           where _appFormStatus.FormStatus == "Approved"
-                                                          select new MemberSearchByNameDTO
+                                                          select new MemberSearchByDTO
                                                           {
                                                               MemberId = _apppersonal.MemberId,
                                                               FirstName = _apppersonal.FirstName,
@@ -47,13 +95,18 @@ namespace SBMMember.Data.DataFactory
                                                               LastName = _apppersonal.LastName,
                                                               BirthDate = _apppersonal.BirthDate,
                                                               Qualification = _appqualification.Qualification,
+                                                              Proffession=_appqualification.Proffession,
                                                               MobileNumber = _appconatct.Mobile1,
                                                               NativePlace = _appconatct.NativePlace,
+                                                              NativePlaceTaluka=_appconatct.NativePlaceTaluka,
+                                                              NativePlaceDistrict=_appconatct.NativePlaceDist,
                                                               Area = _apppersonal.Area,
                                                               City = _apppersonal.City,
                                                               Pincode=_apppersonal.Pincode,
                                                               District= _apppersonal.District!=null?_apppersonal.District:string.Empty,
-                                                              Age=_apppersonal.Age
+                                                              Age=_apppersonal.Age,
+                                                              BloodGroup=_apppersonal.BloodGroup,
+                                                              Gender=_apppersonal.Gender
 
                                                           }).ToList();
 
@@ -72,9 +125,9 @@ namespace SBMMember.Data.DataFactory
                                                                     }).ToList();
             return memberSearchesFinalResult;
         }
-        private ExpressionStarter<MemberSearchByNameDTO> GetDynamicExpression(Dictionary<string, string> keyValuePairs)
+        private ExpressionStarter<MemberSearchByDTO> GetDynamicExpression(Dictionary<string, string> keyValuePairs)
         {
-            var pr = PredicateBuilder.New<MemberSearchByNameDTO>();
+            var pr = PredicateBuilder.New<MemberSearchByDTO>();
             foreach (var keyValuePair in keyValuePairs)
             {
                 string key = keyValuePair.Key.ToString().ToLower();
@@ -105,7 +158,27 @@ namespace SBMMember.Data.DataFactory
                     case "pincode":
                         pr = pr.And(x => x.Pincode==Convert.ToInt32( keyValuePair.Value));
                         break;
-
+                    case "nativeplace":
+                        pr = pr.And(x => x.NativePlace.ToLower().Contains(keyValuePair.Value.ToLower()) || x.NativePlace.Contains(keyValuePair.Value.Trim()));
+                        break;
+                    case "nativeplacetaluka":
+                        pr = pr.And(x => x.NativePlaceTaluka.ToLower().Contains(keyValuePair.Value.ToLower()) || x.NativePlaceTaluka.Contains(keyValuePair.Value.Trim()));
+                        break;
+                    case "nativeplacedistrict":
+                        pr = pr.And(x => x.NativePlaceDistrict.ToLower().Contains(keyValuePair.Value.ToLower()) || x.NativePlaceDistrict.Contains(keyValuePair.Value.Trim()));
+                        break;
+                    case "qualification":
+                        pr = pr.And(x => x.Qualification.ToLower().Contains(keyValuePair.Value.ToLower()) || x.Qualification.Contains(keyValuePair.Value.Trim()));
+                        break;
+                    case "proffession":
+                        pr = pr.And(x => x.Proffession.ToLower().Contains(keyValuePair.Value.ToLower()) || x.Proffession.Contains(keyValuePair.Value.Trim()));
+                        break;
+                    case "bloodgroup":
+                        pr = pr.And(x => x.BloodGroup.ToLower().Contains(keyValuePair.Value.ToLower()) || x.BloodGroup.Contains(keyValuePair.Value.Trim()));
+                        break;
+                    case "gender":
+                        pr = pr.And(x => x.Gender.ToLower().Contains(keyValuePair.Value.ToLower()) || x.Gender.Contains(keyValuePair.Value.Trim()));
+                        break;
                     default:
                         break;
                 }
@@ -118,5 +191,6 @@ namespace SBMMember.Data.DataFactory
     public interface IMemberSearchDataFactory
     {
         List<MemberSearchResponse> GetAllMemberssSearchResultByFilterValues(Dictionary<string, string> keyValuePairs);
+        List<MemberSearchResponse> GetAllDoctors();
     }
 }

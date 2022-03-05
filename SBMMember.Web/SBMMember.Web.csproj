@@ -6,12 +6,70 @@
 
   <ItemGroup>
     <None Include="wwwroot\css\style.map" />
+    <None Include="wwwroot\fonts\Flaticon.woff2" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\fonts\themify.svg" />
     <None Include="wwwroot\img\icon\color_star.svg" />
     <None Include="wwwroot\img\icon\left.svg" />
     <None Include="wwwroot\img\icon\play.svg" />
     <None Include="wwwroot\img\icon\quate.svg" />
     <None Include="wwwroot\img\icon\right.svg" />
     <None Include="wwwroot\img\icon\star.svg" />
+    <None Include="wwwroot\js\aos.js" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\contact.js" />
+    <None Include="wwwroot\js\custom.js" />
+    <None Include="wwwroot\js\gmaps.min.js" />
+    <None Include="wwwroot\js\jquery-1.12.1.min.js" />
+    <None Include="wwwroot\js\jquery-3.3.1.slim.min.js" />
+    <None Include="wwwroot\js\jquery.ajaxchimp.min.js" />
+    <None Include="wwwroot\js\jquery.counterup.min.js" />
+    <None Include="wwwroot\js\jquery.easing.min.js" />
+    <None Include="wwwroot\js\jquery.form.js" />
+    <None Include="wwwroot\js\jquery.magnific-popup.js" />
+    <None Include="wwwroot\js\jquery.nice-select.min.js" />
+    <None Include="wwwroot\js\jquery.validate.min.js" />
+    <None Include="wwwroot\js\mail-script.js" />
+    <None Include="wwwroot\js\masonry.pkgd.js" />
+    <None Include="wwwroot\js\masonry.pkgd.min.js" />
+    <None Include="wwwroot\js\owl.carousel.min.js" />
+    <None Include="wwwroot\js\particles.min.js" />
+    <None Include="wwwroot\js\popper.min.js" />
+    <None Include="wwwroot\js\slick.min.js" />
+    <None Include="wwwroot\js\swiper.min.js" />
+    <None Include="wwwroot\js\swiper_custom.js" />
+    <None Include="wwwroot\js\waypoints.min.js" />
+    <None Include="wwwroot\sass\style.scss" />
+    <None Include="wwwroot\sass\_" />
+    <None Include="wwwroot\sass\_about.scss" />
+    <None Include="wwwroot\sass\_banner.scss" />
+    <None Include="wwwroot\sass\_blog.scss" />
+    <None Include="wwwroot\sass\_blog_part.scss" />
+    <None Include="wwwroot\sass\_breadcrumb.scss" />
+    <None Include="wwwroot\sass\_button.scss" />
+    <None Include="wwwroot\sass\_common.scss" />
+    <None Include="wwwroot\sass\_contact.scss" />
+    <None Include="wwwroot\sass\_copyright_part.scss" />
+    <None Include="wwwroot\sass\_cource_details.scss" />
+    <None Include="wwwroot\sass\_elements.scss" />
+    <None Include="wwwroot\sass\_extends.scss" />
+    <None Include="wwwroot\sass\_feature_part.scss" />
+    <None Include="wwwroot\sass\_footer.scss" />
+    <None Include="wwwroot\sass\_gallery_part.scss" />
+    <None Include="wwwroot\sass\_learning.scss" />
+    <None Include="wwwroot\sass\_member_counter.scss" />
+    <None Include="wwwroot\sass\_menu.scss" />
+    <None Include="wwwroot\sass\_mixins.scss" />
+    <None Include="wwwroot\sass\_portfolio.scss" />
+    <None Include="wwwroot\sass\_project_details.scss" />
+    <None Include="wwwroot\sass\_review.scss" />
+    <None Include="wwwroot\sass\_single_blog.scss" />
+    <None Include="wwwroot\sass\_social_connect_part.scss" />
+    <None Include="wwwroot\sass\_special_cource.scss" />
+    <None Include="wwwroot\sass\_team.scss" />
+    <None Include="wwwroot\sass\_testimonial_part.scss" />
+    <None Include="wwwroot\sass\_variables.scss" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,7 +78,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
     <PackageReference Include="RazorPay.Core" Version="1.0.2" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
+    <PackageReference Include="System.Collections.NonGeneric" Version="4.3.0" />
     <PackageReference Include="System.Net.Requests" Version="4.3.0" />
   </ItemGroup>
 
@@ -30,6 +90,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\MemberBloodGroupSearch\" />
     <Folder Include="Views\Shared\PartialViews\" />
   </ItemGroup>
 

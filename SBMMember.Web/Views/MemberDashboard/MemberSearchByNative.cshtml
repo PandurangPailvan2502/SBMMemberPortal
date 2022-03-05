@@ -1,4 +1,5 @@
-﻿
+﻿@using SBMMember.Web.Models.MemberSearchModels
+@model MemberSearchByNativeViewModel
 @{
     ViewData["Title"] = "MemberSearchByNative";
     Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
@@ -11,57 +12,59 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="search-box">
-                <div class="container ">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4>Search Member by Native Place</h4>
-                            <br>
-                            <!------------icon dashbaord row-1--------------->
-                            <div class="container">
-                                <div class="row ">
+                <form asp-action="MemberSearchByNative" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
+                    <div class="container ">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Search Member by Native Place</h4>
+                                <br>
+                                <!------------icon dashbaord row-1--------------->
+                                <div class="container">
+                                    <div class="row ">
 
-                                    <div class="col-sm-3">
-                                        <input text="text" name="Native Place" class="search-box_input" placeholder="Native Place" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place'">
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input text="text" name="Native Place Taluka" class="search-box_input" placeholder="Native Place Taluka" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place Taluka'">
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input text="text" name="Native Place District" class="search-box_input" placeholder="Native Place District" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place District'">
-                                    </div>
-                                    <div class="col-sm-3">
+                                        <div class="col-sm-3">
+                                            <input text="text" name="NativePlace" asp-for="NativePlace" class="search-box_input" placeholder="Native Place" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place'">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input text="text" name="NativePlaceTaluka" asp-for="NativePlaceTaluka" class="search-box_input" placeholder="Native Place Taluka" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place Taluka'">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input text="text" name="NativePlaceDistrict" asp-for="NativePlaceDistrict" class="search-box_input" placeholder="Native Place District" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place District'">
+                                        </div>
+                                        <div class="col-sm-3">
 
+                                        </div>
                                     </div>
                                 </div>
+                                <!------------End of icon dashbaord row-1--------------->
                             </div>
-                            <!------------End of icon dashbaord row-1--------------->
                         </div>
                     </div>
-                </div>
-                <div class="seperate"></div>
-                <div class="container ">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <br>
-                            <!------------icon dashbaord row-1--------------->
-                            <div class="container">
-                                <div class="row ">
-                                    <div class="col-sm-3">
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="Reset" class="genric-btn danger submit-btn" style="margin-left:50%; border-radius:10px">
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="submit" class="genric-btn success submit-btn" style="margin-left:50%; border-radius:10px">
-                                    </div>
-                                    <div class="col-sm-3">
+                    <div class="seperate"></div>
+                    <div class="container ">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <br>
+                                <!------------icon dashbaord row-1--------------->
+                                <div class="container">
+                                    <div class="row ">
+                                        <div class="col-sm-3">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="Reset" class="genric-btn danger submit-btn" style="margin-left:50%; border-radius:10px">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="submit" class="genric-btn success submit-btn" style="margin-left:50%; border-radius:10px">
+                                        </div>
+                                        <div class="col-sm-3">
+                                        </div>
                                     </div>
                                 </div>
+                                <!------------End of icon dashbaord row-1--------------->
                             </div>
-                            <!------------End of icon dashbaord row-1--------------->
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -70,61 +73,14 @@
 
 <!------------Search Result--------------->
 
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="container search_result">
-                <div class="row">
-                    <div class="col-xs-3 search_pic" class="">
-                        <img src="~/img/avatar7.png" class="pic_img">
-                    </div>
-                    <div class="col-xs-9 pic_content">
-                        <div class="table-responsive search_cont">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td><div class="icon_cole1"><i class="ti-user"></i></div></td>
-                                        <td><div class="labe">Full Name:</div></td>
-                                        <td><div class="labep">Suresh Kumar Vadekar</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="icon_cole1"><i class="ti-archive"></i></div></td>
-                                        <td><div class="labe">Qualification:</div></td>
-                                        <td><div class="labep">B-Tech IT</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="icon_cole1"><i class="ti-dashboard"></i></div></td>
-                                        <td><div class="labe">Age:</div></td>
-                                        <td><div class="labep">26 Years</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="icon_cole1"><i class="ti-mobile"></i></div></td>
-                                        <td><div class="labe">Mobile:</div></td>
-                                        <td><div class="labep">9933662211 (Whatsapp)</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="icon_cole1"><i class="ti-mobile"></i></div></td>
-                                        <td><div class="labe">Area City:</div></td>
-                                        <td><div class="labep">Indira Nagar, Lucknow</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="icon_cole1"><i class="ti-pin2"></i></div></td>
-                                        <td><div class="labe">Native Place:</div></td>
-                                        <td><div class="labep">Indira Nagar, Lucknow</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td><div class="labe"><input type="button" value="View" class="genric-btn success submit-btn"></div></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@if (Model.MemberList != null)
+{
+    <!------------Search Result--------------->
+    @foreach (MemberSearchResponseViewModel model in Model.MemberList)
+    {
+        @await Html.PartialAsync("_PartialMemberInfo", model)
+    }
+}
+
 
 

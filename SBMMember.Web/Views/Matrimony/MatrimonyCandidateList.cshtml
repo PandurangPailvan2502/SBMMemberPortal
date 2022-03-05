@@ -1,0 +1,15 @@
+﻿@model MatrimonyViewModel
+@{
+    ViewData["Title"] = "MatrimonyCandidateList";
+    Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
+}
+
+<h1>Matrimony Candidate List</h1>
+
+@if (Model.Candidates.Count > 0)
+{
+    foreach (CandidateSearchResponse candidate in Model.Candidates)
+    {
+        @await Html.PartialAsync("_PartialCandidateInfo", candidate)
+    }
+}

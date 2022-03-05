@@ -89,9 +89,10 @@ namespace SBMMember.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-        pattern: "{controller=Home}/{action=MemberHome}/{id?}");
-        //pattern: "{controller=Payment}/{action=AcceptMemberPayment}/{id?}");
-        //pattern: "{controller=MemberDashboard}/{action=ProfileUpdate}/{id?}");
+                    //pattern: "{controller=AdminDashboard}/{action=AdminHome}/{id?}");
+                pattern: "{controller=Home}/{action=MemberHome}/{id?}");
+                //pattern: "{controller=Payment}/{action=AcceptMemberPayment}/{id?}");
+                //pattern: "{controller=MemberDashboard}/{action=ProfileUpdate}/{id?}");
 
             });
         }

@@ -1,0 +1,132 @@
+﻿@using SBMMember.Web.Models.MemberSearchModels
+@model MemberBloodGroupSearchViewModel
+@{
+    ViewData["Title"] = "MemberBloodGroupSearch";
+    Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="scroll" style="background-color:darkred">
+                <p> Welcome to Blood Group Search</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="seperate"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <form asp-action="MemberBloodGroupSearch" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
+                <div class="search-box">
+
+                    <div class="container ">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <!------------icon dashbaord row-1--------------->
+                                <div class="container">
+                                    <div class="row ">
+
+                                        <div class="col-sm-4">
+                                            <div class="form-select" id="default-select">
+                                                <select asp-for="BloodGroup">
+                                                    <option value="0">Blood Group</option>
+                                                    <option value="A+">A positive (A+)</option>
+                                                    <option value="A-">A Negative (A-)</option>
+                                                    <option value="B+">B Positive (B+)</option>
+                                                    <option value="B-">B Negative (B-)</option>
+                                                    <option value="O+">O Positive (O+)</option>
+                                                    <option value="O-">O Negative (O-)</option>
+                                                    <option value="AB+">AB positive (AB+)</option>
+                                                    <option value="AB-">AB Negative (AB-)</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-select" id="default-select">
+                                                <select asp-for="City" asp-items="Model.Cities"></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-select" id="default-select">
+                                                <select asp-for="Area" asp-items="Model.Areas"></select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!------------End of icon dashbaord row-1--------------->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <!------------icon dashbaord row-1--------------->
+                                <div class="container">
+                                    <div class="row ">
+
+                                        <div class="col-sm-4">
+                                            <div class="form-select" id="default-select">
+                                                <select asp-for="Gender">
+                                                    <option value="0">Select Gender</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="Female">Female</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input text="text" name="FirstName"  asp-for="FirstName" class="search-box_input" placeholder="FirstName" onfocus="this.placeholder = ''" onblur="this.placeholder = 'FirstName'">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input text="text" name="LastName" asp-for="LastName" class="search-box_input" placeholder="LastName" onfocus="this.placeholder = ''" onblur="this.placeholder = 'LastName'">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!------------End of icon dashbaord row-1--------------->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="seperate"></div>
+                    <div class="container ">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <br>
+                                <!------------icon dashbaord row-1--------------->
+                                <div class="container">
+                                    <div class="row ">
+                                        <div class="col-sm-3">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="Reset" class="genric-btn danger submit-btn" style="margin-left:50%; border-radius:10px">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="submit" class="genric-btn success submit-btn" style="margin-left:50%; border-radius:10px">
+                                        </div>
+                                        <div class="col-sm-3">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!------------End of icon dashbaord row-1--------------->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="seperate"></div>
+@if (Model.MemberList != null)
+{
+    <!------------Search Result--------------->
+    @foreach (MemberSearchResponseViewModel model in Model.MemberList)
+    {
+        @await Html.PartialAsync("_PartialMemberInfo", model)
+    }
+}
