@@ -44,5 +44,10 @@ namespace SBMMember.Web.Controllers
                 
             return View();
         }
+
+        public IActionResult BusinessDirectory()
+        {
+            return View();
+        }
     }
 }
