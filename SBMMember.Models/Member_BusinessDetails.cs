@@ -13,11 +13,15 @@ namespace SBMMember.Models
 		public int BusinessId { get; set; }
 		public int MemberId { get; set; }
 		public string BusinessTitle { get; set; }
-		public string BusinessTitleM { get; set; }
+		public string BusinessIndustry { get; set; }
+		public string CompanyLocation { get; set; }
 		public string Address { get; set; }
-		public string AddressM { get; set; }
-		public string NatureOfBusines { get; set; }
-		public string Status { get; set; }
+		public string OwnerName { get; set; }
+        public string ProductsServices { get; set; }
+        public string Qualification { get; set; }
+        public string CompanyContact { get; set; }
+        public string CompanyEmail { get; set; }
+        public string Status { get; set; }
 		public DateTime CreateDate { get; set; }
 	}
 }

@@ -1,4 +1,4 @@
-﻿
+﻿@model MemberBusinessViewModel
 @{
     ViewData["Title"] = "RegisterBusiness";
     Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
@@ -20,57 +20,57 @@
                 <div class="section-top-border">
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
-                            <form action="#">
+                            <form asp-action="RegisterBusiness" asp-controller="BusinessDashboard" method="post">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <input type="text" name="Businesstitle" placeholder="Business Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Title'"
+                                        <input type="text" name="BusinessTitle" asp-for="BusinessTitle" placeholder="Business Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Title'"
                                                required class="single-input">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <input type="text" name="firmIndustry" placeholder="Name of the firm / Industry" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name of the firm / Industry'"
+                                        <input type="text" name="BusinessIndustry" asp-for="BusinessIndustry" placeholder="Name of the firm / Industry" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name of the firm / Industry'"
                                                required class="single-input">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <input type="text" name="Companylocation" placeholder="Company location" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company location'"
+                                        <input type="text" name="CompanyLocation" asp-for="CompanyLocation" placeholder="Company location" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company location'"
                                                required class="single-input">
                                     </div>
                                     <div class="col-lg-4">
-                                        <input type="text" name="Address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'"
+                                        <input type="text" name="Address" asp-for="Address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'"
                                                required class="single-input">
                                     </div>
                                     <div class="col-lg-4">
-                                        <input type="text" name="Ownername" placeholder="Owner name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Owner name'"
-                                               required class="single-input">
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <input type="text" name="ProductsorServices" placeholder="Products or Services" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Products or Services'"
-                                               required class="single-input">
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <input type="text" name="QualificationRequired" placeholder="Qualification Required" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Qualification Required'"
-                                               required class="single-input">
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <input type="text" name="ContactNo." placeholder="Company Contact No." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Contact No.'"
+                                        <input type="text" name="OwnerName" asp-for="OwnerName" placeholder="Owner name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Owner name'"
                                                required class="single-input">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-4">
-                                        <input type="Email" name="CompanyEmail" placeholder="Company Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Email'"
+                                        <input type="text" name="ProductsServices" asp-for="ProductsServices" placeholder="Products or Services" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Products or Services'"
+                                               required class="single-input">
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <input type="text" name="Qualification" asp-for="Qualification" placeholder="Qualification Required" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Qualification Required'"
+                                               required class="single-input">
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <input type="text" name="CompanyContact" asp-for="CompanyContact" placeholder="Company Contact No." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Contact No.'"
+                                               required class="single-input">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <input type="Email" name="CompanyEmail" asp-for="CompanyEmail" placeholder="Company Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Email'"
                                                required class="single-input">
                                     </div>
                                     <div class="col-lg-4" style="margin-top:10px">
-                                        <a href="#" class="genric-btn primary-border">Submit</a>
+                                        <input type="submit" class="genric-btn primary-border" value="Submit">
                                     </div>
                                     <div class="col-lg-4">
 

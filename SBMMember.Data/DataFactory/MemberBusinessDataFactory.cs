@@ -22,6 +22,8 @@ namespace SBMMember.Data.DataFactory
             try
             {
                 int affectedRows = 0;
+                member_Business.Status = "Active";
+                member_Business.CreateDate = DateTime.Now;
                 dBContext.Member_BusinessDetails.Add(member_Business);
                 affectedRows = dBContext.SaveChanges();
                 if (affectedRows > 0)

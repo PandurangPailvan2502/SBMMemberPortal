@@ -29,6 +29,9 @@ namespace SBMMember.Web.Mapper
 
             CreateMap<MemberSearchResponseViewModel, MemberSearchResponse>();
             CreateMap<MemberSearchResponse, MemberSearchResponseViewModel>();
+
+            CreateMap<MemberBusinessViewModel, Member_BusinessDetails>();
+            CreateMap<Member_BusinessDetails, MemberBusinessViewModel>();
         }
     }
 }
