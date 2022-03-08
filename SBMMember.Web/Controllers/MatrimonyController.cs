@@ -34,5 +34,10 @@ namespace SBMMember.Web.Controllers
             };
             return View("MatrimonyCandidateList", viewModel);
         }
+
+        public IActionResult MatrimonyCandidateProfile()
+        {
+            return View();
+        }
     }
 }
