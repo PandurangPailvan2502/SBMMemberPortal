@@ -616,7 +616,9 @@
     }
 
     .pic_img {
-        width: 50%
+        width: 50%;
+        border-radius: 20px;
+        height: 176px;
     }
 }
 
