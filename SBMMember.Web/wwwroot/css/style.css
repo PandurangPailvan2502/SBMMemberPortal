@@ -3555,13 +3555,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 515, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
 .single-input {
-  display: block;
-  width: 100%;
-  line-height: 40px;
-  border: none;
-  outline: none;
-  background: #f9f9ff;
-  padding: 0 20px;
+    display: block;
+    width: 100%;
+    line-height: 40px;
+    border: none;
+    outline: none;
+    background: #f9f9ff;
+    padding: 0 20px;
+    margin-bottom: 16px;
 }
 
 /* line 523, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
