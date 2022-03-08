@@ -8,5 +8,6 @@ namespace SBMMember.Web.Models
     public class MatrimonyViewModel
     {
         public List<CandidateSearchResponse> Candidates { get; set; }
+        public CandidateProfile CandidateProfile { get; set; }
     }
 }

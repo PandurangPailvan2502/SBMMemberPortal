@@ -55,5 +55,18 @@ namespace SBMMember.Web.Helper
 
             }).ToList();
         }
+
+        public static CandidateProfile GetCandidateProfileByCandidateId(string candidateId)
+        {
+            string url = $"https://samatabhratrumandal.com/RestAPI/api/candidate/GetCandidatesProfileDetailsByCandidateId/{candidateId}";
+            RestClient client = new RestClient(url);
+            var request = new RestRequest();
+            request.AddHeader("Accept", "application/json");
+
+            var response = client.Get(request);
+            CandidateProfile profile  = JsonConvert.DeserializeObject<CandidateProfile>(response.Content.ToString());
+            profile.profileImage = "https://samatabhratrumandal.com" + profile.profileImage;
+            return profile;
+        }
     }
 }

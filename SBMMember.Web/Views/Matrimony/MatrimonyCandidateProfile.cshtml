@@ -1,45 +1,52 @@
-﻿
+﻿@model MatrimonyViewModel
 @{
     ViewData["Title"] = "MatrimonyCandidateProfile";
     Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
 }
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="scroll" style="background-color:darkred">
+                <p> Welcome to Matrimony Portal</p>
+            </div>
+        </div>
+    </div>
+</div>
 <section>
+    
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="heading-box">
-                    <p>Member Profile</p>
-                </div>
+
                 <div class="col-rt-12">
                     <div class="container">
                         <div class="row" style="background:#7c0053">
                             <div class="photo-container1">
                                 <i class="ti-edit"></i>
-                                <img src="img/pic.png" style="margin:15px">
+                                <img src="@Model.CandidateProfile.profileImage" style="margin:15px;height:140px;width:130px;">
                             </div>
                             <section class="data-content1" style="background:#7c0053; width: calc(100% - 150px); padding:20px; color:#ffffff">
                                 <ul class="profile-text">
-                                    <li>सभासदाचे नाव:</li>
-                                    <li>सभासद क्रमांक:</li>
-                                    <li>जन्म तारीख:</li>
-                                    <li>मोबाईल:</li>
+                                    <li>@Model.CandidateProfile.fullName</li>
+                                    <li>Age:@Model.CandidateProfile.age yrs</li>
+                                    <li>ऊंची : @Model.CandidateProfile.heightInFeet'@Model.CandidateProfile.heightInInches"</li>
+                                    <li>Candidate Id:@Model.CandidateProfile.applicationId</li>
                                 </ul>
                             </section>
                         </div>
                     </div>
                     <div class="Scriptcontent">
                         <section class="tabs-container tab-text">
-                            <label for="tab1" style="color:#ffffff;text-align:center"> <img src="~/img/profile.png" class="matri-icon"> <br>वयक्तिक माहिती </label>
+                            <label for="tab1" style="color:#ffffff;text-align:center"> <img src="~/img/profile.png" class="matri-icon"> <br>वैयक्तिक माहिती </label>
                             <label for="tab3" style="color:#ffffff;text-align:center"> <img src="~/img/mortarboard.png" class="matri-icon"><br> शिक्षण / नोकरी </label>
-                            <label for="tab2" style="color:#ffffff;text-align:center"> <img src="~/img/image-gallery.png" class="matri-icon"><br>मुळगाव व संपर्क</label>
+                            <label for="tab2" style="color:#ffffff;text-align:center"> <img src="~/img/image-gallery.png" class="matri-icon"><br>छायाचित्र</label>
                             <label for="tab4" style="color:#ffffff;text-align:center"> <img src="~/img/people.png" class="matri-icon"><br>कुटुंबाविषयी माहिती </label>
-                            <label for="tab5" style="color:#ffffff;text-align:center"> <img src="~/img/contact-img.png" class="matri-icon"><br>सभासदत्व माहिती</label>
+                            <label for="tab5" style="color:#ffffff;text-align:center"> <img src="~/img/contact-img.png" class="matri-icon"><br>संपर्कासाठी नाव</label>
                         </section>
 
                         <input name="tab" id="tab1" type="radio" checked />
                         <section class="tab-content">
-                            <h2> वयक्तिक माहिती </h2>
+                            <h2> वैयक्तिक माहिती </h2>
                             <div class="section-top-border">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12">
