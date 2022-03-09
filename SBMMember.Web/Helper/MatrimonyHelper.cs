@@ -25,7 +25,8 @@ namespace SBMMember.Web.Helper
             return _banner.Select(x => new CandidateSearchResponse()
             {
                 candidateId=x.candidateId,
-                fullName=x.fullName,
+                userId = x.userId,
+                fullName =x.fullName,
                 age=x.age,
                 education=x.education,
                 profileImage = "https://samatabhratrumandal.com" + x.profileImage
@@ -48,6 +49,7 @@ namespace SBMMember.Web.Helper
             return _banner.Select(x => new CandidateSearchResponse()
             {
                 candidateId = x.candidateId,
+                userId=x.userId,
                 fullName = x.fullName,
                 age = x.age,
                 education = x.education,
@@ -56,9 +58,9 @@ namespace SBMMember.Web.Helper
             }).ToList();
         }
 
-        public static CandidateProfile GetCandidateProfileByCandidateId(string candidateId)
+        public static CandidateProfile GetCandidateProfileByCandidateId(string UserIdId)
         {
-            string url = $"https://samatabhratrumandal.com/RestAPI/api/candidate/GetCandidatesProfileDetailsByCandidateId/{candidateId}";
+            string url = $"https://samatabhratrumandal.com/RestAPI/api/candidate/GetCandidatesProfileDetailsByUserId/{UserIdId}";
             RestClient client = new RestClient(url);
             var request = new RestRequest();
             request.AddHeader("Accept", "application/json");

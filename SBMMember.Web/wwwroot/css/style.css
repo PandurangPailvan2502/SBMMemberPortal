@@ -5,6 +5,17 @@
   background-image: linear-gradient(to left, #ee390f 0%, #f9b700 51%, #ee390f 100%);
 }
 
+/*Business directory start*/
+.next {
+  background-color: #b3027d;
+  color: white; padding: 8px 16px; font-size:12px
+}
+.round {
+  border-radius: 50%;
+}
+
+/*Business directory end*/
+
 /* line 6, E:/172 Etrain Education/172_Etrain_Education_html/sass/_extends.scss */
 .member_counter {
   background-image: -moz-linear-gradient(0deg, #ee390f 0%, #f9b700 100%);
@@ -68,7 +79,7 @@
     height: 45px;
     background-color: #630036cb;
     text-align: center;
-    color: #ffffff;
+    color: darkred;
 }
 
     .scroll p {
@@ -283,16 +294,27 @@
 
 /**********************member dashboard******************************/
 
-         .scroll{height:45px; background-color:#ad0160cb; text-align:center; color:#ffffff;}
+.scroll {
+    height: 45px;
+    background-color: #ad0160cb;
+    text-align: center;
+    color: darkred;
+}
          .scroll p{text-align:center; color:#ffffff; padding:10px 0px 10px 0px}
          .myborder{border:1px solid #000000;text-align:center}
-         .profile-bar1{border:1px solid #53002e ;width:70%; background-color:#53002e; }
+         .profile-bar1
+         {
+             /*border:1px solid #53002e ;*/
+             width:70%;
+             /*background-color:#53002e; */
+
+         }
          .pofile-icon{width:64px; height:64px; padding:10px;}
-         .profile-bar2{border:1px solid #ffe602; width:30%;background-color:#ffe602;padding:25px 0px 0px 30px; }
+         .profile-bar2{/*border:1px solid #ffe602;*/ width:30%;/*background-color:#ffe602;*/padding:25px 0px 0px 30px; }
          .profile-bar2 h3{color:#000000}
          .profile-content{ padding:10px 0px 5px 20px}
-         .profile-content h4{color:#ffffff;}
-         .profile-content h5{color:#ffffff;}
+         .profile-content h4{color:black;}
+         .profile-content h5{color:black;}
 
          @media only screen and (min-width: 1201px)
         {
@@ -430,7 +452,7 @@
     height: 45px;
     background-color: #630036cb;
     text-align: center;
-    color: #ffffff;
+    color: darkred;
 }
 
     .scroll p {
@@ -521,7 +543,7 @@
     height: 45px;
     background-color: #ad0160cb;
     text-align: center;
-    color: #ffffff;
+    color: darkred;
 }
 
     .scroll p {
@@ -536,9 +558,9 @@
 }
 
 .profile-bar1 {
-    border: 1px solid #53002e;
+   /* border: 1px solid #53002e;*/
     width: 70%;
-    background-color: #53002e;
+    /*background-color: #53002e;*/
 }
 
 .pofile-icon {
@@ -548,9 +570,9 @@
 }
 
 .profile-bar2 {
-    border: 1px solid #ffe602;
+  /*  border: 1px solid #ffe602;*/
     width: 30%;
-    background-color: #ffe602;
+    /*background-color: #ffe602;*/
     padding: 25px 0px 0px 30px;
 }
 
@@ -563,11 +585,11 @@
 }
 
     .profile-content h4 {
-        color: #ffffff;
+        color: black;
     }
 
     .profile-content h5 {
-        color: #ffffff;
+        color: black;
     }
 
 .submit-btn {
@@ -986,7 +1008,7 @@ tr, td, th {
     height: 45px;
     background-color: #ad0160cb;
     text-align: center;
-    color: #ffffff;
+    color: darkred;
 }
 
     .scroll p {
@@ -1001,9 +1023,10 @@ tr, td, th {
 }
 
 .profile-bar1 {
-    border: 1px solid #53002e;
+    /*border: 1px solid #53002e;*/
     width: 70%;
-    background-color: #53002e;
+    color:black;
+  /*  background-color: #53002e;*/
 }
 
 .pofile-icon {
@@ -1013,9 +1036,9 @@ tr, td, th {
 }
 
 .profile-bar2 {
-    border: 1px solid #ffe602;
+    /*border: 1px solid #ffe602;*/
     width: 30%;
-    background-color: #ffe602;
+   /* background-color: #ffe602;*/
     padding: 25px 0px 0px 30px;
 }
 
@@ -1028,11 +1051,11 @@ tr, td, th {
 }
 
     .profile-content h4 {
-        color: #ffffff;
+        color: black;
     }
 
     .profile-content h5 {
-        color: #ffffff;
+        color: black;
     }
 
 @media only screen and (min-width: 1201px) {

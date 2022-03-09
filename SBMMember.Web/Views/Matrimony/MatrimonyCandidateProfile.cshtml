@@ -13,7 +13,7 @@
     </div>
 </div>
 <section>
-    
+
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -38,8 +38,8 @@
                     <div class="Scriptcontent">
                         <section class="tabs-container tab-text">
                             <label for="tab1" style="color:#ffffff;text-align:center"> <img src="~/img/profile.png" class="matri-icon"> <br>वैयक्तिक माहिती </label>
-                            <label for="tab3" style="color:#ffffff;text-align:center"> <img src="~/img/mortarboard.png" class="matri-icon"><br> शिक्षण / नोकरी </label>
-                            <label for="tab2" style="color:#ffffff;text-align:center"> <img src="~/img/image-gallery.png" class="matri-icon"><br>छायाचित्र</label>
+                            <label for="tab2" style="color:#ffffff;text-align:center"> <img src="~/img/mortarboard.png" class="matri-icon"><br> शिक्षण/नोकरी </label>
+                            <label for="tab3" style="color:#ffffff;text-align:center"> <img src="~/img/image-gallery.png" class="matri-icon"><br>छायाचित्र</label>
                             <label for="tab4" style="color:#ffffff;text-align:center"> <img src="~/img/people.png" class="matri-icon"><br>कुटुंबाविषयी माहिती </label>
                             <label for="tab5" style="color:#ffffff;text-align:center"> <img src="~/img/contact-img.png" class="matri-icon"><br>संपर्कासाठी नाव</label>
                         </section>
@@ -50,20 +50,29 @@
                             <div class="section-top-border">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12">
-                                        <h5>Birth Name:</h5>
-                                        <p>Sadhna Sargam</p>
+                                        <h5>जन्म नाव:</h5>
+                                        <p>@Model.CandidateProfile.birthName</p>
                                         <br>
-                                        <h5>Birth Place:</h5>
-                                        <p>Pune</p>
+                                        <h5>जन्म ठिकाण  :</h5>
+                                        <p>@Model.CandidateProfile.birthPlace</p>
                                         <br>
-                                        <h5>Birth Date:</h5>
-                                        <p>5 March 1982</p>
+                                        <h5>जन्म तारीख :</h5>
+                                        <p>@Model.CandidateProfile.birthDate</p>
                                         <br>
-                                        <h5>Birth Hours:</h5>
-                                        <p>03:25 PM</p>
+                                        <h5>जन्म वेळ(24 hrs) :</h5>
+                                        <p>@Model.CandidateProfile.birthHrs:@Model.CandidateProfile.birthMins</p>
                                         <br>
-                                        <h5>Blood Group:</h5>
-                                        <p>B+</p>
+                                        <h5> गोत्र:</h5>
+                                        <p>@Model.CandidateProfile.gotra</p>
+                                        <br>
+                                        <h5> रक्तगट:</h5>
+                                        <p>@Model.CandidateProfile.bloodGroup</p>
+                                        <br>
+                                        <h5> मामकुळ :</h5>
+                                        <p>@Model.CandidateProfile.mamkul</p>
+                                        <br>
+                                        <h5>संपर्क नं :</h5>
+                                        <p>@Model.CandidateProfile.mobileNo</p>
                                     </div>
                                 </div>
                             </div>
@@ -71,25 +80,23 @@
 
                         <input name="tab" id="tab2" type="radio" />
                         <section class="tab-content">
-                            <h2> मुळगाव व संपर्क</h2>
+                            <h2> शिक्षण/नोकरी</h2>
                             <div class="section-top-border">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12">
                                         <div class="col-lg-12 col-md-12">
-                                            <h5>Birth Name:</h5>
-                                            <p>Sadhna Sargam</p>
+                                            <h5>शैक्षणिक पातळी :</h5>
+                                            <p>@Model.CandidateProfile.educationLevel</p>
                                             <br>
-                                            <h5>Birth Place:</h5>
-                                            <p>Pune</p>
+                                            <h5>शिक्षण :</h5>
+                                            <p>@Model.CandidateProfile.qualification</p>
                                             <br>
-                                            <h5>Birth Date:</h5>
-                                            <p>5 March 1982</p>
+                                            <h5>नोकरी / व्यवसाय :</h5>
+                                            <p>@Model.CandidateProfile.occupation</p>
                                             <br>
-                                            <h5>Birth Hours:</h5>
-                                            <p>03:25 PM</p>
-                                            <br>
-                                            <h5>Blood Group:</h5>
-                                            <p>B+</p>
+                                            <h5>जोडीदाराविषयी अपेक्षा :</h5>
+                                            <p>@Model.CandidateProfile.expectations</p>
+
                                         </div>
                                     </div>
 
@@ -99,25 +106,12 @@
 
                         <input name="tab" id="tab3" type="radio" />
                         <section class="tab-content">
-                            <h2> शिक्षण / नोकरी</h2>
+                            <h2> छायाचित्र</h2>
                             <div class="section-top-border">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12">
                                         <div class="col-lg-12 col-md-12">
-                                            <h5>Birth Name:</h5>
-                                            <p>Sadhna Sargam</p>
-                                            <br>
-                                            <h5>Birth Place:</h5>
-                                            <p>Pune</p>
-                                            <br>
-                                            <h5>Birth Date:</h5>
-                                            <p>5 March 1982</p>
-                                            <br>
-                                            <h5>Birth Hours:</h5>
-                                            <p>03:25 PM</p>
-                                            <br>
-                                            <h5>Blood Group:</h5>
-                                            <p>B+</p>
+
                                         </div>
                                     </div>
 
@@ -132,47 +126,65 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12">
                                         <div class="col-lg-12 col-md-12">
-                                            <h5>Birth Name:</h5>
-                                            <p>Sadhna Sargam</p>
+                                            <h5>भाऊ:</h5>
+                                            <p>विवाहित @Model.CandidateProfile.broMarried,अविवाहित @Model.CandidateProfile.broUnmarried</p>
                                             <br>
-                                            <h5>Birth Place:</h5>
-                                            <p>Pune</p>
+                                            <h5>बहीण:</h5>
+                                            <p>विवाहित @Model.CandidateProfile.sisMarried,अविवाहित @Model.CandidateProfile.sisUnmarried</p>
                                             <br>
-                                            <h5>Birth Date:</h5>
-                                            <p>5 March 1982</p>
+                                            <h5>मुळगाव:</h5>
+                                            <p>@Model.CandidateProfile.homeTown</p>
                                             <br>
-                                            <h5>Birth Hours:</h5>
-                                            <p>03:25 PM</p>
+                                            <h5>तालुका:</h5>
+                                            <p>@Model.CandidateProfile.taluka</p>
                                             <br>
-                                            <h5>Blood Group:</h5>
-                                            <p>B+</p>
+                                            <h5>जिह्वा:</h5>
+                                            <p>@Model.CandidateProfile.district</p>
+                                            <br>
+                                            <h5>वडीलांचे/पालकांचे नाव :</h5>
+                                            <p>@Model.CandidateProfile.nameOfFatherGuardian</p>
+                                            <br>
+                                            <h5>पत्ता:</h5>
+                                            <p>@Model.CandidateProfile.parentalAddress</p>
+                                            <br>
+                                            <h5>संपर्क नं:</h5>
+                                            <p>@Model.CandidateProfile.parentalContactNo1</p>
+                                            <br>
+                                            <h5>इमेल:</h5>
+                                            <p>@Model.CandidateProfile.parentalEmail</p>
                                         </div>
                                     </div>
 
                                 </div>
+                            </div>
                         </section>
 
                         <input name="tab" id="tab5" type="radio" />
                         <section class="tab-content">
-                            <h2> सभासदत्व माहिती </h2>
+                            <h2> संपर्कासाठी नाव </h2>
                             <div class="section-top-border">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12">
                                         <div class="col-lg-12 col-md-12">
-                                            <h5>Birth Name:</h5>
-                                            <p>Sadhna Sargam</p>
+                                            <h5>संपर्कांचे नाव १ :</h5>
+                                            <p>@Model.CandidateProfile.fatherGurdianTitle @Model.CandidateProfile.nameOfFatherGuardian</p>
                                             <br>
-                                            <h5>Birth Place:</h5>
-                                            <p>Pune</p>
+                                            <h5>पत्ता १:</h5>
+                                            <p>@Model.CandidateProfile.parentalAddress</p>
                                             <br>
-                                            <h5>Birth Date:</h5>
-                                            <p>5 March 1982</p>
+                                            <h5>संपर्क १:</h5>
+                                            <p>@Model.CandidateProfile.parentalContactNo1</p>
+                                            <br />
+                                            <h5>संपर्कांचे नाव २ :</h5>
+                                            <p>@Model.CandidateProfile.altFatherGurdianTitle @Model.CandidateProfile.altNameOfFatherGuardian</p>
                                             <br>
-                                            <h5>Birth Hours:</h5>
-                                            <p>03:25 PM</p>
+                                            <h5>पत्ता २:</h5>
+                                            <p>@Model.CandidateProfile.altParentalAddress</p>
                                             <br>
-                                            <h5>Blood Group:</h5>
-                                            <p>B+</p>
+                                            <h5>संपर्क २</h5>
+                                            <p>@Model.CandidateProfile.altParentalContactNo1</p>
+                                            <br />
+
                                         </div>
                                     </div>
 

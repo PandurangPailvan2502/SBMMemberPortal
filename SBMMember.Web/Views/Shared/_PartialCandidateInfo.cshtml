@@ -5,49 +5,7 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 <div class="seperate"></div>
-@*<div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="container search_result">
-                <div class="row">
-                    <div class="col-xs-3 search_pic" class="">
-                       
-                        <img src="@Model.profileImage" class="pic_img">
 
-                    </div>
-                    <div class="col-xs-9 pic_content">
-                        <div class="table-responsive search_cont">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        
-                                        <td><div class="labe"></div></td>
-                                        <td><div class="labep">@Model.fullName</div></td>
-                                    </tr>
-                                    <tr>
-                                        <td><div class="labe">वय :</div></td>
-                                        <td><div class="labep">@Model.age</div></td>
-                                    </tr>
-                                    <tr>
-                                       
-                                        <td><div class="labe">शिक्षण :</div></td>
-                                        <td><div class="labep">@Model.education</div></td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        
-                                        <td></td>
-                                        <td><div class="labe"><a href="@Url.ActionLink("ViewMemberProfile","MemberDashboard",new{MemberId = Model.candidateId })" value="View" class="btn btn-danger">View Profile</a></div></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>*@
 
 <div class="container">
     <div class="row">
@@ -56,7 +14,7 @@
                 <div class="row">
                     <div class="col-xs-3 search_pic">
                         <div text-align:center">
-                            <img src="@Model.profileImage" class="pic_img"><br><a href="@Url.ActionLink("MatrimonyCandidateProfile","Matrimony",new{CandidateId = Model.candidateId })" value="View" class="btn">View Profile</a>
+                            <img src="@Model.profileImage" class="pic_img"><br><a href="@Url.ActionLink("MatrimonyCandidateProfile","Matrimony",new{UserIdId = Model.userId })" value="View" class="btn">View Profile</a>
                         </div>
                     </div>
                     <div class="col-xs-9 pic_content">

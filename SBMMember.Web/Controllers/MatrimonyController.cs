@@ -35,11 +35,11 @@ namespace SBMMember.Web.Controllers
             return View("MatrimonyCandidateList", viewModel);
         }
 
-        public IActionResult MatrimonyCandidateProfile(string CandidateId)
+        public IActionResult MatrimonyCandidateProfile(string UserIdId)
         {
             MatrimonyViewModel viewModel = new MatrimonyViewModel()
             {
-                CandidateProfile = Helper.MatrimonyHelper.GetCandidateProfileByCandidateId(CandidateId)
+                CandidateProfile = Helper.MatrimonyHelper.GetCandidateProfileByCandidateId(UserIdId)
             };
             return View(viewModel);
         }
