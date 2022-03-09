@@ -3578,13 +3578,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 515, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
 .single-input {
-  display: block;
-  width: 100%;
-  line-height: 40px;
-  border: none;
-  outline: none;
-  background: #f9f9ff;
-  padding: 0 20px;
+    display: block;
+    width: 100%;
+    line-height: 40px;
+    border: none;
+    outline: none;
+    background: #f9f9ff;
+    padding: 0 20px;
+    margin-bottom: 16px;
 }
 
 /* line 523, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
@@ -4229,12 +4230,13 @@ h1, h2, h3, h4, h5, h6 {
 /* line 1045, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
 .form-select .nice-select {
   border: none;
-  border-radius: 0px;
+  border-radius:10px;
   height: 40px;
   background: #f9f9ff;
   padding-left: 45px;
   padding-right: 40px;
   width: 100%;
+  margin-bottom:14px;
 }
 
 /* line 1053, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
