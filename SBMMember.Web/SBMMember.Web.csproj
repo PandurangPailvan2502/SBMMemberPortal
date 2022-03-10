@@ -94,4 +94,10 @@
     <Folder Include="Views\Shared\PartialViews\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\img\screen-1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

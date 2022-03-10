@@ -26,11 +26,11 @@
                <div class="container">
                  <div class="row ">
                      <div class="col-xs-6 r1c1 dashboard" style="cursor:pointer" id="SearchByName">
-                       <img src="~/img/img-1.png"  class="dashboard-icon">
+                         <a asp-action="MemberSearchByName" asp-controller="MemberDashboard">  <img src="~/img/img-1.png" class="dashboard-icon"></a>
                        <h3 style="color:#000000">Search by Name</h3>
                      </div>
-                     <div class="col-xs-6 r1c1a dashboard">
-                       <img src="~/img/maps.png" class="dashboard-icon" style="cursor:pointer" id="searchByArea">
+                     <div class="col-xs-6 r1c1a dashboard" style="cursor:pointer">
+                         <a asp-controller="MemberDashboard" asp-action="MemberSearchByArea">  <img src="~/img/maps.png" class="dashboard-icon" id="searchByArea"></a>
                        <h3 style="color:#000000">Search by Area</h3>
                      </div>
                  </div>
@@ -46,12 +46,12 @@
                <!------------icon dashbaord row-1--------------->
                <div class="container">
                  <div class="row ">
-                     <div class="col-xs-6 r1c1 dashboard">
-                       <img src="~/img/map.png" class="dashboard-icon" id="searchByNative" style="cursor:pointer">
+                     <div class="col-xs-6 r1c1 dashboard" style="cursor:pointer">
+                         <a asp-action="MemberSearchByNative" asp-controller="MemberDashboard"><img src="~/img/map.png" class="dashboard-icon" id="searchByNative" ></a>
                        <h3 style="color:#000000">Search by Native Place</h3>
                      </div>
-                     <div class="col-xs-6 r1c1a dashboard">
-                       <img src="~/img/qualification.png" class="dashboard-icon">
+                     <div class="col-xs-6 r1c1a dashboard" style="cursor:pointer">
+                         <a asp-action="MemberSearchByQualification" asp-controller="MemberDashboard">  <img src="~/img/qualification.png" class="dashboard-icon"></a>
                        <h3 style="color:#000000">Search by Qualification</h3>
                      </div>
                  </div>
@@ -65,25 +65,3 @@
 
 @await Html.PartialAsync("_PartialSlider")
 <!--------------end of dashboard-------------->
-<script type="text/javascript">
-    $(document).ready(function () {
-        //
-        $("#SearchByName").click(function () {
-            //alert("Test");
-            window.location.href = '/MemberDashboard/MemberSearchByName'
-        });
-        $("#searchByArea").click(function () {
-            window.location.href = '/MemberDashboard/MemberSearchByArea'
-        });
-
-        $("#searchByNative").click(function () {
-            window.location.href = '/MemberDashboard/MemberSearchByNative'
-        });
-
-        $("#serachByQualification").click(function () {
-            window.location.href = '/MemberDashboard/MemberSearchByQualification'
-        });
-
-
-    });
-</script>

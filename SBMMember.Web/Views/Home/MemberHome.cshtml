@@ -36,6 +36,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <link href="~/css/Slider.css" rel="stylesheet" />
+
     <script type="text/javascript">
         var slideIndex = 0;
         showSlides();
@@ -69,7 +70,7 @@
                 <div class="container">
                     <div class="row ">
                         <div class="col-xs-4 box1 bg-1" id="becomeMember" style="cursor:pointer">
-                            <img src="~/img/mem-user.png" class="icon-img">
+                            <a asp-action="Index" asp-controller="OTPVerify"><img src="~/img/mem-user.png" class="icon-img"></a>
                             <p class="title">Become a Member</p>
                         </div>
                         <div class="col-xs-4 box2 bg-1">
@@ -95,7 +96,7 @@
                             <p class="title">Upcoming Events</p>
                         </div>
                         <div class="col-xs-4 box3 bg-1">
-                            <img src="~/img/matrimonial.png" class="icon-img">
+                            <a href="https://play.google.com/store/apps/details?id=com.dream.samtaBhratruMandal">  <img src="~/img/matrimonial.png" class="icon-img"></a>
                             <p class="title">Matrimonial</p>
                         </div>
 
@@ -142,14 +143,7 @@
     <script src="~/js/waypoints.min.js"></script>
     <!-- custom js -->
     <script src="~/js/custom.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#becomeMember").click(function () {
-                //alert("test on div click");
-                window.location.href = '/OTPVerify/Index/'
-            });
-        });
-    </script>
+
 </body>
 
 </html>

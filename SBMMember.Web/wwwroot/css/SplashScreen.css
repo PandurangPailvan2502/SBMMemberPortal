@@ -1,0 +1,148 @@
+﻿.photo-container1 {
+    position: relative;
+    background: #FFFFFF;
+    width: 150px;
+    height: 16vh;
+    float: left;
+    z-index: 20;
+}
+
+.logo {
+    padding: 10px;
+    position: relative;
+}
+
+.logo-box {
+    width: 30%;
+    height: auto;
+    text-align: center;
+    padding: 10px 0px 0px 0px;
+}
+
+@media only screen and (min-width: 1201px) {
+    .logo {
+        width: 35%;
+        padding: 5px
+    }
+
+    .splashscreen {
+        height: 975px;
+        margin: 0px
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .logo {
+        width: 46%;
+        padding: 5px
+    }
+
+    .splashscreen {
+        height: 775px;
+        margin: 0px
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .logo {
+        width: 46%;
+        padding: 0px
+    }
+
+    .splashscreen {
+        height: 675px;
+        margin: 0px
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .logo {
+        width: 70%;
+        padding: 5px
+    }
+
+    .splashscreen {
+        height: 575px;
+        margin: 0px
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .logo {
+        min-width: 50%;
+        max-width: 70%;
+        padding: 5px
+    }
+
+    .splashscreen {
+        height: 630px;
+        margin: 0px
+    }
+
+    .fade-in-image {
+        animation: fadeIn 7s;
+        -webkit-animation: fadeIn 7s;
+        -moz-animation: fadeIn 7s;
+        -o-animation: fadeIn 7;
+        -ms-animation: fadeIn 7s;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @-moz-keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @-webkit-keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @-o-keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+    @-ms-keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+.splashscreen {
+    background: url(~/img/screen-1.jpg) no-repeat;
+    position: relative;
+    padding-top: 30%;
+    align-items: center;
+    text-align: center;
+    vertical-align: middle;
+}

@@ -60,15 +60,15 @@
             <div class="container">
                 <div class="row ">
                     <div class="col-xs-4 r1c1 dashboard" id="profileUpdate" style="cursor:pointer;">
-                        <img src="~/img/profile-pic.png" class="dashboard-icon">
+                        <a asp-action="ProfileUpdate" asp-controller="MemberDashboard">  <img src="~/img/profile-pic.png" class="dashboard-icon"></a>
                         <h3 style="color:#000000">Profile Update</h3>
                     </div>
                     <div class="col-xs-4 r1c1 dashboard" id="doctorSerach" style="cursor:pointer">
-                        <img src="~/img/doctor.png" class="dashboard-icon">
+                        <a asp-action="MemberDoctors" asp-controller="MemberDashboard"> <img src="~/img/doctor.png" class="dashboard-icon"></a>
                         <h3 style="color:#000000">Doctor Search</h3>
                     </div>
                     <div class="col-xs-4 r1c1a dashboard" id="memberSerach" style="cursor:pointer">
-                        <img src="~/img/team-management.png" class="dashboard-icon">
+                        <a asp-action="MemberSearchDashBoard" asp-controller="MemberDashboard">  <img src="~/img/team-management.png" class="dashboard-icon"></a>
                         <h3 style="color:#000000">Member Search</h3>
                     </div>
 
@@ -87,15 +87,15 @@
             <div class="container">
                 <div class="row ">
                     <div class="col-xs-4 r1c1 dashboard" id="bloodGroupSerach" style="cursor:pointer">
-                        <img src="~/img/blood_search.png" class="dashboard-icon">
+                        <a asp-action="MemberBloodGroupSearch" asp-controller="MemberDashboard"> <img src="~/img/blood_search.png" class="dashboard-icon"></a>
                         <h3 style="color:#000000">Blood Search</h3>
                     </div>
                     <div class="col-xs-4 r1c1 dashboard" id="JobSearch" style="cursor:pointer">
-                        <img src="~/img/job-search.png" class="dashboard-icon">
+                        <a asp-action="JobDirectory" asp-controller="JobDirectory"> <img src="~/img/job-search.png" class="dashboard-icon"></a>
                         <h3 style="color:#000000">Job Search</h3>
                     </div>
                     <div class="col-xs-4 r1c1a dashboard" id="business" style="cursor:pointer">
-                        <img src="~/img/phone-book1.png" class="dashboard-icon">
+                        <a asp-action="BusinessDashboard" asp-controller="BusinessDashboard">   <img src="~/img/phone-book1.png" class="dashboard-icon"></a>
                         <h3 style="color:#000000">Business Directory</h3>
                     </div>
 
@@ -115,7 +115,7 @@
             <div class="container">
                 <div class="row ">
                     <div class="col-xs-4 r1c1 dashboard" id="matrimony" style="cursor:pointer">
-                        <img src="~/img/newlyweds.png" class="dashboard-icon">
+                        <a asp-action="MatrimonySearch" asp-controller="Matrimony">  <img src="~/img/newlyweds.png" class="dashboard-icon"></a>
                         <h3 style="color:#000000">Matrimony</h3>
                     </div>
                     <div class="col-xs-4 r1c1 dashboard">
@@ -123,7 +123,7 @@
                         <h3 style="color:#000000">Advertisement</h3>
                     </div>
                     <div class="col-xs-4 r1c1a dashboard" id="Events" style="cursor:pointer">
-                        <img src="~/img/placard.png" class="dashboard-icon">
+                        <a asp-action="EventDashboard" asp-controller="Events"> <img src="~/img/placard.png" class="dashboard-icon"></a>
                         <h3 style="color:#000000">Our Events</h3>
                     </div>
 
@@ -187,41 +187,8 @@
     </div>
 </div>
 <!--------------end of dashboard-------------->
-<script type="text/javascript">
-    $(document).ready(function () {
-        //
-        $("#profileUpdate").click(function () {
-
-            window.location.href = '/MemberDashboard/ProfileUpdate'
-        });
-        $("#memberSerach").click(function () {
-            window.location.href = '/MemberDashboard/MemberSearchDashBoard'
-        });
-        $("#doctorSerach").click(function () {
-
-            window.location.href = '/MemberDashboard/MemberDoctors'
-        });
-        $("#bloodGroupSerach").click(function () {
-
-            window.location.href = '/MemberDashboard/MemberBloodGroupSearch'
-        });
-
-        $("#matrimony").click(function () {
-
-            window.location.href = '/Matrimony/MatrimonySearch'
-        });
-        $("#business").click(function () {
-            window.location.href = '/BusinessDashboard/BusinessDashboard'
-        });
-        $("#JobSearch").click(function () {
-            window.location.href = "/JobDirectory/JobDirectory"
-        });
-        $("#Events").click(function () {
-            window.location.href = "/Events/EventDashboard"
-        });
-    });
 
 
 
 
-</script>
+
