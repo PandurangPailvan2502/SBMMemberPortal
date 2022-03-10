@@ -5,6 +5,16 @@
     Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
 }
 
+<script>
+    $(document).ready(function () {
+        $("#btnreset").click(function () {
+            alert("Test");
+            //$("#BloodGroup").val('Blood Group');
+            $('#BloodGroup option').val(0);
+        });
+
+    });
+</script>
 
 <div class="container-fluid">
     <div class="row">
@@ -19,7 +29,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <form asp-action="MemberBloodGroupSearch" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
+            <form asp-action="MemberBloodGroupSearch" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data" id="bloodgroupform">
                 <div class="search-box">
 
                     <div class="container ">
@@ -79,7 +89,7 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
-                                            <input text="text" name="FirstName"  asp-for="FirstName" class="search-box_input" placeholder="FirstName" onfocus="this.placeholder = ''" onblur="this.placeholder = 'FirstName'">
+                                            <input text="text" name="FirstName" asp-for="FirstName" class="search-box_input" placeholder="FirstName" onfocus="this.placeholder = ''" onblur="this.placeholder = 'FirstName'">
                                         </div>
                                         <div class="col-sm-4">
                                             <input text="text" name="LastName" asp-for="LastName" class="search-box_input" placeholder="LastName" onfocus="this.placeholder = ''" onblur="this.placeholder = 'LastName'">
@@ -102,7 +112,7 @@
                                         <div class="col-sm-3">
                                         </div>
                                         <div class="col-sm-3">
-                                            <input type="Reset" class="genric-btn danger submit-btn" style="margin-left:50%; border-radius:10px">
+                                            <input type="reset" value="Reset" id="btnreset" class="genric-btn danger submit-btn" style="margin-left:50%; border-radius:10px">
                                         </div>
                                         <div class="col-sm-3">
                                             <input type="submit" class="genric-btn success submit-btn" style="margin-left:50%; border-radius:10px">
