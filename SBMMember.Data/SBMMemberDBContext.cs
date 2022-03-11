@@ -19,7 +19,8 @@ namespace SBMMember.Data
         public DbSet<Member_FamilyDetails> Member_FamilyDetails { get; set; }
         public DbSet<Member_FormStatus> Member_FormStatuses { get; set; }
         public DbSet<Member_PaymentsAndReciepts> Member_PaymentsAndReciepts { get; set; }
-       
+        public DbSet<JobPostings> JobPostings { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Members>().ToTable("Members");
@@ -30,6 +31,7 @@ namespace SBMMember.Data
             modelBuilder.Entity<Member_FamilyDetails>().ToTable("Member_FamilyDetails");
             modelBuilder.Entity<Member_FormStatus>().ToTable("Member_FormStatus");
             modelBuilder.Entity<Member_PaymentsAndReciepts>().ToTable("Member_PaymentsAndReciepts");
+            modelBuilder.Entity<JobPostings>().ToTable("JobPostings");
         }
     }
 }

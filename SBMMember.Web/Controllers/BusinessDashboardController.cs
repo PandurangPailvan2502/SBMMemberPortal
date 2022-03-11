@@ -6,6 +6,7 @@ using SBMMember.Models;
 using AutoMapper;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace SBMMember.Web.Controllers
 {
@@ -47,7 +48,17 @@ namespace SBMMember.Web.Controllers
 
         public IActionResult BusinessDirectory()
         {
-            return View();
+            List<Member_BusinessDetails> buisnessList = businessDataFactory.GetAllBusinessDetails();
+            List<MemberBusinessViewModel> businesses = new List<MemberBusinessViewModel>();
+            foreach (Member_BusinessDetails item in buisnessList)
+            {
+                MemberBusinessViewModel model = mapper.Map<MemberBusinessViewModel>(item);
+                businesses.Add(model);
+            }
+            MemberBusinessViewModel businessViewModel = new MemberBusinessViewModel() {
+                MemberBusinesses = businesses
+            };
+            return View(businessViewModel);
         }
     }
 }

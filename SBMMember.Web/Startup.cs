@@ -62,6 +62,7 @@ namespace SBMMember.Web
             services.AddScoped<IMemberFormStatusDataFactory, MemberFormStatusDataFactory>();
             services.AddScoped<IMemberPaymentsDataFactory, MemberPaymentsDataFactory>();
             services.AddScoped<IMemberPersonalDataFactory, MemberPersonalDataFactory>();
+            services.AddScoped<IJobPostingDataFactory, JobPostingDataFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

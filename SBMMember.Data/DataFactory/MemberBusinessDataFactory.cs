@@ -67,7 +67,10 @@ namespace SBMMember.Data.DataFactory
 
             return member_Business;
         }
-
+        public List<Member_BusinessDetails> GetAllBusinessDetails()
+        {
+            return dBContext.Member_BusinessDetails.Where(x=>x.Status=="Active").ToList();
+        }
         public override ResponseDTO UpdateDetails(Member_BusinessDetails member_BusinessDetails)
         {
             ResponseDTO responseDTO = new ResponseDTO();
@@ -106,5 +109,6 @@ namespace SBMMember.Data.DataFactory
         ResponseDTO AddDetails(Member_BusinessDetails member_Business);
         Member_BusinessDetails GetDetailsByMemberId(int MemberId);
         ResponseDTO UpdateDetails(Member_BusinessDetails member_BusinessDetails);
+        List<Member_BusinessDetails> GetAllBusinessDetails();
     }
 }
