@@ -32,6 +32,9 @@ namespace SBMMember.Web.Mapper
 
             CreateMap<MemberBusinessViewModel, Member_BusinessDetails>();
             CreateMap<Member_BusinessDetails, MemberBusinessViewModel>();
+
+            CreateMap<JobPostingViewModel, JobPostings>();
+            CreateMap<JobPostings, JobPostingViewModel>();
         }
     }
 }

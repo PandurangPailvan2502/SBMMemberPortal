@@ -1,9 +1,17 @@
-﻿
+﻿@model MemberBusinessViewModel
 @{
     ViewData["Title"] = "BusinessDirectory";
     Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
 }
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="scroll" style="background-color:darkred">
+                <p> Welcome to Buisness Directory</p>
+            </div>
+        </div>
+    </div>
+</div>
 <section class="blog_area single-post-area section_padding">
     <div class="container">
         <div class="row">
@@ -11,7 +19,7 @@
                 <div class="single-post">
                     <div class="blog_details">
                         <p class="excert">
-                            Showing Result
+                            Showing Result(s) @Model.MemberBusinesses.Count
                         </p>
                     </div>
                 </div>
@@ -21,81 +29,50 @@
                             <div class="container search_result">
                                 <div class="row">
                                     <div class="col-lg-12 pic_content">
-                                        <div class="container mySlides" >
-                                             <div class="row">
-                                                 <div class="col-lg-10 left-box"><lable>Business Title:</lable></div>
-                                             </div>
-                                             <div class="row">
-                                                <div class="col-lg-10 left-box"><lable>Name of the firm / Industry:</lable></div>
-                                            </div>
+                                        @if (Model.MemberBusinesses.Count > 0)
+                                        {
+                                            foreach (MemberBusinessViewModel memberBusiness in Model.MemberBusinesses)
+                                            {
+
                                             
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><lable>Company location:</lable></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><lable>Address:</lable></div>
-                                            </div> 
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><lable>Owner name:</lable></div>
-                                            </div> 
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><lable>Products or Services:</lable></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><lable>Qualification required:</lable></div>
-                                            </div>  
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><img src="img/whats-app.png" width="15px" height="15px"> <lable> Company Contact:</lable>  </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><lable>Email:</lable>  </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-5" style="float:right">
-                                                    <a href="#" class="previous round" onclick="plusSlides(-1)">&#8249;</a>
-                                                    <a href="#" class="next round"  onclick="plusSlides(1)">&#8250;</a>
+                                            <div class="container mySlides">
+                                                <div class="row">
+                                                    <div class="col-lg-10 left-box"><lable><b>Business Title</b> : @memberBusiness.BusinessTitle</lable></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-10 left-box"><lable><b>Name of the firm / Industry</b> : @memberBusiness.BusinessIndustry</lable></div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-10 left-box"><lable><b>Company location</b> : @memberBusiness.CompanyLocation</lable></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-10 left-box"><lable><b>Address</b> : @memberBusiness.Address</lable></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-10 left-box"><lable><b>Owner name</b> : @memberBusiness.OwnerName</lable></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-10 left-box"><lable><b>Products or Services</b> : @memberBusiness.ProductsServices</lable></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-10 left-box"><lable><b>Qualification required</b> : @memberBusiness.Qualification</lable></div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-10 left-box"><img src="~/img/whats-app.png" width="15px" height="15px"> <lable><b> Company Contact</b> : @memberBusiness.CompanyContact</lable>  </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-10 left-box"><lable><b>Email</b> : @memberBusiness.CompanyEmail</lable>  </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-5" style="float:right">
+                                                        <a href="#" class="previous round" onclick="plusSlides(-1)">Pre</a>
+                                                        <a href="#" class="next round" onclick="plusSlides(1)">Next</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="container mySlides" >
-                                        <div class="row">
-                                            <div class="col-lg-10 left-box"><lable>Business Title2:</lable></div>
-                                        </div>
-                                        <div class="row">
-                                           <div class="col-lg-10 left-box"><lable>Name of the firm / Industry:</lable></div>
-                                       </div>
-                                       
-                                       <div class="row">
-                                           <div class="col-lg-10 left-box"><lable>Company location:</lable></div>
-                                       </div>
-                                       <div class="row">
-                                           <div class="col-lg-10 left-box"><lable>Address:</lable></div>
-                                       </div> 
-                                       <div class="row">
-                                           <div class="col-lg-10 left-box"><lable>Owner name:</lable></div>
-                                       </div> 
-                                       <div class="row">
-                                           <div class="col-lg-10 left-box"><lable>Products or Services:</lable></div>
-                                       </div>
-                                       <div class="row">
-                                           <div class="col-lg-10 left-box"><lable>Qualification required:</lable></div>
-                                       </div>  
-                                       <div class="row">
-                                           <div class="col-lg-10 left-box"><img src="img/whats-app.png" width="15px" height="15px"> <lable> Company Contact:</lable>  </div>
-                                       </div>
-                                       <div class="row">
-                                           <div class="col-lg-10 left-box"><lable>Email:</lable>  </div>
-                                       </div>
-                                       <div class="row">
-                                           <div class="col-lg-5" style="float:right">
-                                               <a href="#" class="previous round"  onclick="plusSlides(-1)">&#8249;</a>
-                                               <a href="#" class="next round"  onclick="plusSlides(1)">&#8250;</a>
-                                           </div>
-
-                                       </div>
-                                   </div>
-                                   
-                                    </div>
+                                            }
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -103,26 +80,27 @@
                     </div>
                 </div>
             </div>
-
         </div>
+
+    </div>
 </section>
 <script>
-var slideIndex = 1;
-showSlides(slideIndex);
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";  
-  }
-  slides[slideIndex-1].style.display = "block";
-}
+    var slideIndex = 1;
+    showSlides(slideIndex);
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex - 1].style.display = "block";
+    }
 </script>

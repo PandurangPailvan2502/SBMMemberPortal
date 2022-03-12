@@ -1,8 +1,113 @@
-﻿
+﻿@model JobPostingViewModel
 @{
     ViewData["Title"] = "JobDirectory";
     Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
 }
 
-<h1>JobDirectory</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="scroll" style="background-color:darkred">
+                <p> Welcome to Job Search Portal</p>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="blog_area single-post-area section_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 posts-list">
+                <div class="single-post">
+                    <div class="blog_details">
+                        <p class="excert">
+                            Showing Result(s) @Model.JobPostings.Count
+                        </p>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="container search_result">
+                                <div class="row">
+                                    <div class="col-lg-12 pic_content">
+                                        @if (Model.JobPostings.Count > 0)
+                                        {
+                                            foreach (JobPostingViewModel job in Model.JobPostings)
+                                            {
 
+
+                                        <div class="container mySlides">
+                                            <div class="row">
+                                                <div class="col-lg-10 left-box"><lable><b>Job Title</b> : @job.JobTitle</lable></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-10 left-box"><lable><b>Job Decsription</b> : @job.JobDescription</lable></div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-10 left-box"><lable><b>Male/Female</b> : @job.PositionFor</lable></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-10 left-box"><lable><b>Age Limt</b> : @job.Age</lable></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-10 left-box"><lable><b>Company name</b> : @job.CompanyName</lable></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-10 left-box"><lable><b>Job Location</b> : @job.JobLocation</lable></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-10 left-box"><lable><b>Qualification required</b> : @job.Qualification</lable></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-10 left-box"><lable><b>Salary band</b> : @job.SalaryBand</lable></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-10 left-box"><lable><b>Years of Experiance</b> : @job.Experiance</lable></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-10 left-box"><img src="~/img/whats-app.png" width="15px" height="15px"> <lable><b> Company Contact</b> : @job.CompanyContact</lable>  </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-10 left-box"><lable><b>Email</b> : @job.CompanyEmail</lable>  </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-5" style="float:right">
+                                                    <a href="#" class="previous round" onclick="plusSlides(-1)">Pre</a>
+                                                    <a href="#" class="next round" onclick="plusSlides(1)">Next</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slides[slideIndex - 1].style.display = "block";
+    }
+</script>

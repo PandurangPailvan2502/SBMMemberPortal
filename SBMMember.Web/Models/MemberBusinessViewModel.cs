@@ -18,5 +18,6 @@ namespace SBMMember.Web.Models
         public string Qualification { get; set; }
         public string CompanyContact { get; set; }
         public string CompanyEmail { get; set; }
+        public List<MemberBusinessViewModel> MemberBusinesses { get; set; }
     }
 }
