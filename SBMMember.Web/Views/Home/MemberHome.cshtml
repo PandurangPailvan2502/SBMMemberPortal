@@ -22,55 +22,79 @@
 
 @await Html.PartialAsync("_PartialSlider")
 
-<div class="seperate"></div>
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-lg-12" style="text-align:center">
-            <!------------icon dashbaord--------------->
-            <div class="container">
-                <div class="row ">
-                    <div class="col-xs-4 box1 bg-1" id="becomeMember" style="cursor:pointer">
-                        <a asp-action="Index" asp-controller="OTPVerify"><img src="~/img/mem-user.png" class="icon-img"></a>
-                        <p class="title">Become a Member</p>
+    <div class="seperate"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12" style="text-align:center">
+                <!------------icon dashbaord--------------->
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-xs-4 r1c1 dashboard" id="becomeMember" style="cursor:pointer">
+                            <a asp-action="Index" asp-controller="OTPVerify"><img src="~/img/member-new.png" class="dashboard-icon"></a>
+                            <h3 style="color:#000000">Become a Member</h3>
+                        </div>
+                        <div class="col-xs-4 r1c1 dashboard">
+                            <img src="~/img/contact-new.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Contact us</h3>
+                        </div>
+                        <div class="col-xs-4 r1c1a dashboard">
+                            <img src="~/img/information-desk.png" class="dashboard-icon">
+                            <h3 style="color:#000000">About us</h3>
+                        </div>
                     </div>
-                    <div class="col-xs-4 box2 bg-1">
-                        <img src="~/img/contact.png" class="icon-img">
-                        <p class="title">Contact us</p>
-                    </div>
-                    <div class="col-xs-4 box3 bg-1">
-                        <a asp-action="AboutUs" asp-controller="Home">  <img src="~/img/about us.png" class="icon-img" style="cursor:pointer"></a>
-                        <p class="title">About us</p>
-                    </div>
-
                 </div>
-            </div>
-
-            <div class="container">
-                <div class="row ">
-                    <div class="col-xs-4 box1 bg-1">
-                        <img src="~/img/forgot.png" class="icon-img">
-                        <p class="title">Forgot Password</p>
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-xs-4 r1c1 dashboard">
+                            <img src="~/img/forgot-password.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Forgot Password</h3>
+                        </div>
+                        <div class="col-xs-4 r1c1 dashboard">
+                            <img src="~/img/upcoming.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Upcoming Event</h3>
+                        </div>
+                        <div class="col-xs-4 r1c1a dashboard">
+                            <a href="https://play.google.com/store/apps/details?id=com.dream.samtaBhratruMandal">  <img src="~/img/wedding-ring.png" class="dashboard-icon"></a>
+                            <h3 style="color:#000000">Matrimonial</h3>
+                        </div>
                     </div>
-                    <div class="col-xs-4 box2 bg-1">
-                        <img src="~/img/upcoming_event.png" class="icon-img">
-                        <p class="title">Upcoming Events</p>
-                    </div>
-                    <div class="col-xs-4 box3 bg-1">
-                        <a href="https://play.google.com/store/apps/details?id=com.dream.samtaBhratruMandal">  <img src="~/img/matrimonial.png" class="icon-img"></a>
-                        <p class="title">Matrimonial</p>
-                    </div>
-
                 </div>
+<!------------End of icon dashbaord--------------->
             </div>
-
-
-
-
-            <!------------End of icon dashbaord--------------->
-
         </div>
     </div>
 
-</div>
+
+
+
+
+
+
+
+
+    <!-- jquery plugins here-->
+    <!-- jquery -->
+    <script src="~/js/jquery-1.12.1.min.js"></script>
+    <!-- popper js -->
+    <script src="~/js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <!-- easing js -->
+    <script src="~/js/jquery.magnific-popup.js"></script>
+    <!-- swiper js -->
+    <script src="~/js/swiper.min.js"></script>
+    <!-- swiper js -->
+    <script src="~/js/masonry.pkgd.js"></script>
+    <!-- particles js -->
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.nice-select.min.js"></script>
+    <!-- swiper js -->
+    <script src="~/js/slick.min.js"></script>
+    <script src="~/js/jquery.counterup.min.js"></script>
+    <script src="~/js/waypoints.min.js"></script>
+    <!-- custom js -->
+    <script src="~/js/custom.js"></script>
+
+</body>
+
+</html>
