@@ -29,63 +29,114 @@
 </head>
 
 <body>
-    <!--::header part start::-->
-    <header class="main_menu single_page_menu">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-lg navbar-light" style="align-content:flex-start;flex-wrap: nowrap;flex-direction: row;">
-                        <a class="navbar-brand logo_1" href="index.html"> समता भ्रातृ मंडळ</a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="true" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+    <!--------------profile name top bar---------------->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sx-8 profile-bar1">
+                            <div class="container-fluid">
+                                <div c;ass="row">
+                                    <div class="col-xs-12">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-xs-2">
+                                                    <img src="~/img/user.png" class="pofile-icon" width="35px" height="35px">
+                                                </div>
+                                                <div class="col-xs-10">
+                                                    <div class="profile-content">
 
-                        <div class="collapse navbar-collapse main-menu-item justify-content-end"
-                             id="navbarSupportedContent">
-                            <ul class="navbar-nav align-items-center">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Contact</a>
-                                </li>
-                                <li class="d-block d-xs-block d-sm-block d-md-block d-lg-block">
-
-                                </li>
-                            </ul>
+                                                        <h5>Welcome</h5>
+                                                        <h4>Admin</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <a class="btn_1bell" href="#"><i class="ti-bell"></i></a>
-
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- Header part end-->
-    <!-- Header part end-->
-    <!-- breadcrumb start-->
-    <section class="breadcrumb breadcrumb_bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="marqu" style="height:150px">
-                        <div class="row">
-                            <div class="col-xs-3 d-block d-sm-block d-md-block d-lg-block"><img src="~/img/icon/job-icon.png" width="50px" height="50px" class="img"></div>
-                            <div class="col-xs-1"></div>
-                            <div class="col-xs-8 d-block d-sm-block d-md-block d-lg-block center" style="color:#FFFFFF; text-align:center"><h4 style="color:#FFFFFF; text-align:center">Welcome to JOB Portal</h4></div>
+                        <div class="col-sx-4 profile-bar2">
+                            <i class="ti-unlock"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- breadcrumb start-->
-    <!--================Blog Area =================-->
-   @RenderBody()
+    </div>
+    <!--------------End of profile name top bar---------------->
+    <!-----------------srcoll bar--------------->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="scroll">
+                    <p>***** ADMIN DASHBAORD *****</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!----------------------end of scroll bar---------------->
+    <div class="seperate"></div>
+    @RenderBody()
+
+    <div class="seperate"></div>
+
+    <div class="container ">
+        <div class="row">
+            <div class="col-lg-12" style="text-align:center">
+
+                <div class="container">
+                    <table class="table" cellspacing="5" cellpadding="5">
+                        <tbody>
+                            <tr>
+                                <td>Notification</td>
+                                <td></td>
+                                <td>New member</td>
+                                <td></td>
+                                <td>Recent Jobs</td>
+                            </tr>
+                            <tr>
+                                <td style="background-color:#db044c;color:#ffffff;font-size:16px;">1</td>
+                                <td style="width:5px"></td>
+                                <td style="background-color:#ffda08;color:#ffffff;font-size:16px;">25</td>
+                                <td style="width:5px"></td>
+                                <td style="background-color:#be0303;color:#ffffff;font-size:16px;">3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
+
+    <div class="seperate"></div>
+    <hr>
+
+    <div class="container ">
+        <div class="row">
+            <div class="col-lg-12" style="text-align:center">
+                <!------------icon dashbaord row-2--------------->
+                <div class="container">
+                    <table class="table" cellspacing="5" cellpadding="5">
+                        <tbody>
+                            <tr>
+
+                                <td><img src="~/img/videomeet.png" class="table-button"></td>
+                                <td style="width:20px"></td>
+                                <td><img src="~/img/about us-1.png" class="table-button"></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!------------End of icon dashbaord row-2--------------->
+            </div>
+        </div>
+    </div>
     <!-- jquery plugins here-->
     <!-- jquery -->
     <script src="~/js/jquery-1.12.1.min.js"></script>

@@ -4,13 +4,63 @@
     Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
 }
 
-<h1>Admin Home</h1>
-<ul>
-    <li>
-        <a asp-action="JobPost" asp-controller="AdminDashboard">Job posting</a>
-    </li>
-    <li>
-        <a asp-action="BusinessPost" asp-controller="AdminDashboard">Business posting</a>
-    </li>
-</ul>
+
+<!----------------------end of scroll bar---------------->
+<div class="seperate"></div>
+
+<!--------------dashboard-------------->
+<div class="container ">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <!------------icon dashbaord row-1--------------->
+            <div class="container">
+                <div class="row ">
+                    <div class="col-xs-4 r1c1 dashboard">
+                        <a href="Admin-Member-Registration.html"><img src="~/img/team.png" class="dashboard-icon"></a>
+                        <h3 style="color:#000000">Member Registration</h3>
+                    </div>
+                    <div class="col-xs-4 r1c1 dashboard">
+                        <img src="~/img/jobs.png" class="dashboard-icon">
+                        <h3 style="color:#000000">Job Post</h3>
+                    </div>
+                    <div class="col-xs-4 r1c1a dashboard">
+                        <img src="~/img/add-event.png" class="dashboard-icon">
+                        <h3 style="color:#000000">Event Post</h3>
+                    </div>
+
+                </div>
+            </div>
+            <!------------End of icon dashbaord row-1--------------->
+        </div>
+    </div>
+</div>
+<div class="seperate"><hr style="border:1px dashed #a7a7a7"></div>
+
+<div class="container ">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <!------------icon dashbaord row-2--------------->
+            <div class="container">
+                <div class="row ">
+                    <div class="col-xs-4 r1c1 dashboard">
+                        <img src="~/img/add-video.png" class="dashboard-icon">
+                        <h3 style="color:#000000">Add Business</h3>
+                    </div>
+                    <div class="col-xs-4 r1c1 dashboard">
+                        <img src="~/img/add.png" class="dashboard-icon">
+                        <h3 style="color:#000000">Post Ads</h3>
+                    </div>
+                    <div class="col-xs-4 r1c1a dashboard">
+                        <img src="~/img/exit.png" class="dashboard-icon">
+                        <h3 style="color:#000000">Exit</h3>
+                    </div>
+
+                </div>
+            </div>
+            <!------------End of icon dashbaord row-2--------------->
+        </div>
+    </div>
+</div>
+
+<div class="seperate"><hr style="border:1px dashed #a7a7a7"></div>
 
