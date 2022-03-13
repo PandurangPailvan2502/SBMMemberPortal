@@ -52,6 +52,10 @@ namespace SBMMember.Web.Controllers
             //int subcharge =Convert.ToInt32(configuration.GetSection("SubscriptionCharges").Value);
             return View(viewModel);
         }
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
