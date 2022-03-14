@@ -6,11 +6,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-
+using SBMMember.Data.DataFactory;
 namespace SBMMember.Web.Controllers
 {
     public class OTPVerifyController : Controller
     {
+        private readonly IMemberDataFactory MemberDataFactory;
+        public OTPVerifyController(IMemberDataFactory dataFactory)
+        {
+            MemberDataFactory = dataFactory;
+        }
         public IActionResult Index()
         {
             return View();
@@ -19,6 +24,12 @@ namespace SBMMember.Web.Controllers
         [HttpPost]
         public IActionResult SendOTP(string mobile)
         {
+            var member = MemberDataFactory.GetDetailsByMemberMobile(mobile);
+            if(member!=null)
+            {
+                ViewBag.AlreadyRegistered = $"{mobile} is already registered.Try with another number.";
+                return View("Index");
+            }
             //string mobno = mobile;
             string OTP = SMSHelper.GenerateOTP();
             string message = $"{OTP} is your OTP for login to Samata Bhratru Mandal (PCMC Pune) Vadhu Var Melava test.com registration portal. Validity for 30 minutes only. Please do not share to anyone else.";
