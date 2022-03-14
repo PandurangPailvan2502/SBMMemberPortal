@@ -14,13 +14,16 @@
     });
 </script>
 
-<section class="blog_area single-post-area section_padding">
+
     <div class="container">
         <div class="row">
             <div class="col-lg-12 posts-list">
                 @if (!Model.IsOTPVerified)
                 {
-                    <div class="single-post">
+                    
+                    
+                    
+                    <div class="single-post" style=text-align:center>
                         <div class="blog_details">
                             <p class="excert">
                                 Enter 6 digit OTP received on your mobile number @ViewBag.MaskedMobile
@@ -92,4 +95,4 @@
 
         </div>
     </div>
-</section>
+
