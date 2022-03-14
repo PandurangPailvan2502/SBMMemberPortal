@@ -21,9 +21,39 @@ namespace SBMMember.Data.DataFactory
         {
             return memberDBContext.JobPostings.ToList();
         }
+
+        public ResponseDTO AddJobDetails(JobPostings jobPostings)
+        {
+            ResponseDTO responseDTO = new ResponseDTO();
+            try
+            {
+                jobPostings.PostedOn = DateTime.Now;
+                var memberInfo = memberDBContext.JobPostings.Add(jobPostings);
+                int affectedrows = memberDBContext.SaveChanges();
+                if (affectedrows > 0)
+                    return responseDTO = new ResponseDTO()
+                    {
+                        Result = "Success",
+                        Message = "Job Details added Successfully."
+                    };
+            }
+            catch (Exception ex)
+            {
+
+                Logger.LogError($"Error occured while adding Job details:{ex.Message}");
+                return responseDTO = new ResponseDTO()
+                {
+                    Result = "Failed",
+                    Message = $"Error occured while adding Job details:{ex.Message}"
+                };
+            }
+            return responseDTO;
+        }
     }
     public interface IJobPostingDataFactory
     {
         List<JobPostings> GetJobPostings();
+        ResponseDTO AddJobDetails(JobPostings jobPostings);
+
     }
 }
