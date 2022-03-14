@@ -445,7 +445,7 @@
     }
 
 .sp {
-    color: #000000
+    color: #000000; font-size:24px;
 }
 
 .scroll {
