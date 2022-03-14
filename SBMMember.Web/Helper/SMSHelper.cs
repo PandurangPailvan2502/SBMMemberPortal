@@ -44,8 +44,15 @@ namespace SBMMember.Web.Helper
         public static string GenerateOTP()
         {
             Random generator = new Random();
-            String r = generator.Next(0, 1000000).ToString("D6");
+            String r = generator.Next(0, 10000).ToString("D4");
             return r;
+        }
+        public int GenerateRandomNo()
+        {
+            int _min = 1000;
+            int _max = 9999;
+            Random _rdm = new Random();
+            return _rdm.Next(_min, _max);
         }
     }
 }

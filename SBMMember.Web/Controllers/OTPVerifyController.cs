@@ -21,8 +21,8 @@ namespace SBMMember.Web.Controllers
         {
             //string mobno = mobile;
             string OTP = SMSHelper.GenerateOTP();
-            string message = $"Your OTP for SBM Member registration is {OTP}";
-            //SMSHelper.SendSMS(mobile,message);
+            string message = $"{OTP} is your OTP for login to Samata Bhratru Mandal (PCMC Pune) Vadhu Var Melava test.com registration portal. Validity for 30 minutes only. Please do not share to anyone else.";
+            SMSHelper.SendSMS(mobile,message);
             string maskedMobile = mobile.Substring(mobile.Length - 4).PadLeft(mobile.Length, 'x');
             ViewBag.MobileNumber = mobile;
             ViewBag.MaskedMobile = maskedMobile;
@@ -31,7 +31,7 @@ namespace SBMMember.Web.Controllers
             {
                 MobileNumber = mobile,
                 MaskedMobileNumber = maskedMobile,
-                SentOTP = "234567"
+                SentOTP =OTP
             };
             return View("VerifyOTP",loginViewModel);
             //return Json(new { status = "success"});
