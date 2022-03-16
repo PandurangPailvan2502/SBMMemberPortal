@@ -1,4 +1,4 @@
-﻿
+﻿@model EventViewModel
 @{
     ViewData["Title"] = "AddEvent";
     Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
@@ -21,32 +21,32 @@
                 <div class="section-top-border">
                     <div class="row">
                         <div class="col-lg-10 col-md-10">
-                            <form action="#">
+                            <form asp-action="AddEvent" asp-controller="AdminDashboard" method="post" enctype="multipart/form-data">
 
                                 <div class="input-group-icon mt-10">
                                     <div class="form-select" id="default-select" ">
-                                        <select>
+                                        <select name="EventYear" asp-for="EventYear">
                                             <option value=" 1">Select Year</option>
-                                            <option value="1">2020</option>
-                                            <option value="1">2021</option>
-                                            <option value="1">2022</option>
-                                            <option value="1">2023</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2023">2023</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="mt-10">
-                                    <textarea class="single-textarea" placeholder="Event Description" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Description'"
+                                    <textarea class="single-textarea" name="EventDescription" asp-for="EventDescription" placeholder="EventDescription" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Description'"
                                               required></textarea>
                                 </div>
 
                                 <div class="input-group-icon mt-10">
                                     <div class="form-select" id="default-select" ">
-                                        <select>
+                                        <select asp-for="EventName">
                                             <option value=" 1">Select Event Title</option>
-                                            <option value="1">२६ जानेवारी प्रजासत्ताक दिवस</option>
-                                            <option value="1">१५ ऑगस्ट स्वातंत्र्यदिन</option>
-                                            <option value="1">१ मे कामगार दिन व मेळावा</option>
+                                            <option value="२६ जानेवारी प्रजासत्ताक दिवस">२६ जानेवारी प्रजासत्ताक दिवस</option>
+                                            <option value="१५ ऑगस्ट स्वातंत्र्यदिन">१५ ऑगस्ट स्वातंत्र्यदिन</option>
+                                            <option value="१ मे कामगार दिन व मेळावा">१ मे कामगार दिन व मेळावा</option>
                                             <option value="1">वधू - वर मेळावा</option>
                                             <option value="1">वृक्षारोपण</option>
                                             <option value="1">सरदार वल्लभ भाई पटेल जयंती</option>
@@ -56,8 +56,7 @@
 
                                 <div class="mt-10">
                                     <p>upload event images</p>
-                                    <input type="file" class="single-input" placeholder="Event Description" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Description'"
-                                           required></textarea>
+                                    <input type="file" class="single-input" asp-for="FormFiles" multiple="multiple" placeholder="Event Description" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Descriptionn'" />
                                 </div>
                                 <div class="mt-10" style="float:right">
                                     <input type="submit" class="genric-btn primary" style="background-color:#77002e;margin-right:20px">

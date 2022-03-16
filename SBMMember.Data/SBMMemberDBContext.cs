@@ -20,6 +20,9 @@ namespace SBMMember.Data
         public DbSet<Member_FormStatus> Member_FormStatuses { get; set; }
         public DbSet<Member_PaymentsAndReciepts> Member_PaymentsAndReciepts { get; set; }
         public DbSet<JobPostings> JobPostings { get; set; }
+        public DbSet<EventInfo> EventInfos { get; set; }
+        public DbSet<EventGallery> EventGalleries { get; set; }
+        public DbSet<EventAds> EventAds { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,6 +35,9 @@ namespace SBMMember.Data
             modelBuilder.Entity<Member_FormStatus>().ToTable("Member_FormStatus");
             modelBuilder.Entity<Member_PaymentsAndReciepts>().ToTable("Member_PaymentsAndReciepts");
             modelBuilder.Entity<JobPostings>().ToTable("JobPostings");
+            modelBuilder.Entity<EventInfo>().ToTable("EventInfo");
+            modelBuilder.Entity<EventGallery>().ToTable("EventGallery");
+            modelBuilder.Entity<EventAds>().ToTable("EventAds");
         }
     }
 }

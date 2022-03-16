@@ -18,7 +18,7 @@
         setTimeout(showSlides, 5000); // Change image every 2 seconds
     }
 </script>
-@await Html.PartialAsync("_PartialMainScreenHeader")
+@*@await Html.PartialAsync("_PartialMainScreenHeader")*@
 
 @await Html.PartialAsync("_PartialSlider")
 
@@ -34,7 +34,7 @@
                             <h3 style="color:#000000">Become a Member</h3>
                         </div>
                         <div class="col-xs-4 r1c1 dashboard">
-                            <img src="~/img/contact-new.png" class="dashboard-icon">
+                            <a asp-action="ContactUs" asp-controller="Home">  <img src="~/img/contact-new.png" class="dashboard-icon"></a>
                             <h3 style="color:#000000">Contact us</h3>
                         </div>
                         <div class="col-xs-4 r1c1a dashboard">

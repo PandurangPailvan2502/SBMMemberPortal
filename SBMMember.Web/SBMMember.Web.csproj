@@ -92,6 +92,7 @@
   <ItemGroup>
     <Folder Include="Views\MemberBloodGroupSearch\" />
     <Folder Include="Views\Shared\PartialViews\" />
+    <Folder Include="wwwroot\EventAds\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -13,7 +13,7 @@ namespace SBMMember.Models
         public int EventId { get; set; }
         public string EventName { get; set; }
         public string EventNameM { get; set; }
-        public string EventDecsription { get; set; }
+        public string EventDescription { get; set; }
         public string EventDecsriptionM { get; set; }
         public string EventYear { get; set; }
         public string EventYearM { get; set; }
