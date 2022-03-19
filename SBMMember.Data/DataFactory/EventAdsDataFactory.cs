@@ -45,10 +45,20 @@ namespace SBMMember.Data.DataFactory
             return responseDTO;
         }
 
+        public List<EventAds> GetEventAdsByYear(string year)
+        {
+            return eventDBContext.EventAds.Where(x => x.EventYear == year).ToList();
+        }
+        public List<EventAds> GetAllEventAds()
+        {
+            return eventDBContext.EventAds.Where(x => x.Status == "Active").ToList();
+        }
     }
 
     public interface IEventAdsDataFactory
     {
         ResponseDTO AddEventAds(EventAds eventAds);
+        List<EventAds> GetEventAdsByYear(string year);
+        List<EventAds> GetAllEventAds();
     }
 }

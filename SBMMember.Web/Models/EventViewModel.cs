@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using SBMMember.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,5 +15,6 @@ namespace SBMMember.Web.Models
         public string EventYear { get; set; }
         [Display(Name = "File")]
         public List<IFormFile> FormFiles { get; set; }
+        public List<EventInfo> EventInfos { get; set; }
     }
 }

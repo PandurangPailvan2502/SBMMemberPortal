@@ -7,9 +7,11 @@ using AutoMapper;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SBMMember.Web.Controllers
 {
+    [Authorize]
     public class BusinessDashboardController : Controller
     {
         private readonly IMemberBusinessDataFactory businessDataFactory;

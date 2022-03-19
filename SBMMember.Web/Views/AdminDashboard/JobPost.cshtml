@@ -4,25 +4,40 @@
     Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
 }
 
-<!-- breadcrumb start-->
-
-<!-- breadcrumb start-->
+<script>
+    $(document).ready(function () {
+        $("#jobForm").hide();
+        $('#tblJobPost').DataTable();
+        $("#btnAddNew").click(function () {
+            $("#jobForm").show();
+            $(this).hide();
+        });
+        $("#btnCancel").click(function () {
+            $("#jobForm").hide();
+            $("#btnAddNew").show();
+        });
+    });
+</script>
 <!--================Blog Area =================-->
+
 <section class="blog_area single-post-area section_padding">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 posts-list">
-                <div class="single-post">
-                    <div class="blog_details">
-                        <p class="excert">
-                            <b>  Post Job Details</b>
-                        </p>
-                    </div>
+            <div class="col-lg-12">
+                <div class="scroll">
+                    <p>Job Posting Details</p>
                 </div>
+                <div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 posts-list">
+              
 
 
                 <div class="section-top-border">
-                    <div class="row">
+                    <div class="row" id="jobForm">
                         <div class="col-lg-10 col-md-10">
                             <form asp-action="JobPost" asp-controller="AdminDashboard" method="post">
                                 <div class="input-group-icon mt-10">
@@ -90,7 +105,8 @@
                                 </div>
 
                                 <div class="mt-10 center">
-                                    <input type="submit" class="genric-btn primary-border"/>
+                                    <input type="submit" class="genric-btn primary-border" />
+                                    <input type="button" id="btnCancel" class="genric-btn primary-border" value="Cancel" />
                                 </div>
                             </form>
                         </div>
@@ -107,6 +123,48 @@
 
             </div>
 
+        </div>
+    </div>
+
+    @* Psted jobs list *@
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <button value="Add New" id="btnAddNew" class="btn btn-danger">Add New</button>
+            </div>
+            <br />
+            <div class="col-lg-12">
+                <table id="tblJobPost" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Job Title</th>
+                            <th>Job Desc</th>
+                            <th>PositionFor</th>
+                            <th>Company</th>
+                            <th>Qualification</th>
+                            <th>Salary</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.JobPostings != null)
+                        {
+                            foreach (var job in Model.JobPostings)
+                            {
+                                <tr>
+                                    <td>@job.JobTitle</td>
+                                    <td>@job.JobDescription</td>
+                                    <td>@job.PositionFor</td>
+                                    <td>@job.CompanyName</td>
+                                    <td>@job.Qualification</td>
+                                    <td>@job.SalaryBand</td>
+                                </tr>
+                            }
+
+                        }
+                    </tbody>
+
+                </table>
+            </div>
         </div>
     </div>
 </section>

@@ -1,33 +1,57 @@
-﻿
+﻿@model EventAdsViewModel
 @{
     ViewData["Title"] = "AddEventAds";
-    Layout = "~/Views/Shared/_LayoutMemberHome.cshtml";
-}
+    Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
+}<script>
+    $(document).ready(function () {
+        $("#eventAdsForm").hide();
+        $('#tblEventAds').DataTable();
+        $("#btnAddNew").click(function () {
+            $("#eventAdsForm").show();
+            $(this).hide();
+        });
+        $("#btnCancel").click(function () {
+            $("#eventAdsForm").hide();
+            $("#btnAddNew").show();
+        });
+    });
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="scroll">
+                <p>Event Advertisement Details</p>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
 
+</div>
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
             <div style="height:25px"></div>
             <div class="section-top-border">
                 <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <form action="#">
+                    <div class="col-lg-12 col-md-12" id="eventAdsForm">
+                        <form asp-action="AddEventAds" asp-controller="AdminDashboard" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="form-select" id="default-select" ">
-                                        <select>
+                                    <div class="form-select" id="default-select">
+                                        <select name="EventYear" asp-for="EventYear" required>
                                             <option calue="0">Select Year</option>
-                                            <option value=" 1">2022</option>
-                                            <option value="1">2021</option>
-                                            <option value="1">2020</option>
-                                            <option value="1">2019</option>
-                                            <option value="1">2018</option>
-                                            <option value="1">2017</option>
-                                            <option value="1">2016</option>
-                                            <option value="1">2015</option>
-                                            <option value="1">2014</option>
-                                            <option value="1">2013</option>
-                                            <option value="1">2012</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2018">2018</option>
+                                            <option value="2017">2017</option>
+                                            <option value="2016">2016</option>
+                                            <option value="2015">2015</option>
+                                            <option value="2014">2014</option>
+                                            <option value="2013">2013</option>
+                                            <option value="2012">2012</option>
                                         </select>
                                     </div>
                                 </div>
@@ -36,37 +60,78 @@
                                 <div class="col-lg-12">
                                     <br>
                                     <div class="form-select" id="default-select" ">
-                                        <select>
+                                        <select name="EventTitle" asp-for="EventTitle" required>
                                             <option value=" 1">Select Event Title</option>
-                                            <option value="1">२६ जानेवारी प्रजासत्ताक दिवस</option>
-                                            <option value="1">१५ ऑगस्ट स्वातंत्र्यदिन</option>
-                                            <option value="1">१ मे कामगार दिन व मेळावा</option>
-                                            <option value="1">वधू - वर मेळावा</option>
-                                            <option value="1">वृक्षारोपण</option>
-                                            <option value="1">सरदार वल्लभ भाई पटेल जयंती</option>
+                                            <option value="२६ जानेवारी प्रजासत्ताक दिवस">२६ जानेवारी प्रजासत्ताक दिवस</option>
+                                            <option value="१५ ऑगस्ट स्वातंत्र्यदिन">१५ ऑगस्ट स्वातंत्र्यदिन</option>
+                                            <option value="१ मे कामगार दिन व मेळावा">१ मे कामगार दिन व मेळावा</option>
+                                            <option value="वधू - वर मेळावा">वधू - वर मेळावा</option>
+                                            <option value="वृक्षारोपण">वृक्षारोपण</option>
+                                            <option value="सरदार वल्लभ भाई पटेल जयंती">सरदार वल्लभ भाई पटेल जयंती</option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <br>
-                                        <input type="file" name="firmIndustry" placeholder="Name of the firm / Industry" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name of the firm / Industry'"
-                                               required>
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <br>
+                                    <input type="file" name="file" asp-for="file" placeholder="Name of the firm / Industry" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Name of the firm / Industry'"
+                                           required>
                                 </div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="col-lg-4"></div>
-                                    <div class="col-lg-4" style="margin-top:10px">
-                                        <a href="#" class="genric-btn primary-border">View</a>
-                                    </div>
-                                    <div class="col-lg-4"></div>
+                            <div class="row">
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4" style="margin-top:10px">
+                                    <input type="submit" class="genric-btn primary-border" />
+
                                 </div>
+                                <div class="col-lg-4">
+                                    <input type="button" id="btnCancel" class="genric-btn primary-border" value="Cancel" />
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
 
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <button value="Add New" id="btnAddNew" class="btn btn-danger">Add New</button>
+        </div>
+        <br />
+        <div class="col-lg-12">
+            <table id="tblEventAds" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Event Title</th>
+                        <th>Event Year</th>
+                        <th>File</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.EventAds != null)
+                    {
+                        foreach (var eventAd in Model.EventAds)
+                        {
+                            <tr>
+                                <td>@eventAd.EventTitle</td>
+                                <td>@eventAd.EventYear</td>
+                                <td>@eventAd.FilePath</td>
+                               
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+
+            </table>
+        </div>
     </div>
 </div>

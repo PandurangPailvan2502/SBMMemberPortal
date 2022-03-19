@@ -4,22 +4,36 @@
     Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
 }
 
-
+}
+<script>
+    $(document).ready(function () {
+        $("#eventForm").hide();
+        $('#tblEvents').DataTable();
+        $("#btnAddNew").click(function () {
+            $("#eventForm").show();
+            $(this).hide();
+        });
+        $("#btnCancel").click(function () {
+            $("#eventForm").hide();
+            $("#btnAddNew").show();
+        });
+    });
+</script>
 <section class="blog_area single-post-area section_padding">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 posts-list">
-                <div class="single-post">
-                    <div class="blog_details">
-                        <p class="excert">
-                            <b>  Event Registration</b>
-                        </p>
+                <div class="col-lg-12">
+                    <div class="scroll">
+                        <p>Event Details</p>
+                    </div>
+                    <div>
                     </div>
                 </div>
 
 
                 <div class="section-top-border">
-                    <div class="row">
+                    <div class="row" id="eventForm">
                         <div class="col-lg-10 col-md-10">
                             <form asp-action="AddEvent" asp-controller="AdminDashboard" method="post" enctype="multipart/form-data">
 
@@ -60,6 +74,7 @@
                                 </div>
                                 <div class="mt-10" style="float:right">
                                     <input type="submit" class="genric-btn primary" style="background-color:#77002e;margin-right:20px">
+                                    <input type="button" id="btnCancel" class="genric-btn primary" style="background-color:#77002e;margin-right:20px" value="Cancel">
                                 </div>
                             </form>
                         </div>
@@ -74,6 +89,43 @@
 
             </div>
 
+        </div>
+    </div>
+    @*Event list*@
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <button value="Add New" id="btnAddNew" class="btn btn-danger">Add New</button>
+            </div>
+            <br />
+            <div class="col-lg-12">
+                <table id="tblEvents" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Event Title</th>
+                            <th>Event Year</th>
+                            <th>File</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.EventInfos != null)
+                        {
+                            foreach (var eventAd in Model.EventInfos)
+                            {
+                                <tr>
+                                    <td>@eventAd.EventName</td>
+                                    <td>@eventAd.EventDescription</td>
+                                    <td>@eventAd.EventYear</td>
+
+                                </tr>
+                            }
+
+                        }
+                    </tbody>
+
+                </table>
+            </div>
         </div>
     </div>
 </section>

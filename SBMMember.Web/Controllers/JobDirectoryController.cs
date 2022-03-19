@@ -8,8 +8,11 @@ using System.Threading.Tasks;
 using SBMMember.Data.DataFactory;
 using SBMMember.Models;
 using SBMMember.Web.Models;
+using Microsoft.AspNetCore.Authorization;
+
 namespace SBMMember.Web.Controllers
 {
+    [Authorize]
     public class JobDirectoryController : Controller
     {
         private readonly ILogger<JobDirectoryController> Logger;

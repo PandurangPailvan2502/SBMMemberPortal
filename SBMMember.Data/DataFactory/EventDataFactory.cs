@@ -51,11 +51,24 @@ namespace SBMMember.Data.DataFactory
             return responseDTO;
         }
 
+        public List<EventInfo> GetEventListByEventYear(string year)
+        {
+
+            return eventDBContext.EventInfos.Where(x => x.EventYear == year).ToList();
+        }
+        public List<EventInfo> GetAllEventList()
+        {
+
+            return eventDBContext.EventInfos.Where(x => x.Status =="Active").ToList();
+        }
+
     }
 
     public interface IEventDataFactory
     {
         EventInfo AddEventInfo(EventInfo _eventInfo);
         ResponseDTO AddEventGallery(EventGallery eventGallery);
+        List<EventInfo> GetEventListByEventYear(string year);
+        List<EventInfo> GetAllEventList();
     }
 }

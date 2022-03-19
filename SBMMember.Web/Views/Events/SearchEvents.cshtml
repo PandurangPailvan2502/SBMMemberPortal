@@ -1,0 +1,105 @@
+﻿@model SearchEventViewModel
+@{
+    ViewData["Title"] = "SearchEvents";
+    Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="scroll" style="background-color:darkred">
+                <p> Welcome to Events</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="search-box">
+                <div class="container ">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Search by Events</h4>
+                            <br>
+                            <!------------icon dashbaord row-1--------------->
+                            <div class="container">
+                                <form asp-action="SearchEvents" asp-controller="Events" method="post">
+                                    <div class="row ">
+
+                                        <div class="col-sm-6">
+                                            <input text="text" name="EventYear" asp-for="EventYear" class="search-box_input" placeholder="Enter Year" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Year'">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input text="text" name="EventTitle" asp-for="EventTitle" class="search-box_input" placeholder="Event Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Title'">
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+
+                                        <div class="col-sm-3">
+
+                                        </div>
+                                        <div class="col-sm-3">
+
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="Reset" class="genric-btn danger submit-btn" style="margin-left:30%;margin-top:10px; width:100px; border-radius:10px">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input type="submit" class="genric-btn success submit-btn" style="margin-left:30%;width:100px; border-radius:10px;margin-top:10px;">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!------------End of icon dashbaord row-1--------------->
+                        </div>
+                    </div>
+                </div>
+                <div class="seperate"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="seperate"></div>
+
+<!------------Search Result--------------->
+
+<div class="container">
+    @if (Model.Events!=null)
+    {
+        foreach (var eventInfo in Model.Events)
+        {
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="container search_result">
+                <div class="row">
+                    <div class="col-xs-3 search_pic">
+                        <div text-align:center">
+                            <img src="~/img/Select event.png" class="pic_img">
+                        </div>
+                    </div>
+                    <div class="col-xs-9 pic_content">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-10 left-box"><lable>Event Title : @eventInfo.EventName</lable></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-10 left-box"><lable>Event Year : @eventInfo.EventYear</lable></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-10 left-box"><lable>Description : @eventInfo.EventDescription</lable></div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-10 left-box"><button class="view-btn">View</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        }
+    }
+</div>
+

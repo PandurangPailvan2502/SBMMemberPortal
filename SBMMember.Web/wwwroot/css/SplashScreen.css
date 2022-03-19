@@ -139,7 +139,7 @@
 }
 
 .splashscreen {
-    background: url(~/img/screen-1.jpg) no-repeat;
+    background: url(/img/screen.png) no-repeat;
     position: relative;
     padding-top: 30%;
     align-items: center;

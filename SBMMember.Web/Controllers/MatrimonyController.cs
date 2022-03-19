@@ -5,9 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using SBMMember.Web.Models;
 using SBMMember.Web.Helper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SBMMember.Web.Controllers
 {
+    [Authorize]
     public class MatrimonyController : Controller
     {
         public IActionResult MatrimonySearch()

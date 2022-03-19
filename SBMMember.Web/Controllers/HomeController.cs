@@ -24,21 +24,7 @@ namespace SBMMember.Web.Controllers
 
         public IActionResult Index()
         {
-            //var data = dataFactory.GetMembers();
-            //Members member = new Members()
-            //{
-            //    FirstName="Pandurang",
-            //    MiddleName="Gokul",
-            //    LastName="Pailvan",
-            //    Mobile="9226718970",
-            //    Password="Ishan@2020",
-            //    Status="Active",
-            //    Createdate=System.DateTime.Now,
-            //    UpdateDate=System.DateTime.Now
-            //};
-            //dataFactory.AddMember(member);
-            //string otp = SMSHelper.GenerateOTP();
-            //SMSHelper.SendSMS();
+            
             return View();
         }
         public IActionResult MemberHome()
