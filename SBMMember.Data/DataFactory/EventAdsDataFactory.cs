@@ -23,6 +23,7 @@ namespace SBMMember.Data.DataFactory
             ResponseDTO responseDTO = new ResponseDTO();
             try
             {
+               
                 var memberInfo = eventDBContext.EventAds.Add(eventAds);
                 int affectedrows = eventDBContext.SaveChanges();
                 if (affectedrows > 0)

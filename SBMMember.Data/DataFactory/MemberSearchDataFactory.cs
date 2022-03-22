@@ -69,7 +69,7 @@ namespace SBMMember.Data.DataFactory
                                                                         City = s.City,
                                                                         MobileNumber = s.MobileNumber,
                                                                         Age = s.Age,
-                                                                        BirthDate = s.BirthDate,
+                                                                        BirthDate = s.BirthdateM,
                                                                         NativePlace = s.NativePlace,
                                                                         Qualification = s.Qualification
                                                                     }).ToList();
@@ -90,18 +90,27 @@ namespace SBMMember.Data.DataFactory
                                                           select new MemberSearchByDTO
                                                           {
                                                               MemberId = _apppersonal.MemberId,
+                                                              PrefixM=_apppersonal.PrefixM,
                                                               FirstName = _apppersonal.FirstName,
+                                                              FirstNameM=_apppersonal.FirstNameM,
                                                               MiddleName = _apppersonal.MiddleName,
+                                                              MiddleNameM=_apppersonal.MiddleNameM,
                                                               LastName = _apppersonal.LastName,
+                                                              LastNameM=_apppersonal.LastNameM,
                                                               BirthDate = _apppersonal.BirthDate,
+                                                              BirthdateM=_apppersonal.BirthDateM,
                                                               Qualification = _appqualification.Qualification,
+                                                              QualificationM=_appqualification.QualificationM,
                                                               Proffession=_appqualification.Proffession,
                                                               MobileNumber = _appconatct.Mobile1,
                                                               NativePlace = _appconatct.NativePlace,
+                                                              NativePlaceM=_appconatct.NativePlaceM,
                                                               NativePlaceTaluka=_appconatct.NativePlaceTaluka,
                                                               NativePlaceDistrict=_appconatct.NativePlaceDist,
                                                               Area = _apppersonal.Area,
+                                                              AreaM=_apppersonal.AreaM,
                                                               City = _apppersonal.City,
+                                                              CityM=_apppersonal.CityM,
                                                               Pincode=_apppersonal.Pincode,
                                                               District= _apppersonal.District!=null?_apppersonal.District:string.Empty,
                                                               Age=_apppersonal.Age,
@@ -114,14 +123,14 @@ namespace SBMMember.Data.DataFactory
                                                                     select new MemberSearchResponse()
                                                                     {
                                                                         MemberId = s.MemberId,
-                                                                        FullName = $"{s.FirstName} {s.MiddleName} {s.LastName}",
-                                                                        Area = s.Area,
-                                                                        City = s.City,
+                                                                        FullName = $"{s.PrefixM} {s.FirstNameM} {s.MiddleNameM} {s.LastNameM}",
+                                                                        Area = s.AreaM,
+                                                                        City = s.CityM,
                                                                         MobileNumber = s.MobileNumber,
                                                                         Age = s.Age,
-                                                                        BirthDate = s.BirthDate,
-                                                                        NativePlace = s.NativePlace,
-                                                                        Qualification = s.Qualification
+                                                                        BirthDate = s.BirthdateM,
+                                                                        NativePlace = s.NativePlaceM,
+                                                                        Qualification = s.QualificationM
                                                                     }).ToList();
             return memberSearchesFinalResult;
         }

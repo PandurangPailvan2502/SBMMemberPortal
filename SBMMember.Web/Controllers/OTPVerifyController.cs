@@ -25,7 +25,7 @@ namespace SBMMember.Web.Controllers
         public IActionResult SendOTP(string mobile)
         {
             var member = MemberDataFactory.GetDetailsByMemberMobile(mobile);
-            if(member!=null)
+            if(member.Mobile!=null && member.MemberId>0)
             {
                 ViewBag.AlreadyRegistered = $"{mobile} is already registered.Try with another number.";
                 return View("Index");

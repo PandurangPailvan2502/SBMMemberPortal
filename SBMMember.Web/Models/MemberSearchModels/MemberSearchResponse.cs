@@ -9,7 +9,7 @@ namespace SBMMember.Web.Models.MemberSearchModels
     {
         public int MemberId { get; set; }
         public string FullName { get; set; }
-        public DateTime? BirthDate { get; set; }
+        public string BirthDate { get; set; }
         public string Qualification { get; set; }
         public int Age { get; set; }
         public string MobileNumber { get; set; }
