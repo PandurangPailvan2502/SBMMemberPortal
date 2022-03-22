@@ -15,24 +15,19 @@
                         </p>
                     </div>
                 </div>
-
-
-
                 <section>
                     <div class="rt-container">
                         <div class="col-rt-12">
                             <div class="container">
                                 <div class="row">
                                     <div class="photo-container1">
-                                        <i class="ti-edit"></i>
-                                        <img src="~/img/img-1.png" style="margin:25px">
+                                        <img src="~/img/img-1.png" style="margin:5px">
                                     </div>
-                                    <section class="data-content1" style="background:#7c0053; width: calc(100% - 150px); padding:20px; color:#ffffff">
-                                        <label>सभासदाचे नाव: @Model.MemberPersonalInfo.FirstName @Model.MemberPersonalInfo.LastName </label><br />
-                                        <label>सभासद क्रमांक: </label><br />
-                                        <label>जन्म तारीख: @Model.MemberPersonalInfo.BirthDate </label><br />
+                                    <section class="data-content1" style="background:#7c0053; width: calc(100% - 115px); padding:5px; color:#ffffff">
+                                        <label>सभासदाचे नाव: @Model.MemberPersonalInfo.FirstName @Model.MemberPersonalInfo.LastName </label>
+                                        <label>सभासद क्रमांक: </label>
+                                        <label>जन्म तारीख: @Model.MemberPersonalInfo.BirthDate </label>
                                         <label>मोबाईल: @Model.MemberConatctInfo.Mobile1 </label>
-
                                     </section>
                                 </div>
                             </div>
@@ -157,12 +152,7 @@
                                                         <input type="text" name="MemberPersonalInfo.State" asp-for="MemberPersonalInfo.State" placeholder="State" onfocus="this.placeholder = ''" onblur="this.placeholder = 'State'"
                                                                required class="single-input">
                                                     </div>
-
-
-
-
-
-                                                    <div class="mt-10 center">
+                                                      <div class="mt-10 center">
                                                         <button type="submit" class="genric-btn primary-border fa-align-right">Update</button>
                                                     </div>
                                                 </form>

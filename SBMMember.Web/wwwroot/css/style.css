@@ -21,197 +21,100 @@
 }
 .login-text { align-items:center; text-align:center; padding-top:20px;}
 /***** Register buisness *******/
-.photo-container1 {
-    position: relative;
-    background: #FFFFFF;
-    width: 150px;
-    height: 16vh;
-    float: left;
-    z-index: 20;
-}
+
 .logo {
     padding: 10px;
     position: relative;
 }
-
 .logo-box {
     width: 30%;
     height: auto;
     text-align: center;
-    padding: 10px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
 }
-
 .title-box {
     width: 50%;
     height: auto;
     text-align: center;
-    padding: 30px 0px 0px 0px;
+    padding:5px 0px 0px 0px;
     text-align: center
 }
-
-    .title-box h2 {
+.title-box h2 {
         color: rgb(224, 90, 1);
         font-weight: bold
-    }
-
+}
 .toolbar {
     width: 20%;
     height: auto;
     text-align: center;
-    padding: 40px 0px 0px 0px;
+    padding:5px 0px 0px 0px;
 }
-
-    .toolbar h4 {
+.toolbar h4 {
         color: rgb(224, 90, 1);
         font-weight: 600
     }
-
 .sp {
     color: #000000
 }
-
 .scroll {
     height: 45px;
     background-color: #630036cb;
     text-align: center;
     color: darkred;
 }
-
-    .scroll p {
+.scroll p {
         text-align: center;
         color: #ffffff;
         padding: 10px 0px 10px 0px
-    }
-
+}
 @media only screen and (min-width: 1201px) {
-    .logo {
-        width: 35%;
-        padding: 5px
-    }
-
-    .title-box h2 {
-        font-size: 45px
-    }
-
-    .ic {
-        font-size: 35px
-    }
-
-    .scroll p {
-        font-size: 20px
-    }
-
-    .menu-icon {
-        width: 30%
-    }
-    .matri-icon {
-        width: 30%
-    }
+.logo {width: 35%;padding: 5px}
+.title-box h2 {font-size:35px}
+.title-box h4 {font-size: 22px;}
+.ic {font-size: 35px}
+.scroll p {font-size: 20px}
+.menu-icon {width: 30%}
+.matri-icon {width: 30%}
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-    .logo {
-        width: 46%;
-        padding: 5px
-    }
-
-    .title-box h2 {
-        font-size: 45px
-    }
-
-    .ic {
-        font-size: 35px
-    }
-
-    .scroll p {
-        font-size: 18px
-    }
-
-    .menu-icon {
-        width: 30%
-    }
-    .matri-icon {
-        width: 30%
-    }
+.logo {width: 46%;padding: 5px}
+.title-box h2 {font-size: 22px}
+.title-box h4 {font-size: 18px;}
+.ic {font-size:18px}
+.scroll p {font-size: 18px}
+.menu-icon {width: 30%}
+.matri-icon {width: 30%}
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .logo {
-        width: 46%;
-        padding: 0px
-    }
-
-    .title-box h2 {
-        font-size: 35px
-    }
-
-    .ic {
-        font-size: 30px
-    }
-
-    .scroll p {
-        font-size: 16px
-    }
-
-    .menu-icon {
-        width: 30%
-    }
-    .matri-icon {
-        width: 30%
-    }
+.logo {width: 46%;padding: 0px}
+.title-box h2 {font-size: 18px}
+.title-box h4 {font-size: 16px;}
+.ic {font-size:16px}
+.scroll p {font-size: 16px}
+.menu-icon {width: 30%}
+.matri-icon {width: 30%}
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-    .logo {
-        width: 70%;
-        padding: 5px
-    }
-
-    .title-box h2 {
-        font-size: 30px
-    }
-
-    .ic {
-        font-size: 25px
-    }
-
-    .scroll p {
-        font-size: 14px
-    }
-
-    .menu-icon {
-        width: 30%
-    }
-    .matri-icon {
-        width: 30%
-    }
+.logo {width: 70%;padding: 5px}
+.title-box h2 {font-size: 16px;}
+.title-box h4 {font-size: 14px;}
+.ic {font-size:16px}
+.scroll p {font-size: 14px}
+.menu-icon {width: 30%}
+.matri-icon {width: 30%}
 }
 
 @media only screen and (max-width: 576px) {
-    .logo {
-        min-width: 50%;
-        max-width: 70%;
-        padding: 5px
-    }
-
-    .title-box h2 {
-        font-size: 25px
-    }
-
-    .ic {
-        font-size: 20px
-    }
-
-    .scroll p {
-        font-size: 12px
-    }
-
-    .menu-icon {
-        width: 30%
-    }
-    .matri-icon {
-        width: 30%
-    }
+.logo {min-width: 50%;max-width: 70%;padding: 5px}
+.title-box h2 {font-size:16px;}
+.title-box h4 {font-size: 14px;}
+.ic {font-size:16px}
+.scroll p {font-size: 12px}
+.menu-icon {width: 30%}
+.matri-icon {width: 30%}
 }
 
 .modal.left .modal-dialog {
@@ -371,137 +274,6 @@
     border: none !important;
    }
       /**********************end of member dashboard******************************/  
-/**************Mains Screen Header Started*/
-.logo {
-    padding: 10px;
-    position: relative;
-}
-
-.logo-box {
-    width: 30%;
-    height: auto;
-    text-align: center;
-    padding: 10px 0px 0px 0px;
-}
-
-.title-box {
-    width: 50%;
-    height: auto;
-    text-align: center;
-    padding: 30px 0px 0px 0px;
-}
-
-    .title-box h2 {
-        color: rgb(224, 90, 1);
-        font-weight: bold
-    }
-
-.toolbar {
-    width: 20%;
-    height: auto;
-    text-align: center;
-    ;
-    padding: 40px 0px 0px 0px;
-}
-
-    .toolbar h4 {
-        color: rgb(224, 90, 1);
-        font-weight: 600
-    }
-
-.sp {
-    color: #000000; font-size:24px;
-}
-
-.scroll {
-    height: 45px;
-    background-color: #630036cb;
-    text-align: center;
-    color: darkred;
-}
-
-    .scroll p {
-        text-align: center;
-        color: #ffffff;
-        padding: 10px 0px 10px 0px
-    }
-
-@media only screen and (min-width: 1201px) {
-    .logo {
-        width: 35%;
-        padding: 5px
-    }
-
-    .title-box h2 {
-        font-size: 45px
-    }
-
-    .ic {
-        font-size: 35px
-    }
-}
-
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
-    .logo {
-        width: 46%;
-        padding: 5px
-    }
-
-    .title-box h2 {
-        font-size: 45px
-    }
-
-    .ic {
-        font-size: 35px
-    }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    .logo {
-        width: 46%;
-        padding: 0px
-    }
-
-    .title-box h2 {
-        font-size: 35px
-    }
-
-    .ic {
-        font-size: 30px
-    }
-}
-
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-    .logo {
-        width: 70%;
-        padding: 5px
-    }
-
-    .title-box h2 {
-        font-size: 30px
-    }
-
-    .ic {
-        font-size: 25px
-    }
-}
-
-@media only screen and (max-width: 576px) {
-    .logo {
-        min-width: 50%;
-        max-width: 70%;
-        padding: 5px
-    }
-
-    .title-box h2 {
-        font-size: 25px
-    }
-
-    .ic {
-        font-size: 20px
-    }
-}
-/**************Mains Screen Header end*/
 /**********************member dashboard******************************/
 
 .scroll {
@@ -1258,75 +1030,27 @@ tr, td, th {
 
 
 /*************Tab vertical menu for member registration************************/
-.photo-container1{
-  position: relative;
-  background: #FFFFFF;
-  width: 150px;
-  height: 18vh;
-  float: left;
-  z-index: 20;
-
-}
+.photo-container1{position: relative;background: #FFFFFF;width: 115px;height: 18vh;float: left;z-index: 20;}
 .yel{background:#ffd446}
 .lblu{background:#8fbcff}
 .grn{background:#58b158}
 .purp{background:#b44790}
 .brn{background:#ac8b5a}
-.tabs-container{
-  position: relative;
-  background: #7c0053;
-  width: 150px;
-  height: 100vh;
-  float: left;
-  z-index: 20;
-
-}
+.tabs-container{position: relative;background: #7c0053;width:115px;height: 100vh;float: left;z-index: 20;}
 /* tabs names */
 .tabs-container label{
-  position: relative;
-  padding: 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  display: block;
-  font-size: 16px;
-  color: #000000;
-  cursor: pointer;
-  user-select: none;
-}
-
+  position: relative;padding:5px;border-bottom: 1px solid rgba(0, 0, 0, 0.1);display: block;font-size:14px;color: #000000;cursor: pointer;}
 /* Hover effect on tabs names */
 .tabs-container label:hover{
  background: rgba(0, 0, 0, 0.2);
-
 }
 /* Content area for tabs */
-.tab-content{
-  position: relative;
-  background: #ffffff;
-  width: calc(100% - 150px);
-  min-height: 100vh;
-  padding: 15px;
-  float: left;
-  box-sizing: border-box;
-  z-index: 19;
-  display: none;
-}
-
-.tab-content:after{
-  content: "";
-  clear: both;
-
-}
+.tab-content{position: relative;background: #ffffff;width: calc(100% - 115px);min-height: 100vh;padding:2px;float: left;box-sizing: border-box;z-index: 19;display: none;}
+.tab-content:after{content: "";clear: both;}
 /* Hide input radio from users */
-input[name="tab"]{
- display: none;
-}
+input[name="tab"]{display: none;}
 /* Show tab when input checked */
-input[name="tab"]:checked + .tab-content{
-   display: block;
- animation: slide 0.5s forwards;
-
-}
-
+input[name="tab"]:checked + .tab-content{ display: block; animation: slide 0.5s forwards;}
 /* Slide animation for tab contents */
 @keyframes slide{
    from{
