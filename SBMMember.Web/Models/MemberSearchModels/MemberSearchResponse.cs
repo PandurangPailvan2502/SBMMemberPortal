@@ -16,5 +16,6 @@ namespace SBMMember.Web.Models.MemberSearchModels
         public string Area { get; set; }
         public string City { get; set; }
         public string NativePlace { get; set; }
+        public string BloodGroup { get; set; }
     }
 }

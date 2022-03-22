@@ -41,20 +41,30 @@ namespace SBMMember.Data.DataFactory
                                                       {
                                                           MemberId = _apppersonal.MemberId,
                                                           FirstName = _apppersonal.FirstName,
+                                                          FirstNameM=_apppersonal.FirstNameM,
                                                           MiddleName = _apppersonal.MiddleName,
+                                                          MiddleNameM=_apppersonal.MiddleNameM,
                                                           LastName = _apppersonal.LastName,
+                                                          LastNameM=_apppersonal.LastNameM,
                                                           BirthDate = _apppersonal.BirthDate,
+                                                          BirthdateM=_apppersonal.BirthDateM,
                                                           Qualification = _appqualification.Qualification,
+                                                          QualificationM=_appqualification.QualificationM,
                                                           Proffession = _appqualification.Proffession,
                                                           MobileNumber = _appconatct.Mobile1,
                                                           NativePlace = _appconatct.NativePlace,
+                                                          NativePlaceM=_appconatct.NativePlaceM,
                                                           NativePlaceTaluka = _appconatct.NativePlaceTaluka,
                                                           NativePlaceDistrict = _appconatct.NativePlaceDist,
                                                           Area = _apppersonal.Area,
+                                                          AreaM=_apppersonal.AreaM,
                                                           City = _apppersonal.City,
+                                                          CityM=_apppersonal.CityM,
                                                           Pincode = _apppersonal.Pincode,
                                                           District = _apppersonal.District != null ? _apppersonal.District : string.Empty,
-                                                          Age = _apppersonal.Age
+                                                          Age = _apppersonal.Age,
+                                                          BloodGroup=_apppersonal.BloodGroup,
+                                                          PrefixM=_apppersonal.PrefixM
 
                                                       }).ToList();
 
@@ -64,14 +74,15 @@ namespace SBMMember.Data.DataFactory
                                                                     select new MemberSearchResponse()
                                                                     {
                                                                         MemberId = s.MemberId,
-                                                                        FullName = $"{s.FirstName} {s.MiddleName} {s.LastName}",
-                                                                        Area = s.Area,
-                                                                        City = s.City,
+                                                                        FullName = $"{s.PrefixM} {s.FirstNameM} {s.MiddleNameM} {s.LastNameM}",
+                                                                        Area = s.AreaM,
+                                                                        City = s.CityM,
                                                                         MobileNumber = s.MobileNumber,
                                                                         Age = s.Age,
                                                                         BirthDate = s.BirthdateM,
-                                                                        NativePlace = s.NativePlace,
-                                                                        Qualification = s.Qualification
+                                                                        NativePlace = s.NativePlaceM,
+                                                                        Qualification = s.QualificationM,
+                                                                        BloodGroup=s.BloodGroup
                                                                     }).ToList();
             return memberSearchesFinalResult;
         }
@@ -130,7 +141,8 @@ namespace SBMMember.Data.DataFactory
                                                                         Age = s.Age,
                                                                         BirthDate = s.BirthdateM,
                                                                         NativePlace = s.NativePlaceM,
-                                                                        Qualification = s.QualificationM
+                                                                        Qualification = s.QualificationM,
+                                                                        BloodGroup=s.BloodGroup
                                                                     }).ToList();
             return memberSearchesFinalResult;
         }

@@ -4,6 +4,9 @@
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 <div class="seperate"></div>
+
+<!------------Search Result--------------->
+
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -11,27 +14,25 @@
                 <div class="row">
                     <div class="col-xs-3 search_pic">
                         <div text-align:center">
-                            <img src="~/img/avatar7.png" class="pic_img">
+                            <img src="~/img/doctor.png" class="pic_img">
                         </div>
                     </div>
                     <div class="col-xs-9 pic_content">
                         <div class="container">
                             <div class="row">
-                                <div class="col-xs-10 left-box"><lable>@Model.FullName</lable></div>
+                                <div class="col-xs-10 left-box"><lable> @Model.FullName</lable></div>
+                            </div>
+                            <div class="row"> 
+                                <div class="col-xs-10 left-box"><lable> @Model.Qualification</lable></div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-xs-10 left-box"><lable>संपर्क : @Model.MobileNumber</lable> <img src="~/img/whats-app.png" class="whatsapp"> </div>
                             </div>
                             <div class="row">
-                                <div class="col-xs-10 left-box"><lable>शिक्षण: @Model.Qualification</lable></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-10 left-box"><lable>संपर्क: @Model.MobileNumber</lable> <img src="~/img/whats-app.png" class="whatsapp"> </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-10 left-box"><lable>Area,City:@Model.Area,@Model.City</lable></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-5 left-box"><lable>मुळगाव: @Model.NativePlace</lable></div>
+                                <div class="col-xs-5 left-box"><lable>Area,City: @Model.Area,@Model.City</lable></div>
                                 <div class="col-xs-7 left-box" style="float:right"><a href="@Url.ActionLink("ViewMemberProfile","MemberDashboard",new{MemberId = Model.MemberId })" class="view-btn">View</a></div>
                             </div>
+                           
                         </div>
                     </div>
                 </div>

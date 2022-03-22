@@ -137,6 +137,6 @@
     <!------------Search Result--------------->
     @foreach (MemberSearchResponseViewModel model in Model.MemberList)
     {
-        @await Html.PartialAsync("_PartialMemberInfo", model)
+        @await Html.PartialAsync("_PartialBloodGroupSearch", model)
     }
 }
