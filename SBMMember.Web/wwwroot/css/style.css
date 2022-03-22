@@ -1044,7 +1044,7 @@ tr, td, th {
 .tabs-container{position: relative;background: #7c0053;width:115px;height: 100vh;float: left;z-index: 20;}
 /* tabs names */
 .tabs-container label{
-  position: relative;padding:5px;border-bottom: 1px solid rgba(0, 0, 0, 0.1);display: block;font-size:14px;color: #000000;cursor: pointer;}
+  position: relative;padding:5px;border-bottom: 1px solid rgba(0, 0, 0, 0.1);display: block;font-size:16px;color: #000000;cursor: pointer;}
 /* Hover effect on tabs names */
 .tabs-container label:hover{
  background: rgba(0, 0, 0, 0.2);
@@ -1243,14 +1243,14 @@ input:hover, input:focus {
 @media (max-width: 576px) {
   /* line 18, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
   .section_padding {
-    padding: 70px 0px;
+    padding:0px 0px;
   }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   /* line 18, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
   .section_padding {
-    padding: 70px 0px;
+    padding:0px 0px;
   }
 }
 
@@ -3222,7 +3222,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 540, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
 .input-group-icon .single-input {
-  padding-left: 45px;
+  padding-left:10px;
 }
 
 /* line 545, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
@@ -3841,8 +3841,8 @@ h1, h2, h3, h4, h5, h6 {
   border-radius:10px;
   height: 40px;
   background: #f9f9ff;
-  padding-left: 45px;
-  padding-right: 40px;
+  padding-left:10px;
+  padding-right:10px;
   width: 100%;
   margin-bottom:14px;
 }
@@ -3900,7 +3900,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 1089, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
 .section-top-border {
-  padding: 50px 0;
+  padding: 0px 0;
   border-top: 1px dotted #eee;
 }
 
