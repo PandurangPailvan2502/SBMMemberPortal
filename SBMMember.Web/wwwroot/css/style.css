@@ -54,7 +54,7 @@
         font-weight: 600
     }
 .sp {
-    color: #000000
+    color: #000000; 
 }
 .scroll {
     height: 45px;
@@ -75,6 +75,7 @@
 .scroll p {font-size: 20px}
 .menu-icon {width: 30%}
 .matri-icon {width: 30%}
+.sp {font-size:16px;}
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -85,6 +86,7 @@
 .scroll p {font-size: 18px}
 .menu-icon {width: 30%}
 .matri-icon {width: 30%}
+.sp {font-size: 16px;}
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -95,6 +97,7 @@
 .scroll p {font-size: 16px}
 .menu-icon {width: 30%}
 .matri-icon {width: 30%}
+.sp {font-size: 16px;}
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -105,6 +108,7 @@
 .scroll p {font-size: 14px}
 .menu-icon {width: 30%}
 .matri-icon {width: 30%}
+.sp {font-size: 16px;}
 }
 
 @media only screen and (max-width: 576px) {
@@ -115,6 +119,7 @@
 .scroll p {font-size: 12px}
 .menu-icon {width: 30%}
 .matri-icon {width: 30%}
+.sp {font-size: 16px;}
 }
 
 .modal.left .modal-dialog {
@@ -166,8 +171,8 @@
 }
 
 .btn-demo {
-    margin: 15px;
-    padding: 10px 15px;
+    margin: 0px;
+    padding: 11px 0px;
     border-radius: 0;
     font-size: 16px;
     background-color: #ffffff;
