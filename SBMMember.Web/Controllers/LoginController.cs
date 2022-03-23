@@ -34,7 +34,8 @@ namespace SBMMember.Web.Controllers
                 //Create the identity for the user  
                 var identity = new ClaimsIdentity(new[] {
                     new Claim(ClaimTypes.Name,$"{member.FirstName} {member.MiddleName} {member.LastName}"),
-                    new Claim("MemberId",Convert.ToString( member.MemberId))
+                    new Claim("MemberId",Convert.ToString( member.MemberId)),
+                    new Claim(ClaimTypes.PrimarySid,Convert.ToString( member.MemberId))
                    
                 }, CookieAuthenticationDefaults.AuthenticationScheme);
 

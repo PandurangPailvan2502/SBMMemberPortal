@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="col-sx-3 profile-bar2">
-                        <h3>Member ID:62</h3>
+                        <h3>Member ID:@User.Claims?.FirstOrDefault(x => x.Type.Equals("MemberId", StringComparison.OrdinalIgnoreCase))?.Value</h3>
 
                     </div>
                 </div>
