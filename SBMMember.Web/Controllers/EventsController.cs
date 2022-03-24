@@ -64,5 +64,11 @@ namespace SBMMember.Web.Controllers
             Response.Headers.Add("Content-Disposition", $"inline; filename={filepath.Split('/')[2]}");
             return File(filepath, "application/pdf");
         }
+
+        public IActionResult EventDetails()
+        {
+
+            return View();
+        }
     }
 }

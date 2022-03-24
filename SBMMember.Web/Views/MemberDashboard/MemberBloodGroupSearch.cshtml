@@ -8,9 +8,12 @@
 <script>
     $(document).ready(function () {
         $("#btnreset").click(function () {
-            alert("Test");
-            //$("#BloodGroup").val('Blood Group');
-            $('#BloodGroup option').val(0);
+
+            $('#BG .nice-select .current').html("Select Blood Group");
+            $('#GN .nice-select .current').html("Select Gender");
+            $('#CT .nice-select .current').html("Select City");
+            $('#AR .nice-select .current').html("Select Area");
+
         });
 
     });
@@ -40,10 +43,10 @@
                                 <div class="container">
                                     <div class="row ">
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-4" id="BG">
                                             <div class="form-select" id="default-select">
                                                 <select asp-for="BloodGroup">
-                                                    <option value="0">Blood Group</option>
+                                                    <option value="0">Select Blood Group</option>
                                                     <option value="A+">A positive (A+)</option>
                                                     <option value="A-">A Negative (A-)</option>
                                                     <option value="B+">B Positive (B+)</option>
@@ -55,12 +58,12 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-4" id="CT">
                                             <div class="form-select" id="default-select">
                                                 <select asp-for="City" asp-items="Model.Cities"></select>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-4" id="AR">
                                             <div class="form-select" id="default-select">
                                                 <select asp-for="Area" asp-items="Model.Areas"></select>
                                             </div>
@@ -78,7 +81,7 @@
                                 <div class="container">
                                     <div class="row ">
 
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-4" id="GN">
                                             <div class="form-select" id="default-select">
                                                 <select asp-for="Gender">
                                                     <option value="0">Select Gender</option>
@@ -131,6 +134,7 @@
         </div>
     </div>
 </div>
+
 <div class="seperate"></div>
 @if (Model.MemberList != null)
 {
