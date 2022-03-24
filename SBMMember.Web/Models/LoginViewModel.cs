@@ -15,5 +15,6 @@ namespace SBMMember.Web.Models
         public bool IsOTPVerified { get; set; }
         public bool IsOTPMismatch { get; set; }
         public string OTPInput { get; set; }
+        public bool RememberMe { get; set; }
     }
 }

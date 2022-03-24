@@ -3,7 +3,23 @@
     ViewData["Title"] = "MemberPersonalInfo";
     Layout = "~/Views/Shared/_LayoutMemberForm.cshtml";
 }
+<script>
+    $(function () {
+        var dtToday = new Date();
 
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+        $('#BirthDate').attr('max', maxDate);
+    });
+</script>
 <input name="tab" id="tab1" type="radio" checked />
 
 <section class="tab-content">
@@ -96,7 +112,7 @@
                     </div>
 
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="pincode" asp-for="Pincode" placeholder="Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pincode'"
+                        <input type="number"onKeyPress="if(this.value.length==6) return false;" name="pincode" asp-for="Pincode" placeholder="Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pincode'"
                                required class="single-input">
                     </div>
 

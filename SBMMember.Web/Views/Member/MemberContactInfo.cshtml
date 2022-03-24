@@ -28,12 +28,12 @@
 
 
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="Mobile1" asp-for="Mobile1" placeholder="Personal Mobile 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 1'"
+                        <input type="number" onKeyPress="if(this.value.length==10)"  name="Mobile1" asp-for="Mobile1" placeholder="Personal Mobile 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 1'"
                                required class="single-input">
                     </div>
 
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="Mobile2" asp-for="Mobile2" placeholder="Personal Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 2'"
+                        <input type="number" onKeyPress="if(this.value.length==10) return false;" name="Mobile2" asp-for="Mobile2" placeholder="Personal Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 2'"
                                required class="single-input">
                     </div>
 
@@ -50,11 +50,11 @@
                                required class="single-input">
                     </div>
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="RelativeContact1" asp-for="RelativeContact1" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 1'"
+                        <input type="number"onKeyPress="if(this.value.length==10)" name="RelativeContact1" asp-for="RelativeContact1" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 1'"
                                required class="single-input">
                     </div>
                     <div class="input-group-icon mt-10">
-                        <input type="text" name="RelativeContact2" asp-for="RelativeContact2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
+                        <input type="number"onKeyPress="if(this.value.length==10)" name="RelativeContact2" asp-for="RelativeContact2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
                                required class="single-input">
                     </div>
                     <div class="mt-10 center">

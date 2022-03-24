@@ -45,6 +45,10 @@ namespace SBMMember.Web.Controllers
 
                 return RedirectToAction("Index", "MemberDashboard");
             }
+            else
+            {
+                ViewBag.ErrorOnLogin = "Invalid Mobile number or MPin";
+            }
             return View();
         }
 
