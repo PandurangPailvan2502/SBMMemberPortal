@@ -76,8 +76,8 @@
 .menu-icon {width: 30%}
 .matri-icon {width: 30%}
 .sp {font-size:16px;}
+.img-gal {max-width: 450px}
 }
-
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
 .logo {width: 46%;padding: 5px}
 .title-box h2 {font-size: 22px}
@@ -87,8 +87,8 @@
 .menu-icon {width: 30%}
 .matri-icon {width: 30%}
 .sp {font-size: 16px;}
+.img-gal {max-width: 350px}
 }
-
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 .logo {width: 46%;padding: 0px}
 .title-box h2 {font-size: 18px}
@@ -98,6 +98,7 @@
 .menu-icon {width: 30%}
 .matri-icon {width: 30%}
 .sp {font-size: 16px;}
+.img-gal {max-width: 250px}
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -109,8 +110,8 @@
 .menu-icon {width: 30%}
 .matri-icon {width: 30%}
 .sp {font-size: 16px;}
+.img-gal {max-width: 125px}
 }
-
 @media only screen and (max-width: 576px) {
 .logo {min-width: 50%;max-width: 70%;padding: 5px}
 .title-box h2 {font-size:16px;}
@@ -120,8 +121,8 @@
 .menu-icon {width: 30%}
 .matri-icon {width: 30%}
 .sp {font-size: 16px;}
+.img-gal {max-width: 75px}
 }
-
 .modal.left .modal-dialog {
     position: fixed;
     right: 0;
