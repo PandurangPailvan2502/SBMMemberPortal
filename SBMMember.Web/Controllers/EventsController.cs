@@ -65,10 +65,19 @@ namespace SBMMember.Web.Controllers
             return File(filepath, "application/pdf");
         }
 
-        public IActionResult EventDetails()
+        public IActionResult EventDetails(string EventId)
         {
+            int _eventId = Convert.ToInt32(EventId);
+            var eventInfo = eventDataFactory.GetEventInfoByeventId(_eventId);
 
-            return View();
+            EventDetailsViewModel detailsViewModel = new EventDetailsViewModel()
+            {
+                EventTitle = eventInfo.EventName,
+                EventDescription = eventInfo.EventDescription,
+                EventYear = eventInfo.EventYear,
+                GalleryImages = eventDataFactory.GetGalleryphotosByeventId(_eventId)
+        };
+            return View(detailsViewModel);
         }
     }
 }

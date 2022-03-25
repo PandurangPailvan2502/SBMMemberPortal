@@ -62,6 +62,15 @@ namespace SBMMember.Data.DataFactory
             return eventDBContext.EventInfos.Where(x => x.Status =="Active").ToList();
         }
 
+        public EventInfo GetEventInfoByeventId(int eventId)
+        {
+            return eventDBContext.EventInfos.Where(x => x.EventId == eventId && x.Status=="Active").FirstOrDefault();
+        }
+
+        public List<EventGallery> GetGalleryphotosByeventId(int eventId)
+        {
+            return eventDBContext.EventGalleries.Where(x => x.EventId == eventId && x.Status == "Active").ToList();
+        }
     }
 
     public interface IEventDataFactory
@@ -70,5 +79,7 @@ namespace SBMMember.Data.DataFactory
         ResponseDTO AddEventGallery(EventGallery eventGallery);
         List<EventInfo> GetEventListByEventYear(string year);
         List<EventInfo> GetAllEventList();
+        EventInfo GetEventInfoByeventId(int eventId);
+        List<EventGallery> GetGalleryphotosByeventId(int eventId);
     }
 }

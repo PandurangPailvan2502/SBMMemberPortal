@@ -15,6 +15,8 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace SBMMember.Web
 {
@@ -70,6 +72,8 @@ namespace SBMMember.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            
+
             app.UseSession();
             loggerFactory.AddFile("Logs/SBMMember-{Date}.txt");
             if (env.IsDevelopment())
@@ -81,6 +85,12 @@ namespace SBMMember.Web
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+           Path.Combine(env.ContentRootPath, "EventGallery")),
+                RequestPath = "/EventGallery"
+            });
 
             app.UseAuthentication();
 

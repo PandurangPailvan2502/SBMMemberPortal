@@ -1,157 +1,178 @@
-﻿
+﻿@model EventDetailsViewModel
+
 @{
     ViewData["Title"] = "EventDetails";
     Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
 }
 <style>
-div.cssbox {
-  display: inline-block;
-}
+    div.cssbox {
+        display: inline-block;
+    }
 
-span.cssbox_full {
-  z-index: 999999;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0,0,0,0.8);
-  top: 0;
-  left: 0;
-  opacity: 0;
-  pointer-events: none;
-  cursor: default;
-  transition: opacity 0.5s linear;
-}
+    span.cssbox_full {
+        z-index: 999999;
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0,0,0,0.8);
+        top: 0;
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        cursor: default;
+        transition: opacity 0.5s linear;
+    }
 
-span.cssbox_full img {
-  position: fixed;
-  background-color: white;
-  margin: 0;
-  padding: 0;
-  max-height: 90%;
-  max-width: 90%;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 20px black;
-}
+        span.cssbox_full img {
+            position: fixed;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            max-height: 90%;
+            max-width: 90%;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px black;
+        }
 
-a.cssbox_close,
-a.cssbox_prev,
-a.cssbox_next {
-  z-index: 999999;
-  position: fixed;
-  text-decoration: none;
-  visibility: hidden;
-  color: white;
-  font-size: 36px;
-}
+    a.cssbox_close,
+    a.cssbox_prev,
+    a.cssbox_next {
+        z-index: 999999;
+        position: fixed;
+        text-decoration: none;
+        visibility: hidden;
+        color: white;
+        font-size: 36px;
+    }
 
-a.cssbox_close {
-  top: 1%;
-  right: 1%
-}
+    a.cssbox_close {
+        top: 1%;
+        right: 1%
+    }
 
-a.cssbox_close::after {
-  content: '\00d7';
-}
+        a.cssbox_close::after {
+            content: '\00d7';
+        }
 
-a.cssbox_prev,
-a.cssbox_next {
-  top: 50%;
-  transform: translate(0%, -50%);
-}
+    a.cssbox_prev,
+    a.cssbox_next {
+        top: 50%;
+        transform: translate(0%, -50%);
+    }
 
-a.cssbox_prev {
-  left: 5%;
-}
+    a.cssbox_prev {
+        left: 5%;
+    }
 
-a.cssbox_next {
-  right: 5%;
-}
+    a.cssbox_next {
+        right: 5%;
+    }
 
-a:target ~ a.cssbox_close,
-a:target ~ a.cssbox_prev,
-a:target ~ a.cssbox_next {
-  visibility: visible;
-}
+    a:target ~ a.cssbox_close,
+    a:target ~ a.cssbox_prev,
+    a:target ~ a.cssbox_next {
+        visibility: visible;
+    }
 
-a:target > img.cssbox_thumb + span.cssbox_full {
-  visibility: visible;
-  opacity: 1;
-  pointer-events: initial;
-}
+    a:target > img.cssbox_thumb + span.cssbox_full {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: initial;
+    }
 </style>
-
-
- <div class="container">
-          <div class="row">
-               <div class="col-lg-12">
-                            <div class="container search_result">
-                                <div class="row">
-                                    <div class="col-lg-12 pic_content">
-                                        <div class="container mySlides" >
-                                             <div class="row">
-                                                 <div class="col-lg-10 left-box"><lable>Event Title:</lable></div>
-                                             </div>
-                                             <div class="row">
-                                                <div class="col-lg-10 left-box"><lable>Event Year:</lable></div>
-                                            </div>
-                                           <div class="row">
-                                                    <div class="cl-xs-3">
-                                                        <div class="cssbox">
-                                                            <a id="image1" href="#image1">
-                                                              <img class="cssbox_thumb img-gal" src="img/img3.jpg">
-                                                              <span class="cssbox_full">
-                                                                <img src="img/img3.jpg">
-                                                              </span>
-                                                            </a>
-                                                            <a class="cssbox_close" href="#void"></a>
-                                                            <a class="cssbox_next" href="#image2">&gt;</a>
-                                                          </div>
-                                                    </div>
-                                                    <div class="cl-xs-3">
-                                                        <div class="cssbox">
-                                                            <a id="image2" href="#image1">
-                                                              <img class="cssbox_thumb img-gal" src="img/img4.jpg">
-                                                              <span class="cssbox_full">
-                                                                <img src="img/img4.jpg">
-                                                              </span>
-                                                            </a>
-                                                            <a class="cssbox_close" href="#void"></a>
-                                                            <a class="cssbox_next" href="#image2">&gt;</a>
-                                                          </div>
-                                                    </div>
-                                                    <div class="cl-xs-3">
-                                                        <div class="cssbox">
-                                                            <a id="image3" href="#image1">
-                                                              <img class="cssbox_thumb img-gal" src="img/img9.jpg">
-                                                              <span class="cssbox_full">
-                                                                <img src="img/img9.jpg">
-                                                              </span>
-                                                            </a>
-                                                            <a class="cssbox_close" href="#void"></a>
-                                                            <a class="cssbox_next" href="#image3">&gt;</a>
-                                                          </div>
-                                                    </div>
-                                                    <div class="cl-xs-3">
-                                                        <div class="cssbox">
-                                                            <a id="image4" href="#image1">
-                                                              <img class="cssbox_thumb img-gal" src="img/img10.jpg">
-                                                              <span class="cssbox_full">
-                                                                <img src="img/img10.jpg">
-                                                              </span>
-                                                            </a>
-                                                            <a class="cssbox_close" href="#void"></a>
-                                                            <a class="cssbox_next" href="#image4">&gt;</a>
-                                                          </div>
-                                                    </div>
-                                             </div>
-                                        </div>
-                                       </div>
-                                </div>
-                                </div>
-               </div>
-          </div>    
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="scroll" style="background-color:darkred">
+                <p> Events Detail</p>
+            </div>
+        </div>
+    </div>
 </div>
-               
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="container search_result">
+                <div class="row">
+                    <div class="col-lg-12 pic_content">
+                        <div class="container mySlides">
+                            <div class="row">
+                                <div class="col-lg-10 left-box"><lable><b>Event Title:</b> @Model.EventTitle</lable></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10 left-box"><lable><b>Event Description:</b> @Model.EventDescription</lable></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-10 left-box"><lable><b>Event Year: </b>@Model.EventYear</lable></div>
+                            </div>
+                            <div class="row">
+                                @{int counter = 1;}
+                                @{int Nextcounter =2;}
+                                @foreach (var galInfo in Model.GalleryImages)
+                                {
+
+                                    <div class="cl-xs-3">
+                                        <div class="cssbox">
+
+                                            <a id="@("image"+ @counter)" href="@("#image"+@counter)">
+                                                <img class="cssbox_thumb img-gal" src="~/EventGallery/@galInfo.FilePath.Split('/')[2]">
+                                                <span class="cssbox_full">
+                                                    <img src="~/EventGallery/@galInfo.FilePath.Split('/')[2]">
+                                                </span>
+                                            </a>
+
+                                            <a class="cssbox_close" href="#void"></a>
+                                            <a class="cssbox_next" href="@("#image"+Nextcounter)">&gt;</a>
+                                        </div>
+                                    </div>
+                                    counter++;
+                                    Nextcounter++;
+                                }
+                                @*<div class="cl-xs-3">
+            <div class="cssbox">
+                <a id="image2" href="#image1">
+                    <img class="cssbox_thumb img-gal" src="~/img/avatar7.png">
+                    <span class="cssbox_full">
+                        <img src="~/img/avatar7.png">
+                    </span>
+                </a>
+                <a class="cssbox_close" href="#void"></a>
+                <a class="cssbox_next" href="#image3">&gt;</a>
+            </div>
+        </div>
+        <div class="cl-xs-3">
+            <div class="cssbox">
+                <a id="image3" href="#image1">
+                    <img class="cssbox_thumb img-gal" src="~/img/bride.png">
+                    <span class="cssbox_full">
+                        <img src="~/img/bride.png">
+                    </span>
+                </a>
+                <a class="cssbox_close" href="#void"></a>
+                <a class="cssbox_next" href="#image4">&gt;</a>
+            </div>
+        </div>
+        <div class="cl-xs-3">
+            <div class="cssbox">
+                <a id="image4" href="#image1">
+                    <img class="cssbox_thumb img-gal" src="~/img/groom.png">
+                    <span class="cssbox_full">
+                        <img src="~/img/groom.png">
+                    </span>
+                </a>
+                <a class="cssbox_close" href="#void"></a>
+                <a class="cssbox_next" href="#image1">&gt;</a>
+            </div>
+        </div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

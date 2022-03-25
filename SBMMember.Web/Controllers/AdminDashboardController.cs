@@ -151,7 +151,7 @@ namespace SBMMember.Web.Controllers
                 {
                     FilePath = $"~/EventGallery/{fileName}",
                     EventId = info.EventId,
-                    Status = "Ative",
+                    Status = "Active",
                     CreateDate = DateTime.Now,
                     DocType = "jpg"
                 };

@@ -5,6 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="EventGallery\a.jpg" />
+    <None Remove="EventGallery\a2.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="EventGallery\a.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="EventGallery\a2.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\css\style.map" />
     <None Include="wwwroot\fonts\Flaticon.woff2" />
     <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
