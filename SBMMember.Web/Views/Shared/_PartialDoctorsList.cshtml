@@ -26,7 +26,8 @@
                                 <div class="col-xs-10 left-box"><lable> @Model.Qualification</lable></div>
                             </div> 
                             <div class="row">
-                                <div class="col-xs-10 left-box"><lable>संपर्क : @Model.MobileNumber</lable> <img src="~/img/whats-app.png" class="whatsapp"> </div>
+                                <div class="col-xs-10 left-box"><lable>संपर्क : @Model.MobileNumber</lable>@if (!string.IsNullOrEmpty(Model.MobileNumber))
+                                {<a target="_blank" href="@("https://wa.me/91" + @Model.MobileNumber)"> <img src="~/img/whats-app.png" class="whatsapp"></a> }</div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-5 left-box"><lable>Area,City: @Model.Area,@Model.City</lable></div>
