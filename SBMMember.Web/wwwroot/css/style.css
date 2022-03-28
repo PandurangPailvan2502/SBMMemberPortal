@@ -598,14 +598,12 @@ tr, td, th {
     -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.7);
     -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.7);
 }
-
-    .search-box p {
+.search-box p {
         color: #53002e;
         font-weight: 600;
         letter-spacing: 2px;
         line-height: 20px;
     }
-
 .search-box_input {
     border-radius: 10px;
     margin: 10px 0px 10px 0px;
@@ -617,7 +615,6 @@ tr, td, th {
     padding: 5px 5px 5px 15px;
     width: 100%
 }
-
 .search_result {
     background-color: #ffffff;
     padding: 20px;
@@ -626,20 +623,16 @@ tr, td, th {
     -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.7);
     -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.7);
 }
-
 .search_pic {
     width: 30%;
 }
-
 .pic_content {
     width:70%;
 }
-
 .search_cont {
     padding: 5px 0px 0px 20px;
     text-align: left
 }
-
 .icon_cole1 {
     width: 40px;
     padding: 5px 5px 0px 10px;
@@ -647,7 +640,6 @@ tr, td, th {
     font-size: 18px;
     color: #53002e
 }
-
 .labe {
     width: 150px;
     padding: 5px 10px 0px 5px;
@@ -656,7 +648,6 @@ tr, td, th {
     color: #53002e;
     font-weight: 500
 }
-
 .labep {
     width: 100%;
     padding: 5px 5px 0px 5px;
