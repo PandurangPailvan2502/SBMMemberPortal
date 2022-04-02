@@ -29,6 +29,22 @@
     <link rel="stylesheet" href="~/css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="~/css/style.css">
+    <script>
+        $(document).ready(function () {
+
+            $('#MobileNumber').keypress(function (e) {
+
+                var charCode = (e.which) ? e.which : event.keyCode
+
+                if (String.fromCharCode(charCode).match(/[^0-9]/g))
+
+                    return false;
+
+            });
+
+
+        });//document close
+    </script>
 </head>
 
 <body>
@@ -92,7 +108,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 mt-sm-50">
-                                        <input type="text" name="MobileNumber" asp-for="MobileNumber" placeholder="Mobile No." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mobile No.'"
+                                        <input type="text" name="MobileNumber" asp-for="MobileNumber"  maxlength="10" placeholder="Mobile No." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mobile No.'"
                                                required class="single-input-primary">
                                     </div>
                                     <div class="col-lg-6 col-md-6 mt-sm-50">
