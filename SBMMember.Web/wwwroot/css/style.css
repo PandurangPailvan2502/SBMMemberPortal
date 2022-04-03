@@ -26,6 +26,14 @@
     padding: 10px;
     position:absolute;
 }
+.logo1 {
+    padding: 10px;
+    position: absolute;
+}
+.logo2 {
+    padding: 10px;
+    position: absolute;
+}
 
 .logo-box {
     width: 20%;
@@ -81,6 +89,11 @@
         max-width: 43%;
         margin-left: -144px;
     }
+    .logo2 {
+        min-width: 40%;
+        max-width: 43%;
+        margin-left: -144px;
+    }
 .title-box h2 {font-size:35px}
 .title-box h4 {font-size: 22px;}
 .ic {font-size: 35px}
@@ -93,6 +106,11 @@
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
  .logo {min-width: 40%;max-width: 43%;margin-left: -144px;}
     .logo1 {
+        min-width: 40%;
+        max-width: 43%;
+        margin-left: -144px;
+    }
+    .logo2 {
         min-width: 40%;
         max-width: 43%;
         margin-left: -144px;
@@ -113,6 +131,11 @@
         max-width: 52%;
         margin-left: -96px;
     }
+    .logo2 {
+        min-width: 40%;
+        max-width: 43%;
+        margin-left: -144px;
+    }
     .title-box h2 {
         font-size: 42px
     }
@@ -131,6 +154,11 @@
         min-width: 70%;
         max-width: 73%;
         margin-left: -75px;
+    }
+    .logo2 {
+        min-width: 40%;
+        max-width: 43%;
+        margin-left: -144px;
     }
 .title-box h2 {font-size:30px;}
 .title-box h4 {font-size:22px;}
@@ -1064,7 +1092,26 @@ body {
 
 .btn_12{height:45px; background-color:#50a100; width:150px; margin-left:64px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px;}
 .btn_121{height:45px; background-color:#d9b800; width:150px; margin:20px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px;}
-.btn_121a{ height:45px; background-color:#50a100; width:150px; margin:20px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px;}
+.btn_121a {
+    height: 37px;
+    background-color: #50a100;
+    width: 100px;
+    margin: 7px;
+    padding: 3px;
+    color: #FFFFFF;
+    font-weight: normal;
+    word-spacing: 1px;
+}
+.btn_121b {
+    height: 37px;
+    background-color: #EC4D23;
+    width: 100px;
+    margin: 7px;
+    padding: 3px;
+    color: #FFFFFF;
+    font-weight: normal;
+    word-spacing: 1px;
+}
 
 
 
