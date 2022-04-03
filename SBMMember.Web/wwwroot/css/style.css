@@ -85,15 +85,9 @@
         margin-left: -127px;float:left;
     }
     .logo1 {
-        min-width: 40%;
-        max-width: 43%;
-        margin-left: -144px;
+        margin-left: -120px;
     }
-    .logo2 {
-        min-width: 40%;
-        max-width: 43%;
-        margin-left: -144px;
-    }
+  
 .title-box h2 {font-size:35px}
 .title-box h4 {font-size: 22px;}
 .ic {font-size: 35px}
@@ -106,15 +100,9 @@
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
  .logo {min-width: 40%;max-width: 43%;margin-left: -144px;}
     .logo1 {
-        min-width: 40%;
-        max-width: 43%;
-        margin-left: -144px;
+        margin-left: -120px
     }
-    .logo2 {
-        min-width: 40%;
-        max-width: 43%;
-        margin-left: -144px;
-    }
+   
  .title-box h2 {font-size:55px}
 .title-box h4 {font-size: 34px;}
 .ic {font-size:18px}
@@ -127,14 +115,7 @@
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 .logo {min-width: 40%;max-width: 52%;margin-left: -96px;}
     .logo1 {
-        min-width: 40%;
-        max-width: 52%;
-        margin-left: -96px;
-    }
-    .logo2 {
-        min-width: 40%;
-        max-width: 43%;
-        margin-left: -144px;
+        margin-left:-75px;
     }
     .title-box h2 {
         font-size: 42px
@@ -151,8 +132,6 @@
 @media only screen and (min-width: 576px) and (max-width: 767px) {
 .logo { min-width: 70%; max-width: 73%; margin-left: -75px;}
     .logo1 {
-        min-width: 70%;
-        max-width: 73%;
         margin-left: -75px;
     }
     .logo2 {
@@ -172,9 +151,8 @@
 @media only screen and (max-width: 576px) {
 .logo {min-width: 70%;max-width:85%;margin-left:-58px}
     .logo1 {
-        min-width: 70%;
-        max-width: 85%;
-        margin-left: -26px
+        margin-left: -35px;
+        margin-top:-10px
     }
 .title-box h2 {font-size:20px;}
 .title-box h4 {font-size:16px;}
