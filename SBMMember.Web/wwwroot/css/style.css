@@ -26,12 +26,14 @@
     padding: 10px;
     position:absolute;
 }
+
 .logo-box {
-    width:20%;
+    width: 20%;
     height: auto;
     text-align: center;
-    padding:0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
 }
+
 .title-box {
     width: 50%;
     height: auto;
@@ -74,6 +76,11 @@
         max-width: 43%;
         margin-left: -127px;float:left;
     }
+    .logo1 {
+        min-width: 40%;
+        max-width: 43%;
+        margin-left: -144px;
+    }
 .title-box h2 {font-size:35px}
 .title-box h4 {font-size: 22px;}
 .ic {font-size: 35px}
@@ -85,6 +92,11 @@
 }
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
  .logo {min-width: 40%;max-width: 43%;margin-left: -144px;}
+    .logo1 {
+        min-width: 40%;
+        max-width: 43%;
+        margin-left: -144px;
+    }
  .title-box h2 {font-size:55px}
 .title-box h4 {font-size: 34px;}
 .ic {font-size:18px}
@@ -96,7 +108,14 @@
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 .logo {min-width: 40%;max-width: 52%;margin-left: -96px;}
-.title-box h2 {font-size:42px}
+    .logo1 {
+        min-width: 40%;
+        max-width: 52%;
+        margin-left: -96px;
+    }
+    .title-box h2 {
+        font-size: 42px
+    }
 .title-box h4 {font-size:28px;}
 .ic {font-size:24px}
 .scroll p {font-size: 16px}
@@ -108,6 +127,11 @@
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
 .logo { min-width: 70%; max-width: 73%; margin-left: -75px;}
+    .logo1 {
+        min-width: 70%;
+        max-width: 73%;
+        margin-left: -75px;
+    }
 .title-box h2 {font-size:30px;}
 .title-box h4 {font-size:22px;}
 .ic {font-size:24px}
@@ -119,6 +143,11 @@
 }
 @media only screen and (max-width: 576px) {
 .logo {min-width: 70%;max-width:85%;margin-left:-58px}
+    .logo1 {
+        min-width: 70%;
+        max-width: 85%;
+        margin-left: -26px
+    }
 .title-box h2 {font-size:20px;}
 .title-box h4 {font-size:16px;}
 .ic {font-size:24px}
@@ -1026,12 +1055,11 @@ body {
   width:100%;
   font-size:18px;
 }
-.myinputlogin
-{
-  border-radius:50px;
-  border:1px solid #000000;
-  height:75px;
-  font-size:22px;
+.myinputlogin {
+    border-radius: 30px;
+    border: 1px solid #000000;
+    height: 40px ;
+    font-size: 17px;
 }
 
 .btn_12{height:45px; background-color:#50a100; width:150px; margin-left:64px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px;}
