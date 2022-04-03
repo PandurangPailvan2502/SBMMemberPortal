@@ -24,19 +24,22 @@
 
 .logo {
     padding: 10px;
-    position: relative;
+    position:absolute;
 }
+
 .logo-box {
-    width: 30%;
+    width: 20%;
     height: auto;
     text-align: center;
-    padding:0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
 }
+
 .title-box {
     width: 50%;
     height: auto;
+    vertical-align:top;
     text-align: center;
-    padding:5px 0px 0px 0px;
+    padding:0px;
     text-align: center
 }
 .title-box h2 {
@@ -47,7 +50,7 @@
     width: 20%;
     height: auto;
     text-align: center;
-    padding:5px 0px 0px 0px;
+    padding:12px 0px 0px 0px;
 }
 .toolbar h4 {
         color: rgb(224, 90, 1);
@@ -68,7 +71,16 @@
         padding: 10px 0px 10px 0px
 }
 @media only screen and (min-width: 1201px) {
-.logo {width: 35%;padding: 5px}
+    .logo {
+        min-width: 40%;
+        max-width: 43%;
+        margin-left: -127px;float:left;
+    }
+    .logo1 {
+        min-width: 40%;
+        max-width: 43%;
+        margin-left: -144px;
+    }
 .title-box h2 {font-size:35px}
 .title-box h4 {font-size: 22px;}
 .ic {font-size: 35px}
@@ -79,9 +91,14 @@
 .img-gal {max-width: 100%}
 }
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-.logo {width: 46%;padding: 5px}
-.title-box h2 {font-size: 22px}
-.title-box h4 {font-size: 18px;}
+ .logo {min-width: 40%;max-width: 43%;margin-left: -144px;}
+    .logo1 {
+        min-width: 40%;
+        max-width: 43%;
+        margin-left: -144px;
+    }
+ .title-box h2 {font-size:55px}
+.title-box h4 {font-size: 34px;}
 .ic {font-size:18px}
 .scroll p {font-size: 18px}
 .menu-icon {width: 30%}
@@ -90,10 +107,17 @@
 .img-gal {max-width: 100%}
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-.logo {width: 46%;padding: 0px}
-.title-box h2 {font-size: 18px}
-.title-box h4 {font-size: 16px;}
-.ic {font-size:16px}
+.logo {min-width: 40%;max-width: 52%;margin-left: -96px;}
+    .logo1 {
+        min-width: 40%;
+        max-width: 52%;
+        margin-left: -96px;
+    }
+    .title-box h2 {
+        font-size: 42px
+    }
+.title-box h4 {font-size:28px;}
+.ic {font-size:24px}
 .scroll p {font-size: 16px}
 .menu-icon {width: 30%}
 .matri-icon {width: 30%}
@@ -102,10 +126,15 @@
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-.logo {width: 70%;padding: 5px}
-.title-box h2 {font-size: 16px;}
-.title-box h4 {font-size: 14px;}
-.ic {font-size:16px}
+.logo { min-width: 70%; max-width: 73%; margin-left: -75px;}
+    .logo1 {
+        min-width: 70%;
+        max-width: 73%;
+        margin-left: -75px;
+    }
+.title-box h2 {font-size:30px;}
+.title-box h4 {font-size:22px;}
+.ic {font-size:24px}
 .scroll p {font-size: 14px}
 .menu-icon {width: 30%}
 .matri-icon {width: 30%}
@@ -113,16 +142,22 @@
 .img-gal {max-width: 100%}
 }
 @media only screen and (max-width: 576px) {
-.logo {min-width: 50%;max-width: 70%;padding: 5px}
-.title-box h2 {font-size:16px;}
-.title-box h4 {font-size: 14px;}
-.ic {font-size:16px}
+.logo {min-width: 70%;max-width:85%;margin-left:-58px}
+    .logo1 {
+        min-width: 70%;
+        max-width: 85%;
+        margin-left: -26px
+    }
+.title-box h2 {font-size:20px;}
+.title-box h4 {font-size:16px;}
+.ic {font-size:24px}
 .scroll p {font-size: 12px}
 .menu-icon {width: 30%}
 .matri-icon {width: 30%}
 .sp {font-size: 16px;}
 .img-gal {max-width: 100%}
 }
+
 .modal.left .modal-dialog {
     position: fixed;
     right: 0;
@@ -203,7 +238,11 @@
          .profile-content{ padding:10px 0px 5px 20px}
          .profile-content h4{color:black;}
          .profile-content h5{color:black;}
-
+.dashboard h3 {
+    color: #000000;
+    font-weight:400;
+    padding:0px;
+}
          @media only screen and (min-width: 1201px)
         {
          .profile-content h4{font-size:22px;}
@@ -211,7 +250,7 @@
          .profile-bar2 h3{font-size:24px;}
 
          .dashboard h3{font-size:20px; color:#000000}
-         .dashboard-icon{width:40%; height:40%;padding:20px 0px 0px 0px; }
+         .dashboard-icon {width: 70%;height: auto;padding: 20px 0px 0px 0px;}
          .notification h3{margin: 46px 115px; font-size:20px; color:#ffffff}
          .table-button{width:50%}
         }
@@ -222,7 +261,7 @@
         .profile-bar2 h3{font-size:18px;}
 
         .dashboard h3{font-size:18px}
-        .dashboard-icon{width:75%; height:75%;padding:20px 0px 0px 0px;}
+        .dashboard-icon{width:75%; height:auto;padding:10px 0px 0px 0px;}
         .notification h3{margin: 17px 42px; font-size:18px; color:#ffffff}
         .table-button{width:50%}
         }
@@ -233,7 +272,7 @@
         .profile-bar2 h3{font-size:16px;}
 
         .dashboard h3{font-size:16px}
-        .dashboard-icon{width:50%; height:50%;padding:20px 0px 0px 0px;}
+        .dashboard-icon{width:78%; height:auto;padding:10px 0px 0px 0px;}
         .notification h3{margin: 17px 42px; font-size:16px; color:#ffffff}
         .table-button{width:100%}
         }
@@ -244,7 +283,7 @@
         .profile-bar2 h3{font-size:14px;}
 
         .dashboard h3{font-size:14px}
-        .dashboard-icon{width:30%; height:30%;padding:20px 0px 0px 0px;}
+        .dashboard-icon{width:78%; height:auto;padding:10px 0px 0px 0px;}
         .notification h3{margin: 17px 42px; font-size:14px; color:#ffffff}
         .table-button{width:100%}
         }
@@ -253,9 +292,8 @@
         .profile-content h4{font-size:14px;}
         .profile-content h5{font-size:12px;}
         .profile-bar2 h3{font-size:12px;}
-
-        .dashboard h3{font-size:12px}
-        .dashboard-icon{width:40%; height:40%; padding:20px 0px 0px 0px;}
+        .dashboard h3{font-size:9px}
+        .dashboard-icon{width:78%; height:auto; padding:10px 0px 0px 0px;}
         .notification h3{margin: 17px 42px; font-size:12px; color:#ffffff}
         .table-button{width:100%}
         }
@@ -266,7 +304,7 @@
 .r1c2{max-width:32.33%;margin:4px; background:rgb(2, 130, 235); text-align:center; display:inline-block;box-shadow: -1px 2px 10px -1px rgba(0,0,0,0.55);
 -webkit-box-shadow: -1px 2px 10px -1px rgba(0,0,0,0.55);
 -moz-box-shadow: -1px 2px 10px -1px rgba(0,0,0,0.55);border-radius:15px;}
-        .dashboard h3{color:#ffffff; font-weight:500;padding:10px 0px 20px 0px;}
+        
         .seperate{height:25px}
         .notification h3{margin: 25px 115px; font-size:16px}
         tr, td, th {
@@ -319,15 +357,10 @@
         font-size: 20px
     }
 
-    .dashboard h3 {
-        font-size: 20px
-    }
+   
 
-    .dashboard-icon {
-        width: 40%;
-        height: 40%;
-        padding: 20px 0px 0px 0px;
-    }
+   
+
 
     .notification h3 {
         margin: 46px 115px;
@@ -363,15 +396,9 @@
         font-size: 18px
     }
 
-    .dashboard h3 {
-        font-size: 18px
-    }
+  
 
-    .dashboard-icon {
-        width: 75%;
-        height: 75%;
-        padding: 20px 0px 0px 0px;
-    }
+    
 
     .notification h3 {
         margin: 17px 42px;
@@ -404,15 +431,8 @@
         font-size: 16px
     }
 
-    .dashboard h3 {
-        font-size: 16px
-    }
-
-    .dashboard-icon {
-        width: 50%;
-        height: 50%;
-        padding: 20px 0px 0px 0px;
-    }
+  
+    
 
     .notification h3 {
         margin: 17px 42px;
@@ -445,15 +465,8 @@
         font-size: 14px
     }
 
-    .dashboard h3 {
-        font-size: 14px
-    }
-
-    .dashboard-icon {
-        width: 30%;
-        height: 30%;
-        padding: 20px 0px 0px 0px;
-    }
+  
+   
 
     .notification h3 {
         margin: 17px 42px;
@@ -487,15 +500,8 @@
         font-size: 12px
     }
 
-    .dashboard h3 {
-        font-size: 12px
-    }
-
-    .dashboard-icon {
-        width: 40%;
-        height: 40%;
-        padding: 20px 0px 0px 0px;
-    }
+   
+  
 
     .notification h3 {
         margin: 17px 42px;
@@ -565,11 +571,7 @@
 
 
 
-.dashboard h3 {
-    color: #ffffff;
-    font-weight: 500;
-    padding: 10px 0px 20px 0px;
-}
+
 
 .seperate {
     height: 25px
@@ -671,7 +673,8 @@ tr, td, th {
 .profile-content h5 {font-size:16px;}
 .scroll p {font-size: 20px}
 .dashboard h3 {font-size: 20px}
-.dashboard-icon {width: 40%;height: 65%;padding: 20px 0px 0px 0px;}
+
+
 .notification h3 {margin: 46px 115px;font-size: 20px;color: #ffffff}
 .table-button {width: 50%}
 }
@@ -693,11 +696,7 @@ tr, td, th {
         font-size: 18px
     }
 
-    .dashboard-icon {
-        width: 75%;
-        height: 75%;
-        padding: 20px 0px 0px 0px;
-    }
+
 
     .notification h3 {
         margin: 17px 42px;
@@ -723,15 +722,9 @@ tr, td, th {
         font-size: 16px
     }
 
-    .dashboard h3 {
-        font-size: 16px
-    }
+   
+  
 
-    .dashboard-icon {
-        width: 50%;
-        height: 55%;
-        padding: 20px 0px 0px 0px;
-    }
 
     .notification h3 {
         margin: 17px 42px;
@@ -756,15 +749,10 @@ tr, td, th {
         font-size: 14px
     }
 
-    .dashboard h3 {
-        font-size: 14px
-    }
+  
 
-    .dashboard-icon {
-        width: 40%;
-        height: 45%;
-        padding: 20px 0px 0px 0px;
-    }
+   
+
 
     .notification h3 {
         margin: 17px 42px;
@@ -794,15 +782,10 @@ tr, td, th {
         font-size: 12px
     }
 
-    .dashboard h3 {
-        font-size: 12px
-    }
+   
 
-    .dashboard-icon {
-        width: 40%;
-        height: auto;
-        padding: 20px 0px 0px 0px;
-    }
+    
+
 
     .notification h3 {
         margin: 17px 42px;
@@ -888,11 +871,7 @@ tr, td, th {
     display: inline-block
 }
 
-.dashboard h3 {
-    color: #ffffff;
-    font-weight: 500;
-    padding: 10px 0px 20px 0px;
-}
+
 
 .seperate {
     height: 25px
@@ -1076,28 +1055,16 @@ body {
   width:100%;
   font-size:18px;
 }
-.myinputlogin
-{
-  border-radius:50px;
-  border:1px solid #000000;
-  height:75px;
-  font-size:22px;
+.myinputlogin {
+    border-radius: 30px;
+    border: 1px solid #000000;
+    height: 40px ;
+    font-size: 17px;
 }
 
-.btn_12
-{
-  height:45px; background-color:#50a100; width:150px; margin:20px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px; float:right;
-}
-
-.btn_121
-{
-  height:45px; background-color:#d9b800; width:150px; margin:20px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px;
-}
-
-.btn_121a
-{
-  height:45px; background-color:#50a100; width:150px; margin:20px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px;
-}
+.btn_12{height:45px; background-color:#50a100; width:150px; margin-left:64px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px;}
+.btn_121{height:45px; background-color:#d9b800; width:150px; margin:20px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px;}
+.btn_121a{ height:45px; background-color:#50a100; width:150px; margin:20px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px;}
 
 
 
