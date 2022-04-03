@@ -905,10 +905,10 @@ tr, td, th {
 .yellow-box{background-color:yellow; margin:5px;width:100%; height:100px;}
 .blue-box{background-color:blue; margin:5px;width:100%; height:100px;}
 }
+Scriptcontent
 
-@media only screen and (min-width:769px) and (max-width: 1024px) 
-{
-  .image-logo{width:80%} 
+@media only screen and (min-width:769px) and (max-width: 1024px) {
+    .image-logo{width:80%} 
   .texth2{ font-size: 26px;vertical-align: middle;padding: 28px;}
   .marq-bar{background-color:#7c0053; width:100%;vertical-align:middle; Padding:10px; text-align:center; font-size:28px; color:#ffffff; height:75px;}  
 }
@@ -932,7 +932,7 @@ tr, td, th {
 
 /*************Tab vertical menu for member registration************************/
 .photo-container1{position: relative;background: #FFFFFF;width: 115px;height: 18vh;float: left;z-index: 20;}
-.yel{background:#ffd446}
+.yel{background:#8b0267; color:#FFFFFF; text-align:center; font-size:16px ;font-weight:bold;line-height:1.5}
 .lblu{background:#8fbcff}
 .grn{background:#58b158}
 .purp{background:#b44790}
@@ -940,7 +940,7 @@ tr, td, th {
 .tabs-container{position: relative;background: #7c0053;width:115px;height: 100vh;float: left;z-index: 20;}
 /* tabs names */
 .tabs-container label{
-  position: relative;padding:5px;border-bottom: 1px solid rgba(0, 0, 0, 0.1);display: block;font-size:16px;color: #000000;cursor: pointer;}
+  position: relative;padding:5px;border-bottom: 1px solid rgba(0, 0, 0, 0.1);display: block;font-size:15px;color: #ffffff;cursor: pointer;line-height:1.5}
 /* Hover effect on tabs names */
 .tabs-container label:hover{
  background: rgba(0, 0, 0, 0.2);
@@ -978,7 +978,7 @@ input[name="tab"]:checked + .tab-content{ display: block; animation: slide 0.5s 
 text-align:center;
 }
 .Scriptcontent{
-line-height:28px;	
+line-height:20px;	
 }
 .ScriptHeader h1{
 font-family: "brandon-grotesque", "Brandon Grotesque", "Source Sans Pro", "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
