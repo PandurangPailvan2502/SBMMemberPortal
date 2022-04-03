@@ -1034,20 +1034,9 @@ body {
   font-size:22px;
 }
 
-.btn_12
-{
-  height:45px; background-color:#50a100; width:150px; margin:20px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px; float:right;
-}
-
-.btn_121
-{
-  height:45px; background-color:#d9b800; width:150px; margin:20px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px;
-}
-
-.btn_121a
-{
-  height:45px; background-color:#50a100; width:150px; margin:20px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px;
-}
+.btn_12{height:45px; background-color:#50a100; width:150px; margin-left:64px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px;}
+.btn_121{height:45px; background-color:#d9b800; width:150px; margin:20px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px;}
+.btn_121a{ height:45px; background-color:#50a100; width:150px; margin:20px; padding:5px;color:#FFFFFF; font-weight:normal; word-spacing:10px;}
 
 
 
