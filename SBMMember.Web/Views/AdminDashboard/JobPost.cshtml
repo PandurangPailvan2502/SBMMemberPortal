@@ -143,6 +143,7 @@
                             <th>Company</th>
                             <th>Qualification</th>
                             <th>Salary</th>
+                            <th>Operations</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -157,6 +158,10 @@
                                     <td>@job.CompanyName</td>
                                     <td>@job.Qualification</td>
                                     <td>@job.SalaryBand</td>
+                                    <td>
+                                        <a title="Edit" href="@Url.Action("Edit","Item",new { id = job.Id})"><i class="ti-pencil"></i></a>
+                                        <a title="Delete" href="@Url.Action("Delete","Item",new { id = job.Id})" class="delete-row" onclick="return confirm('Are sure wants to delete?');"><i class="ti-close"></i></a>
+                                    </td>
                                 </tr>
                             }
 

@@ -7,6 +7,7 @@ namespace SBMMember.Web.Models
 {
     public class JobPostingViewModel
     {
+        public int Id { get; set; }
         public string JobTitle { get; set; }
         public string JobDescription { get; set; }
         public string PositionFor { get; set; }

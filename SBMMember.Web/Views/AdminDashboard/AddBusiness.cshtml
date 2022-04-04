@@ -117,6 +117,7 @@
                             <th>Address</th>
                             <th>Product/Services</th>
                             <th>Conatact</th>
+                            <th>Operations</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -124,14 +125,18 @@
                         {
                             foreach (var memberBusiness in Model.MemberBusinesses)
                             {
-                                <tr>
-                                    <td>@memberBusiness.BusinessTitle</td>
-                                    <td>@memberBusiness.BusinessIndustry</td>
-                                    <td>@memberBusiness.CompanyLocation</td>
-                                    <td>@memberBusiness.Address</td>
-                                    <td>@memberBusiness.ProductsServices</td>
-                                    <td>@memberBusiness.CompanyContact</td>
-                                </tr>
+                        <tr>
+                            <td>@memberBusiness.BusinessTitle</td>
+                            <td>@memberBusiness.BusinessIndustry</td>
+                            <td>@memberBusiness.CompanyLocation</td>
+                            <td>@memberBusiness.Address</td>
+                            <td>@memberBusiness.ProductsServices</td>
+                            <td>@memberBusiness.CompanyContact</td>
+                            <td>
+                                <a href="@Url.Action("Edit","Item",new { id = memberBusiness.BusinessId})"><i class="ti-pencil"></i></a>
+                                <a href="@Url.Action("Delete","Item",new { id = memberBusiness.BusinessId})" class="delete-row" onclick="return confirm('Are sure wants to delete?');"><i class="ti-close"></i></a>
+                            </td>
+                        </tr>
                             }
 
                         }

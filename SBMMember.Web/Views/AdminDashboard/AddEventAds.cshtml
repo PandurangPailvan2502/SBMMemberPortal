@@ -112,7 +112,7 @@
                         <th>Event Title</th>
                         <th>Event Year</th>
                         <th>File</th>
-                        
+                        <th>Operations</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -120,12 +120,16 @@
                     {
                         foreach (var eventAd in Model.EventAds)
                         {
-                            <tr>
-                                <td>@eventAd.EventTitle</td>
-                                <td>@eventAd.EventYear</td>
-                                <td>@eventAd.FilePath</td>
-                               
-                            </tr>
+                    <tr>
+                        <td>@eventAd.EventTitle</td>
+                        <td>@eventAd.EventYear</td>
+                        <td>@eventAd.FilePath</td>
+
+                        <td>
+                            <a href="@Url.Action("Edit","Item",new { id = eventAd.Id})"><i class="ti-pencil"></i></a>
+                            <a href="@Url.Action("Delete","Item",new { id = eventAd.Id})" class="delete-row" onclick="return confirm('Are sure wants to delete?');"><i class="ti-close"></i></a>
+                        </td>
+                    </tr>
                         }
 
                     }

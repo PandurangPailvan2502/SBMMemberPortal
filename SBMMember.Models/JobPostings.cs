@@ -23,5 +23,6 @@ namespace SBMMember.Models
         public string CompanyContact { get; set; }
         public string CompanyEmail { get; set; }
         public DateTime PostedOn { get; set; }
+        public string Status { get; set; }
     }
 }
