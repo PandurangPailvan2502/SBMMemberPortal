@@ -33,7 +33,12 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-5 left-box"><lable>मुळगाव: @Model.NativePlace</lable></div>
-                                <div class="col-xs-7 left-box" style="float:right"><a href="@Url.ActionLink("ViewMemberProfile","MemberDashboard",new{MemberId = Model.MemberId })" class="view-btn">View</a></div>
+                               
+                            </div>
+                             <div class="row">
+                                <div class="col-xs-10"><br />
+                                    <a href="@Url.ActionLink("ViewMemberProfile","MemberDashboard",new{MemberId = Model.MemberId })" class="view-btn">View</a>
+                                </div>
                             </div>
                         </div>
                     </div>
