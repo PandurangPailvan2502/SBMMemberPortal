@@ -45,7 +45,7 @@ namespace SBMMember.Web.Controllers
 
                 var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-                return RedirectToAction("AdmnHome", "AdminDashboard");
+                return RedirectToAction("AdminHome", "AdminDashboard");
             }
             else
             {
@@ -58,7 +58,7 @@ namespace SBMMember.Web.Controllers
         public IActionResult Logout()
         {
             var login = HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login");
+            return RedirectToAction("AdminLogin");
         }
     }
 }

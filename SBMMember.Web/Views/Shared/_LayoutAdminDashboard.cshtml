@@ -69,8 +69,8 @@
                         <h4>(पिंपरी चिंचवड, पुणे)</h4>
                     </div>
                     <div class="col-xs-3 toolbar">
-                        <label>Welcome Rajesh</label><br />
-                        <i class="ti-power-off"></i> <a asp-action="Login" asp-controller="Login" class="sp">Logout</a>
+                        <label>Welcome @User.Identity.Name</label><br />
+                        <i class="ti-power-off"></i> <a asp-action="Logout" asp-controller="AdminLogin" class="sp">Logout</a>
                     </div>
 
                 </div>
