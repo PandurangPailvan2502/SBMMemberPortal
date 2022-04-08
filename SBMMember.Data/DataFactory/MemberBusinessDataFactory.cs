@@ -48,7 +48,47 @@ namespace SBMMember.Data.DataFactory
 
             return responseDTO;
         }
+        public override ResponseDTO UpdateDetails(Member_BusinessDetails member_Business)
+        {
+            ResponseDTO responseDTO = new ResponseDTO();
+            try
+            {
+                var business = dBContext.Member_BusinessDetails.Where(x => x.BusinessId == member_Business.BusinessId && x.Status == "Active").FirstOrDefault();
+                business.Address = member_Business.Address;
+                business.BusinessIndustry = member_Business.BusinessIndustry;
+                business.BusinessTitle = member_Business.BusinessTitle;
+                business.CompanyContact = member_Business.CompanyContact;
+                business.CompanyEmail = member_Business.CompanyEmail;
+                business.CompanyLocation = member_Business.CompanyLocation;
+                business.OwnerName = member_Business.OwnerName;
+                business.ProductsServices = member_Business.ProductsServices;
+                business.Qualification = member_Business.Qualification;
+               
+                int affectedRows = 0;              
+                
+                affectedRows = dBContext.SaveChanges();
+                if (affectedRows > 0)
+                {
+                    responseDTO = new ResponseDTO()
+                    {
+                        Result = "Success",
+                        Message = "Member buisness details saved successfully."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
 
+                Logger.LogError($"Error occured while adding member business details. Exception:{ex.Message}");
+                responseDTO = new ResponseDTO()
+                {
+                    Result = "Failed",
+                    Message = "Member business details save operation failed."
+                };
+            }
+
+            return responseDTO;
+        }
         public override Member_BusinessDetails GetDetailsByMemberId(int MemberId)
         {
             Member_BusinessDetails member_Business = new Member_BusinessDetails();
@@ -67,41 +107,63 @@ namespace SBMMember.Data.DataFactory
 
             return member_Business;
         }
-        public List<Member_BusinessDetails> GetAllBusinessDetails()
+        public Member_BusinessDetails GetDetailsById(int businessId)
         {
-            return dBContext.Member_BusinessDetails.Where(x=>x.Status=="Active").ToList();
+            Member_BusinessDetails member_Business = new Member_BusinessDetails();
+            try
+            {
+                member_Business = dBContext.Member_BusinessDetails.Where(x => x.BusinessId == businessId).FirstOrDefault();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                Logger.LogError($"Error occured while Get member business details by memberId. Exception:{ex.Message}");
+
+            }
+
+            return member_Business;
         }
-        public override ResponseDTO UpdateDetails(Member_BusinessDetails member_BusinessDetails)
+        public ResponseDTO DeleteDetailsById(int businessId)
         {
             ResponseDTO responseDTO = new ResponseDTO();
             try
             {
-                Member_BusinessDetails member_Business = dBContext.Member_BusinessDetails.Where(x => x.MemberId == member_BusinessDetails.MemberId).First();
-                member_Business = member_BusinessDetails;
+                var business = dBContext.Member_BusinessDetails.Where(x => x.BusinessId ==businessId && x.Status == "Active").FirstOrDefault();
+                business.Status ="InActive";
+               
+
                 int affectedRows = 0;
+
                 affectedRows = dBContext.SaveChanges();
                 if (affectedRows > 0)
                 {
                     responseDTO = new ResponseDTO()
                     {
                         Result = "Success",
-                        Message = "Member buisness details updated successfully."
+                        Message = "Member buisness details deleted successfully."
                     };
                 }
             }
             catch (Exception ex)
             {
 
-                Logger.LogError($"Error occured while updating member business details. Exception:{ex.Message}");
+                Logger.LogError($"Error occured while deleting member business details. Exception:{ex.Message}");
                 responseDTO = new ResponseDTO()
                 {
                     Result = "Failed",
-                    Message = "Member business details update operation failed."
+                    Message = "Member business details delete operation failed."
                 };
             }
 
             return responseDTO;
         }
+        public List<Member_BusinessDetails> GetAllBusinessDetails()
+        {
+            return dBContext.Member_BusinessDetails.Where(x=>x.Status=="Active").ToList();
+        }
+       
     }
 
     public interface IMemberBusinessDataFactory
@@ -110,5 +172,7 @@ namespace SBMMember.Data.DataFactory
         Member_BusinessDetails GetDetailsByMemberId(int MemberId);
         ResponseDTO UpdateDetails(Member_BusinessDetails member_BusinessDetails);
         List<Member_BusinessDetails> GetAllBusinessDetails();
+        Member_BusinessDetails GetDetailsById(int businessId);
+       ResponseDTO DeleteDetailsById(int businessId);
     }
 }

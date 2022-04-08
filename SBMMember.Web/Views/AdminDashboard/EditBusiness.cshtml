@@ -1,23 +1,10 @@
 ﻿@model MemberBusinessViewModel
 @{
-    ViewData["Title"] = "AddBusiness";
+    ViewData["Title"] = "EditBusiness";
     Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
 }
 
-<script>
-    $(document).ready(function () {
-        $("#BusinessForm").hide();
-        $('#tblJobPost').DataTable();
-        $("#btnAddNew").click(function () {
-            $("#BusinessForm").show();
-            $(this).hide();
-        });
-        $("#btnCancel").click(function () {
-            $("#BusinessForm").hide();
-            $("#btnAddNew").show();
-        });
-    });
-</script>
+
 
 <section class="blog_area single-post-area section_padding">
     <div class="container">
@@ -25,7 +12,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="scroll">
-                    <p>Member Business Details</p>
+                    <p>Update Business Details</p>
                 </div>
                 <div>
                 </div>
@@ -37,9 +24,10 @@
         <div class="section-top-border">
             <div class="row" id="BusinessForm">
                 <div class="col-lg-12 col-md-12">
-                    <form asp-action="AddBusiness" asp-controller="AdminDashboard" method="post">
+                    <form asp-action="EditBusiness" asp-controller="AdminDashboard" method="post">
                         <div class="row">
                             <div class="col-lg-12">
+                                <input type="hidden" asp-for="BusinessId" />
                                 <input type="text" name="BusinessTitle" asp-for="BusinessTitle" placeholder="Business Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Title'"
                                        required class="single-input">
                             </div>
@@ -88,7 +76,7 @@
                             </div>
                             <div class="col-lg-4" style="margin-top:10px">
                                 <input type="submit" class="genric-btn primary-border" value="Submit"/>
-                                <input type="button" id="btnCancel" class="genric-btn primary-border" value="Cancel"/>
+                                <a asp-action="AddBusiness" asp-controller="AdminDashboard" id="btnCancel" class="genric-btn primary-border" value="Cancel">Cancel</a>
                             </div>
                             <div class="col-lg-4">
 
@@ -101,50 +89,6 @@
     </div>
 
      
-    <div class="container">
-        <div class="col-lg-12">
-            <button value="Add New" id="btnAddNew" class="btn btn-danger">Add New</button>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-lg-12">
-                <table id="tblJobPost" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Business Title</th>
-                            <th>Industry</th>
-                            <th>Location</th>
-                            <th>Address</th>
-                            <th>Product/Services</th>
-                            <th>Conatact</th>
-                            <th>Operations</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.MemberBusinesses != null)
-                        {
-                            foreach (var memberBusiness in Model.MemberBusinesses)
-                            {
-                        <tr>
-                            <td>@memberBusiness.BusinessTitle</td>
-                            <td>@memberBusiness.BusinessIndustry</td>
-                            <td>@memberBusiness.CompanyLocation</td>
-                            <td>@memberBusiness.Address</td>
-                            <td>@memberBusiness.ProductsServices</td>
-                            <td>@memberBusiness.CompanyContact</td>
-                            <td>
-                                <a title="Edit" href="@Url.Action("EditBusiness","AdminDashboard",new { id = memberBusiness.BusinessId})"><i class="ti-pencil"></i></a>
-                                <a title="Delete" href="@Url.Action("DeleteBusiness","AdminDashboard",new { id = memberBusiness.BusinessId})" class="delete-row" onclick="return confirm('Are sure wants to delete?');"><i class="ti-close"></i></a>
-                            </td>
-                        </tr>
-                            }
-
-                        }
-                    </tbody>
-
-                </table>
-            </div>
-        </div>
-    </div>
+    
 
 </section>

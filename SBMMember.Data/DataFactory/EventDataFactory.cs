@@ -23,6 +23,20 @@ namespace SBMMember.Data.DataFactory
             var data = eventDBContext.SaveChanges();
             return eventInfo.Entity;
         }
+        public void UpdateEventInfo(EventInfo eventInfo )
+        {
+            var eveInfo = eventDBContext.EventInfos.Where(x => x.EventId == eventInfo.EventId && x.Status=="Active").FirstOrDefault();
+            eveInfo.EventName = eventInfo.EventName;
+            eveInfo.EventDescription = eventInfo.EventDescription;
+            eveInfo.EventYear = eventInfo.EventYear;
+            eventDBContext.SaveChanges();
+        }
+        public void DeleteEventInfo(int eventId)
+        {
+            var eventInfo = eventDBContext.EventInfos.Where(x => x.EventId == eventId && x.Status == "Active").FirstOrDefault();
+            eventInfo.Status = "InActive";
+            eventDBContext.SaveChanges();
+        }
 
         public ResponseDTO AddEventGallery(EventGallery eventGallery)
         {
@@ -81,5 +95,7 @@ namespace SBMMember.Data.DataFactory
         List<EventInfo> GetAllEventList();
         EventInfo GetEventInfoByeventId(int eventId);
         List<EventGallery> GetGalleryphotosByeventId(int eventId);
+        void UpdateEventInfo(EventInfo eventInfo);
+        void DeleteEventInfo(int eventId);
     }
 }

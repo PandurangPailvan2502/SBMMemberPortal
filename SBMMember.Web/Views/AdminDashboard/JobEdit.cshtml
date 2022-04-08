@@ -4,22 +4,6 @@
     Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
 }
 
-<script>
-    $(document).ready(function () {
-
-       
-        $("#jobForm").hide();
-        $('#tblJobPost').DataTable();
-        $("#btnAddNew").click(function () {
-            $("#jobForm").show();
-            $(this).hide();
-        });
-        $("#btnCancel").click(function () {
-            $("#jobForm").hide();
-            $("#btnAddNew").show();
-        });
-    });
-</script>
 <!--================Blog Area =================-->
 
 <section class="blog_area single-post-area section_padding">
@@ -27,7 +11,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="scroll">
-                    <p>Job Posting Details</p>
+                    <p>Update Job Posting Details</p>
                 </div>
                 <div>
                 </div>
@@ -40,8 +24,9 @@
                 <div class="section-top-border">
                     <div class="row" id="jobForm">
                         <div class="col-lg-10 col-md-10">
-                            <form asp-action="JobPost" asp-controller="AdminDashboard" method="post">
+                            <form asp-action="JobEdit" asp-controller="AdminDashboard" method="post">
                                 <div class="input-group-icon mt-10">
+                                    <input type="hidden" asp-for="Id" />
                                     <input type="text" name="JobTitle" asp-for="JobTitle" placeholder="Job Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Job Title'"
                                            required class="single-input">
                                 </div>
@@ -107,7 +92,7 @@
 
                                 <div class="mt-10 center">
                                     <input type="submit" class="genric-btn primary-border" />
-                                    <input type="button" id="btnCancel" class="genric-btn primary-border" value="Cancel" />
+                                    <a asp-action="JobPost" asp-controller="AdminDashboard" type="button" id="btnCancel" class="genric-btn primary-border" value="Cancel">Cancel</a>
                                 </div>
                             </form>
                         </div>
@@ -128,50 +113,6 @@
     </div>
 
     @* Psted jobs list *@
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <button value="Add New" id="btnAddNew" class="btn btn-danger">Add New</button>
-            </div>
-            <br />
-            <div class="col-lg-12">
-                <table id="tblJobPost" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Job Title</th>
-                            <th>Job Desc</th>
-                            <th>PositionFor</th>
-                            <th>Company</th>
-                            <th>Qualification</th>
-                            <th>Salary</th>
-                            <th>Operations</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.JobPostings != null)
-                        {
-                            foreach (var job in Model.JobPostings)
-                            {
-                                <tr>
-                                    <td>@job.JobTitle</td>
-                                    <td>@job.JobDescription</td>
-                                    <td>@job.PositionFor</td>
-                                    <td>@job.CompanyName</td>
-                                    <td>@job.Qualification</td>
-                                    <td>@job.SalaryBand</td>
-                                    <td>
-                                        <a title="Edit" href="@Url.Action("JobEdit","AdminDashboard",new { id = job.Id})"><i class="ti-pencil"></i></a>
-                                        <a title="Delete" href="@Url.Action("DeleteJobPosting","AdminDashboard",new { id = job.Id})" class="delete-row" onclick="return confirm('Are sure wants to delete?');"><i class="ti-close"></i></a>
-                                    </td>
-                                </tr>
-                            }
-
-                        }
-                    </tbody>
-
-                </table>
-            </div>
-        </div>
-    </div>
+    
 </section>
 
