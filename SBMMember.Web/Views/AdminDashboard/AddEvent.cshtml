@@ -49,10 +49,6 @@
                                     </div>
                                 </div>
 
-                                <div class="mt-10">
-                                    <textarea class="single-textarea" name="EventDescription" asp-for="EventDescription" placeholder="EventDescription" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Description'"
-                                              required></textarea>
-                                </div>
 
                                 <div class="input-group-icon mt-10">
                                     <div class="form-select" id="default-select" ">
@@ -67,7 +63,10 @@
                                         </select>
                                     </div>
                                 </div>
-
+                                <div class="mt-10">
+                                    <textarea class="single-textarea" name="EventDescription" asp-for="EventDescription" placeholder="EventDescription" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Description'"
+                                              required></textarea>
+                                </div>
                                 <div class="mt-10">
                                     <p>upload event images</p>
                                     <input type="file" class="single-input" asp-for="FormFiles" multiple="multiple" placeholder="Event Description" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Descriptionn'" />
@@ -99,12 +98,13 @@
             </div>
             <br />
             <div class="col-lg-12">
+                
                 <table id="tblEvents" class="display" style="width:100%">
                     <thead>
                         <tr>
                             <th>Event Title</th>
+                            <th>Event Description</th>
                             <th>Event Year</th>
-                            <th>File</th>
                             <th>Operations</th>
                         </tr>
                     </thead>
@@ -119,8 +119,8 @@
                             <td>@eventAd.EventYear</td>
                            
                             <td>
-                                <a href="@Url.Action("Edit","Item",new { id = eventAd.EventId})"><i class="ti-pencil"></i></a>
-                                <a href="@Url.Action("Delete","Item",new { id = eventAd.EventId})" class="delete-row" onclick="return confirm('Are sure wants to delete?');"><i class="ti-close"></i></a>
+                                <a href="@Url.Action("EditEvent","AdminDashboard",new { id = eventAd.EventId})"><i class="ti-pencil"></i></a>
+                                <a title="Delete Event" href="@Url.Action("DeleteEvent","AdminDashboard",new { id = eventAd.EventId})" class="delete-row" onclick="return confirm('Are sure wants to delete?');"><i class="ti-close"></i></a>
                             </td>
                             
                         </tr>

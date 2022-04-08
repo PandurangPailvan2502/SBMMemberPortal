@@ -45,7 +45,69 @@ namespace SBMMember.Data.DataFactory
             }
             return responseDTO;
         }
+        public ResponseDTO UpdateEventAds(EventAds eventAds)
+        {
+            ResponseDTO responseDTO = new ResponseDTO();
+            try
+            {
 
+                var eventAdInfo = eventDBContext.EventAds.Where(x => x.Id == eventAds.Id && x.Status == "Active").FirstOrDefault();
+                eventAdInfo.EventTitle = eventAds.EventTitle;
+                eventAdInfo.EventYear = eventAds.EventYear;
+                eventAdInfo.FilePath = eventAds.FilePath;
+                int affectedrows = eventDBContext.SaveChanges();
+                if (affectedrows > 0)
+                    return responseDTO = new ResponseDTO()
+                    {
+                        Result = "Success",
+                        Message = "Event Ads Details updated Successfully."
+                    };
+            }
+            catch (Exception ex)
+            {
+
+                Logger.LogError($"Error occured while updating Event Ads details:{ex.Message}");
+                return responseDTO = new ResponseDTO()
+                {
+                    Result = "Failed",
+                    Message = $"Error occured while updating Event Ads details:{ex.Message}"
+                };
+            }
+            return responseDTO;
+        }
+        public EventAds GetEventAdById(int Id)
+        {
+            return eventDBContext.EventAds.Where(x => x.Id == Id && x.Status == "Active").FirstOrDefault();
+        }
+        public ResponseDTO DeleteEventAds(int Id)
+        {
+            ResponseDTO responseDTO = new ResponseDTO();
+            try
+            {
+
+                var eventAdInfo = eventDBContext.EventAds.Where(x => x.Id == Id && x.Status == "Active").FirstOrDefault();
+                eventAdInfo.Status ="InActive";
+               
+                int affectedrows = eventDBContext.SaveChanges();
+                if (affectedrows > 0)
+                    return responseDTO = new ResponseDTO()
+                    {
+                        Result = "Success",
+                        Message = "Event Ads Details deleted Successfully."
+                    };
+            }
+            catch (Exception ex)
+            {
+
+                Logger.LogError($"Error occured while deleting Event Ads details:{ex.Message}");
+                return responseDTO = new ResponseDTO()
+                {
+                    Result = "Failed",
+                    Message = $"Error occured while deleting Event Ads details:{ex.Message}"
+                };
+            }
+            return responseDTO;
+        }
         public List<EventAds> GetEventAdsByYear(string year)
         {
             return eventDBContext.EventAds.Where(x => x.EventYear == year).ToList();
@@ -61,5 +123,8 @@ namespace SBMMember.Data.DataFactory
         ResponseDTO AddEventAds(EventAds eventAds);
         List<EventAds> GetEventAdsByYear(string year);
         List<EventAds> GetAllEventAds();
+        ResponseDTO UpdateEventAds(EventAds eventAds);
+        EventAds GetEventAdById(int Id);
+        ResponseDTO DeleteEventAds(int Id);
     }
 }

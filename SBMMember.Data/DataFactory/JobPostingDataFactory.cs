@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using SBMMember.Models;
 namespace SBMMember.Data.DataFactory
 {
-    public class JobPostingDataFactory: IJobPostingDataFactory
+    public class JobPostingDataFactory : IJobPostingDataFactory
     {
         private readonly SBMMemberDBContext memberDBContext;
         private readonly ILogger<JobPostingDataFactory> Logger;
-        public JobPostingDataFactory( SBMMemberDBContext dBContext, ILogger<JobPostingDataFactory> logger)
+        public JobPostingDataFactory(SBMMemberDBContext dBContext, ILogger<JobPostingDataFactory> logger)
         {
             memberDBContext = dBContext;
             Logger = logger;
@@ -19,7 +19,7 @@ namespace SBMMember.Data.DataFactory
 
         public List<JobPostings> GetJobPostings()
         {
-            return memberDBContext.JobPostings.ToList();
+            return memberDBContext.JobPostings.Where(x => x.Status == "Active").ToList();
         }
 
         public ResponseDTO AddJobDetails(JobPostings jobPostings)
@@ -28,6 +28,7 @@ namespace SBMMember.Data.DataFactory
             try
             {
                 jobPostings.PostedOn = DateTime.Now;
+                jobPostings.Status = "Active";
                 var memberInfo = memberDBContext.JobPostings.Add(jobPostings);
                 int affectedrows = memberDBContext.SaveChanges();
                 if (affectedrows > 0)
@@ -59,11 +60,11 @@ namespace SBMMember.Data.DataFactory
                 jobPost.JobDescription = jobPostings.JobDescription;
                 jobPost.JobLocation = jobPostings.JobLocation;
                 jobPost.PositionFor = jobPostings.PositionFor;
-                jobPost.PostedOn = jobPostings.PostedOn;
+                jobPost.PostedOn = DateTime.Now;
                 jobPost.Qualification = jobPostings.Qualification;
                 jobPost.SalaryBand = jobPostings.SalaryBand;
-                jobPost.Status = jobPostings.Status;
-              
+                jobPost.Status ="Active";
+                
                 int affectedrows = memberDBContext.SaveChanges();
                 if (affectedrows > 0)
                     return responseDTO = new ResponseDTO()
@@ -84,14 +85,14 @@ namespace SBMMember.Data.DataFactory
             }
             return responseDTO;
         }
-        public ResponseDTO DeleteJobDetails(JobPostings jobPostings)
+        public ResponseDTO DeleteJobDetails(int jobId)
         {
             ResponseDTO responseDTO = new ResponseDTO();
             try
             {
-                var jobPost = memberDBContext.JobPostings.Where(x => x.Id == jobPostings.Id && x.Status == "Active").FirstOrDefault();
-               
-                jobPost.Status ="InActive";
+                var jobPost = memberDBContext.JobPostings.Where(x => x.Id == jobId && x.Status == "Active").FirstOrDefault();
+
+                jobPost.Status = "InActive";
 
                 int affectedrows = memberDBContext.SaveChanges();
                 if (affectedrows > 0)
@@ -113,14 +114,20 @@ namespace SBMMember.Data.DataFactory
             }
             return responseDTO;
         }
+
+        public JobPostings GetJobDetails(int jobId)
+        {
+            var jobPost = memberDBContext.JobPostings.Where(x => x.Id == jobId && x.Status == "Active").FirstOrDefault();
+            return jobPost;
+        }
     }
     public interface IJobPostingDataFactory
     {
         List<JobPostings> GetJobPostings();
         ResponseDTO AddJobDetails(JobPostings jobPostings);
         ResponseDTO UpdateJobDetails(JobPostings jobPostings);
-        ResponseDTO DeleteJobDetails(JobPostings jobPostings);
-
+        ResponseDTO DeleteJobDetails(int JobId);
+        JobPostings GetJobDetails(int jobId);
 
     }
 }

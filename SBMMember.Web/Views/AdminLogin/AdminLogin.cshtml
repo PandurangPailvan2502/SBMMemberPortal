@@ -1,0 +1,198 @@
+﻿@model AdminLoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Samata Bhratru Mandal</title>
+    <link rel="icon" href="~/img/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="~/css/animate.css">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <!-- themify CSS -->
+    <link rel="stylesheet" href="~/css/themify-icons.css">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="~/css/flaticon.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="~/css/slick.css">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="~/css/style.css">
+    <script>
+        $(document).ready(function () {
+
+            $('#MobileNumber').keypress(function (e) {
+
+                var charCode = (e.which) ? e.which : event.keyCode
+
+                if (String.fromCharCode(charCode).match(/[^0-9]/g))
+
+                    return false;
+
+            });
+
+
+        });//document close
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!------------icon dashbaord row-1--------------->
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-xs-4 logo-box">
+                            <div class="text-left">
+                                <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#exampleModal">
+                                    <img src="~/img/threeline.jpg" class="menu-icon">
+                                </button>
+                                <!--img src="sbm logo-1.png" class="logo"-->
+                            </div>
+
+                        </div>
+                        <div class="col-xs-6 title-box">
+                            <h2>समता भ्रातृ मंडळ</h2>
+                            <h4>(पिंपरी चिंचवड, पुणे)</h4>
+                        </div>
+                        <div class="col-xs-2 toolbar">
+                            <h4 class="ic"><i class="ti-lock"></i> <span class="sp">Login</span></h4>
+                        </div>
+                    </div>
+                </div>
+                <!------------End of icon dashbaord row-1--------------->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="scroll">
+                    <p>Welcome to SBM Member portal Admin Panel</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--================login Area =================-->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4 login-text">
+                <p>Access with your registered mobile</p>
+                <img src="~/img/login-icon.png" width="110px" height="110px">
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="login-type">
+                    <div class="form-group">
+                        <div class="container">
+                            <form asp-action="AdminLogin" asp-controller="AdminLogin" method="post" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12">
+                                        <span style="margin-left:20px;color:darkred">@ViewBag.ErrorOnLogin</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 mt-sm-50">
+                                        <input type="text" name="Mobile" asp-for="Mobile"  maxlength="10" placeholder="Mobile No." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mobile No.'"
+                                               required class="single-input-primary">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 mt-sm-50">
+                                        <input type="password" name="Password" asp-for="Password" placeholder="6 Digit Code" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter password'"
+                                               required class="single-input-primary">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4">
+                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" class="check">
+                                        <label for="vehicle1"> Keep me Logged In</label>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4">
+                                        <input class="btn btn_12" type="submit" value="Login" />
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12">
+
+                                        <p class="samat"><a href="https://samatabhratrumandal.com" target="_blank">www.samatabhratrumandal.com</a></p>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="navigation-top">
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container demo">
+        <div class="modal left fade" id="exampleModal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="nav flex-sm-column flex-row">
+                            <a class="nav-item nav-link active" asp-action="MemberHome" asp-controller="Home"><i class="ti-home"></i> Home</a>
+                            <a asp-action="Index" asp-controller="OTPVerify" class="nav-item nav-link"><i class="ti-user"></i> Become member</a>
+                            <a asp-action="ContactUs" asp-controller="Home" class="nav-item nav-link"><i class="ti-email"></i> Contact Us</a>
+                            <a asp-action="AboutUs" asp-controller="Home" class="nav-item nav-link"><i class="ti-info"></i> About Us</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jquery plugins here-->
+    <!-- jquery -->
+    <script src="~/js/jquery-1.12.1.min.js"></script>
+    <!-- popper js -->
+    <script src="~/js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <!-- easing js -->
+    <script src="~/js/jquery.magnific-popup.js"></script>
+    <!-- swiper js -->
+    <script src="~/js/swiper.min.js"></script>
+    <!-- swiper js -->
+    <script src="~/js/masonry.pkgd.js"></script>
+    <!-- particles js -->
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.nice-select.min.js"></script>
+    <!-- swiper js -->
+    <script src="~/js/slick.min.js"></script>
+    <script src="~/js/jquery.counterup.min.js"></script>
+    <script src="~/js/waypoints.min.js"></script>
+    <!-- custom js -->
+    <script src="~/js/custom.js"></script>
+</body>
+
+</html>

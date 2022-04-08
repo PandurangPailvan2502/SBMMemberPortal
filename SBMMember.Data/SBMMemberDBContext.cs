@@ -23,7 +23,8 @@ namespace SBMMember.Data
         public DbSet<EventInfo> EventInfos { get; set; }
         public DbSet<EventGallery> EventGalleries { get; set; }
         public DbSet<EventAds> EventAds { get; set; }
-
+        public DbSet<AdminUsers> AdminUsers { get; set; }
+        public DbSet<MarqueeText> MarqueeTexts { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Members>().ToTable("Members");
@@ -38,6 +39,8 @@ namespace SBMMember.Data
             modelBuilder.Entity<EventInfo>().ToTable("EventInfo");
             modelBuilder.Entity<EventGallery>().ToTable("EventGallery");
             modelBuilder.Entity<EventAds>().ToTable("EventAds");
+            modelBuilder.Entity<AdminUsers>().ToTable("AdminUsers");
+            modelBuilder.Entity<MarqueeText>().ToTable("MarqueeText");
         }
     }
 }
