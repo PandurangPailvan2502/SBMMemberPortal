@@ -20,60 +20,169 @@
 }
 
 @media only screen and (min-width: 1201px) {
-    .logo {
-        width: 35%;
-        padding: 5px
-    }
-
+    
     .splashscreen {
         height: 975px;
         margin: 0px
     }
+    .orgname {
+        font-size: 45px;
+        font-weight: bold;
+        line-height: 26px;
+        color: #ffd800;
+        margin: 10px 0px 10px 0px;
+        text-shadow: 1px 7px 4px #E34D19;
+    }
+    .pune {
+        font-size: 25px;
+        font-weight: bold;
+        line-height: 22px;
+        color: #000000;
+        margin: 10px 0px 10px 0px;
+        text-shadow: 1px 7px 4px #E34D19;
+    }
+    .addr {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 22px;
+        color: #000000;
+        margin: 10px 0px 10px 0px;
+        text-shadow: 1px 7px 4px #E34D19;
+    }
+    .spalsh-logo {
+        width: 100%;
+    }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-    .logo {
-        width: 46%;
-        padding: 5px
+    .spalsh-logo {
+        width: 70%;
     }
+    .orgname {
+        font-size: 40px;
+        font-weight: bold;
+        line-height: 26px;
+        color: #ffd800;
+        margin: 10px 0px 10px 0px;
+        text-shadow: 1px 7px 4px #E34D19;
+    }
+    .pune {
+        font-size: 25px;
+        font-weight: bold;
+        line-height: 22px;
+        color: #000000;
+        margin: 10px 0px 10px 0px;
+        text-shadow: 1px 7px 4px #E34D19;
+    }
+    .addr {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 22px;
+        color: #000000;
+        margin: 10px 0px 10px 0px;
+        text-shadow: 1px 7px 4px #E34D19;
+    }
+    .splashscreen {
+        height: 875px;
+        margin: 0px
+    }
+}
 
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .spalsh-logo {
+        width: 60%;
+    }
+    .orgname {
+        font-size: 45px;
+        font-weight: bold;
+        line-height: 26px;
+        color: #ffd800;
+        margin: 10px 0px 10px 0px;
+        text-shadow: 1px 7px 4px #E34D19;
+    }
+    .pune {
+        font-size: 25px;
+        font-weight: bold;
+        line-height: 22px;
+        color: #000000;
+        margin: 10px 0px 10px 0px;
+        text-shadow: 1px 7px 4px #E34D19;
+    }
+    .addr {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 22px;
+        color: #000000;
+        margin: 10px 0px 10px 0px;
+        text-shadow: 1px 7px 4px #E34D19;
+    }
     .splashscreen {
         height: 775px;
         margin: 0px
     }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    .logo {
-        width: 46%;
-        padding: 0px
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .spalsh-logo {
+        width: 60%;
     }
-
+    .orgname {
+        font-size: 45px;
+        font-weight: bold;
+        line-height: 26px;
+        color: #ffd800;
+        margin: 10px 0px 10px 0px;
+        text-shadow: 1px 7px 4px #E34D19;
+    }
+    .addr {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 22px;
+        color: #000000;
+        margin: 10px 0px 10px 0px;
+        text-shadow: 1px 7px 4px #E34D19;
+    }
+    .pune {
+        font-size: 25px;
+        font-weight: bold;
+        line-height: 22px;
+        color: #000000;
+        margin: 10px 0px 10px 0px;
+        text-shadow: 1px 7px 4px #E34D19;
+    }
     .splashscreen {
         height: 675px;
         margin: 0px
     }
 }
 
-@media only screen and (min-width: 576px) and (max-width: 767px) {
-    .logo {
-        width: 70%;
-        padding: 5px
-    }
-
-    .splashscreen {
-        height: 575px;
-        margin: 0px
-    }
-}
-
 @media only screen and (max-width: 576px) {
-    .logo {
-        min-width: 50%;
-        max-width: 70%;
-        padding: 5px
+    .spalsh-logo {
+        width: 55%;
     }
-
+    .orgname {
+        font-size: 45px;
+        font-weight: bold;
+        line-height:26px;
+        color:#ffd800;margin:10px 0px 10px 0px; 
+        text-shadow: 1px 7px 4px #E34D19;
+    }
+    .pune {
+        font-size:25px;
+        font-weight: bold;
+        line-height:22px;
+        color: #000000;
+        margin: 10px 0px 10px 0px;
+        text-shadow: 1px 7px 4px #E34D19;
+    }
+    .addr {
+        font-size: 18px;
+        font-weight:500;
+        line-height: 22px;
+        color: #000000;
+        margin: 10px 0px 10px 0px;
+        text-shadow: 1px 7px 4px #E34D19;
+    }
     .splashscreen {
         height: 630px;
         margin: 0px
