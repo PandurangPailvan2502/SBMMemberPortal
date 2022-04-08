@@ -13,6 +13,66 @@
   border-radius: 50%;
 }
 /*Business directory 1end*/
+/*slider*/
+#slider {
+    position: relative;
+    width: 100%;
+    height: 265px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+    #slider ul {
+        position: relative;
+        list-style: none;
+        height: 100%;
+        width: 10000%;
+        padding: 0;
+        margin: 0;
+        transition: all 750ms ease;
+        left: 0;
+    }
+
+        #slider ul li {
+            position: relative;
+            height: 100%;
+            float: left;
+        }
+
+            #slider ul li img {
+                width: 500px;
+                height: 265px;
+            }
+
+    #slider #prev, #slider #next {
+        width: 50px;
+        line-height: 50px;
+        border-radius: 50%;
+        font-size: 2rem;
+        text-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: all 150ms ease;
+    }
+
+        #slider #prev:hover, #slider #next:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+            text-shadow: 0;
+        }
+
+    #slider #prev {
+        left: 10px;
+    }
+
+    #slider #next {
+        right: 10px;
+    }
+
+/*end of slider*/
 /* line 6, E:/172 Etrain Education/172_Etrain_Education_html/sass/_extends.scss */
 .member_counter {
   background-image: -moz-linear-gradient(0deg, #ee390f 0%, #f9b700 100%);
@@ -175,6 +235,8 @@
     -webkit-box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.95);
     -moz-box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.95);
 }
+
+
 .modal.left .modal-dialog {
     position: fixed;
     right: 0;
@@ -207,6 +269,8 @@
 .modal.right.fade.show .modal-dialog {
     right: 0;
 }
+
+
 /* ----- MODAL STYLE ----- */
 .modal-content {
     border-radius: 0;
