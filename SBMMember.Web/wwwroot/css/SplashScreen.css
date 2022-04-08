@@ -139,7 +139,7 @@
 }
 
 .splashscreen {
-    background: url(/img/screen.png) no-repeat;
+    background-image: url('@Url.Content("~/img/screen.png")');
     position: relative;
     padding-top: 30%;
     align-items: center;
