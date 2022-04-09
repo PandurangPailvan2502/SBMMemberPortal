@@ -38,6 +38,10 @@ namespace SBMMember.Web.Mapper
 
             CreateMap<EventAdsViewModel, EventAds>();
             CreateMap<EventAds, EventAdsViewModel>();
+
+            CreateMap<AdminUsersViewModel, AdminUsers>();
+            CreateMap<AdminUsers, AdminUsersViewModel>();
+
         }
     }
 }

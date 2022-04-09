@@ -19,10 +19,21 @@ namespace SBMMember.Data.DataFactory
         {
             return adminDBContext.AdminUsers.Where(x => x.MobileNo == mobile && x.Status == "Active").FirstOrDefault();
         }
+
+        public List<AdminUsers> GetAdminUsers()
+        {
+            return adminDBContext.AdminUsers.ToList();
+        }
+        public AdminUsers GetUserById(int Id)
+        {
+            return adminDBContext.AdminUsers.Where(x => x.Id == Id && x.Status == "Active").FirstOrDefault();
+        }
     }
 
     public interface IAdminUsersDataFactory
     {
         AdminUsers GetAdminUserByMobile(string mobile);
+        List<AdminUsers> GetAdminUsers();
+        AdminUsers GetUserById(int Id);
     }
 }

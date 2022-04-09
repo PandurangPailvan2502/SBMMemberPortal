@@ -11,8 +11,11 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using SBMMember.Web.Helper;
+using Microsoft.AspNetCore.Authorization;
+
 namespace SBMMember.Web.Controllers
 {
+    //[Authorize]
     public class AdminDashboardController : Controller
     {
         private readonly IMemberBusinessDataFactory businessDataFactory;
