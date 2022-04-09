@@ -1,0 +1,112 @@
+﻿@model MarqueeViewModel
+@{
+    ViewData["Title"] = "ManaageMarquees";
+    Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#BusinessForm").hide();
+        $('#tblJobPost').DataTable();
+        $("#btnAddNew").click(function () {
+            $("#BusinessForm").show();
+            $(this).hide();
+        });
+        $("#btnCancel").click(function () {
+            $("#BusinessForm").hide();
+            $("#btnAddNew").show();
+        });
+    });
+</script>
+
+<section class="blog_area single-post-area section_padding">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="scroll">
+                    <p>Manage Marquee Texts</p>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="section-top-border">
+            <div class="row" id="BusinessForm">
+                <div class="col-lg-12 col-md-12">
+                    <form asp-action="AddBusiness" asp-controller="AdminDashboard" method="post">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <input type="text" name="Marquee" asp-for="Marquee" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Marquee'"
+                                       required class="single-input">
+                            </div>
+                        </div>
+                       
+
+
+                        <div class="row">
+                            <div class="col-lg-4">
+                                @*<input type="Email" name="CompanyEmail" asp-for="CompanyEmail" placeholder="Company Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Email'"
+                                    required class="single-input">*@
+                            </div>
+                            <div class="col-lg-4" style="margin-top:10px">
+                                <input type="submit" class="genric-btn primary-border" value="Submit" />
+                                <input type="button" id="btnCancel" class="genric-btn primary-border" value="Cancel" />
+                            </div>
+                            <div class="col-lg-4">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="col-lg-12">
+            <button value="Add New" id="btnAddNew" class="btn btn-danger">Add New</button>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="tblJobPost" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            
+                            <th>Marquee Text</th>
+                            <th>Status</th>
+                            <th>Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.marquees != null)
+                        {
+                            foreach (var marquee in Model.marquees)
+                            {
+                                <tr>
+                                    <td>@marquee.Marquee</td>
+                                    <td>@marquee.Status</td>
+                                   
+
+                                    <td>
+                                        <a title="Edit" href="@Url.Action("EditMarquee","Marquee",new { id = marquee.Id})"><i class="ti-pencil"></i></a>
+                                        <a title="Delete" href="@Url.Action("DeleteMarquee","Marquee",new { id = marquee.Id})" class="delete-row" onclick="return confirm('Are sure wants to delete?');"><i class="ti-close"></i></a>
+                                    </td>
+                                </tr>
+                            }
+
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section>
+

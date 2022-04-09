@@ -68,6 +68,7 @@ namespace SBMMember.Web
             services.AddScoped<IEventDataFactory, EventDataFactory>();
             services.AddScoped<IEventAdsDataFactory, EventAdsDataFactory>();
             services.AddScoped<IAdminUsersDataFactory, AdminUsersDataFactory>();
+            services.AddScoped<IMarqueeDataFactory, MarqueeDataFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -103,12 +104,12 @@ namespace SBMMember.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                pattern: "{controller=admindashboard}/{action=adminhome}/{id?}");
+               /// pattern: "{controller=admindashboard}/{action=adminhome}/{id?}");
                 //pattern: "{controller=Home}/{action=MemberHome}/{id?}");
                  //pattern: "{controller=admindashboard}/{action=adminhome}/{id?}");
                //pattern: "{controller=Home}/{action=MemberHome}/{id?}");
 
-                //pattern: "{controller=SplashScreen}/{action=SplashScreen}/{id?}");
+                pattern: "{controller=SplashScreen}/{action=SplashScreen}/{id?}");
                 //pattern: "{controller=Payment}/{action=AcceptMemberPayment}/{id?}");
                 //pattern: "{controller=MemberDashboard}/{action=ProfileUpdate}/{id?}");
 

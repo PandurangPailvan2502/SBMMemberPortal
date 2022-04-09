@@ -61,8 +61,10 @@
                         </a>
                     </div>
                     <div class="col-xs-4 r1c1a dashboard">
-                        <img src="~/img/scrolingads.png" class="dashboard-icon">
-                        <h3 style="color:#000000">Manage Scrolling Ads</h3>
+                        <a asp-action="ManageBanners" asp-controller="Banner">
+                            <img src="~/img/scrolingads.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Manage Scrolling Ads</h3>
+                        </a>
                     </div>
                    
 
@@ -88,14 +90,16 @@
                         </a>
                     </div>
                     <div class="col-xs-4 r1c1 dashboard">
-                        <a asp-action="AddEventAds" asp-controller="AdminDashboard">
+                        <a asp-action="ManaageMarquees" asp-controller="Marquee">
                             <img src="~/img/marqueetext.png" class="dashboard-icon">
                             <h3 style="color:#000000">Manage Marquee Text</h3>
                         </a>
                     </div>
                     <div class="col-xs-4 r1c1a dashboard">
-                        <img src="~/img/exit.png" class="dashboard-icon">
-                        <h3 style="color:#000000">Exit</h3>
+                        <a asp-action="Logout" asp-controller="AdminLogin">
+                            <img src="~/img/exit.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Exit</h3>
+                        </a>
                     </div>
 
                 </div>

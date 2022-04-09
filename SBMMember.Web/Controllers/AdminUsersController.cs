@@ -7,9 +7,11 @@ using SBMMember.Web.Models;
 using SBMMember.Models;
 using AutoMapper;
 using SBMMember.Data.DataFactory;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SBMMember.Web.Controllers
 {
+    [Authorize]
     public class AdminUsersController : Controller
     {
         private readonly IMapper mapper;
