@@ -143,17 +143,20 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-body" style="margin-top:70px">
-                    <div class="nav flex-sm-column flex-row">
-                        <a class="nav-item nav-link active" asp-action="Index" asp-controller="MemberDashboard">Home</a><br />
-                        <a asp-action="ProfileUpdate" asp-controller="MemberDashboard" class="nav-item nav-link">Profile Update</a>
-                        <a asp-action="MemberDoctors" asp-controller="MemberDashboard" class="nav-item nav-link">Doctor's Search</a>
-                        <a asp-action="MemberSearchDashBoard" asp-controller="MemberDashboard" class="nav-item nav-link">Member Search</a>
-                        <a asp-action="MemberBloodGroupSearch" asp-controller="MemberDashboard" class="nav-item nav-link">Blood Group Search</a>
-                        <a asp-action="JobDirectory" asp-controller="JobDirectory" class="nav-item nav-link">Job Search</a>
-                        <a asp-action="BusinessDashboard" asp-controller="BusinessDashboard" class="nav-item nav-link">Business Directory</a>
-                        <a asp-action="MatrimonySearch" asp-controller="Matrimony" class="nav-item nav-link">Matrimony Search</a>
-                        <a asp-action="SearchEventAds" asp-controller="Events" class="nav-item nav-link">Advertisement</a>
-                        <a asp-action="EventDashboard" asp-controller="Events" class="nav-item nav-link">Our Events</a>
+                    <div class="nav flex-sm-column no-flex">
+                       <ul>
+                        <li style="list-style:none;"><a class="nav-item nav-link active" asp-action="Index" asp-controller="MemberDashboard">Home</a></li>
+                        <li style="list-style:none;"><a asp-action="ProfileUpdate" asp-controller="MemberDashboard" class="nav-item nav-link">Profile Update</a></li>
+                        <li style="list-style:none;"><a asp-action="MemberDoctors" asp-controller="MemberDashboard" class="nav-item nav-link">Doctor's Search</a></li>
+                        <li style="list-style:none;"><a asp-action="MemberSearchDashBoard" asp-controller="MemberDashboard" class="nav-item nav-link">Member Search</a></li>
+                        <li style="list-style:none;"><a asp-action="MemberBloodGroupSearch" asp-controller="MemberDashboard" class="nav-item nav-link">Blood Group Search</a></li>
+                        <li style="list-style:none;"><a asp-action="JobDirectory" asp-controller="JobDirectory" class="nav-item nav-link">Job Search</a></li>
+                        <li style="list-style:none;"><a asp-action="BusinessDashboard" asp-controller="BusinessDashboard" class="nav-item nav-link">Business Directory</a></li>
+                        <li style="list-style:none;"><a asp-action="MatrimonySearch" asp-controller="Matrimony" class="nav-item nav-link">Matrimony Search</a></li>
+                        <li style="list-style:none;"><a asp-action="SearchEventAds" asp-controller="Events" class="nav-item nav-link">Advertisement</a></li>
+                        <li style="list-style:none;"><a asp-action="EventDashboard" asp-controller="Events" class="nav-item nav-link">Our Events</a></li>
+                        <li style="list-style:none;"><a class="nav-item nav-link">Logout</a></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="modal-footer">
