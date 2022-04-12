@@ -98,6 +98,39 @@ namespace SBMMember.Web.Controllers
 
             return View(commonViewModel);
         }
+        public IActionResult ViewLoggedMemberProfile()
+        {
+            MemberFormCommonViewModel commonViewModel = new MemberFormCommonViewModel();
+
+            var memberId = User.Claims?.FirstOrDefault(x => x.Type.Equals("MemberId", StringComparison.OrdinalIgnoreCase))?.Value;
+            int MemberId = Convert.ToInt32(memberId);
+
+            Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(MemberId);
+            MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
+            commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
+
+            Member_ContactDetails member_contact = contactDetailsDataFactory.GetDetailsByMemberId(MemberId);
+            MemberContactInfoViewModel contactInfoViewModel = mapper.Map<MemberContactInfoViewModel>(member_contact);
+            commonViewModel.MemberConatctInfo = contactInfoViewModel;
+
+            Member_EducationEmploymentDetails member_education = educationEmploymentDataFactory.GetDetailsByMemberId(MemberId);
+            MemberEducationEmploymentInfoViewModel educationEmploymentInfoViewModel = mapper.Map<MemberEducationEmploymentInfoViewModel>(member_education);
+            commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
+
+            List<Member_FamilyDetails> member_Family = familyDetailsDataFactory.GetFamilyDetailsByMemberId(MemberId);
+            List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
+            foreach (Member_FamilyDetails family in member_Family)
+            {
+                memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
+            }
+            ViewBag.MemberList = memberFamilies;
+
+            Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(MemberId);
+            MemberPaymentRecieptsViewModel paymentViewModel = mapper.Map<MemberPaymentRecieptsViewModel>(member_Payments);
+            commonViewModel.MemberPaymentInfo = paymentViewModel;
+
+            return View(commonViewModel);
+        }
         [HttpPost]
         public IActionResult MemberPersonalInfo(MemberFormCommonViewModel formCommonViewModel)
         {
