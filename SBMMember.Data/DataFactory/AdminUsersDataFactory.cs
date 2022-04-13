@@ -11,8 +11,8 @@ namespace SBMMember.Data.DataFactory
    public class AdminUsersDataFactory: IAdminUsersDataFactory
     {
         private readonly SBMMemberDBContext adminDBContext;
-        private readonly ILogger Logger;
-        public AdminUsersDataFactory(SBMMemberDBContext dBContext, ILogger _Logger)
+        private readonly ILogger<AdminUsersDataFactory> Logger;
+        public AdminUsersDataFactory(SBMMemberDBContext dBContext, ILogger<AdminUsersDataFactory> _Logger)
         {
             adminDBContext = dBContext;
             Logger = _Logger;
