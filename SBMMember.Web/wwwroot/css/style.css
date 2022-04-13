@@ -144,98 +144,71 @@
         color: #ffffff;
         padding: 10px 0px 10px 0px
 }
+.edit4btn {margin-top: 25px;margin-left: 20px;margin-right: 20px;height: 40px;width: 94%;padding: 7px 7px 7px 20px;}
+.view_profile_content { width:100%; height:auto; padding:5px;}
+
 @media only screen and (min-width: 1201px) {
-    .logo {
-        min-width: 40%;
-        max-width: 43%;
-        margin-left: -127px;float:left;
-    }
-    .logo1 {
-        margin-left: -120px;
-    }
-  
+.logo {min-width: 40%;max-width: 43%;margin-left: -127px;float:left;}
+.logo1 {margin-left: -120px;}
 .title-box h2 {font-size:35px}
 .title-box h4 {font-size: 22px;}
 .ic {font-size: 35px}
 .scroll p {font-size: 20px}
 .menu-icon {width: 30%}
-    .matri-icon {
-        width: 30%;
-        margin-bottom: 10px;
-        margin-top: 10px;
-    }
+.matri-icon {width: 30%;margin-bottom: 10px;margin-top: 10px;}
 .sp {font-size:16px;}
 .img-gal {max-width: 100%}
+.viewprofilelabel {font-size:18px;font-weight: bold;color:#7c0053}
+.vpc{font-size:15px;content: "\a"; white-space: pre;}
 }
+
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
- .logo {min-width: 40%;max-width: 43%;margin-left: -144px;}
-    .logo1 {
-        margin-left: -120px
-    }
-   
- .title-box h2 {font-size:55px}
+.logo {min-width: 40%;max-width: 43%;margin-left: -144px;}
+.logo1 {margin-left: -120px}
+.title-box h2 {font-size: 55px}
 .title-box h4 {font-size: 34px;}
 .ic {font-size:18px}
 .scroll p {font-size: 18px}
 .menu-icon {width: 30%}
-    .matri-icon {
-        width: 30%;
-        margin-bottom: 10px;
-        margin-top: 10px;
-    }
+.matri-icon {width: 30%;margin-bottom: 10px;margin-top: 10px;}
 .sp {font-size: 16px;}
 .img-gal {max-width: 100%}
+.viewprofilelabel {font-size:18px;font-weight: bold;color:#7c0053}
+.vpc{font-size:15px;content: "\a"; white-space: pre;}
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 .logo {min-width: 40%;max-width: 52%;margin-left: -96px;}
-    .logo1 {
-        margin-left:-75px;
-    }
-    .title-box h2 {
-        font-size: 42px
-    }
+.logo1 {margin-left:-75px;}
+.title-box h2 {font-size: 42px}
 .title-box h4 {font-size:28px;}
 .ic {font-size:24px}
 .scroll p {font-size: 16px}
 .menu-icon {width: 30%}
-    .matri-icon {
-        width: 30%;
-        margin-bottom: 10px;
-        margin-top: 10px;
-    }
+.matri-icon {width: 30%;margin-bottom: 10px;margin-top: 10px;}
 .sp {font-size: 16px;}
 .img-gal {max-width: 100%}
+.viewprofilelabel {font-size:16px;font-weight: bold; color:#7c0053}
+.vpc{font-size:15px;content: "\a"; white-space: pre;}
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
 .logo { min-width: 70%; max-width: 73%; margin-left: -75px;}
-    .logo1 {
-        margin-left: -75px;
-    }
-    .logo2 {
-        min-width: 40%;
-        max-width: 43%;
-        margin-left: -144px;
-    }
+.logo1 {margin-left: -75px;}
+.logo2 {min-width: 40%;max-width: 43%;margin-left: -144px;}
 .title-box h2 {font-size:30px;}
 .title-box h4 {font-size:22px;}
 .ic {font-size:24px}
 .scroll p {font-size: 14px}
 .menu-icon {width: 30%}
-    .matri-icon {
-        width: 30%;
-        margin-bottom: 10px;
-        margin-top: 10px;
-    }
+.matri-icon {width: 30%;margin-bottom: 10px;margin-top: 10px;}
 .sp {font-size: 16px;}
 .img-gal {max-width: 100%}
+.viewprofilelabel {font-size:16px;font-weight: bold;color:#7c0053}
+.vpc{font-size:15px;content: "\a"; white-space: pre;}
 }
 @media only screen and (max-width: 576px) {
 .logo {min-width: 70%;max-width:85%;margin-left:-58px}
-    .logo1 {
-        margin-left: -35px;
-        margin-top:-10px
-    }
+.logo1 {margin-left: -35px;margin-top:-10px}
 .title-box h2 {font-size:20px;}
 .title-box h4 {font-size:16px;}
 .ic {font-size:24px}
@@ -244,15 +217,12 @@
 .matri-icon {width: 30%;margin-bottom:10px;margin-top:10px;}
 .sp {font-size: 16px;}
 .img-gal {max-width: 100%}
+.viewprofilelabel {font-size:14px; font-weight:bold; color:#7c0053}
+.vpc{font-size:15px;content: "\a"; white-space: pre;}
 }
-.headfix {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    width: 100%;
-    height: 80px;
-    background-color: #ffffff;
+
+
+.headfix {position: fixed;top: 0;left: 0;z-index: 9999;width: 100%;height: 80px;background-color: #ffffff;
     box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.75);
     -webkit-box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.95);
     -moz-box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.95);
@@ -731,144 +701,63 @@ tr, td, th {
 .profile-content {padding:0px 0px 5px 0px}
 .profile-content h4 {color: black;}
 .profile-content h5 {color: black;}
+.photo-container1 {
+    position: relative;
+    background: #7c0053;
+    width: 100%;
+    height: auto;
+    float: left;
+    z-index: 20;
+}
+.view_prof_i{border-radius:20px;padding:7px;}
+.lbl_profile {margin-left:5px; padding-top:5px; color:#f9f9ff;font-weight:bold}
+.profile_view_content {margin:10px; width:100%; height:auto; display:block;border-radius:10px}
 @media only screen and (min-width: 1201px) {
-.profile-content h4 {font-size:18px;}
+    .profile-content h4 {font-size:18px;}
 .profile-content h5 {font-size:16px;}
 .scroll p {font-size: 20px}
 .dashboard h3 {font-size: 20px}
-
-
 .notification h3 {margin: 46px 115px;font-size: 20px;color: #ffffff}
 .table-button {width: 50%}
+.view_prof_i {width: 114px;height: 125px}
 }
-
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-    .profile-content h4 {
-        font-size: 20px;
-    }
-
-    .profile-content h5 {
-        font-size: 16px;
-    }
-
-    .scroll p {
-        font-size: 18px
-    }
-
-    .dashboard h3 {
-        font-size: 18px
-    }
-
-
-
-    .notification h3 {
-        margin: 17px 42px;
-        font-size: 18px;
-        color: #ffffff
-    }
-
-    .table-button {
-        width: 50%
-    }
+    .profile-content h4 {font-size: 20px;}
+    .profile-content h5 {font-size: 16px;}
+    .scroll p {font-size: 18px}
+    .dashboard h3 {font-size: 18px}
+    .notification h3 {margin: 17px 42px;font-size: 18px;color: #ffffff}
+    .table-button {width: 50%}
+    .view_prof_i {width: 114px;height: 125px}
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .profile-content h4 {
-        font-size: 18px;
-    }
-
-    .profile-content h5 {
-        font-size: 16px;
-    }
-
-    .scroll p {
-        font-size: 16px
-    }
-
-   
-  
-
-
-    .notification h3 {
-        margin: 17px 42px;
-        font-size: 16px;
-        color: #ffffff
-    }
-
-    .table-button {
-        width: 100%
-    }
+    .profile-content h4 {font-size: 18px;}
+    .profile-content h5 {font-size: 16px;}
+    .scroll p {font-size: 16px}
+    .notification h3 {margin: 17px 42px;font-size: 16px;color: #ffffff}
+    .table-button {width: 100%}
+    .view_prof_i {width: 114px;height: 125px}
 }
-
 @media only screen and (min-width: 576px) and (max-width: 767px) {
-    .profile-content h4 {
-        font-size: 16px;
-    }
-
-    .profile-content h5 {
-        font-size: 14px;
-    }
-        .scroll p {
-        font-size: 14px
-    }
-
-  
-
-   
-
-
-    .notification h3 {
-        margin: 17px 42px;
-        font-size: 14px;
-        color: #ffffff
-    }
-
-    .table-button {
-        width: 100%
-    }
+    .profile-content h4 {font-size: 16px;}
+    .profile-content h5 {font-size: 14px;}
+    .scroll p {font-size: 14px}
+    .notification h3 {margin: 17px 42px;font-size: 14px;color: #ffffff}
+    .table-button {width: 100%}
+    .view_prof_i {width: 114px;height: 125px}
 }
-
 @media only screen and (max-width: 576px) {
-    .profile-content h4 {
-        font-size: 14px;
-    }
-
-    .profile-content h5 {
-        font-size: 12px;
-    }
-
-    .profile-bar2 h3 {
-        font-size: 12px;
-    }
-
-    .scroll p {
-        font-size: 12px
-    }
-
-   
-
-    
-
-
-    .notification h3 {
-        margin: 17px 42px;
-        font-size: 12px;
-        color: #ffffff
-    }
-
-    .table-button {
-        width: 100%
-    }
+    .profile-content h4 {font-size: 14px;}
+    .profile-content h5 {font-size: 12px;}
+    .profile-bar2 h3 {font-size: 12px;}
+    .scroll p {font-size: 12px}
+    .notification h3 {margin: 17px 42px;font-size: 12px;color: #ffffff}
+    .table-button {width: 100%}
+    .view_prof_i {width: 115px;height: 120px}
 }
-.seperate {
-    height: 25px
-}
-
-.notification h3 {
-    margin: 25px 115px;
-    font-size: 16px
-}
-
+.seperate {height: 25px}
+.notification h3 {margin: 25px 115px;font-size: 16px}
 tr, td, th {
     border: none !important;
 }
@@ -886,10 +775,11 @@ tr, td, th {
 .yellow-box{background-color:yellow; margin:5px;width:100%; height:100px;}
 .blue-box{background-color:blue; margin:5px;width:100%; height:100px;}
 }
-Scriptcontent
 
-@media only screen and (min-width:769px) and (max-width: 1024px) {
-    .image-logo{width:80%} 
+
+@media only screen and (min-width:769px) and (max-width: 1024px) 
+{
+  .image-logo{width:80%} 
   .texth2{ font-size: 26px;vertical-align: middle;padding: 28px;}
   .marq-bar{background-color:#7c0053; width:100%;vertical-align:middle; Padding:10px; text-align:center; font-size:28px; color:#ffffff; height:75px;}  
 }
@@ -908,12 +798,33 @@ Scriptcontent
   .image-logo{width:26%;}
   .texth2{ font-size: 18px;vertical-align: middle;padding: 18px;}
   .marq-bar{background-color:#7c0053; width:100%;vertical-align:middle; Padding:10px; text-align:center; font-size:28px; color:#ffffff; height:75px;}
-    .tabs-container {height: 150vh;}
+  .tabs-container {height: 150vh;}
 }
-
-
+/* Content area for tabs */
+.tabs-container {position: relative;background: #7c0053;width:100px;height:103vh;float: left;z-index: 20;}
+.tab-content {position: relative;background: #ffffff;width: calc(100% - 100px);min-height: 100vh;padding: 2px;float: left;box-sizing: border-box;z-index: 19;display: none;}
+.tab-content:after {content: "";clear: both;}
+.tabs-container label {
+        position: relative;
+        padding: 0px 5px 15px 5px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        display: block;
+        font-size:13px;
+        color: #ffffff;
+        cursor: pointer;
+        line-height: 1.5
+    }
+        .tabs-container label:hover {
+            background: rgba(0, 0, 0, 0.2);
+        }
+.data-content1 {
+    background: #7c0053;
+    width:100%;
+    padding:5px;
+    color: #ffffff
+}
 /*************Tab vertical menu for member registration************************/
-.photo-container1{position: relative;background: #FFFFFF;width: 115px;height: 18vh;float: left;z-index: 20;}
+
 .yel {
     background: #8b0267;
     color: #FFFFFF;
@@ -930,7 +841,7 @@ Scriptcontent
 .grn{background:#58b158}
 .purp{background:#b44790}
 .brn{background:#ac8b5a}*/
-.tabs-container{position: relative;background: #8b0267;width:115px;height:103vh;float: left;z-index: 20;}
+
 /* tabs names */
 .updatep { margin-left:15px
 }
@@ -938,23 +849,10 @@ Scriptcontent
     font-weight: bold;
     color: #8b0267;
 }
-.tabs-container label {
-    position: relative;
-    padding: 0px 5px 15px 5px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    display: block;
-    font-size: 15px;
-    color: #ffffff;
-    cursor: pointer;
-    line-height: 1.5
-}
+
 /* Hover effect on tabs names */
-.tabs-container label:hover{
- background: rgba(0, 0, 0, 0.2);
-}
-/* Content area for tabs */
-.tab-content{position: relative;background: #ffffff;width: calc(100% - 115px);min-height: 100vh;padding:2px;float: left;box-sizing: border-box;z-index: 19;display: none;}
-.tab-content:after{content: "";clear: both;}
+
+
 /* Hide input radio from users */
 input[name="tab"]{display: none;}
 /* Show tab when input checked */
@@ -2553,7 +2451,7 @@ sup,
 sub,
 u,
 del {
-  color: #ff663b;
+  color:#7c0053;font-size:13px;padding-bottom:1px; font-weight:bold;
 }
 
 /* line 93, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
