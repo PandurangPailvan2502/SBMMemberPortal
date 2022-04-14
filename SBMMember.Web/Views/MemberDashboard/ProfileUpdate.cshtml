@@ -3,55 +3,83 @@
     ViewData["Title"] = "ProfileUpdate";
     Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
 }
+<style>
+.image-upload>input {
+  display: none;
+}
+#myProgress {
+  width: 100%;
+  background-color:#eeeeee;
+}
 
-<section class="blog_area single-post-area section_padding">
-    <div class="container" style="margin-top:23px">
+#myBar {
+  width:50%;
+  height: 30px;
+  background-color:green;
+}
+</style>
+
+<div class="container" style="margin-top:25px;">
         <div class="row">
-            <div class="col-lg-12 posts-list">
-                @*<div class="single-post">
-                    <div class="blog_details">
-                        <p class="excert"><i class="ti-pencil-alt"></i>  Edit Profile</p>
+        <div class="col-lg-12">
+            <table>
+                <tr>
+                <td style="background-color:#7c0053">
+                    <div class="photo-container1">
+                    <img src="~/img/Noavatar.png" class="view_prof_i">
+                    <div class="image-upload" style="text-align:center;color:#ffffff">
+                    <label for="file-input">edit
+                    <img src="~/img/upload_icon.png" width="20px" height="15px">
+                    </label>
+                    <input id="file-input" type="file" />
                     </div>
-                </div>*@
-                <section>
-                    <div class="rt-container">
+                    </div>
+                </td>
+                        <td width="100%" style="background-color:#7c0053">
+                            <section class="data-content1">
+                                <table>
+                                    <tr>
+                                        <td><label class="lbl_profile"><strong>सभासदाचे नाव:</strong> @Model.MemberPersonalInfo.PrefixM @Model.MemberPersonalInfo.FirstNameM @Model.MemberPersonalInfo.MiddleNameM @Model.MemberPersonalInfo.LastNameM</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="lbl_profile">सभासद क्रमांक: @Model.MemberPaymentInfo.MemberShipIdM </label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="lbl_profile">जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue) { @Model.MemberPersonalInfo.BirthDate} </label></td>
+                                    </tr>
+                                    <tr><td><label class="lbl_profile">मोबाईल: @Model.MemberConatctInfo.Mobile1 </label></td></tr>
+                                </table>        
+                               </section>
+                        </td>
+                   </tr>
+                <tr>
+                    <td colspan="2">
+                        <div id="myProgress">
+                        <div id="myBar"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+               <div class="rt-container">
                         <div class="col-rt-12">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="photo-container1">
-                                        <img src="~/img/img-1.png" style="margin:5px">
-                                    </div>
-                                    <section class="data-content1" style="background:#7c0053; width: calc(100% - 115px); padding:5px; color:#ffffff">
-                                        <label>सभासदाचे नाव: @Model.MemberPersonalInfo.FirstName @Model.MemberPersonalInfo.LastName </label>
-                                        <label>सभासद क्रमांक: </label>
-                                        <label>जन्म तारीख: @Model.MemberPersonalInfo.BirthDate </label>
-                                        <label>मोबाईल: @Model.MemberConatctInfo.Mobile1 </label>
-                                    </section>
-                                </div>
-                            </div>
-                            <div class="Scriptcontent">
-
+                          <div class="Scriptcontent">
                                 <section class="tabs-container">
                                     <label for="tab1" class="yel"><img src="~/img/profile.png" class="matri-icon"><br /> वैयक्तिक माहिती </label>
                                     <label for="tab2" class="yel"><img src="~/img/contact-details-m.png" class="matri-icon"><br /> मुळगाव व संपर्क</label>
                                     <label for="tab3" class="yel"><img src="~/img/mortarboard.png" class="matri-icon"><br> शिक्षण / नोकरी </label>
                                     <label for="tab4" class="yel"><img src="~/img/people.png" class="matri-icon"><br> कुटुंबाविषयी माहिती </label>
                                     <label for="tab5" class="yel"><img src="~/img/contact-img.png" class="matri-icon"><br> सभासदत्व माहिती</label>
-
                                 </section>
 
                                 <input name="tab" id="tab1" type="radio" checked />
 
                                 <section class="tab-content">
-                                    <br>
-                                    
                                     <div class="section-top-border updatep">
-                                        <h4 class="profilehead">वैयक्तिक माहिती </h4>
                                         <div class="row">
                                             <div class="col-lg-10 col-md-10">
                                                 <form asp-action="MemberPersonalInfo" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
                                                     <input type="hidden" asp-for="MemberPersonalInfo.MemberId" />
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon">
                                                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                         <div class="form-select" id="default-select">
                                                             <select asp-for="MemberPersonalInfo.Prefix">
@@ -64,20 +92,20 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon">
                                                         <input type="text" name="MemberPersonalInfo.FirstName" asp-for="MemberPersonalInfo.FirstName" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'"
                                                                required class="single-input">
                                                     </div>
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon">
                                                         <input type="text" name="MemberPersonalInfo.MiddleName" asp-for="MemberPersonalInfo.MiddleName" placeholder="Middle Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Middle Name'"
                                                                required class="single-input">
                                                     </div>
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon">
                                                         <input type="text" name="MemberPersonalInfo.LastName" asp-for="MemberPersonalInfo.LastName" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'"
                                                                required class="single-input">
                                                     </div>
 
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon">
                                                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                         <div class="form-select" id="default-select">
                                                             <select asp-for="MemberPersonalInfo.Gender">
@@ -87,7 +115,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon">
                                                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                         <div class="form-select" id="default-select">
                                                             <select asp-for="MemberPersonalInfo.MaritalStatus">
@@ -165,8 +193,7 @@
 
                                 <input name="tab" id="tab2" type="radio" />
                                 <section class="tab-content">
-                                    <h4> मुळगाव व संपर्क</h4>
-                                    <div class="section-top-border">
+                                   <div class="section-top-border">
                                         <div class="row">
                                             <div class="col-lg-10 col-md-10">
                                                 <form asp-controller="MemberDashboard" asp-action="MemberContactInfo" method="post" enctype="multipart/form-data">
@@ -229,7 +256,7 @@
 
                                 <input name="tab" id="tab3" type="radio" />
                                 <section class="tab-content">
-                                    <h4> शिक्षण / नोकरी</h4>
+                                   
                                     <div class="section-top-border">
                                         <div class="row">
                                             <div class="col-lg-10 col-md-10">
@@ -280,7 +307,7 @@
 
                                 <input name="tab" id="tab4" type="radio" />
                                 <section class="tab-content">
-                                    <h4> कुटुंबाविषयी माहिती</h4>
+                                   
                                     <div class="section-top-border">
 
                                         <div class="row">
@@ -400,8 +427,7 @@
                                 </section>
 
                                 <input name="tab" id="tab5" type="radio" />
-                                <section class="tab-content">
-                                    <h4> सभासदत्व माहिती </h4>
+                                <section class="tab-content"> 
                                     <div class="section-top-border">
                                         <div class="row">
                                             <div class="col-lg-10 col-md-10">
@@ -455,11 +481,27 @@
                                 </section>
                             </div>
                         </div>
-
-                    </div>
-                    </section>
-            </div>
-            </div>
+               </div>
         </div>
-</section>
+        </div>
+ </div>
+ <script>
+ var i = 0;
+function move() {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("myBar");
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+}</script>
 

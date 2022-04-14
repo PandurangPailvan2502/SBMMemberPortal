@@ -3007,18 +3007,16 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
   color: #828bb2;
 }
-
-/* line 515, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
-.single-input {
-    display: block;
-    width: 100%;
-    line-height: 40px;
-    border: none;
-    outline: none;
-    background: #f9f9ff;
-    padding: 0 20px;
-    margin-bottom: 16px;
-}
+.form-select {height:35px;width: 100%;margin-top:5px;}
+.form-select .nice-select{border:0.5px solid #7c0053;border-radius:2px;height:35px;background:#f6f6f6;padding-left:10px;padding-right:10px;width:100%;margin-bottom:0px;}
+.form-select .nice-select .list {margin-top:0;border-radius:2px;width:100%;padding:2px 0 5px 0px;border:0.5px solid #7c0053;}
+.form-select .nice-select .list .option {font-weight:400;-webkit-transition: all 0.3s ease 0s;-moz-transition: all 0.3s ease 0s;-o-transition: all 0.3s ease 0s;transition: all 0.3s ease 0s;line-height:22px;min-height:22px;font-size:14px;padding-left:10px;}
+.form-select .nice-select .list .option.selected {color:#7c0053;background: transparent;}
+.form-select .nice-select .list .option:hover {color:#ff663b;background:#eeeeee;}
+.form-select .current {margin-right:50px;font-weight:400;}
+.form-select .nice-select::after {right: 20px;}
+.mt-10 {margin-top: 10px;}
+.single-input {display:block;width: 100%;line-height:32px;border:0.5px solid #7c0053;background: #f6f6f6;padding:0 10px;margin-top:5px;}
 
 /* line 523, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
 .single-input:focus {
@@ -3654,74 +3652,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* line 1042, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
-.form-select {
-  height: 40px;
-  width: 100%;
-}
-
-/* line 1045, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
-.form-select .nice-select {
-  border: none;
-  border-radius:10px;
-  height: 40px;
-  background: #f9f9ff;
-  padding-left:10px;
-  padding-right:10px;
-  width: 100%;
-  margin-bottom:14px;
-}
-
-/* line 1053, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
-.form-select .nice-select .list {
-  margin-top: 0;
-  border: none;
-  border-radius: 0px;
-  box-shadow: none;
-  width: 100%;
-  padding: 10px 0 10px 0px;
-}
-
-/* line 1060, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
-.form-select .nice-select .list .option {
-  font-weight: 300;
-  -webkit-transition: all 0.3s ease 0s;
-  -moz-transition: all 0.3s ease 0s;
-  -o-transition: all 0.3s ease 0s;
-  transition: all 0.3s ease 0s;
-  line-height: 28px;
-  min-height: 28px;
-  font-size: 12px;
-  padding-left: 45px;
-}
-
-/* line 1067, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
-.form-select .nice-select .list .option.selected {
-  color: #ff663b;
-  background: transparent;
-}
-
-/* line 1071, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
-.form-select .nice-select .list .option:hover {
-  color: #ff663b;
-  background: transparent;
-}
-
-/* line 1078, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
-.form-select .current {
-  margin-right: 50px;
-  font-weight: 300;
-}
-
-/* line 1082, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
-.form-select .nice-select::after {
-  right: 20px;
-}
-
-/* line 1086, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
-.mt-10 {
-  margin-top: 10px;
-}
-
 /* line 1089, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
 .section-top-border {
   padding: 0px 0;
