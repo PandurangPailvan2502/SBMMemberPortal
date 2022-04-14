@@ -15,7 +15,6 @@
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
@@ -24,23 +23,34 @@
                     <div class="container ">
                         <div class="row">
                             <div class="col-md-12">
-                                <h4>Search Member by Area</h4>
-                                <br>
-                                <!------------icon dashbaord row-1--------------->
+                                <h6 style="text-align:center">Search Member by Area</h6>
                                 <div class="container">
                                     <div class="row ">
 
                                         <div class="col-sm-3">
-                                            <input text="text" name="Area" asp-for="Area" class="search-box_input" placeholder="Area" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Area'">
+                                            <input text="text" name="Area" asp-for="Area" class="single-input" placeholder="Area" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Area'">
+                                        <div class="orcondit"><h6>OR</h6></div>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input text="text" name="City" asp-for="City" class="search-box_input" placeholder="City" onfocus="this.placeholder = ''" onblur="this.placeholder = 'City'">
+                                            <input text="text" name="City" asp-for="City" class="single-input" placeholder="City" onfocus="this.placeholder = ''" onblur="this.placeholder = 'City'">
+                                        <div class="orcondit"><h6>OR</h6></div>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input text="text" name="Pincode" asp-for="Pincode" class="search-box_input" placeholder="Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pincode'">
+                                            <input text="text" name="Pincode" asp-for="Pincode" class="single-input" placeholder="Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pincode'">
+                                        <div class="orcondit"><h6>OR</h6></div>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input text="text" name="District" asp-for="District" class="search-box_input" placeholder="District" onfocus="this.placeholder = ''" onblur="this.placeholder = 'District'">
+                                            <input text="text" name="District" asp-for="District" class="single-input" placeholder="District" onfocus="this.placeholder = ''" onblur="this.placeholder = 'District'">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <table class="btntbl">
+                                                <tr>
+                                                    <td width="50%"><input type="submit" name="search" class="allsubmitbtn"></td>
+                                                    <td width="50%"><input type="reset" value="Reset" id="btnreset" class="allresetbtn" ></td>
+                                                </tr>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -48,31 +58,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="seperate"></div>
-                    <div class="container ">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <br>
-                                <!------------icon dashbaord row-1--------------->
-                                <div class="container">
-                                    <div class="row ">
-                                        <div class="col-sm-3">
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <input type="Reset" class="genric-btn danger submit-btn" style="margin-left:50%; border-radius:10px">
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <input type="submit" class="genric-btn success submit-btn" style="margin-left:50%; border-radius:10px">
-                                        </div>
-                                        <div class="col-sm-3">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!------------End of icon dashbaord row-1--------------->
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                   </div>
             </form>
         </div>
     </div>

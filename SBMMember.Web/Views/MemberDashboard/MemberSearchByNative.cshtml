@@ -24,50 +24,35 @@
                     <div class="container ">
                         <div class="row">
                             <div class="col-md-12">
-                                <h4>Search Member by Native Place</h4>
-                                <br>
+                                <h6 style="text-align:center">Search Member by Native Place</h6>
                                 <!------------icon dashbaord row-1--------------->
                                 <div class="container">
                                     <div class="row ">
 
                                         <div class="col-sm-3">
-                                            <input text="text" name="NativePlace" asp-for="NativePlace" class="search-box_input" placeholder="Native Place" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place'">
+                                            <input text="text" name="NativePlace" asp-for="NativePlace" class="single-input" placeholder="Native Place" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place'">
                                         <div class="orcondit"><h6>OR</h6></div>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input text="text" name="NativePlaceTaluka" asp-for="NativePlaceTaluka" class="search-box_input" placeholder="Native Place Taluka" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place Taluka'">
+                                            <input text="text" name="NativePlaceTaluka" asp-for="NativePlaceTaluka" class="single-input" placeholder="Native Place Taluka" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place Taluka'">
                                         <div class="orcondit"><h6>OR</h6></div>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input text="text" name="NativePlaceDistrict" asp-for="NativePlaceDistrict" class="search-box_input" placeholder="Native Place District" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place District'">
+                                            <input text="text" name="NativePlaceDistrict" asp-for="NativePlaceDistrict" class="single-input" placeholder="Native Place District" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place District'">
                                         
                                         </div>
                                         <div class="col-sm-3">
 
                                         </div>
                                     </div>
-                                </div>
-                                <!------------End of icon dashbaord row-1--------------->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="seperate"></div>
-                    <div class="container ">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <br>
-                                <!------------icon dashbaord row-1--------------->
-                                <div class="container">
-                                    <div class="row ">
-                                        <div class="col-sm-3">
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <input type="reset" class="genric-btn danger submit-btn" style="margin-left:50%; border-radius:10px">
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <input type="submit" class="genric-btn success submit-btn" style="margin-left:50%; border-radius:10px">
-                                        </div>
-                                        <div class="col-sm-3">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <table class="btntbl">
+                                                <tr>
+                                                    <td width="50%"><input type="submit" name="search" class="allsubmitbtn"></td>
+                                                    <td width="50%"><input type="reset" value="Reset" id="btnreset" class="allresetbtn" ></td>
+                                                </tr>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +65,6 @@
         </div>
     </div>
 </div>
-<div class="seperate"></div>
 
 <!------------Search Result--------------->
 

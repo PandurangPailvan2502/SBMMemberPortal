@@ -12,11 +12,15 @@
 .round {
   border-radius: 50%;
 }
-.searchname {
-    font-weight: bold;
-    font-size: 18px
-}
-.orcondit { text-align:center;font-weight:700; font-size:10px; 
+.searchname {font-weight: bold;font-size: 18px;text-align:center; margin:10px 0px 10px 0px;}
+.btntbl { text-align:center;margin:10px 0px 10px 0px;width:100%; border:1px;}
+.allsubmitbtn {border-radius:5px; background-color:#7c0053; color:#ffffff; padding:10px;width:100px;border:none}
+.allresetbtn {border-radius:5px; background-color:#f31b1b; color:#ffffff; padding:10px;width:100px;border:none}
+.allviewbtn {border-radius: 5px;background-color: #7c0053;color: #ffffff;padding:10px;width:120px;border: none}
+.orcondit {
+    text-align: center;
+    font-weight: 700;
+    font-size: 10px; padding-top:5px;
 }
 /*Business directory 1end*/
 /*slider*/
@@ -148,7 +152,7 @@
 .view_profile_content { width:100%; height:auto; padding:5px;}
 
 @media only screen and (min-width: 1201px) {
-.logo {min-width: 40%;max-width: 43%;margin-left: -127px;float:left;}
+    .logo {min-width: 40%;max-width: 43%;margin-left: -127px;float:left;}
 .logo1 {margin-left: -120px;}
 .title-box h2 {font-size:35px}
 .title-box h4 {font-size: 22px;}
