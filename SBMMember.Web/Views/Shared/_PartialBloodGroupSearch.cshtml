@@ -18,7 +18,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-xs-10 left-box"><lable class="searchname">@Model.FullName</lable></div>
-                                <div class="searchname"><h6>OR</h6></div>
+                                
                             </div>
                             <div class="row">
                                 <div class="col-xs-10 left-box"><lable>रक्तगट: @Model.BloodGroup</lable></div>
@@ -28,21 +28,21 @@
                                     <lable>संपर्क : @Model.MobileNumber</lable>@if (!string.IsNullOrEmpty(Model.MobileNumber))
                                     {<a target="_blank" href="@("https://wa.me/91" + @Model.MobileNumber)"> <img src="~/img/whats-app.png" class="whatsapp"></a>}
                                 </div>
-                                <div class="searchname"><h6>OR</h6></div>
+                               
                             </div>
                             <div class="row">
                                 <div class="col-xs-10 left-box"><lable>Area,City: @Model.Area,@Model.City</lable></div>
-                                <div class="searchname"><h6>OR</h6></div>
+                               
                             </div>
                             <div class="row">
                                 <div class="col-xs-5 left-box"><lable>मुळगाव: @Model.NativePlace</lable></div>
-                                <div class="searchname"><h6>OR</h6></div>
+                               
                             </div>
                             <div class="row">
                                 <div class="col-xs-10"><br />
                                     <a href="@Url.ActionLink("ViewMemberProfile","MemberDashboard",new{MemberId = Model.MemberId })" class="allviewbtn"><i class="ti-eye"></i> View</a>
                                 </div>
-                                <div class="searchname"><h6>OR</h6></div>
+                               
                             </div>
                         </div>
                     </div>
