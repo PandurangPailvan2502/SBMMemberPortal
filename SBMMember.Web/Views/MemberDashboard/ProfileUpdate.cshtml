@@ -92,20 +92,20 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="input-group-icon">
+                                                    <div class="input-group-icon" style="display:none">
                                                         <input type="text" name="MemberPersonalInfo.FirstName" asp-for="MemberPersonalInfo.FirstName" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'"
                                                                required class="single-input">
                                                     </div>
-                                                    <div class="input-group-icon">
+                                                    <div class="input-group-icon" style="display:none">
                                                         <input type="text" name="MemberPersonalInfo.MiddleName" asp-for="MemberPersonalInfo.MiddleName" placeholder="Middle Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Middle Name'"
                                                                required class="single-input">
                                                     </div>
-                                                    <div class="input-group-icon">
+                                                    <div class="input-group-icon" style="display:none">
                                                         <input type="text" name="MemberPersonalInfo.LastName" asp-for="MemberPersonalInfo.LastName" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'"
                                                                required class="single-input">
                                                     </div>
 
-                                                    <div class="input-group-icon">
+                                                    <div class="input-group-icon" style="display:none">
                                                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                         <div class="form-select" id="default-select">
                                                             <select asp-for="MemberPersonalInfo.Gender">
@@ -125,7 +125,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon mt-10" style="display:none">
                                                         <label>Date of Birth</label>
                                                         <input type="date" name="MemberPersonalInfo.BirthDate" asp-for="MemberPersonalInfo.BirthDate" class="single-input">
                                                     </div>
@@ -220,27 +220,31 @@
                                                     </div>
 
                                                     <div class="input-group-icon mt-10">
+                                                       <button type="submit" class="allsubmitbtn">OTP Verify</button>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
                                                         <input type="text" name="MemberConatctInfo.Mobile2" asp-for="MemberConatctInfo.Mobile2" placeholder="Personal Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 2'"
                                                                required class="single-input">
                                                     </div>
 
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon mt-10" style="display:none">
                                                         <input type="email" name="MemberConatctInfo.EmailId" asp-for="MemberConatctInfo.EmailId" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'"
                                                                required class="single-input">
                                                     </div>
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon mt-10" style="display:none">
                                                         <input type="text" name="MemberConatctInfo.RelativeName" asp-for="MemberConatctInfo.RelativeName" placeholder="Ref. Full Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ref. Full Name'"
                                                                required class="single-input">
                                                     </div>
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon mt-10" style="display:none">
                                                         <input type="text" name="MemberConatctInfo.RelativeAddress" asp-for="MemberConatctInfo.RelativeAddress" placeholder="Reference / Relative full address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference / Relative full address'"
                                                                required class="single-input">
                                                     </div>
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon mt-10" style="display:none">
                                                         <input type="text" name="MemberConatctInfo.RelativeContact1" asp-for="MemberConatctInfo.RelativeContact1" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 1'"
                                                                required class="single-input">
                                                     </div>
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon mt-10" style="display:none">
                                                         <input type="text" name="MemberConatctInfo.RelativeContact2" asp-for="MemberConatctInfo.RelativeContact2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
                                                                required class="single-input">
                                                     </div>
@@ -433,11 +437,11 @@
                                             <div class="col-lg-10 col-md-10">
                                                 <form action="#">
                                                     
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon mt-10" style="display:none">
                                                         <input type="text" name="charges_paid" asp-for="MemberPaymentInfo.ChagesPaid" placeholder="Charges Paid" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Charges Paid'"
                                                                required class="single-input">
                                                     </div>
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon mt-10" style="display:none">
                                                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                         <div class="form-select" id="default-select">
                                                             <select asp-for="MemberPaymentInfo.PaymentMode">
@@ -449,30 +453,26 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon mt-10" style="display:none">
                                                         <input type="text" name="TransactionID" asp-for="MemberPaymentInfo.TransactionNo" placeholder="Transaction ID/ Ref. ID" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Transaction ID/ Ref. ID'"
                                                                required class="single-input">
                                                     </div>
 
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon mt-10" style="display:none">
                                                         <label>Transaction Date</label>
                                                         <input type="date" name="TransactionDate" asp-for="MemberPaymentInfo.TransactionDate" placeholder="Transaction Date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Transaction Date'"
                                                                required class="single-input">
                                                     </div>
 
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon mt-10" style="display:none">
                                                         <input type="text" name="RecieptNo." asp-for="MemberPaymentInfo.RecieptNo" placeholder="RecieptNo" onfocus="this.placeholder = ''" onblur="this.placeholder = 'RecieptNo'"
                                                                required class="single-input">
                                                     </div>
 
-                                                    <div class="input-group-icon mt-10">
+                                                    <div class="input-group-icon mt-10" style="display:none">
                                                         <input type="text" name="Membership Number" asp-for="MemberPaymentInfo.MemberShipIdM" placeholder="Membership Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Membership Number'"
                                                                required class="single-input">
                                                     </div>
-
-                                                   
-
-                                                   
                                                 </form>
                                             </div>
 
