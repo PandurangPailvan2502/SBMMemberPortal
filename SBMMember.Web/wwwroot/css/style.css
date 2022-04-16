@@ -12,6 +12,13 @@
 .round {
   border-radius: 50%;
 }
+.payment-thankyou {margin-top:45px; margin-bottom:40px; padding:10px; text-align:justify;
+    border: 1px solid #7c0053;
+    background-color: #ffffff;
+    box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.75);
+    -webkit-box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.95);
+    -moz-box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.95);
+}
 .searchname {font-weight: bold;font-size: 18px;text-align:center; margin:10px 0px 10px 0px;}
 .btntbl { text-align:center;margin:10px 0px 10px 0px;width:100%; border:1px;}
 .allsubmitbtn {border-radius:5px; background-color:#7c0053; color:#ffffff; padding:10px;width:100px;border:none}
