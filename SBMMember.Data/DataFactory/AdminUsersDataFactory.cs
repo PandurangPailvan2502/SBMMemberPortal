@@ -25,7 +25,7 @@ namespace SBMMember.Data.DataFactory
 
         public List<AdminUsers> GetAdminUsers()
         {
-            return adminDBContext.AdminUsers.ToList();
+            return adminDBContext.AdminUsers.Where(x=>x.Status=="Active").ToList();
         }
         public AdminUsers GetUserById(int Id)
         {
@@ -102,6 +102,42 @@ namespace SBMMember.Data.DataFactory
 
             return responseDTO;
         }
+        public ResponseDTO Delete(int Id)
+        {
+            ResponseDTO responseDTO = new ResponseDTO();
+            try
+            {
+                var adminUser = adminDBContext.AdminUsers.Where(x => x.Id ==Id && x.Status == "Active").FirstOrDefault();
+                adminUser.Status = "InActive";
+               
+
+
+                int affectedRows = 0;
+
+                affectedRows = adminDBContext.SaveChanges();
+                if (affectedRows > 0)
+                {
+                    responseDTO = new ResponseDTO()
+                    {
+                        Result = "Success",
+                        Message = "Admin user details deleted successfully."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Logger.LogError($"Error occured while deleting admin user details. Exception:{ex.Message}");
+                responseDTO = new ResponseDTO()
+                {
+                    Result = "Failed",
+                    Message = "Admin user details delete operation failed."
+                };
+            }
+
+            return responseDTO;
+        }
+
     }
 
     public interface IAdminUsersDataFactory
@@ -112,5 +148,6 @@ namespace SBMMember.Data.DataFactory
 
         ResponseDTO AddSuperUserDetails(AdminUsers admin);
         ResponseDTO UpdateDetails(AdminUsers admin);
+        ResponseDTO Delete(int Id);
     }
 }

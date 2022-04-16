@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SBMMember.Web.Controllers
 {
-    [Authorize]
+   // [Authorize]
     public class AdminUsersController : Controller
     {
         private readonly IMapper mapper;
@@ -40,7 +40,25 @@ namespace SBMMember.Web.Controllers
         public IActionResult AddAdminUser(AdminUsersViewModel model)
         {
             AdminUsers admin = mapper.Map<AdminUsers>(model);
-
+            adminUsersDataFactory.AddSuperUserDetails(admin);
+            return RedirectToAction("ManageAdminUsers");
+        }
+        public IActionResult EditAdminUser(int Id)
+        {
+          AdminUsers admin=  adminUsersDataFactory.GetUserById(Id);
+            AdminUsersViewModel model = mapper.Map<AdminUsersViewModel>(admin);
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult EditAdminUser(AdminUsersViewModel model)
+        {
+            AdminUsers admin = mapper.Map<AdminUsers>(model);
+            adminUsersDataFactory.UpdateDetails(admin);
+            return RedirectToAction("ManageAdminUsers");
+        }
+        public IActionResult DeleteAdminUser(int Id)
+        {
+            adminUsersDataFactory.Delete(Id);
             return RedirectToAction("ManageAdminUsers");
         }
     }

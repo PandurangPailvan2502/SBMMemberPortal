@@ -1,0 +1,72 @@
+﻿@model AdminUsersViewModel
+@{
+    ViewData["Title"] = "EditAdminUser";
+    Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
+}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="scroll">
+                <p>Update Admin User Details</p>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-top-border">
+        <div class="row" id="BusinessForm">
+            <div class="col-lg-12 col-md-12">
+                <form asp-action="EditAdminUser" asp-controller="AdminUsers" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <input type="text" name="FirstName" asp-for="FirstName" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'"
+                                   required class="single-input">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <input type="text" name="LastName" asp-for="LastName" placeholder="LastName" onfocus="this.placeholder = ''" onblur="this.placeholder = 'LastName'"
+                                   required class="single-input">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <input type="text" name="MobileNo" asp-for="MobileNo" placeholder="Mobile No" onfocus="this.placeholder = ''" onblur="this.placeholder = 'MobileNo'"
+                                   required class="single-input">
+                        </div>
+                        <div class="col-lg-4">
+                            <input type="text" name="Password" asp-for="Password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'"
+                                   required class="single-input">
+                        </div>
+                        <div class="col-lg-4">
+                            @*<input type="text" name="Status" asp-for="Status" placeholder="Status" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Status'"
+                                   required class="single-input">*@
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            @*<input type="Email" name="CompanyEmail" asp-for="CompanyEmail" placeholder="Company Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Email'"
+                                required class="single-input">*@
+                        </div>
+                        <div class="col-lg-4" style="margin-top:10px">
+                            <input type="submit" class="genric-btn primary-border" value="Submit" />
+                            <a asp-action="ManageAdminUsers" asp-controller="AdminUsers" id="btnCancel" class="genric-btn primary-border" value="Cancel">Cancel</a>
+                        </div>
+                        <div class="col-lg-4">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
