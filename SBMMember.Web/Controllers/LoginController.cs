@@ -16,9 +16,11 @@ namespace SBMMember.Web.Controllers
     public class LoginController : Controller
     {
         private readonly IMemberDataFactory memberDataFactory;
-        public LoginController(IMemberDataFactory _dataFactory)
+        private readonly IMemberFormStatusDataFactory formStatusDataFactory;
+        public LoginController(IMemberDataFactory _dataFactory,IMemberFormStatusDataFactory statusDataFactory)
         {
             memberDataFactory = _dataFactory;
+            formStatusDataFactory = statusDataFactory;
         }
         public IActionResult Login()
         {
@@ -31,19 +33,27 @@ namespace SBMMember.Web.Controllers
             Members member = memberDataFactory.GetDetailsByMemberMobile(model.MobileNumber);
             if (member.Mobile == model.MobileNumber.Trim() && model.MPIN == member.Mpin.Trim())
             {
-                //Create the identity for the user  
-                var identity = new ClaimsIdentity(new[] {
+                var memberFormStatus = formStatusDataFactory.GetDetailsByMemberId(member.MemberId);
+                if (memberFormStatus.FormStatus == "Approved")
+                {
+                    //Create the identity for the user  
+                    var identity = new ClaimsIdentity(new[] {
                     new Claim(ClaimTypes.Name,$"{member.FirstName} {member.MiddleName} {member.LastName}"),
                     new Claim("MemberId",Convert.ToString( member.MemberId)),
                     new Claim(ClaimTypes.PrimarySid,Convert.ToString( member.MemberId))
-                   
+
                 }, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                var principal = new ClaimsPrincipal(identity);
+                    var principal = new ClaimsPrincipal(identity);
 
-                var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                    var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-                return RedirectToAction("Index", "MemberDashboard");
+                    return RedirectToAction("Index", "MemberDashboard");
+                }
+                else
+                {
+                    ViewBag.ErrorOnLogin = "Your Member profile is not approved yet by Admin.";
+                }
             }
             else
             {

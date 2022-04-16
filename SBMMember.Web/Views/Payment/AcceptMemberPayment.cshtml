@@ -24,33 +24,37 @@
                             </div>
                             <form asp-action="MemberPayment" asp-controller="Payment" method="post" enctype="multipart/form-data">
                                 <input type="hidden" asp-for="MemberId" />
+                                <input type="hidden" asp-for="MemberName" />
+                                <input type="hidden" asp-for="Email" />
+                                <input type="hidden" asp-for="Mobile" />
+                                <input type="hidden" asp-for="Amount" />
                                 <div class="row">
 
                                     <div class="col-lg-4 col-md-4 mt-sm-50">
-                                        <label name="MemberName" asp-for="MemberName">@Model.MemberName</label>
+                                        <label name="MemberName" asp-for=" MemberName">MemberName : @Model.MemberName</label>
                                         <!--input type="text" name="MemberName" asp-for="MemberName" placeholder="Enter Member Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Member Name'"
-                                               required class="single-input-primary" readonly-->
+            required class="single-input-primary" readonly-->
                                     </div>
                                     <div class="col-lg-4 col-md-4 mt-sm-50">
-                                        <label name="Mobile" asp-for="Mobile">@Model.Mobile</label>
+                                        <label name="Mobile" asp-for="Mobile">Mobile : @Model.Mobile</label>
                                         <!--input type="text" name="Mobile"  placeholder="Mobile" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mobile'"
-                                               required class="single-input-primary" readonly-->
+            required class="single-input-primary" readonly-->
                                     </div>
                                     <div class="col-lg-4 col-md-4 mt-sm-50">
-                                        <label name="Email" asp-for="Email">@Model.Email</label>
+                                        <label name="Email" asp-for="Email">Email : @Model.Email</label>
                                         <!--input type="text" name="Email" asp-for="Email" placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'"
-                                               required class="single-input-primary" readonly-->
+            required class="single-input-primary" readonly-->
                                     </div>
                                     <!--div class="col-lg-4 col-md-4 mt-sm-50">
-                                        Rs.@Model.Amount.ToString("0.00")
-                                        <input type="hidden" name="Amount" asp-for="Amount" value="@Model.Amount" placeholder="Amount" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Amount'"
-                                               required class="single-input-primary">
-                                    </div-->
+            Rs.@Model.Amount.ToString("0.00")
+            <input type="hidden" name="Amount" asp-for="Amount" value="@Model.Amount" placeholder="Amount" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Amount'"
+                   required class="single-input-primary">
+        </div-->
                                 </div>
                                 <div style="height:20px"></div>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 mt-sm-50">
-                                        
+
                                     </div>
                                     <div class="col-lg-4 col-md-4 mt-sm-50">
                                         Rs.@Model.Amount.ToString("0.00")
@@ -58,10 +62,10 @@
                                                required class="single-input-primary" style="font-size:35px">
                                     </div>
                                     <div class="col-lg-4 col-md-4 mt-sm-50">
-                                        
+
                                     </div>
                                 </div>
-                                
+
                                 <div class="row">
 
 
@@ -75,7 +79,7 @@
 
 
 
-                                   
+
                                 </div>
                             </form>
                         </div>

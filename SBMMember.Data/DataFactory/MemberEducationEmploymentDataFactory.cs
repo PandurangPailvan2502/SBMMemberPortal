@@ -19,6 +19,13 @@ namespace SBMMember.Data.DataFactory
         public override ResponseDTO AddDetails(Member_EducationEmploymentDetails member_EducationEmployment)
         {
             ResponseDTO responseDTO = new ResponseDTO();
+            member_EducationEmployment.QualificationM = TranslationHelper.Translate(member_EducationEmployment.Qualification);
+            member_EducationEmployment.ProffessionM = TranslationHelper.Translate(member_EducationEmployment.Proffession);
+            member_EducationEmployment.CompanyNameM = TranslationHelper.Translate(member_EducationEmployment.CompanyName);
+            member_EducationEmployment.CompanyAddressM = TranslationHelper.Translate(member_EducationEmployment.CompanyAddress);
+            member_EducationEmployment.BusinessNameM = TranslationHelper.Translate(member_EducationEmployment.BusinessName);
+            member_EducationEmployment.BusinessAddressM = TranslationHelper.Translate(member_EducationEmployment.BusinessAddress);
+           
             try
             {
                 int affectedRows = 0;

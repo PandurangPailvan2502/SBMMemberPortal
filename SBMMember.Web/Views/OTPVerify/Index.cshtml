@@ -30,68 +30,73 @@
 
 </script>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4"><a href="javascript:history.back()"><i class="ti-back-left"> Back</i></a></div>
-            <div class="col-lg-4 login-text">
-                <p style="font-size:16px;">To proceed with the one time registration first we will verify your mobile number</p>
-                <img src="~/img/login-icon.png" width="75px" height="75px">
-            </div>
-            <div class="col-lg-4"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"><a href="javascript:history.back()"><i class="ti-back-left"> Back</i></a></div>
+        <div class="col-lg-4 login-text">
+            <p style="font-size:16px;">To proceed with the one time registration first we will verify your mobile number</p>
+            <img src="~/img/login-icon.png" width="75px" height="75px">
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-               <div class="login-type">
-                    <div class="form-group">
-                        <div class="row"><p id="lblError" style="color:red;margin-left:40px;"><span>@ViewBag.AlreadyRegistered</span></p></div>
-                        <form method="post" enctype="multipart/form-data" asp-controller="OTPVerify" asp-action="SendOTP">
-                            <div class="input-group mb-3">
-                                <input id="mobileNumber" type="text" required oninvalid="this.setCustomValidity('Enter mobile number to procced further')"
-                                       oninput="this.setCustomValidity('')" name="mobile" class="form-control myinputlogin" maxlength="10" placeholder='Enter Mobile No.' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Mobile No.'">
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-xs-6"><button class="btn btn_12" id="btnSendOtp" type="submit" text="Send OTP">Send OTP</button></div>
-                                        </div>
+        <div class="col-lg-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="login-type">
+                <div class="form-group">
+                    <div class="row"><p id="lblError" style="color:red;margin-left:40px;"><span>@ViewBag.AlreadyRegistered</span></p></div>
+                    <form method="post" enctype="multipart/form-data" asp-controller="OTPVerify" asp-action="SendOTP">
+                        <div class="input-group mb-3">
+                            <input id="mobileNumber" type="text" required oninvalid="this.setCustomValidity('Enter mobile number to procced further')"
+                                   oninput="this.setCustomValidity('')" name="mobile" class="form-control myinputlogin" maxlength="10" placeholder='Enter Mobile No.' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Mobile No.'">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-xs-6"><button class="btn btn_12" id="btnSendOtp" type="submit" text="Send OTP">Send OTP</button></div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="navigation-top"></div>
             </div>
+            <div class="navigation-top"></div>
         </div>
+    </div>
 
-        <!---Existing member MPIN form --->
-        <div class="row">
-            <div class="col-lg-12" style="text-align:center">
-                <h2>OR</h2>
-                <h6>Continue with your MPIN to fill the member registration form</h6>
-            </div>
+    <!---Existing member MPIN form --->
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <h2>OR</h2>
+            <h6>Continue with your MPIN to fill the member registration form</h6>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="login-type">
-                <form method="post" >
-                            <div class="input-group mb-3">
-                             <input id="mpin" type="password" required name="MPIN" class="form-control myinputlogin" maxlength="6" placeholder='Enter 6 digit MPIN' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter 6 digit MPIN'">
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-xs-6"><button class="btn btn_12m" id="btnSendOtp" type="submit" text="Send OTP">Submit</button></div>
-                                        </div>
-                                    </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="login-type">
+                <div class="row"><p id="lblError" style="color:red;margin-left:40px;"><span>@ViewBag.VerifyMPinMessage</span></p></div>
+                <form method="post" asp-action="VerifyMPin" asp-controller="OTPVerify">
+                    <div class="input-group mb-3">
+                        <input asp-for="MobileNumber" id="mobileNumber" type="text" required oninvalid="this.setCustomValidity('Enter mobile number to procced further')"
+                               oninput="this.setCustomValidity('')" name="MobileNumber" class="form-control myinputlogin" maxlength="10" placeholder='Enter Mobile No.' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Mobile No.'">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input id="mpin" type="password" asp-for="MPIN" required name="MPIN" class="form-control myinputlogin" maxlength="6" placeholder='Enter 6 digit MPIN' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter 6 digit MPIN'">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-6"><button class="btn btn_12m" id="btnSendOtp" type="submit" text="Send OTP">Submit</button></div>
                                 </div>
                             </div>
-                 </form>
-                 </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 

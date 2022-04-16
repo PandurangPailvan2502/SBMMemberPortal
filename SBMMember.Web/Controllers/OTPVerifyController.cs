@@ -53,12 +53,44 @@ namespace SBMMember.Web.Controllers
             var member = MemberDataFactory.GetDetailsByMemberMobile(mobile);
             if (member.Mobile != null && member.MemberId > 0)
             {
+                
+               
+                    ViewBag.AlreadyRegistered = $"{mobile} is already registered.Try with another number. OR Use below login option to submit remaining form details";
+                    return View("Index");
+                
+            }
+            else
+            {
+               
+                string OTP = SMSHelper.GenerateOTP();
+                string message = $"{OTP} is your OTP for login to Samata Bhratru Mandal (PCMC Pune) Vadhu Var Melava test.com registration portal. Validity for 30 minutes only. Please do not share to anyone else.";
+                SMSHelper.SendSMS(mobile, message);
+                string maskedMobile = mobile.Substring(mobile.Length - 4).PadLeft(mobile.Length, 'x');
+                ViewBag.MobileNumber = mobile;
+                ViewBag.MaskedMobile = maskedMobile;
+                ViewBag.SentOTP = OTP;
+                LoginViewModel loginViewModel = new LoginViewModel()
+                {
+                    MobileNumber = mobile,
+                    MaskedMobileNumber = maskedMobile,
+                    SentOTP = OTP
+                };
+                return View("VerifyOTP", loginViewModel);
+            }
+           
+        }
+
+        public IActionResult VerifyMPin(LoginViewModel _viewModel)
+        {
+            var member = MemberDataFactory.GetDetailsByMemberMobile(_viewModel.MobileNumber);
+            if (member.Mobile.Trim()==_viewModel.MobileNumber.Trim() && member.Mpin.Trim()==_viewModel.MPIN.Trim())
+            {
                 Member_PersonalDetails personalDetails = personalDataFactory.GetMemberPersonalDetailsByMemberId(member.MemberId);
                 Member_ContactDetails contactDetails = contactDetailsDataFactory.GetDetailsByMemberId(member.MemberId);
                 Member_EducationEmploymentDetails educationEmploymentDetails = educationEmploymentDataFactory.GetDetailsByMemberId(member.MemberId);
                 List<Member_FamilyDetails> familyDetails = familyDetailsDataFactory.GetFamilyDetailsByMemberId(member.MemberId);
                 Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(member.MemberId);
-                if (personalDetails == null||personalDetails.MemberId==0)
+                if (personalDetails == null || personalDetails.MemberId == 0)
                 {
                     MemberPerosnalInfoViewModel perosnalInfoViewModel = new MemberPerosnalInfoViewModel()
                     {
@@ -66,7 +98,7 @@ namespace SBMMember.Web.Controllers
                     };
                     return RedirectToAction("MemberPersonalInfo", "Member", new { MemberId = member.MemberId });
                 }
-                else if (contactDetails == null || contactDetails.MemberId== 0)
+                else if (contactDetails == null || contactDetails.MemberId == 0)
                 {
                     MemberContactInfoViewModel viewModel = new MemberContactInfoViewModel()
                     {
@@ -74,7 +106,7 @@ namespace SBMMember.Web.Controllers
                     };
                     return RedirectToAction("MemberContactInfo", "Member", new { MemberId = member.MemberId });
                 }
-                else if (educationEmploymentDetails == null || educationEmploymentDetails.MemberId== 0)
+                else if (educationEmploymentDetails == null || educationEmploymentDetails.MemberId == 0)
                 {
                     MemberEducationEmploymentInfoViewModel viewModel = new MemberEducationEmploymentInfoViewModel()
                     {
@@ -88,9 +120,9 @@ namespace SBMMember.Web.Controllers
                     {
                         MemberId = member.MemberId
                     };
-                    return RedirectToAction("MemberFamilyInfo", "Member", viewModel);
+                    return RedirectToAction("MemberFamilyInfo", "Member", new { MemberId = member.MemberId });
                 }
-                else if (member_Payments == null || member_Payments.MemberId== 0)
+                else if (member_Payments == null || member_Payments.MemberId == 0)
                 {
                     var data = (from memberbasic in dBContext.Member_PersonalDetails
                                 join memberContact in dBContext.Member_ContactDetails
@@ -116,31 +148,17 @@ namespace SBMMember.Web.Controllers
                 }
                 else
                 {
-                    ViewBag.AlreadyRegistered = $"{mobile} is already registered.Try with another number.";
+                    ViewBag.VerifyMPinMessage = $"{_viewModel.MobileNumber} is already registered.Try with another number. OR If you recived your profile activation message please navigate to login page.";
                     return View("Index");
                 }
             }
             else
             {
-               
-                string OTP = SMSHelper.GenerateOTP();
-                string message = $"{OTP} is your OTP for login to Samata Bhratru Mandal (PCMC Pune) Vadhu Var Melava test.com registration portal. Validity for 30 minutes only. Please do not share to anyone else.";
-                SMSHelper.SendSMS(mobile, message);
-                string maskedMobile = mobile.Substring(mobile.Length - 4).PadLeft(mobile.Length, 'x');
-                ViewBag.MobileNumber = mobile;
-                ViewBag.MaskedMobile = maskedMobile;
-                ViewBag.SentOTP = OTP;
-                LoginViewModel loginViewModel = new LoginViewModel()
-                {
-                    MobileNumber = mobile,
-                    MaskedMobileNumber = maskedMobile,
-                    SentOTP = OTP
-                };
-                return View("VerifyOTP", loginViewModel);
+                ViewBag.VerifyMPinMessage = $"Mobile No or Mpin invalid. Try with correct mobile and Mpin ";
+                return View("Index");
             }
-           
+            
         }
-
 
         public IActionResult VerifyOTP()
         {

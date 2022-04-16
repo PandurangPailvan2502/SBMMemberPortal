@@ -17,24 +17,19 @@ namespace SBMMember.Web.Controllers
         private readonly string _Key;
         private readonly string _secret;
         private readonly IMemberPaymentsDataFactory paymentsDataFactory;
-        public PaymentController(IConfiguration configuration, IMemberPaymentsDataFactory dataFactory)
+        private readonly IMemberFormStatusDataFactory formStatusDataFactory;
+        public PaymentController(IConfiguration configuration, IMemberPaymentsDataFactory dataFactory,IMemberFormStatusDataFactory _formStatusDataFactory)
         {
             Configuration = configuration;
             _Key = configuration.GetSection("PGKey").Value;
             _secret = configuration.GetSection("PGSecret").Value;
             paymentsDataFactory = dataFactory;
+            formStatusDataFactory = _formStatusDataFactory;
         }
         public ViewResult AcceptMemberPayment(MemberPaymentViewModel model)
         {
-            MemberPaymentViewModel model1 = new MemberPaymentViewModel()
-            {
-                MemberName = "Rajesh Raut",
-                Email = "rajesh@gmail.com",
-                Mobile = "9172293692",
-                Amount = 100,
-                MemberId=3030
-            };
-            return View(model1);
+           
+            return View(model);
         }
 
         public ViewResult MemberPayment(MemberPaymentViewModel model)
@@ -125,6 +120,16 @@ namespace SBMMember.Web.Controllers
 
                 };
                 paymentsDataFactory.AddDetails(member_Payments);
+
+                //Add form status to submitted
+                Member_FormStatus member_Form = new Member_FormStatus()
+                {
+                    MemberId = memberId,
+                    FormStatus = "Submitted",
+                    FormSubmitDate = DateTime.Now
+                };
+                ViewBag.TransactionNo = paymentId;
+                formStatusDataFactory.AddDetails(member_Form);
                 return View("PaymentSuccess");
             }
             else

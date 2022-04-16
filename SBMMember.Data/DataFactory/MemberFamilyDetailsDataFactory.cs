@@ -19,6 +19,13 @@ namespace SBMMember.Data.DataFactory
         public override ResponseDTO AddDetails(Member_FamilyDetails member_FamilyDetails)
         {
             ResponseDTO responseDTO = new ResponseDTO();
+
+            member_FamilyDetails.NameM = TranslationHelper.Translate(member_FamilyDetails.Name);
+            member_FamilyDetails.RelationM = TranslationHelper.Translate(member_FamilyDetails.Relation);
+            member_FamilyDetails.EducationM = TranslationHelper.Translate(member_FamilyDetails.Education);
+            member_FamilyDetails.OccupationM = TranslationHelper.Translate(member_FamilyDetails.Occupation);
+            member_FamilyDetails.BloodGroupM = TranslationHelper.Translate(member_FamilyDetails.BloodGroup);
+
             try
             {
                 int affectedRows = 0;

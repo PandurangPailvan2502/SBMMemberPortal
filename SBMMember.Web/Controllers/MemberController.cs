@@ -165,10 +165,10 @@ namespace SBMMember.Web.Controllers
             else
                 return View();
         }
-        public IActionResult MemberFamilyInfo()
+        public IActionResult MemberFamilyInfo(int MemberId)
         {
             MemberFamilyInfoViewModel model = new MemberFamilyInfoViewModel();
-
+            model.MemberId = MemberId;
             return View(model);
         }
         [HttpPost]
