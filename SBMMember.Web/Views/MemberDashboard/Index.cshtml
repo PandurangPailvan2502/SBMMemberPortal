@@ -9,7 +9,7 @@
         <div class="col-lg-12">
             <div class="container">
                 <div class="row">
-                    <div class="col-sx-9 profile-bar1">
+                    <div class="col-sx-8 profile-bar1">
                         <div class="container">
                             <div c;ass="row">
                                 <div class="col-xs-12">
@@ -30,8 +30,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sx-3 profile-bar2" style="display:none">
-                        <h3>Member ID:@User.Claims?.FirstOrDefault(x => x.Type.Equals("MemberId", StringComparison.OrdinalIgnoreCase))?.Value</h3>
+                    <div class="col-sx-4 profile-bar2">
+                        <h3>Mem.ID:@User.Claims?.FirstOrDefault(x => x.Type.Equals("MemberId", StringComparison.OrdinalIgnoreCase))?.Value</h3>
 
                     </div>
                 </div>

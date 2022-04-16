@@ -120,11 +120,10 @@
 }
 
 .title-box {
-    width: 50%;
+    width: 70%;
     height: auto;
     vertical-align:top;
-    text-align: center;
-    padding:0px;
+    padding:5px;
     text-align: center
 }
 .title-box h2 {
@@ -220,8 +219,8 @@
 @media only screen and (max-width: 576px) {
 .logo {min-width: 70%;max-width:85%;margin-left:-58px}
 .logo1 {margin-left: -35px;margin-top:-10px}
-.title-box h2 {font-size:20px;}
-.title-box h4 {font-size:16px;}
+.title-box h2 {font-size:30px;}
+.title-box h4 {font-size:20px;}
 .ic {font-size:24px}
 .scroll p {font-size: 12px}
 .menu-icon {width: 30%}
@@ -707,7 +706,7 @@ tr, td, th {
 .scroll {height: 45px;background-color: #ad0160cb;text-align: center;color: darkred;}
 .scroll p {text-align: center;color: #ffffff;padding: 10px 0px 10px 0px}
 .myborder {border: 1px solid #000000;text-align: center}
-.profile-bar1 {width:80%;color:black;}
+.profile-bar1 {width:73%;color:black;}
 .pofile-icon {width: 64px;height: 64px;padding: 10px;}
 .profile-content {padding:0px 0px 5px 0px}
 .profile-content h4 {color: black;}
@@ -759,8 +758,8 @@ tr, td, th {
     .view_prof_i {width: 114px;height: 125px}
 }
 @media only screen and (max-width: 576px) {
-    .profile-content h4 {font-size: 14px;}
-    .profile-content h5 {font-size: 12px;}
+    .profile-content h4 {font-size: 13px;}
+    .profile-content h5 {font-size: 11px;}
     .profile-bar2 h3 {font-size: 12px;}
     .scroll p {font-size: 12px}
     .notification h3 {margin: 17px 42px;font-size: 12px;color: #ffffff}
