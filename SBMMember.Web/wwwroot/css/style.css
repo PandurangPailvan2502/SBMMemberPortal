@@ -2461,7 +2461,7 @@ sup,
 sub,
 u,
 del {
-  color:#7c0053;font-size:13px;padding-bottom:1px; font-weight:bold;
+  color:#7c0053;font-size:15px;padding-bottom:1px; font-weight:bold;
 }
 
 /* line 93, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
@@ -2496,7 +2496,7 @@ h6 {
 
 /* line 117, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
 h1, h2, h3, h4, h5, h6 {
-  line-height: 1.2em;
+  line-height:32px;
 }
 
 /* line 127, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */

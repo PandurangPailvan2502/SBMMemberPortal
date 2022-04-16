@@ -17,24 +17,33 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-
-                <div class="col-rt-12">
-                    <div class="container">
-                        <div class="row" style="background-color:#7c0053">
-                            <div class="photo-container1" style="background-color:#7c0053">
-                                <i class="ti-edit"></i>
-                                <img src="@Model.CandidateProfile.profileImage" style="margin:7px;height:110px;width:123px; border-radius:10px">
-                            </div>
-                            <section class="data-content1" style="background:#7c0053; width: calc(100% - 150px); padding:20px; color:#ffffff">
-                                <ul class="profile-text">
-                                    <li>@Model.CandidateProfile.fullName</li>
-                                    <li>Age:@Model.CandidateProfile.age yrs</li>
-                                    <li>ऊंची : @Model.CandidateProfile.heightInFeet'@Model.CandidateProfile.heightInInches"</li>
-                                    <li>Candidate Id:@Model.CandidateProfile.applicationId</li>
-                                </ul>
-                            </section>
-                        </div>
+                <table>
+                <tr>
+                <td style="background-color:#7c0053">
+                    <div class="photo-container1">
+                    <img src="@Model.CandidateProfile.profileImage" class="view_prof_i">
                     </div>
+                </td>
+                <td width="100%" style="background-color:#7c0053">
+                            <section class="data-content1">
+                                <table>
+                                    <tr>
+                                        <td><label class="lbl_profile"><strong>@Model.CandidateProfile.fullName</strong></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="lbl_profile"><strong>Age:@Model.CandidateProfile.age yrs </strong></label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label class="lbl_profile"><strong>ऊंची: @Model.CandidateProfile.heightInFeet'@Model.CandidateProfile.heightInInches"</strong></label></td>
+                                    </tr>
+                                    <tr><td><label class="lbl_profile"><strong>Candidate Id: @Model.CandidateProfile.applicationId </strong></label></td></tr>
+                                </table>        
+                               </section>
+                        </td>
+                </tr>
+                </table>
+                <div class="col-rt-12">
+                  
                     <div class="Scriptcontent">
                         <section class="tabs-container tab-text">
                             <label for="tab1" style="color:#ffffff;text-align:center"> <img src="~/img/profile.png" class="matri-icon"> <br>वैयक्तिक माहिती </label>
@@ -49,30 +58,15 @@
                             
                             <div class="section-top-border">
                                 <div class="row">
-                                    <div class="col-lg-12 col-md-12">
-                                        <h5>जन्म नाव:</h5>
-                                        <p>@Model.CandidateProfile.birthName</p>
-                                        <br>
-                                        <h5>जन्म ठिकाण  :</h5>
-                                        <p>@Model.CandidateProfile.birthPlace</p>
-                                        <br>
-                                        <h5>जन्म तारीख :</h5>
-                                        <p>@Model.CandidateProfile.birthDate</p>
-                                        <br>
-                                        <h5>जन्म वेळ(24 hrs) :</h5>
-                                        <p>@Model.CandidateProfile.birthHrs:@Model.CandidateProfile.birthMins</p>
-                                        <br>
-                                        <h5> गोत्र:</h5>
-                                        <p>@Model.CandidateProfile.gotra</p>
-                                        <br>
-                                        <h5> रक्तगट:</h5>
-                                        <p>@Model.CandidateProfile.bloodGroup</p>
-                                        <br>
-                                        <h5> मामकुळ :</h5>
-                                        <p>@Model.CandidateProfile.mamkul</p>
-                                        <br>
-                                        <h5>संपर्क नं :</h5>
-                                        <p>@Model.CandidateProfile.mobileNo</p>
+                                    <div class="col-lg-12 col-md-12" style="margin-left:10px; margin-top:10px">
+                                        <h5><b>जन्म नाव:</b>  @Model.CandidateProfile.birthName</h5>
+                                        <h5><b>जन्म ठिकाण:</b> @Model.CandidateProfile.birthPlace</h5>
+                                        <h5><b>जन्म तारीख:</b> @Model.CandidateProfile.birthDate</h5>
+                                        <h5><b>जन्म वेळ(24 hrs):</b> @Model.CandidateProfile.birthHrs:@Model.CandidateProfile.birthMins</h5>
+                                        <h5><b>गोत्र:</b> @Model.CandidateProfile.gotra</h5>
+                                        <h5><b>रक्तगट:</b> @Model.CandidateProfile.bloodGroup</h5>
+                                        <h5><b>मामकुळ:</b> @Model.CandidateProfile.mamkul</h5>
+                                        <h5><b>संपर्क नं:</b> @Model.CandidateProfile.mobileNo</h5>
                                     </div>
                                 </div>
                             </div>
@@ -80,26 +74,15 @@
 
                         <input name="tab" id="tab2" type="radio" />
                         <section class="tab-content">
-                           
+                          
                             <div class="section-top-border">
                                 <div class="row">
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="col-lg-12 col-md-12">
-                                            <h5>शैक्षणिक पातळी :</h5>
-                                            <p>@Model.CandidateProfile.educationLevel</p>
-                                            <br>
-                                            <h5>शिक्षण :</h5>
-                                            <p>@Model.CandidateProfile.qualification</p>
-                                            <br>
-                                            <h5>नोकरी / व्यवसाय :</h5>
-                                            <p>@Model.CandidateProfile.occupation</p>
-                                            <br>
-                                            <h5>जोडीदाराविषयी अपेक्षा :</h5>
-                                            <p>@Model.CandidateProfile.expectations</p>
-
-                                        </div>
+                                    <div class="col-lg-12 col-md-12" style="margin-left:10px; margin-top:10px">
+                                            <h5><b>शैक्षणिक पातळी:</b> @Model.CandidateProfile.educationLevel</h5>
+                                            <h5><b>शिक्षण:</b> @Model.CandidateProfile.qualification</h5>
+                                            <h5><b>नोकरी / व्यवसाय:</b> @Model.CandidateProfile.occupation</h5>
+                                            <h5><b>जोडीदाराविषयी अपेक्षा:</b> @Model.CandidateProfile.expectations</h5>
                                     </div>
-
                                 </div>
                             </div>
                         </section>
@@ -109,10 +92,8 @@
                             
                             <div class="section-top-border">
                                 <div class="row">
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="col-lg-12 col-md-12">
-
-                                        </div>
+                                    <div class="col-lg-12 col-md-12" style="margin-left:10px; margin-top:10px">>
+                                       
                                     </div>
 
                                 </div>
@@ -124,35 +105,16 @@
                           
                             <div class="section-top-border">
                                 <div class="row">
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="col-lg-12 col-md-12">
-                                            <h5>भाऊ:</h5>
-                                            <p>विवाहित @Model.CandidateProfile.broMarried,अविवाहित @Model.CandidateProfile.broUnmarried</p>
-                                            <br>
-                                            <h5>बहीण:</h5>
-                                            <p>विवाहित @Model.CandidateProfile.sisMarried,अविवाहित @Model.CandidateProfile.sisUnmarried</p>
-                                            <br>
-                                            <h5>मुळगाव:</h5>
-                                            <p>@Model.CandidateProfile.homeTown</p>
-                                            <br>
-                                            <h5>तालुका:</h5>
-                                            <p>@Model.CandidateProfile.taluka</p>
-                                            <br>
-                                            <h5>जिह्वा:</h5>
-                                            <p>@Model.CandidateProfile.district</p>
-                                            <br>
-                                            <h5>वडीलांचे/पालकांचे नाव :</h5>
-                                            <p>@Model.CandidateProfile.nameOfFatherGuardian</p>
-                                            <br>
-                                            <h5>पत्ता:</h5>
-                                            <p>@Model.CandidateProfile.parentalAddress</p>
-                                            <br>
-                                            <h5>संपर्क नं:</h5>
-                                            <p>@Model.CandidateProfile.parentalContactNo1</p>
-                                            <br>
-                                            <h5>इमेल:</h5>
-                                            <p>@Model.CandidateProfile.parentalEmail</p>
-                                        </div>
+                                    <div class="col-lg-12 col-md-12" style="margin-left:10px; margin-top:10px">
+                                            <h5><b>भाऊ विवाहित:</b> @Model.CandidateProfile.broMarried,अविवाहित @Model.CandidateProfile.broUnmarried</h5>
+                                            <h5><b>बहीण विवाहित:</b> @Model.CandidateProfile.sisMarried,अविवाहित @Model.CandidateProfile.sisUnmarried</h5>
+                                            <h5><b>मुळगाव:</b> @Model.CandidateProfile.homeTown</h5>
+                                            <h5><b>तालुका:</b> @Model.CandidateProfile.taluka</h5>
+                                            <h5><b>जिह्वा:</b> @Model.CandidateProfile.district</h5>
+                                            <h5><b>वडीलांचे/पालकांचे नाव:</b> @Model.CandidateProfile.nameOfFatherGuardian</h5>
+                                            <h5><b>पत्ता:</b> @Model.CandidateProfile.parentalAddress</h5>
+                                            <h5><b>संपर्क नं:</b> @Model.CandidateProfile.parentalContactNo1</h5>
+                                            <h5><b>इमेल:</b> @Model.CandidateProfile.parentalEmail</h5>
                                     </div>
 
                                 </div>
@@ -164,28 +126,14 @@
                             
                             <div class="section-top-border">
                                 <div class="row">
-                                    <div class="col-lg-12 col-md-12">
-                                        <div class="col-lg-12 col-md-12">
-                                            <h5>संपर्कांचे नाव १ :</h5>
-                                            <p>@Model.CandidateProfile.fatherGurdianTitle @Model.CandidateProfile.nameOfFatherGuardian</p>
-                                            <br>
-                                            <h5>पत्ता १:</h5>
-                                            <p>@Model.CandidateProfile.parentalAddress</p>
-                                            <br>
-                                            <h5>संपर्क १:</h5>
-                                            <p>@Model.CandidateProfile.parentalContactNo1</p>
-                                            <br />
-                                            <h5>संपर्कांचे नाव २ :</h5>
-                                            <p>@Model.CandidateProfile.altFatherGurdianTitle @Model.CandidateProfile.altNameOfFatherGuardian</p>
-                                            <br>
-                                            <h5>पत्ता २:</h5>
-                                            <p>@Model.CandidateProfile.altParentalAddress</p>
-                                            <br>
-                                            <h5>संपर्क २</h5>
-                                            <p>@Model.CandidateProfile.altParentalContactNo1</p>
-                                            <br />
-
-                                        </div>
+                                    <div class="col-lg-12 col-md-12" style="margin-left:10px; margin-top:10px">
+                                      
+                                            <h5><b>संपर्कांचे नाव १:</b> @Model.CandidateProfile.fatherGurdianTitle @Model.CandidateProfile.nameOfFatherGuardian</h5>
+                                            <h5><b>पत्ता १:</b> @Model.CandidateProfile.parentalAddress</h5>
+                                            <h5><b>संपर्क १:</b> @Model.CandidateProfile.parentalContactNo1</h5>
+                                            <h5><b>संपर्कांचे नाव २:</b> @Model.CandidateProfile.altFatherGurdianTitle @Model.CandidateProfile.altNameOfFatherGuardian</h5>
+                                            <h5><b>पत्ता २:</b> @Model.CandidateProfile.altParentalAddress</h5>
+                                            <h5><b>संपर्क २:</b> @Model.CandidateProfile.altParentalContactNo1</h5>
                                     </div>
 
                                 </div>
