@@ -20,6 +20,17 @@ namespace SBMMember.Data.DataFactory
         public override ResponseDTO AddDetails(Member_ContactDetails member_ContactDetails)
         {
             ResponseDTO responseDTO = new ResponseDTO();
+            member_ContactDetails.NativePlaceM = TranslationHelper.Translate(member_ContactDetails.NativePlace);
+            member_ContactDetails.NativePlaceTalukaM = TranslationHelper.Translate(member_ContactDetails.NativePlaceTaluka);
+            member_ContactDetails.NativePlaceDistM = TranslationHelper.Translate(member_ContactDetails.NativePlaceDist);
+            member_ContactDetails.Mobile1M = TranslationHelper.Translate(member_ContactDetails.Mobile1);
+            member_ContactDetails.Mobile2M = TranslationHelper.Translate(member_ContactDetails.Mobile2);
+            member_ContactDetails.LandLineM = TranslationHelper.Translate(member_ContactDetails.LandLine);
+            member_ContactDetails.RelativeNameM = TranslationHelper.Translate(member_ContactDetails.RelativeName);
+            member_ContactDetails.RelativeAddressM = TranslationHelper.Translate(member_ContactDetails.RelativeAddress);
+            member_ContactDetails.RelativeContact1M = TranslationHelper.Translate(member_ContactDetails.RelativeContact1);
+            member_ContactDetails.RelativeContact2M = TranslationHelper.Translate(member_ContactDetails.RelativeContact2);
+
             try
             {
                 int affectedRows = 0;

@@ -10,6 +10,7 @@ using SBMMember.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 namespace SBMMember.Web.Controllers
 {
     public class MemberController : Controller
@@ -24,6 +25,7 @@ namespace SBMMember.Web.Controllers
         private static List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
         private readonly SBMMemberDBContext dBContext;
         private readonly IConfiguration configuration;
+
         public MemberController(IMemberDataFactory dataFactory,
             IMemberPersonalDataFactory memberPersonalDataFactory,
             IMemberContactDetailsDataFactory memberContactDetailsDataFactory,
@@ -77,9 +79,14 @@ namespace SBMMember.Web.Controllers
                 return View();
         }
 
-        public IActionResult MemberPersonalInfo()
+        
+        public IActionResult MemberPersonalInfo(int MemberId)
         {
-            return View();
+            MemberPerosnalInfoViewModel model = new MemberPerosnalInfoViewModel()
+            {
+                MemberId = MemberId
+            };
+            return View(model);
         }
         [HttpPost]
         public IActionResult MemberPersonalInfo(MemberPerosnalInfoViewModel model)
@@ -88,6 +95,7 @@ namespace SBMMember.Web.Controllers
             Member_PersonalDetails personalDetails = mapper.Map<Member_PersonalDetails>(model);
             //personalDetails.CreateDate = DateTime.Now;
             memberDataFactory.UpdateName(personalDetails.MemberId, personalDetails.FirstName, personalDetails.MiddleName, personalDetails.LastName);
+
             var response = personalDataFactory.AddMemberPersonalDetails(personalDetails);
             if (response.Result == "Success")
             {
@@ -101,8 +109,12 @@ namespace SBMMember.Web.Controllers
                 return View();
 
         }
-        public IActionResult MemberContactInfo()
+        public IActionResult MemberContactInfo(int MemberId)
         {
+            MemberEducationEmploymentInfoViewModel viewModel = new MemberEducationEmploymentInfoViewModel()
+            {
+                MemberId = MemberId
+            };
             return View();
         }
         [HttpPost]
@@ -123,8 +135,13 @@ namespace SBMMember.Web.Controllers
             else
                 return View();
         }
-        public IActionResult MemberEduEmpInfo()
+        public IActionResult MemberEduEmpInfo(int MemberId)
         {
+
+            MemberEducationEmploymentInfoViewModel viewModel = new MemberEducationEmploymentInfoViewModel()
+            {
+                MemberId = MemberId
+            };
             return View();
         }
         [HttpPost]

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using SBMMember.Models;
+
 namespace SBMMember.Data.DataFactory
 {
     public class MemberPersonalDataFactory : IMemberPersonalDataFactory
@@ -19,6 +20,21 @@ namespace SBMMember.Data.DataFactory
 
         public ResponseDTO AddMemberPersonalDetails(Member_PersonalDetails member_Personal)
         {
+            member_Personal.PrefixM = TranslationHelper.Translate(member_Personal.Prefix);
+            member_Personal.FirstNameM = TranslationHelper.Translate(member_Personal.FirstName);
+            member_Personal.MiddleNameM = TranslationHelper.Translate(member_Personal.MiddleName);
+            member_Personal.LastNameM = TranslationHelper.Translate(member_Personal.LastName);
+            member_Personal.GenderM = TranslationHelper.Translate(member_Personal.Gender);
+            member_Personal.MaritalStatusM = TranslationHelper.Translate(member_Personal.MaritalStatus);
+            member_Personal.BirthDateM = TranslationHelper.Translate(Convert.ToString( member_Personal.BirthDate));
+            member_Personal.AddressM = TranslationHelper.Translate(member_Personal.Address);
+            member_Personal.AreaM = TranslationHelper.Translate(member_Personal.Area);
+            member_Personal.CityM = TranslationHelper.Translate(member_Personal.City);
+            member_Personal.TalukaM = TranslationHelper.Translate(member_Personal.Taluka);
+            member_Personal.DistrictM = TranslationHelper.Translate(member_Personal.District);
+            member_Personal.StateM = TranslationHelper.Translate(member_Personal.State);
+            member_Personal.PincodeM = TranslationHelper.Translate(Convert.ToString( member_Personal.Pincode));
+
             ResponseDTO responseDTO=new ResponseDTO();
             try
             {
