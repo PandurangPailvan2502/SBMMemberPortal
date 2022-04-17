@@ -8,7 +8,9 @@ namespace SBMMember.Web.Models
     public class MemberPaymentRecieptsViewModel
     {
         public int MemberId { get; set; }
+
 #nullable enable
+        public int? LastMemberShipId { get; set; }
         public int? MembershipId { get; set; }
         public string? MemberShipIdM { get; set; }
         public DateTime? RegistrationDate { get; set; }
@@ -18,5 +20,6 @@ namespace SBMMember.Web.Models
         public string? PaymentStatus { get; set; }
         public int? ChagesPaid { get; set; }
         public string? RecieptNo { get; set; }
+
     }
 }

@@ -81,17 +81,17 @@ namespace SBMMember.Data.DataFactory
                 Member_EducationEmploymentDetails member_Education = dBContext.Member_EducationEmploymentDetails.Where(x => x.MemberId == educationEmploymentDetails.MemberId).First();
                 //member_Education = educationEmploymentDetails;
                 member_Education.BusinessAddress = educationEmploymentDetails.BusinessAddress;
-                member_Education.BusinessAddressM = educationEmploymentDetails.BusinessAddressM;
+                member_Education.BusinessAddressM =TranslationHelper.Translate( educationEmploymentDetails.BusinessAddress);
                 member_Education.BusinessName = educationEmploymentDetails.BusinessName;
-                member_Education.BusinessNameM = educationEmploymentDetails.BusinessNameM;
+                member_Education.BusinessNameM =TranslationHelper.Translate(educationEmploymentDetails.BusinessName);
                 member_Education.CompanyAddress = educationEmploymentDetails.CompanyAddress;
-                member_Education.CompanyAddressM = educationEmploymentDetails.CompanyAddressM;
+                member_Education.CompanyAddressM =TranslationHelper.Translate(educationEmploymentDetails.CompanyAddress);
                 member_Education.CompanyName = educationEmploymentDetails.CompanyName;
-                member_Education.CompanyNameM = educationEmploymentDetails.CompanyNameM;
+                member_Education.CompanyNameM =TranslationHelper.Translate( educationEmploymentDetails.CompanyName);
                 member_Education.Proffession = educationEmploymentDetails.Proffession;
-                member_Education.ProffessionM = educationEmploymentDetails.ProffessionM;
+                member_Education.ProffessionM =TranslationHelper.Translate( educationEmploymentDetails.Proffession);
                 member_Education.Qualification = educationEmploymentDetails.Qualification;
-                member_Education.QualificationM = educationEmploymentDetails.QualificationM;
+                member_Education.QualificationM =TranslationHelper.Translate( educationEmploymentDetails.Qualification);
                 
                 int affectedRows = 0;
                 affectedRows = dBContext.SaveChanges();

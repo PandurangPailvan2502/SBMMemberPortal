@@ -86,6 +86,101 @@ namespace SBMMember.Data.DataFactory
                                                                     }).ToList();
             return memberSearchesFinalResult;
         }
+
+        public List<MemberSearchByDTO> GetAllNewlySubmittedMembers()
+        {
+            List<MemberSearchByDTO> memberSearches = (from _apppersonal in context.Member_PersonalDetails
+                                                      join _appconatct in context.Member_ContactDetails
+                                                      on _apppersonal.MemberId equals _appconatct.MemberId
+                                                      join _appqualification in context.Member_EducationEmploymentDetails
+                                                      on _apppersonal.MemberId equals _appqualification.MemberId
+                                                      join _appFormStatus in context.Member_FormStatuses
+                                                      on _apppersonal.MemberId equals _appFormStatus.MemberId
+                                                      where _appFormStatus.FormStatus == "Submitted"
+                                                      select new MemberSearchByDTO
+                                                      {
+                                                          MemberId = _apppersonal.MemberId,
+                                                          FirstName = _apppersonal.FirstName,
+                                                          FirstNameM = _apppersonal.FirstNameM,
+                                                          MiddleName = _apppersonal.MiddleName,
+                                                          MiddleNameM = _apppersonal.MiddleNameM,
+                                                          LastName = _apppersonal.LastName,
+                                                          LastNameM = _apppersonal.LastNameM,
+                                                          BirthDate = _apppersonal.BirthDate,
+                                                          BirthdateM = _apppersonal.BirthDateM,
+                                                          Qualification = _appqualification.Qualification,
+                                                          QualificationM = _appqualification.QualificationM,
+                                                          Proffession = _appqualification.Proffession,
+                                                          MobileNumber = _appconatct.Mobile1,
+                                                          NativePlace = _appconatct.NativePlace,
+                                                          NativePlaceM = _appconatct.NativePlaceM,
+                                                          NativePlaceTaluka = _appconatct.NativePlaceTaluka,
+                                                          NativePlaceDistrict = _appconatct.NativePlaceDist,
+                                                          Area = _apppersonal.Area,
+                                                          AreaM = _apppersonal.AreaM,
+                                                          City = _apppersonal.City,
+                                                          CityM = _apppersonal.CityM,
+                                                          Pincode = _apppersonal.Pincode,
+                                                          District = _apppersonal.District != null ? _apppersonal.District : string.Empty,
+                                                          Age = _apppersonal.Age,
+                                                          BloodGroup = _apppersonal.BloodGroup,
+                                                          PrefixM = _apppersonal.PrefixM,
+                                                          Prefix = _apppersonal.Prefix,
+                                                          FormStatus=_appFormStatus.FormStatus
+
+                                                      }).ToList();
+
+            return memberSearches;
+        }
+        public List<MemberSearchByDTO> GetAllApprovedMembers()
+        {
+            List<MemberSearchByDTO> memberSearches = (from _apppersonal in context.Member_PersonalDetails
+                                                      join _appconatct in context.Member_ContactDetails
+                                                      on _apppersonal.MemberId equals _appconatct.MemberId
+                                                      join _appqualification in context.Member_EducationEmploymentDetails
+                                                      on _apppersonal.MemberId equals _appqualification.MemberId
+                                                      join _appFormStatus in context.Member_FormStatuses
+                                                      on _apppersonal.MemberId equals _appFormStatus.MemberId
+                                                      join _appPaymentstatus in context.Member_PaymentsAndReciepts
+                                                      on _apppersonal.MemberId equals _appPaymentstatus.MemberId
+                                                      where _appFormStatus.FormStatus == "Approved"
+                                                      select new MemberSearchByDTO
+                                                      {
+                                                          MemberId = _apppersonal.MemberId,
+                                                          FirstName = _apppersonal.FirstName,
+                                                          FirstNameM = _apppersonal.FirstNameM,
+                                                          MiddleName = _apppersonal.MiddleName,
+                                                          MiddleNameM = _apppersonal.MiddleNameM,
+                                                          LastName = _apppersonal.LastName,
+                                                          LastNameM = _apppersonal.LastNameM,
+                                                          BirthDate = _apppersonal.BirthDate,
+                                                          BirthdateM = _apppersonal.BirthDateM,
+                                                          Qualification = _appqualification.Qualification,
+                                                          QualificationM = _appqualification.QualificationM,
+                                                          Proffession = _appqualification.Proffession,
+                                                          MobileNumber = _appconatct.Mobile1,
+                                                          NativePlace = _appconatct.NativePlace,
+                                                          NativePlaceM = _appconatct.NativePlaceM,
+                                                          NativePlaceTaluka = _appconatct.NativePlaceTaluka,
+                                                          NativePlaceDistrict = _appconatct.NativePlaceDist,
+                                                          Area = _apppersonal.Area,
+                                                          AreaM = _apppersonal.AreaM,
+                                                          City = _apppersonal.City,
+                                                          CityM = _apppersonal.CityM,
+                                                          Pincode = _apppersonal.Pincode,
+                                                          District = _apppersonal.District != null ? _apppersonal.District : string.Empty,
+                                                          Age = _apppersonal.Age,
+                                                          BloodGroup = _apppersonal.BloodGroup,
+                                                          PrefixM = _apppersonal.PrefixM,
+                                                          Prefix=_apppersonal.Prefix,
+                                                          FormStatus = _appFormStatus.FormStatus,
+                                                          MemberAppId=_appPaymentstatus.MembershipId
+
+
+                                                      }).ToList();
+
+            return memberSearches;
+        }
         public List<MemberSearchResponse> GetAllMemberssSearchResultByFilterValues(Dictionary<string, string> keyValuePairs)
         {
             var pr = GetDynamicExpression(keyValuePairs);
@@ -165,7 +260,7 @@ namespace SBMMember.Data.DataFactory
                         pr = pr.And(x => x.LastName.ToLower().Contains(keyValuePair.Value.ToLower()) || x.LastName.Contains(keyValuePair.Value.Trim()));
                         break;
                     case "memberId":
-                        pr = pr.And(x => x.MemberAppId.Contains(keyValuePair.Value.ToLower()));
+                        pr = pr.And(x => x.MemberAppId==Convert.ToInt32( keyValuePair.Value));
                         break;
                     case "area":
                         pr = pr.And(x => x.Area.ToLower().Contains(keyValuePair.Value.ToLower()) || x.Area.Contains(keyValuePair.Value.Trim()));
@@ -207,11 +302,15 @@ namespace SBMMember.Data.DataFactory
             }
             return pr;
         }
+    
+    
     }
 
     public interface IMemberSearchDataFactory
     {
         List<MemberSearchResponse> GetAllMemberssSearchResultByFilterValues(Dictionary<string, string> keyValuePairs);
         List<MemberSearchResponse> GetAllDoctors();
+        List<MemberSearchByDTO> GetAllNewlySubmittedMembers();
+        List<MemberSearchByDTO> GetAllApprovedMembers();
     }
 }

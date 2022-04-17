@@ -84,7 +84,8 @@ namespace SBMMember.Web.Controllers
         {
             MemberPerosnalInfoViewModel model = new MemberPerosnalInfoViewModel()
             {
-                MemberId = MemberId
+                MemberId = MemberId,
+                BirthDate=DateTime.Now
             };
             return View(model);
         }

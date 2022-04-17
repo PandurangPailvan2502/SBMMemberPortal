@@ -15,12 +15,16 @@
                         <h3 style="color:#000000">Add New Member</h3>
                     </div>
                     <div class="col-xs-4 r1c1 dashboard">
-                        <img src="~/img/hired.png" class="dashboard-icon">
-                        <h3 style="color:#000000">Approve Member</h3>
+                        <a asp-action="NewMemberList" asp-controller="ManageMembers">
+                            <img src="~/img/hired.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Approve Member</h3>
+                        </a>
                     </div>
                     <div class="col-xs-4 r1c1 dashboard">
-                        <img src="~/img/conversation.png" class="dashboard-icon">
-                        <h3 style="color:#000000">Member List</h3>
+                        <a asp-action="MemberList" asp-controller="ManageMembers">
+                            <img src="~/img/conversation.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Member List</h3>
+                        </a>
                     </div>
 
                 </div>

@@ -65,7 +65,13 @@ namespace SBMMember.Data.DataFactory
 
             return paymentsAndReciepts;
         }
-
+        public int? LastMembershipNo()
+        {
+            int? lastMembershipNo = 0;
+            lastMembershipNo = dBContext.Member_PaymentsAndReciepts.Max(x => x.MembershipId);
+            return lastMembershipNo;
+               
+        }
         public override ResponseDTO UpdateDetails(Member_PaymentsAndReciepts member_Payments)
         {
             ResponseDTO responseDTO = new ResponseDTO();
@@ -104,5 +110,6 @@ namespace SBMMember.Data.DataFactory
         ResponseDTO AddDetails(Member_PaymentsAndReciepts member_Payments);
         Member_PaymentsAndReciepts GetDetailsByMemberId(int MemberId);
         ResponseDTO UpdateDetails(Member_PaymentsAndReciepts member_Payments);
+        int? LastMembershipNo();
     }
 }

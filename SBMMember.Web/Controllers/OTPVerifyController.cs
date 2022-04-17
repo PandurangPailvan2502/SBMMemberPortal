@@ -83,7 +83,7 @@ namespace SBMMember.Web.Controllers
         public IActionResult VerifyMPin(LoginViewModel _viewModel)
         {
             var member = MemberDataFactory.GetDetailsByMemberMobile(_viewModel.MobileNumber);
-            if (member.Mobile.Trim()==_viewModel.MobileNumber.Trim() && member.Mpin.Trim()==_viewModel.MPIN.Trim())
+            if (member.MemberId>0 && member.Mobile.Trim()==_viewModel.MobileNumber.Trim() && member.Mpin.Trim()==_viewModel.MPIN.Trim())
             {
                 Member_PersonalDetails personalDetails = personalDataFactory.GetMemberPersonalDetailsByMemberId(member.MemberId);
                 Member_ContactDetails contactDetails = contactDetailsDataFactory.GetDetailsByMemberId(member.MemberId);

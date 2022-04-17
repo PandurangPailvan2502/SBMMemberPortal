@@ -8,7 +8,7 @@ namespace SBMMember.Models.MemberSearch
     public class MemberSearchByDTO
     {
         public int MemberId { get; set; }
-        public string MemberAppId { get; set; }
+        public int? MemberAppId { get; set; }
         public string Prefix { get; set; }
         public string PrefixM { get; set; }
         public string FirstName { get; set; }
@@ -37,5 +37,6 @@ namespace SBMMember.Models.MemberSearch
         public string BloodGroup { get; set; }
         public string Gender { get; set; }
         public string GenderM { get; set; }
+        public string FormStatus { get; set; }
     }
 }
