@@ -79,19 +79,20 @@
                                             <div class="col-lg-10 col-md-10">
                                                 <form asp-action="MemberPersonalInfo" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
                                                     <input type="hidden" asp-for="MemberPersonalInfo.MemberId" />
-                                                    <div class="input-group-icon">
+                                                     <div class="input-group-icon">
                                                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                         <div class="form-select" id="default-select">
-                                                            <select asp-for="MemberPersonalInfo.Prefix">
-                                                                <option value="Title">Title</option>
-                                                                <option value="Shree">Shree</option>
-                                                                <option value="Sou">Sou</option>
-                                                                <option value="Shreemati">Shreemati</option>
-                                                                <option value="Doctor">Doctor</option>
-                                                                <option value="Adv">Adv</option>
-                                                            </select>
+                                                        <select asp-for="MemberPersonalInfo.Prefix">
+                                                            <option value="Title">Title</option>
+                                                            <option value="Shree">Shree</option>
+                                                            <option value="Sou">Sou</option>
+                                                            <option value="Shreemati">Shreemati</option>
+                                                            <option value="Doctor">Doctor</option>
+                                                            <option value="Adv">Adv</option>
+                                                        </select>
                                                         </div>
                                                     </div>
+                                                   
                                                     <div class="input-group-icon" style="display:none">
                                                         <input type="text" name="MemberPersonalInfo.FirstName" asp-for="MemberPersonalInfo.FirstName" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'"
                                                                required class="single-input">
