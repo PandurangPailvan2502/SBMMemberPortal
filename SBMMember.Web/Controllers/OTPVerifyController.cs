@@ -10,6 +10,7 @@ using SBMMember.Data.DataFactory;
 using SBMMember.Models;
 using SBMMember.Data;
 using Microsoft.Extensions.Configuration;
+using AutoMapper;
 
 namespace SBMMember.Web.Controllers
 {
@@ -23,6 +24,7 @@ namespace SBMMember.Web.Controllers
         private readonly IMemberPaymentsDataFactory paymentsDataFactory;
         private readonly SBMMemberDBContext dBContext;
         private readonly IConfiguration configuration;
+        private readonly IMapper mapper;
 
         public OTPVerifyController(IMemberDataFactory dataFactory,
              IMemberPersonalDataFactory memberPersonalDataFactory,
@@ -31,7 +33,7 @@ namespace SBMMember.Web.Controllers
             IMemberFamilyDetailsDataFactory memberFamilyDetailsDataFactory,
             IMemberPaymentsDataFactory _paymentsDataFactory,
             SBMMemberDBContext sBMMemberDBContext,
-            IConfiguration _configuration)
+            IConfiguration _configuration,IMapper _mapper)
         {
             MemberDataFactory = dataFactory;
             personalDataFactory = memberPersonalDataFactory;
@@ -41,6 +43,7 @@ namespace SBMMember.Web.Controllers
             paymentsDataFactory = _paymentsDataFactory;
             dBContext = sBMMemberDBContext;
             configuration = _configuration;
+            mapper = _mapper;
         }
         public IActionResult Index()
         {
@@ -159,7 +162,85 @@ namespace SBMMember.Web.Controllers
             }
             
         }
+        public IActionResult VerifyMPinNew(LoginViewModel _viewModel)
+        {
+            MemberFormCommonViewModel commonViewModel = new MemberFormCommonViewModel();
 
+            var member = MemberDataFactory.GetDetailsByMemberMobile(_viewModel.MobileNumber);
+            if (member.MemberId > 0 && member.Mobile.Trim() == _viewModel.MobileNumber.Trim() && member.Mpin.Trim() == _viewModel.MPIN.Trim())
+            {
+                Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(member.MemberId);
+                MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
+               
+                commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
+
+                Member_ContactDetails member_contact = contactDetailsDataFactory.GetDetailsByMemberId(member.MemberId);
+                MemberContactInfoViewModel contactInfoViewModel = mapper.Map<MemberContactInfoViewModel>(member_contact);
+               
+                commonViewModel.MemberConatctInfo = contactInfoViewModel;
+
+                Member_EducationEmploymentDetails member_education = educationEmploymentDataFactory.GetDetailsByMemberId(member.MemberId);
+                MemberEducationEmploymentInfoViewModel educationEmploymentInfoViewModel = mapper.Map<MemberEducationEmploymentInfoViewModel>(member_education);
+               
+
+                commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
+
+                List<Member_FamilyDetails> member_Family = familyDetailsDataFactory.GetFamilyDetailsByMemberId(member.MemberId);
+                List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
+                foreach (Member_FamilyDetails family in member_Family)
+                {
+                    memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
+                }
+               
+                ViewBag.MemberList = memberFamilies;
+
+                Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(member.MemberId);
+                MemberPaymentRecieptsViewModel paymentViewModel = mapper.Map<MemberPaymentRecieptsViewModel>(member_Payments);
+               
+                commonViewModel.MemberPaymentInfo = paymentViewModel;
+
+                if (perosnalInfoViewModel.MemberId == 0)
+                    perosnalInfoViewModel.ActiveTab = "Checked";
+                else if (contactInfoViewModel.MemberId == 0)
+                    contactInfoViewModel.ActiveTab = "Checked";
+                else if (educationEmploymentInfoViewModel.MemberId == 0)
+                    educationEmploymentInfoViewModel.ActiveTab = "Checked";
+                else if (memberFamilies.Count == 0)
+                    ViewBag.FamilyTab = "Checked";
+                else if (paymentViewModel.MemberId == 0)
+                    paymentViewModel.ActiveTab = "Checked";
+
+                return View("MemberRegistration", commonViewModel);
+               
+            }
+            else
+            {
+                ViewBag.VerifyMPinMessage = $"Mobile No or Mpin invalid. Try with correct mobile and Mpin ";
+                return View("Index");
+            }
+
+        }
+        //[HttpPost]
+        //public IActionResult MemberPersonalInfo(MemberFormCommonViewModel viewModel)
+        //{
+
+        //    Member_PersonalDetails personalDetails = mapper.Map<Member_PersonalDetails>(model);
+        //    //personalDetails.CreateDate = DateTime.Now;
+        //    memberDataFactory.UpdateName(personalDetails.MemberId, personalDetails.FirstName, personalDetails.MiddleName, personalDetails.LastName);
+
+        //    var response = personalDataFactory.AddMemberPersonalDetails(personalDetails);
+        //    if (response.Result == "Success")
+        //    {
+        //        MemberContactInfoViewModel viewModel = new MemberContactInfoViewModel()
+        //        {
+        //            MemberId = model.MemberId
+        //        };
+        //        return View("MemberContactInfo", viewModel);
+        //    }
+        //    else
+        //        return View();
+
+        //}
         public IActionResult VerifyOTP()
         {
 

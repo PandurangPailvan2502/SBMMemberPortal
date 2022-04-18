@@ -20,6 +20,7 @@ namespace SBMMember.Web.Models
         public string  BusinessNameM { get; set; }
         public string  BusinessAddress { get; set; }
         public string  BusinessAddressM { get; set; }
+        public string ActiveTab { get; set; }
 
     }
 }

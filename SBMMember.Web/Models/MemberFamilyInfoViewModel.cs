@@ -19,7 +19,7 @@ namespace SBMMember.Web.Models
         public DateTime  DOB { get; set; }
         public string  BloodGroup { get; set; }
         public string  BloodGroupM { get; set; }
-
+        public string ActiveTab { get; set; }
         public List<MemberFamilyInfoViewModel>? MemberFamilyDetails { get; set; }
     }
 }
