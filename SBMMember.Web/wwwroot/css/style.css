@@ -959,7 +959,7 @@ body {
 }
 .login-type
 {
-  padding:10px; margin:10px;
+  padding:2px; margin:2px;
 }
 .myinputbox
 {
@@ -978,16 +978,17 @@ body {
 }
 .myinputlogin {
     border-radius: 30px;
-    border: 1px solid #000000;
-    height: 40px ;
+    border: 1px solid #ffffff;
+    height: 40px;
     font-size: 17px;
+    background-color:#e4f1fb;
 }
-.btn_12{height:45px; background-color:#50a100; width:150px; margin-left:64px; padding:3px;color:#FFFFFF; font-weight:normal; word-spacing:10px;}
+.btn_12{height:45px; background-color:#50a100; width:150px; padding:3px;color:#FFFFFF; font-weight:normal; word-spacing:10px;}
 .btn_12m {
     height: 45px;
     background-color: #a8115f;
     width: 150px;
-    margin-left: 80px;
+    margin-left:0px;
     padding: 3px;
     color: #FFFFFF;
     font-weight: normal;
@@ -1026,6 +1027,7 @@ body {
 }
 .myinputlogin input-icons i {
   position: absolute;
+  
 }
 
 .myinputlogin input-icons {
@@ -3670,7 +3672,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 1093, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
 .mb-30 {
-  margin-bottom: 30px;
+  margin-bottom:5px;
 }
 
 /* line 1096, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
