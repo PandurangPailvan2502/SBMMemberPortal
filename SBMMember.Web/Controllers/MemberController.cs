@@ -110,6 +110,7 @@ namespace SBMMember.Web.Controllers
                 return View();
 
         }
+
         public IActionResult MemberContactInfo(int MemberId)
         {
             MemberEducationEmploymentInfoViewModel viewModel = new MemberEducationEmploymentInfoViewModel()

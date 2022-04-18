@@ -29,6 +29,6 @@ namespace SBMMember.Web.Models
         public string  RelativeContact1M { get; set; }
         public string  RelativeContact2 { get; set; }
         public string  RelativeContact2M { get; set; }
-
+        public string ActiveTab { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace SBMMember.Web.Models
     public class MemberPerosnalInfoViewModel
     {
         public int MemberId { get; set; }
+        public string ActiveTab { get; set; }
         public string  Prefix { get; set; }
         public string  PrefixM { get; set; }
         public string  FirstName { get; set; }
