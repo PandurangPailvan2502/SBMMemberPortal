@@ -8,6 +8,7 @@ namespace SBMMember.Models
         [Key]
         public int Id { get; set; }
         public int MemberId { get; set; }
+        ///public bool IsNew { get; set; }
 #nullable enable
         public int? MembershipId { get; set; }
         public string? MemberShipIdM { get; set; }

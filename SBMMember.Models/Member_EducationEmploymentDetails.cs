@@ -11,7 +11,8 @@ namespace SBMMember.Models
     {
         [Key]
         public int MemberId { get; set; }
-        #nullable enable
+        //public bool IsNew { get; set; }
+#nullable enable
         public string? Qualification { get; set; }
         public string? QualificationM { get; set; }
         public string? Proffession { get; set; }

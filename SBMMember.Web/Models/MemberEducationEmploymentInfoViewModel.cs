@@ -8,6 +8,7 @@ namespace SBMMember.Web.Models
     public class MemberEducationEmploymentInfoViewModel
     {
         public int MemberId { get; set; }
+        public bool IsNew { get; set; }
         public string  Qualification { get; set; }
         public string  QualificationM { get; set; }
         public string  Proffession { get; set; }
