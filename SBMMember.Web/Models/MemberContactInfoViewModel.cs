@@ -8,6 +8,7 @@ namespace SBMMember.Web.Models
     public class MemberContactInfoViewModel
     {
         public int MemberId { get; set; }
+        public bool IsNew { get; set; }
         public string  NativePlace { get; set; }
         public string  NativePlaceM { get; set; }
         public string  NativePlaceTaluka { get; set; }

@@ -73,7 +73,8 @@ namespace SBMMember.Web.Controllers
                 {
                     MemberId = member.MemberId
                 };
-                return View("MemberPersonalInfo", perosnalInfoViewModel);
+                //return View("MemberPersonalInfo", perosnalInfoViewModel);
+                return RedirectToActionPermanent("InitialiseMemberRegistration", "OTPVerify", new { MemberId = member.MemberId });
             }
             else
                 return View();

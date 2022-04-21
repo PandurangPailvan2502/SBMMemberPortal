@@ -25,6 +25,7 @@ namespace SBMMember.Web.Controllers
         private readonly SBMMemberDBContext dBContext;
         private readonly IConfiguration configuration;
         private readonly IMapper mapper;
+        private static List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
 
         public OTPVerifyController(IMemberDataFactory dataFactory,
              IMemberPersonalDataFactory memberPersonalDataFactory,
@@ -33,7 +34,7 @@ namespace SBMMember.Web.Controllers
             IMemberFamilyDetailsDataFactory memberFamilyDetailsDataFactory,
             IMemberPaymentsDataFactory _paymentsDataFactory,
             SBMMemberDBContext sBMMemberDBContext,
-            IConfiguration _configuration,IMapper _mapper)
+            IConfiguration _configuration, IMapper _mapper)
         {
             MemberDataFactory = dataFactory;
             personalDataFactory = memberPersonalDataFactory;
@@ -56,15 +57,15 @@ namespace SBMMember.Web.Controllers
             var member = MemberDataFactory.GetDetailsByMemberMobile(mobile);
             if (member.Mobile != null && member.MemberId > 0)
             {
-                
-               
-                    ViewBag.AlreadyRegistered = $"{mobile} is already registered.Try with another number. OR Use below login option to submit remaining form details";
-                    return View("Index");
-                
+
+
+                ViewBag.AlreadyRegistered = $"{mobile} is already registered.Try with another number. OR Use below login option to submit remaining form details";
+                return View("Index");
+
             }
             else
             {
-               
+
                 string OTP = SMSHelper.GenerateOTP();
                 string message = $"{OTP} is your OTP for login to Samata Bhratru Mandal (PCMC Pune) Vadhu Var Melava test.com registration portal. Validity for 30 minutes only. Please do not share to anyone else.";
                 SMSHelper.SendSMS(mobile, message);
@@ -80,13 +81,13 @@ namespace SBMMember.Web.Controllers
                 };
                 return View("VerifyOTP", loginViewModel);
             }
-           
+
         }
 
         public IActionResult VerifyMPin(LoginViewModel _viewModel)
         {
             var member = MemberDataFactory.GetDetailsByMemberMobile(_viewModel.MobileNumber);
-            if (member.MemberId>0 && member.Mobile.Trim()==_viewModel.MobileNumber.Trim() && member.Mpin.Trim()==_viewModel.MPIN.Trim())
+            if (member.MemberId > 0 && member.Mobile.Trim() == _viewModel.MobileNumber.Trim() && member.Mpin.Trim() == _viewModel.MPIN.Trim())
             {
                 Member_PersonalDetails personalDetails = personalDataFactory.GetMemberPersonalDetailsByMemberId(member.MemberId);
                 Member_ContactDetails contactDetails = contactDetailsDataFactory.GetDetailsByMemberId(member.MemberId);
@@ -160,7 +161,7 @@ namespace SBMMember.Web.Controllers
                 ViewBag.VerifyMPinMessage = $"Mobile No or Mpin invalid. Try with correct mobile and Mpin ";
                 return View("Index");
             }
-            
+
         }
         public IActionResult VerifyMPinNew(LoginViewModel _viewModel)
         {
@@ -171,47 +172,73 @@ namespace SBMMember.Web.Controllers
             {
                 Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(member.MemberId);
                 MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
-               
+                if (member_Personal.MemberId > 0)
+                {
+                    perosnalInfoViewModel.IsNew = false;
+                }
+                else
+                    perosnalInfoViewModel.IsNew = true;
+                perosnalInfoViewModel.MemberId = member.MemberId;
+
                 commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
 
                 Member_ContactDetails member_contact = contactDetailsDataFactory.GetDetailsByMemberId(member.MemberId);
                 MemberContactInfoViewModel contactInfoViewModel = mapper.Map<MemberContactInfoViewModel>(member_contact);
-               
+                if (member_contact.MemberId > 0)
+                {
+                    contactInfoViewModel.IsNew = false;
+                }
+                else
+                    contactInfoViewModel.IsNew = true;
+                contactInfoViewModel.MemberId = member.MemberId;
                 commonViewModel.MemberConatctInfo = contactInfoViewModel;
 
                 Member_EducationEmploymentDetails member_education = educationEmploymentDataFactory.GetDetailsByMemberId(member.MemberId);
                 MemberEducationEmploymentInfoViewModel educationEmploymentInfoViewModel = mapper.Map<MemberEducationEmploymentInfoViewModel>(member_education);
-               
+                educationEmploymentInfoViewModel.MemberId = member.MemberId;
+                if (member_education.MemberId > 0)
+                {
+                    educationEmploymentInfoViewModel.IsNew = false;
+                }
+                else
+                    educationEmploymentInfoViewModel.IsNew = true;
 
                 commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
 
                 List<Member_FamilyDetails> member_Family = familyDetailsDataFactory.GetFamilyDetailsByMemberId(member.MemberId);
-                List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
+               // List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
                 foreach (Member_FamilyDetails family in member_Family)
                 {
                     memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
                 }
-               
+                MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
+                familyInfoViewModel.MemberId = member.MemberId;
+                familyInfoViewModel.MemberFamilyDetails = memberFamilies;
+                commonViewModel.MemberFamilyInfo = familyInfoViewModel;
                 ViewBag.MemberList = memberFamilies;
 
                 Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(member.MemberId);
                 MemberPaymentRecieptsViewModel paymentViewModel = mapper.Map<MemberPaymentRecieptsViewModel>(member_Payments);
-               
+                paymentViewModel.MemberId = member.MemberId;
                 commonViewModel.MemberPaymentInfo = paymentViewModel;
 
-                if (perosnalInfoViewModel.MemberId == 0)
+                if (member_Personal.MemberId == 0)
                     perosnalInfoViewModel.ActiveTab = "Checked";
-                else if (contactInfoViewModel.MemberId == 0)
+                else if (member_contact.MemberId == 0)
                     contactInfoViewModel.ActiveTab = "Checked";
-                else if (educationEmploymentInfoViewModel.MemberId == 0)
+                else if (member_education.MemberId == 0)
                     educationEmploymentInfoViewModel.ActiveTab = "Checked";
                 else if (memberFamilies.Count == 0)
                     ViewBag.FamilyTab = "Checked";
-                else if (paymentViewModel.MemberId == 0)
+                else if (member_Payments.MemberId == 0)
                     paymentViewModel.ActiveTab = "Checked";
-
+                else
+                {
+                    ViewBag.VerifyMPinMessage = $"{_viewModel.MobileNumber} is already registered.Try with another number. OR If you recived your profile activation message please navigate to login page.";
+                    return View("Index");
+                }
                 return View("MemberRegistration", commonViewModel);
-               
+
             }
             else
             {
@@ -220,27 +247,194 @@ namespace SBMMember.Web.Controllers
             }
 
         }
-        //[HttpPost]
-        //public IActionResult MemberPersonalInfo(MemberFormCommonViewModel viewModel)
-        //{
+        public IActionResult InitialiseMemberRegistration(int MemberId)
+        {
+            MemberFormCommonViewModel commonViewModel = new MemberFormCommonViewModel();
+            commonViewModel.MemberId = MemberId;
+            Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(MemberId);
+            MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
+            if (member_Personal.MemberId > 0)
+            {
+                perosnalInfoViewModel.IsNew = false;
+            }
+            else
+                perosnalInfoViewModel.IsNew = true;
+            perosnalInfoViewModel.MemberId = MemberId;
 
-        //    Member_PersonalDetails personalDetails = mapper.Map<Member_PersonalDetails>(model);
-        //    //personalDetails.CreateDate = DateTime.Now;
-        //    memberDataFactory.UpdateName(personalDetails.MemberId, personalDetails.FirstName, personalDetails.MiddleName, personalDetails.LastName);
+            commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
 
-        //    var response = personalDataFactory.AddMemberPersonalDetails(personalDetails);
-        //    if (response.Result == "Success")
-        //    {
-        //        MemberContactInfoViewModel viewModel = new MemberContactInfoViewModel()
-        //        {
-        //            MemberId = model.MemberId
-        //        };
-        //        return View("MemberContactInfo", viewModel);
-        //    }
-        //    else
-        //        return View();
+            Member_ContactDetails member_contact = contactDetailsDataFactory.GetDetailsByMemberId(MemberId);
+            MemberContactInfoViewModel contactInfoViewModel = mapper.Map<MemberContactInfoViewModel>(member_contact);
+            if (member_contact.MemberId > 0)
+            {
+                contactInfoViewModel.IsNew = false;
+            }
+            else
+                contactInfoViewModel.IsNew = true;
+            contactInfoViewModel.MemberId = MemberId;
+            commonViewModel.MemberConatctInfo = contactInfoViewModel;
 
-        //}
+            Member_EducationEmploymentDetails member_education = educationEmploymentDataFactory.GetDetailsByMemberId(MemberId);
+            MemberEducationEmploymentInfoViewModel educationEmploymentInfoViewModel = mapper.Map<MemberEducationEmploymentInfoViewModel>(member_education);
+            educationEmploymentInfoViewModel.MemberId = MemberId;
+            if (member_education.MemberId > 0)
+            {
+                educationEmploymentInfoViewModel.IsNew = false;
+            }
+            else
+                educationEmploymentInfoViewModel.IsNew = true;
+
+            commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
+
+            List<Member_FamilyDetails> member_Family = familyDetailsDataFactory.GetFamilyDetailsByMemberId(MemberId);
+            //List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
+            foreach (Member_FamilyDetails family in member_Family)
+            {
+                memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
+            }
+            MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
+            familyInfoViewModel.MemberId = MemberId;
+            familyInfoViewModel.MemberFamilyDetails = memberFamilies;
+            commonViewModel.MemberFamilyInfo = familyInfoViewModel;
+            if (memberFamilies.Count > 0)
+                ViewBag.MemberList = memberFamilies;
+
+            Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(MemberId);
+            MemberPaymentRecieptsViewModel paymentViewModel = mapper.Map<MemberPaymentRecieptsViewModel>(member_Payments);
+            paymentViewModel.MemberId = MemberId;
+            commonViewModel.MemberPaymentInfo = paymentViewModel;
+
+            if (member_Personal.MemberId == 0)
+                perosnalInfoViewModel.ActiveTab = "Checked";
+            else if (member_contact.MemberId == 0)
+                contactInfoViewModel.ActiveTab = "Checked";
+            else if (member_education.MemberId == 0)
+                educationEmploymentInfoViewModel.ActiveTab = "Checked";
+            else if (memberFamilies.Count == 0)
+                ViewBag.FamilyTab = "Checked";
+            else if (member_Payments.MemberId == 0)
+                paymentViewModel.ActiveTab = "Checked";
+
+            return View("MemberRegistration", commonViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult MemberEduEmpInfo(MemberFormCommonViewModel model)
+        {
+            Member_EducationEmploymentDetails member_EducationEmployment = mapper.Map<Member_EducationEmploymentDetails>(model.MemberEducationEmploymentInfo);
+            member_EducationEmployment.CreateDate = DateTime.Now;
+            member_EducationEmployment.UpdateDate = DateTime.Now;
+
+            if (model.MemberEducationEmploymentInfo.IsNew)
+                educationEmploymentDataFactory.AddDetails(member_EducationEmployment);
+            else
+                educationEmploymentDataFactory.UpdateDetails(member_EducationEmployment);
+
+
+
+            return RedirectToAction("InitialiseMemberRegistration", new { MemberId = model.MemberEducationEmploymentInfo.MemberId });
+
+        }
+        [HttpPost]
+        public IActionResult MemberPersonalInfo(MemberFormCommonViewModel model)
+        {
+            Member_PersonalDetails personalDetails = mapper.Map<Member_PersonalDetails>(model.MemberPersonalInfo);
+            //personalDetails.CreateDate = DateTime.Now;
+            MemberDataFactory.UpdateName(personalDetails.MemberId, personalDetails.FirstName, personalDetails.MiddleName, personalDetails.LastName);
+            if (model.MemberPersonalInfo.IsNew)
+                personalDataFactory.AddMemberPersonalDetails(personalDetails);
+            else
+                personalDataFactory.UpdateMemberPersonalDetails(personalDetails);
+            return RedirectToAction("InitialiseMemberRegistration", new { MemberId = model.MemberPersonalInfo.MemberId });
+        }
+
+        [HttpPost]
+        public IActionResult MemberContactInfo(MemberFormCommonViewModel model)
+        {
+            Member_ContactDetails member_ContactDetails = mapper.Map<Member_ContactDetails>(model.MemberConatctInfo);
+            member_ContactDetails.CreateDate = DateTime.Now;
+            member_ContactDetails.UpdateDate = DateTime.Now;
+            if (model.MemberConatctInfo.IsNew)
+                contactDetailsDataFactory.AddDetails(member_ContactDetails);
+            else
+                contactDetailsDataFactory.UpdateDetails(member_ContactDetails);
+            return RedirectToAction("InitialiseMemberRegistration", new { MemberId = model.MemberConatctInfo.MemberId });
+        }
+
+
+        [HttpPost]
+        public IActionResult AddToList(MemberFormCommonViewModel model)
+        {
+            if (Request.Method == HttpMethods.Post)
+            {
+                memberFamilies.Add(model.MemberFamilyInfo);
+                ViewBag.MemberList = memberFamilies;
+
+                Member_FamilyDetails member = new Member_FamilyDetails()
+                {
+                    MemberID=model.MemberFamilyInfo.MemberId,
+                    Name = model.MemberFamilyInfo.Name,
+                    Relation = model.MemberFamilyInfo.Relation,
+                    BloodGroup = model.MemberFamilyInfo.BloodGroup,
+                    Education = model.MemberFamilyInfo.Education,
+                    DOB = model.MemberFamilyInfo.DOB,
+                    Occupation = model.MemberFamilyInfo.Occupation
+                };
+                familyDetailsDataFactory.AddDetails(member);
+            }
+            ModelState.Clear();
+            
+
+            return RedirectToAction("InitialiseMemberRegistration", new { MemberId = model.MemberFamilyInfo.MemberId });
+        }
+        [HttpPost]
+        public IActionResult MemberFamilyInfo(MemberFormCommonViewModel model)
+        {
+            foreach (var family in model.MemberFamilyInfo.MemberFamilyDetails)
+            {
+                Member_FamilyDetails _FamilyDetails = new Member_FamilyDetails()
+                {
+                    MemberID = model.MemberId,
+                    Name = family.Name,
+                    Occupation = family.Occupation,
+                    Education = family.Education,
+                    DOB = Convert.ToDateTime(family.DOB),
+                    BloodGroup = family.BloodGroup,
+                    CreateDate = DateTime.Now
+
+                };
+                familyDetailsDataFactory.AddDetails(_FamilyDetails);
+
+               
+
+            }
+            return RedirectToAction("InitialiseMemberRegistration", new { MemberId = model.MemberFamilyInfo.MemberId });
+        }
+
+        public IActionResult GoToPayment(MemberFormCommonViewModel model)
+        {
+            var data = (from memberbasic in dBContext.Member_PersonalDetails
+                        join memberContact in dBContext.Member_ContactDetails
+                         on memberbasic.MemberId equals memberContact.MemberId
+                        where memberContact.MemberId == model.MemberPaymentInfo.MemberId
+                        select new
+                        {
+                            Name = $"{memberbasic.FirstName} {memberbasic.MiddleName} {memberbasic.LastName}",
+                            Conatct = memberContact.Mobile1,
+                            Email = memberContact.EmailId
+                        }
+                           ).FirstOrDefault();
+            MemberPaymentViewModel memberPayment = new MemberPaymentViewModel()
+            {
+                MemberId =model.MemberPaymentInfo.MemberId,
+                MemberName = data.Name,
+                Mobile = data.Conatct,
+                Email = data.Email,
+                Amount = Convert.ToInt32(configuration.GetSection("SubscriptionCharges").Value)
+            };
+
+            return RedirectToAction("AcceptMemberPayment", "Payment", memberPayment);
+        }
         public IActionResult VerifyOTP()
         {
 
