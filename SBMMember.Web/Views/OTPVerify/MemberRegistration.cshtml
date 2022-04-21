@@ -387,7 +387,7 @@
                                                         <div class="mt-10 center">
                                                             <table class="table table-info">
                                                                 <thead>
-                                                                    <tr>
+                                                                    <tr  style="font-weight:bold">
                                                                         <td>Name</td>
                                                                         <td>Relation</td>
                                                                         <td>Education</td>
@@ -399,7 +399,7 @@
 
                                                                     @foreach (var familyMember in ViewBag.MemberList)
                                                                     {
-                                                                        <tr>
+                                                                        <tr style="background-color:#ffffff">
                                                                             <td>@familyMember.Name</td>
                                                                             <td>@familyMember.Relation</td>
                                                                             <td>@familyMember.Education</td>
