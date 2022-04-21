@@ -26,16 +26,21 @@
                                     <div class="row ">
 
                                         <div class="col-sm-6">
-                                            <input text="text" name="EventYear" asp-for="EventYear" class="search-box_input" placeholder="Enter Year" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Year'">
+                                            <input text="text" name="EventYear" asp-for="EventYear" class="single-input" placeholder="Enter Year" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Year'">
                                         <div class="orcondit"><h6>OR</h6></div>
                                         </div>
                                         <div class="col-sm-6">
-                                            <select>
-                                                <option value="0"></option>
-                                                <option value="Event1">Event1</option>
-                                                <option value="Event1">Event2</option>
-                                            </select>
-                                            <input text="text" name="EventTitle" asp-for="EventTitle" class="search-box_input" placeholder="Event Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Title'">
+                                            <div class="form-select" id="default-select">
+                                                        <select >
+                                                            <option value="Title">Title</option>
+                                                            <option value="Shree">Shree</option>
+                                                            <option value="Sou">Sou</option>
+                                                            <option value="Shreemati">Shreemati</option>
+                                                            <option value="Doctor">Doctor</option>
+                                                            <option value="Adv">Adv</option>
+                                                        </select>
+                                                        </div>
+                                            <input text="text" name="EventTitle" asp-for="EventTitle" class="single-input" placeholder="Event Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Title'">
                                         </div>
                                     </div>
                                     <div class="row ">
