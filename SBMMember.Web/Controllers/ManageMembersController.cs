@@ -7,9 +7,11 @@ using SBMMember.Data.DataFactory;
 using SBMMember.Web.Models;
 using SBMMember.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SBMMember.Web.Controllers
 {
+    [Authorize]
     public class ManageMembersController : Controller
     {
         private readonly IMemberDataFactory memberDataFactory;
@@ -21,6 +23,7 @@ namespace SBMMember.Web.Controllers
         private readonly IMemberFamilyDetailsDataFactory familyDetailsDataFactory;
         private readonly IMemberPaymentsDataFactory paymentsDataFactory;
         private readonly IMapper mapper;
+        private readonly IMemberFormStatusDataFactory formStatusDataFactory;
         public ManageMembersController(IMemberDataFactory dataFactory,
             IMemberSearchDataFactory searchDataFactory,
             IMemberPersonalDataFactory _personalDataFactory,
@@ -28,7 +31,8 @@ namespace SBMMember.Web.Controllers
             IMemberEducationEmploymentDataFactory _educationEmploymentDataFactory,
             IMemberFamilyDetailsDataFactory _familyDetailsDataFactory,
             IMemberPaymentsDataFactory _paymentsDataFactory,
-            IMapper _mapper
+            IMapper _mapper,
+            IMemberFormStatusDataFactory _formStatusDataFactory
             )
         {
             memberDataFactory = dataFactory;
@@ -39,6 +43,7 @@ namespace SBMMember.Web.Controllers
             familyDetailsDataFactory = _familyDetailsDataFactory;
             paymentsDataFactory = _paymentsDataFactory;
             mapper = _mapper;
+            formStatusDataFactory = _formStatusDataFactory;
         }
         public IActionResult MemberList()
         {
@@ -62,6 +67,44 @@ namespace SBMMember.Web.Controllers
 
             //var memberId = User.Claims?.FirstOrDefault(x => x.Type.Equals("MemberId", StringComparison.OrdinalIgnoreCase))?.Value;
             int _MemberId = MemberId;
+            commonViewModel.MemberId = MemberId;
+            Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(_MemberId);
+            MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
+            commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
+
+            Member_ContactDetails member_contact = contactDetailsDataFactory.GetDetailsByMemberId(_MemberId);
+            MemberContactInfoViewModel contactInfoViewModel = mapper.Map<MemberContactInfoViewModel>(member_contact);
+            commonViewModel.MemberConatctInfo = contactInfoViewModel;
+
+            Member_EducationEmploymentDetails member_education = educationEmploymentDataFactory.GetDetailsByMemberId(_MemberId);
+            MemberEducationEmploymentInfoViewModel educationEmploymentInfoViewModel = mapper.Map<MemberEducationEmploymentInfoViewModel>(member_education);
+            commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
+
+            List<Member_FamilyDetails> member_Family = familyDetailsDataFactory.GetFamilyDetailsByMemberId(_MemberId);
+            List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
+            foreach (Member_FamilyDetails family in member_Family)
+            {
+                memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
+            }
+            MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
+            familyInfoViewModel.MemberFamilyDetails = memberFamilies;
+            familyInfoViewModel.DOB = DateTime.Now.AddYears(-72);
+            commonViewModel.MemberFamilyInfo = familyInfoViewModel;
+
+            Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(_MemberId);
+            MemberPaymentRecieptsViewModel paymentViewModel = mapper.Map<MemberPaymentRecieptsViewModel>(member_Payments);
+            paymentViewModel.LastMemberShipId = paymentsDataFactory.LastMembershipNo();
+            commonViewModel.MemberPaymentInfo = paymentViewModel;
+
+            return View(commonViewModel);
+            //return  RedirectToAction("NewMemberList");
+        }
+        public IActionResult VerifyMemberProfileNew(MemberFamilyInfoViewModel familymodel)
+        {
+            MemberFormCommonViewModel commonViewModel = new MemberFormCommonViewModel();
+
+            //var memberId = User.Claims?.FirstOrDefault(x => x.Type.Equals("MemberId", StringComparison.OrdinalIgnoreCase))?.Value;
+            int _MemberId = familymodel.MemberId;
 
             Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(_MemberId);
             MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
@@ -81,20 +124,46 @@ namespace SBMMember.Web.Controllers
             {
                 memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
             }
-            ViewBag.MemberList = memberFamilies;
-
+            //MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
+            //familyInfoViewModel.MemberFamilyDetails = memberFamilies;
+            //commonViewModel.MemberFamilyInfo = familyInfoViewModel;
+            familymodel.MemberFamilyDetails = memberFamilies;
+            familymodel.IsNew = false;
+            commonViewModel.MemberFamilyInfo = familymodel;
             Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(_MemberId);
             MemberPaymentRecieptsViewModel paymentViewModel = mapper.Map<MemberPaymentRecieptsViewModel>(member_Payments);
             paymentViewModel.LastMemberShipId = paymentsDataFactory.LastMembershipNo();
             commonViewModel.MemberPaymentInfo = paymentViewModel;
 
-            return View(commonViewModel);
+            return View("VerifyMemberProfile",commonViewModel);
             //return  RedirectToAction("NewMemberList");
         }
-        public IActionResult ApproveMemberProfile(int memberId)
+        public IActionResult EditFamilyMember(int id)
         {
-            return RedirectToAction("NewMemberList");
+            Member_FamilyDetails member_Family = familyDetailsDataFactory.GetDetailsByMemberId(id);
+            MemberFamilyInfoViewModel model = mapper.Map<MemberFamilyInfoViewModel>(member_Family);
+            
+            return RedirectToAction("VerifyMemberProfileNew", model);
         }
+        public IActionResult DeleteFamilyMember(int id,int memberId)
+        {
+            familyDetailsDataFactory.DeleteById(id);
+            return RedirectToAction("VerifyMemberProfile", new { MemberId = memberId });
+        }
+        public IActionResult AddToList(MemberFormCommonViewModel commonViewModel)
+        {
+            Member_FamilyDetails member_Family = mapper.Map<Member_FamilyDetails>(commonViewModel.MemberFamilyInfo);
+            if (commonViewModel.MemberFamilyInfo.IsNew)
+                familyDetailsDataFactory.AddDetails(member_Family);
+            else
+                familyDetailsDataFactory.UpdateDetails(member_Family);
+
+            return RedirectToAction("VerifyMemberProfile",new { MemberId= commonViewModel.MemberFamilyInfo.MemberId });
+        }
+        //public IActionResult ApproveMemberProfile(int memberId)
+        //{
+        //    return RedirectToAction("NewMemberList");
+        //}
 
         [HttpPost]
         public IActionResult MemberPersonalInfo(MemberFormCommonViewModel formCommonViewModel)
@@ -118,6 +187,36 @@ namespace SBMMember.Web.Controllers
             educationEmploymentDataFactory.UpdateDetails(member_Education);
 
             return RedirectToAction("VerifyMemberProfile", formCommonViewModel.MemberEducationEmploymentInfo.MemberId);
+        } 
+        [HttpPost]
+        public IActionResult MemberPaymentInfo(MemberFormCommonViewModel memberFormCommon)
+        {
+            Member_PaymentsAndReciepts member_Payments = mapper.Map<Member_PaymentsAndReciepts>(memberFormCommon.MemberPaymentInfo);
+            paymentsDataFactory.UpdateDetails(member_Payments);
+            return RedirectToAction("VerifyMemberProfile",new { MemberId = memberFormCommon.MemberPaymentInfo.MemberId });
+        }
+        [HttpPost]
+        public IActionResult MarkVerify(MemberFormCommonViewModel model)
+        {
+            Member_FormStatus formStatus = formStatusDataFactory.GetDetailsByMemberId(model.MemberId);
+            formStatus.VerifiedBy = User.Identity.Name;
+            formStatus.VerifiedDate = DateTime.Now;
+            formStatus.FormStatus = "Verified";
+            formStatusDataFactory.UpdateDetails(formStatus);
+            //return RedirectToAction("VerifyMemberProfile", new { MemberId = model.MemberId });
+            return RedirectToAction("NewMemberList");
+        }
+
+        //[HttpPost]
+        public IActionResult ApproveMemberProfile(int memberId)
+        {
+            Member_FormStatus formStatus = formStatusDataFactory.GetDetailsByMemberId(memberId);
+            formStatus.VerifiedBy = User.Identity.Name;
+            formStatus.VerifiedDate = DateTime.Now;
+            formStatus.FormStatus = "Approved";
+            formStatusDataFactory.UpdateDetails(formStatus);
+            //return RedirectToAction("VerifyMemberProfile", new { MemberId = model.MemberId });
+            return RedirectToAction("NewMemberList");
         }
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SBMMember.Web.Controllers
 {
-   /// [Authorize]
+    [Authorize]
     public class MarqueeController : Controller
     {
         private readonly IMarqueeDataFactory marqueeDataFactory;

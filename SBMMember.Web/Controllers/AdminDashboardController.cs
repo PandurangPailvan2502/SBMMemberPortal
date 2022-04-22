@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SBMMember.Web.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class AdminDashboardController : Controller
     {
         private readonly IMemberBusinessDataFactory businessDataFactory;

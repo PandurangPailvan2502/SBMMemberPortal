@@ -25,7 +25,7 @@ namespace SBMMember.Web.Controllers
         private readonly SBMMemberDBContext dBContext;
         private readonly IConfiguration configuration;
         private readonly IMapper mapper;
-        private static List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
+        //private static List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
 
         public OTPVerifyController(IMemberDataFactory dataFactory,
              IMemberPersonalDataFactory memberPersonalDataFactory,
@@ -179,7 +179,7 @@ namespace SBMMember.Web.Controllers
                 else
                     perosnalInfoViewModel.IsNew = true;
                 perosnalInfoViewModel.MemberId = member.MemberId;
-
+                perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate==DateTime.MinValue? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
                 commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
 
                 Member_ContactDetails member_contact = contactDetailsDataFactory.GetDetailsByMemberId(member.MemberId);
@@ -206,16 +206,17 @@ namespace SBMMember.Web.Controllers
                 commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
 
                 List<Member_FamilyDetails> member_Family = familyDetailsDataFactory.GetFamilyDetailsByMemberId(member.MemberId);
-               // List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
+               List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
                 foreach (Member_FamilyDetails family in member_Family)
                 {
                     memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
                 }
                 MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
                 familyInfoViewModel.MemberId = member.MemberId;
+                familyInfoViewModel.DOB = familyInfoViewModel.DOB== DateTime.MinValue ? DateTime.Now.AddYears(-72):familyInfoViewModel.DOB;
                 familyInfoViewModel.MemberFamilyDetails = memberFamilies;
                 commonViewModel.MemberFamilyInfo = familyInfoViewModel;
-                ViewBag.MemberList = memberFamilies;
+                //ViewBag.MemberList = memberFamilies;
 
                 Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(member.MemberId);
                 MemberPaymentRecieptsViewModel paymentViewModel = mapper.Map<MemberPaymentRecieptsViewModel>(member_Payments);
@@ -228,13 +229,13 @@ namespace SBMMember.Web.Controllers
                     contactInfoViewModel.ActiveTab = "Checked";
                 else if (member_education.MemberId == 0)
                     educationEmploymentInfoViewModel.ActiveTab = "Checked";
-                else if (memberFamilies.Count == 0)
+                else if ((memberFamilies.Count == 0 || member_Payments.MemberId > 0)&& member_Payments.MemberId == 0)
                     ViewBag.FamilyTab = "Checked";
-                else if (member_Payments.MemberId == 0)
-                    paymentViewModel.ActiveTab = "Checked";
+                //else if (member_Payments.MemberId == 0)
+                //    paymentViewModel.ActiveTab = "Checked";
                 else
                 {
-                    ViewBag.VerifyMPinMessage = $"{_viewModel.MobileNumber} is already registered.Try with another number. OR If you recived your profile activation message please navigate to login page.";
+                    ViewBag.VerifyMPinMessage = $"Member profile associated with Mobile:{_viewModel.MobileNumber} is already submitted successfully.Try with another number OR If you recived your profile activation message, please navigate to login page.";
                     return View("Index");
                 }
                 return View("MemberRegistration", commonViewModel);
@@ -260,6 +261,7 @@ namespace SBMMember.Web.Controllers
             else
                 perosnalInfoViewModel.IsNew = true;
             perosnalInfoViewModel.MemberId = MemberId;
+            perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate == DateTime.MinValue ? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
 
             commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
 
@@ -287,17 +289,18 @@ namespace SBMMember.Web.Controllers
             commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
 
             List<Member_FamilyDetails> member_Family = familyDetailsDataFactory.GetFamilyDetailsByMemberId(MemberId);
-            //List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
+            List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
             foreach (Member_FamilyDetails family in member_Family)
             {
                 memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
             }
             MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
             familyInfoViewModel.MemberId = MemberId;
+            familyInfoViewModel.DOB = familyInfoViewModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoViewModel.DOB;
             familyInfoViewModel.MemberFamilyDetails = memberFamilies;
             commonViewModel.MemberFamilyInfo = familyInfoViewModel;
-            if (memberFamilies.Count > 0)
-                ViewBag.MemberList = memberFamilies;
+            //if (memberFamilies.Count > 0)
+            //    ViewBag.MemberList = memberFamilies;
 
             Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(MemberId);
             MemberPaymentRecieptsViewModel paymentViewModel = mapper.Map<MemberPaymentRecieptsViewModel>(member_Payments);
@@ -310,10 +313,10 @@ namespace SBMMember.Web.Controllers
                 contactInfoViewModel.ActiveTab = "Checked";
             else if (member_education.MemberId == 0)
                 educationEmploymentInfoViewModel.ActiveTab = "Checked";
-            else if (memberFamilies.Count == 0)
+            else if (memberFamilies.Count == 0 || member_Payments.MemberId > 0|| member_Payments.MemberId == 0)
                 ViewBag.FamilyTab = "Checked";
-            else if (member_Payments.MemberId == 0)
-                paymentViewModel.ActiveTab = "Checked";
+            //else if (member_Payments.MemberId == 0)
+            //    paymentViewModel.ActiveTab = "Checked";
 
             return View("MemberRegistration", commonViewModel);
         }
@@ -367,8 +370,8 @@ namespace SBMMember.Web.Controllers
         {
             if (Request.Method == HttpMethods.Post)
             {
-                memberFamilies.Add(model.MemberFamilyInfo);
-                ViewBag.MemberList = memberFamilies;
+                //memberFamilies.Add(model.MemberFamilyInfo);
+                //ViewBag.MemberList = memberFamilies;
 
                 Member_FamilyDetails member = new Member_FamilyDetails()
                 {

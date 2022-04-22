@@ -71,7 +71,10 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="login-type">
-                <div class="row"><p id="lblError" style="color:red;margin-left:40px;"><span>@ViewBag.VerifyMPinMessage</span></p></div>
+                @if (ViewBag.VerifyMPinMessage != null)
+                {
+                <div class="row"><p id="lblError" style="color:red;margin-left:40px;"><span>@ViewBag.VerifyMPinMessage <a asp-action="Login" asp-controller="Login">Click here to Login</a></span></p></div>
+                }
                 <form method="post" asp-action="VerifyMPinNew" asp-controller="OTPVerify">
                     <div class="input-group mb-3">
                         <input asp-for="MobileNumber" id="mobileNumber" type="text" required oninvalid="this.setCustomValidity('Enter mobile number to procced further')"

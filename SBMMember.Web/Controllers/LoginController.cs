@@ -17,10 +17,14 @@ namespace SBMMember.Web.Controllers
     {
         private readonly IMemberDataFactory memberDataFactory;
         private readonly IMemberFormStatusDataFactory formStatusDataFactory;
-        public LoginController(IMemberDataFactory _dataFactory,IMemberFormStatusDataFactory statusDataFactory)
+        private readonly IMemberPaymentsDataFactory paymentsDataFactory;
+        private readonly IMemberPersonalDataFactory personalDataFactory;
+        public LoginController(IMemberDataFactory _dataFactory,IMemberFormStatusDataFactory statusDataFactory, IMemberPaymentsDataFactory _paymentsDataFactory, IMemberPersonalDataFactory _personalDataFactory)
         {
             memberDataFactory = _dataFactory;
             formStatusDataFactory = statusDataFactory;
+            paymentsDataFactory = _paymentsDataFactory;
+            personalDataFactory = _personalDataFactory;
         }
         public IActionResult Login()
         {
@@ -36,10 +40,13 @@ namespace SBMMember.Web.Controllers
                 var memberFormStatus = formStatusDataFactory.GetDetailsByMemberId(member.MemberId);
                 if (memberFormStatus.FormStatus == "Approved")
                 {
+                    var memberPayment = paymentsDataFactory.GetDetailsByMemberId(member.MemberId);
+                    var memberPersonal = personalDataFactory.GetMemberPersonalDetailsByMemberId(member.MemberId);
                     //Create the identity for the user  
                     var identity = new ClaimsIdentity(new[] {
-                    new Claim(ClaimTypes.Name,$"{member.FirstName} {member.MiddleName} {member.LastName}"),
-                    new Claim("MemberId",Convert.ToString( member.MemberId)),
+                    new Claim(ClaimTypes.Name,$"{memberPersonal.FirstName} {memberPersonal.MiddleName} {memberPersonal.LastName}"),
+                    new Claim("MemberId",Convert.ToString(member.MemberId)),
+                     new Claim("MemberShipId",Convert.ToString(memberPayment.MembershipId)),
                     new Claim(ClaimTypes.PrimarySid,Convert.ToString( member.MemberId))
 
                 }, CookieAuthenticationDefaults.AuthenticationScheme);

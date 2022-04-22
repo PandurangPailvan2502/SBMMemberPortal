@@ -32,6 +32,24 @@
 
         });
 
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        today = yyyy + '-' + mm + '-' + dd;
+        document.getElementById("birthdateCtrl").setAttribute("max", today);
+        document.getElementById("familyDOB").setAttribute("max", today);
+
+
 
     });//document close
 </script>
@@ -84,7 +102,7 @@
                                     <label for="tab2" class="yel"><img src="~/img/contact-details-m.png" class="matri-icon"><br /> मुळगाव व संपर्क</label>
                                     <label for="tab3" class="yel"><img src="~/img/mortarboard.png" class="matri-icon"><br> शिक्षण / नोकरी </label>
                                     <label for="tab4" class="yel"><img src="~/img/people.png" class="matri-icon"><br> कुटुंबाविषयी माहिती </label>
-                                    <label for="tab5" class="yel"><img src="~/img/contact-img.png" class="matri-icon"><br> सभासदत्व नोंदणी शुल्क</label>
+                                    @*<label for="tab5" class="yel"><img src="~/img/contact-img.png" class="matri-icon"><br> सभासदत्व नोंदणी शुल्क</label>*@
                                 </section>
 
                                 <input name="tab" id="tab1" type="radio" @Model.MemberPersonalInfo.ActiveTab />
@@ -145,7 +163,7 @@
                                                     </div>
                                                     <div class="input-group-icon mt-10">
                                                         <label>Date of Birth</label>
-                                                        <input type="date" min="1950-01-01" value="1950-01-01" name="MemberPersonalInfo.BirthDate" asp-for="MemberPersonalInfo.BirthDate" class="single-input">
+                                                        <input type="date" id="birthdateCtrl" min="1950-01-01" max="" name="MemberPersonalInfo.BirthDate" asp-for="MemberPersonalInfo.BirthDate" class="single-input">
                                                     </div>
                                                     <div class="input-group-icon mt-10">
                                                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
@@ -234,13 +252,13 @@
 
 
                                                     <div class="input-group-icon mt-10">
-                                                        <input type="text" id="MemberConatctInfo.Mobile1" name="MemberConatctInfo.Mobile1" asp-for="MemberConatctInfo.Mobile1" placeholder="Personal Mobile 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 1'"
+                                                        <input type="text" id="MemberConatctInfo.Mobile1" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" maxlength="10" name="MemberConatctInfo.Mobile1" asp-for="MemberConatctInfo.Mobile1" placeholder="Personal Mobile 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 1'"
                                                                required class="single-input">
                                                     </div>
                                                   
 
                                                     <div class="input-group-icon mt-10">
-                                                        <input type="text"  id="MemberConatctInfo.Mobile2" name="MemberConatctInfo.Mobile2" asp-for="MemberConatctInfo.Mobile2" placeholder="Personal Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 2'"
+                                                        <input type="text"  id="MemberConatctInfo.Mobile2" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" maxlength="10" name="MemberConatctInfo.Mobile2" asp-for="MemberConatctInfo.Mobile2" placeholder="Personal Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 2'"
                                                                required class="single-input">
                                                     </div>
 
@@ -257,11 +275,11 @@
                                                                required class="single-input">
                                                     </div>
                                                     <div class="input-group-icon mt-10">
-                                                        <input type="text"  onKeyPress="if(this.value.length==10) return false;" name="MemberConatctInfo.RelativeContact1" asp-for="MemberConatctInfo.RelativeContact1" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 1'"
+                                                        <input type="text"  onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" maxlength="10" name="MemberConatctInfo.RelativeContact1" asp-for="MemberConatctInfo.RelativeContact1" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 1'"
                                                                required class="single-input">
                                                     </div>
                                                     <div class="input-group-icon mt-10">
-                                                        <input type="text"  onKeyPress="if(this.value.length==10) return false;" name="MemberConatctInfo.RelativeContact2" asp-for="MemberConatctInfo.RelativeContact2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
+                                                        <input type="text"  onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" maxlength="10" name="MemberConatctInfo.RelativeContact2" asp-for="MemberConatctInfo.RelativeContact2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
                                                                required class="single-input">
                                                     </div>
                                                     <div class="mt-10 center">
@@ -310,11 +328,11 @@
                                                     </div>
                                                     <div class="input-group-icon mt-10">
                                                         <input type="text" name="MemberEducationEmploymentInfo.BusinessName" asp-for="MemberEducationEmploymentInfo.BusinessName" placeholder="Business Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Name'"
-                                                               required class="single-input">
+                                                                class="single-input">
                                                     </div>
                                                     <div class="input-group-icon mt-10">
                                                         <input type="text" name="MemberEducationEmploymentInfo.BusinessAddress" asp-for="MemberEducationEmploymentInfo.BusinessAddress" placeholder="Business Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Address'"
-                                                               required class="single-input">
+                                                                class="single-input">
                                                     </div>
                                                     <div class="mt-10 center">
                                                         <button type="submit" class="genric-btn primary-border">Save</button>
@@ -334,7 +352,7 @@
                                         <div class="row">
                                             <div class="col-lg-10 col-md-10">
                                                 <form asp-action="AddToList" asp-controller="OTPVerify" method="post" enctype="multipart/form-data">
-                                                    <input type="hidden" asp-for="MemberFamilyInfo.MemberFamilyDetails" />
+                                                    @*<input type="hidden" asp-for="MemberFamilyInfo.MemberFamilyDetails" />*@
                                                     <input type="hidden" asp-for="MemberFamilyInfo.MemberId" />
                                                     <div class="input-group-icon mt-10">
                                                         <input type="text" name="MemberFamilyInfo.Name" asp-for="MemberFamilyInfo.Name" placeholder="Family member Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Name'"
@@ -373,7 +391,7 @@
                                                     </div>
 
                                                     <div class="input-group-icon mt-10">
-                                                        Date of Birth: <input type="date" name="MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                                                        Date of Birth: <input type="date" id="familyDOB" min="1950-01-01" name="MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
                                                                               required class="single-input">
                                                     </div>
 
@@ -398,12 +416,12 @@
                                                     <div class="mt-10 center">
                                                         <button class="genric-btn primary-border">Add to List</button>
                                                     </div>
-                                                    @if (ViewBag.MemberList != null)
+                                                    @if (Model.MemberFamilyInfo.MemberFamilyDetails != null)
                                                     {
                                                         <div class="mt-10 center">
                                                             <table class="table table-info">
                                                                 <thead>
-                                                                    <tr  style="font-weight:bold">
+                                                                    <tr style="font-weight:bold">
                                                                         <td>Name</td>
                                                                         <td>Relation</td>
                                                                         <td>Education</td>
@@ -413,7 +431,7 @@
                                                                 </thead>
                                                                 <tbody>
 
-                                                                    @foreach (var familyMember in ViewBag.MemberList)
+                                                                    @foreach (var familyMember in Model.MemberFamilyInfo.MemberFamilyDetails)
                                                                     {
                                                                         <tr style="background-color:#ffffff">
                                                                             <td>@familyMember.Name</td>
@@ -436,18 +454,34 @@
 
                                         </div>
                                         <div class="row">
-                                            <form asp-action="MemberFamilyInfo" asp-controller="Member" method="post" enctype="multipart/form-data">
-                                                <input type="hidden" asp-for="MemberFamilyInfo.MemberId" />
-                                                <input name="MemberFamilyInfo.MemberFamilyDetails" type="hidden" asp-for="MemberFamilyInfo.MemberFamilyDetails" value="@ViewBag.MemberList" />
-                                                <div class="mt-10 right">
-                                                    @*<button type="submit" class="genric-btn primary-border">Save</button>*@
-                                                </div>
-                                            </form>
+                                            <!--<form asp-action="MemberFamilyInfo" asp-controller="Member" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="MemberFamilyInfo.MemberId" />
+            <input name="MemberFamilyInfo.MemberFamilyDetails" type="hidden" asp-for="MemberFamilyInfo.MemberFamilyDetails" value="@ViewBag.MemberList" />
+            <div class="mt-10 right">-->
+                                            @*<button type="submit" class="genric-btn primary-border">Save</button>*@
+                                            <!--</div>
+        </form>-->
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-10 col-md-10">
+                                                <form asp-action="GoToPayment" asp-controller="OTPVerify" method="post">
+                                                    <input type="hidden" asp-for="MemberPaymentInfo.MemberId" />
+                                                    <div class="input-group-icon mt-10">
+                                                        <label> सदस्य नोंदणी शुल्क भरणेसाठी खालील बटणावर क्लिक करा</label>
+                                                    </div>
+
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <button type="submit" class="genric-btn primary-border">proceed to Pay</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </section>
 
-                                <input name="tab" id="tab5" type="radio" @Model.MemberPaymentInfo.ActiveTab />
+                                @*<input name="tab" id="tab5" type="radio" @Model.MemberPaymentInfo.ActiveTab />
                                 <section class="tab-content"> 
                                     <div class="section-top-border">
                                         <div class="row">
@@ -467,7 +501,7 @@
 
                                         </div>
                                     </div>
-                                </section>
+                                </section>*@
                             </div>
                         </div>
                </div>

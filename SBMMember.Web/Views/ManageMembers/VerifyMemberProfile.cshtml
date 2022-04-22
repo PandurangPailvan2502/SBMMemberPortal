@@ -20,7 +20,26 @@
         background-color: green;
     }
 </style>
+<script>
+    $(document).ready(function () {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
 
+        if (dd < 10) {
+            dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm;
+        }
+
+        today = yyyy + '-' + mm + '-' + dd;
+        // document.getElementById("birthdateCtrl").setAttribute("max", today);
+        document.getElementById("DOB").setAttribute("max", today);
+    });
+</script>
 <div class="container" style="margin-top:25px;">
     <div class="row">
         <div class="col-lg-12">
@@ -61,12 +80,12 @@
                     </td>
                 </tr>
                 @*<tr>
-                    <td colspan="2">
-                        <div id="myProgress">
-                            <div id="myBar"></div>
-                        </div>
-                    </td>
-                </tr>*@
+                        <td colspan="2">
+                            <div id="myProgress">
+                                <div id="myBar"></div>
+                            </div>
+                        </td>
+                    </tr>*@
             </table>
             <div class="rt-container">
                 <div class="col-rt-12">
@@ -112,7 +131,7 @@
                                                 <input type="text" name="MemberPersonalInfo.MiddleName" asp-for="MemberPersonalInfo.MiddleName" placeholder="Middle Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Middle Name'"
                                                        required class="single-input">
                                                 <input type="text" name="MemberPersonalInfo.MiddleNameM" asp-for="MemberPersonalInfo.MiddleNameM" placeholder="Middle Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Middle Name'"
-                                                        class="single-input">
+                                                       class="single-input">
                                             </div>
                                             <div class="input-group-icon">
                                                 <input type="text" name="MemberPersonalInfo.LastName" asp-for="MemberPersonalInfo.LastName" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'"
@@ -295,7 +314,7 @@
                                                 <input type="text" name="MemberConatctInfo.RelativeContact1" asp-for="MemberConatctInfo.RelativeContact1" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 1'"
                                                        required class="single-input">
                                                 <input type="text" name="MemberConatctInfo.RelativeContact1M" asp-for="MemberConatctInfo.RelativeContact1M" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 1'"
-                                                required class="single-input">
+                                                       required class="single-input">
                                             </div>
                                             <div class="input-group-icon mt-10">
                                                 <input type="text" name="MemberConatctInfo.RelativeContact2" asp-for="MemberConatctInfo.RelativeContact2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
@@ -362,9 +381,9 @@
                                             </div>
                                             <div class="input-group-icon mt-10">
                                                 <input type="text" name="MemberEducationEmploymentInfo.BusinessAddress" asp-for="MemberEducationEmploymentInfo.BusinessAddress" placeholder="Business Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Address'"
-                                                       required class="single-input">
+                                                       class="single-input">
                                                 <input type="text" name="MemberEducationEmploymentInfo.BusinessAddressM" asp-for="MemberEducationEmploymentInfo.BusinessAddressM" placeholder="Business Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Address'"
-                                                       required class="single-input">
+                                                       class="single-input">
                                             </div>
                                             <div class="mt-10 center">
                                                 <button type="submit" class="genric-btn primary-border">Update</button>
@@ -383,11 +402,15 @@
 
                                 <div class="row">
                                     <div class="col-lg-10 col-md-10">
-                                        <form asp-action="AddToList" asp-controller="Member" method="post" enctype="multipart/form-data">
+                                        <form asp-action="AddToList" asp-controller="ManageMembers" method="post" enctype="multipart/form-data">
                                             <input type="hidden" asp-for="MemberFamilyInfo.MemberFamilyDetails" />
                                             <input type="hidden" asp-for="MemberFamilyInfo.MemberId" />
+                                            <input type="hidden" asp-for="MemberFamilyInfo.IsNew" />
+                                            <input type="hidden" asp-for="MemberFamilyInfo.FamilyDetailsID" />
                                             <div class="input-group-icon mt-10">
-                                                <input type="text" name="Name" asp-for="MemberFamilyInfo.Name" placeholder="Family member Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Name'"
+                                                <input type="text" name="MemberFamilyInfo.Name" asp-for="MemberFamilyInfo.Name" placeholder="Family member Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Name'"
+                                                       required class="single-input">
+                                                <input type="text" name="MemberFamilyInfo.NameM" asp-for="MemberFamilyInfo.NameM" placeholder="Family member Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Name'"
                                                        required class="single-input">
                                             </div>
                                             <div class="input-group-icon mt-10">
@@ -403,10 +426,14 @@
                                                         <option value="Mother">Mother</option>
                                                     </select>
                                                 </div>
+                                                <input type="text" name="MemberFamilyInfo.RelationM" asp-for="MemberFamilyInfo.RelationM" placeholder="Family member Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Name'"
+                                                       required class="single-input">
                                             </div>
 
                                             <div class="input-group-icon mt-10">
-                                                <input type="text" name="Education" asp-for="MemberFamilyInfo.Education" placeholder="Family member Education" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Education'"
+                                                <input type="text" name="MemberFamilyInfo.Education" asp-for="MemberFamilyInfo.Education" placeholder="Family member Education" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Education'"
+                                                       required class="single-input">
+                                                <input type="text" name="MemberFamilyInfo.EducationM" asp-for="MemberFamilyInfo.EducationM" placeholder="Family member Education" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Education'"
                                                        required class="single-input">
                                             </div>
                                             <div class="input-group-icon mt-10">
@@ -420,11 +447,14 @@
                                                         <option value="Retired">Retired</option>
                                                     </select>
                                                 </div>
+                                                <input type="text" name="MemberFamilyInfo.OccupationM" asp-for="MemberFamilyInfo.OccupationM" placeholder="Family member Education" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Occupation'"
+                                                       required class="single-input">
                                             </div>
 
                                             <div class="input-group-icon mt-10">
-                                                Date of Birth: <input type="date" name="DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                                                Date of Birth: <input type="date" min="1950-01-01" id="DOB" name="" MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
                                                                       required class="single-input">
+
                                             </div>
 
                                             <div class="input-group-icon mt-10">
@@ -446,9 +476,9 @@
                                             </div>
 
                                             <div class="mt-10 center">
-                                                <button class="genric-btn primary-border">Add to List</button>
+                                                <button class="genric-btn primary-border">Save</button>
                                             </div>
-                                            @if (ViewBag.MemberList != null)
+                                            @if (Model.MemberFamilyInfo.MemberFamilyDetails != null)
                                             {
                                                 <div class="mt-10 center">
                                                     <table class="table table-info">
@@ -459,11 +489,12 @@
                                                                 <td>Education</td>
                                                                 <td>Occupation</td>
                                                                 <td>Blood Group</td>
+                                                                <td>Operations</td>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
 
-                                                            @foreach (var familyMember in ViewBag.MemberList)
+                                                            @foreach (var familyMember in Model.MemberFamilyInfo.MemberFamilyDetails)
                                                             {
                                                                 <tr>
                                                                     <td>@familyMember.NameM</td>
@@ -471,6 +502,10 @@
                                                                     <td>@familyMember.EducationM</td>
                                                                     <td>@familyMember.OccupationM</td>
                                                                     <td>@familyMember.BloodGroup</td>
+                                                                    <td>
+                                                                        <a title="Edit" href="@Url.Action("EditFamilyMember","ManageMembers",new { id = familyMember.FamilyDetailsID})"><i class="ti-pencil"></i></a>
+                                                                        <a title="Delete" href="@Url.Action("DeleteFamilyMember","ManageMembers",new { id =familyMember.FamilyDetailsID,memberId=familyMember.MemberId})" class="delete-row" onclick="return confirm('Are sure wants to delete?');"><i class="ti-close"></i></a>
+                                                                    </td>
                                                                 </tr>
 
                                                             }
@@ -485,15 +520,15 @@
                                     </div>
 
                                 </div>
-                                <div class="row">
-                                    <form asp-action="MemberFamilyInfo" asp-controller="Member" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" asp-for="MemberFamilyInfo.MemberId" />
-                                        <input type="hidden" asp-for="MemberFamilyInfo.MemberFamilyDetails" value="@ViewBag.MemberList" />
-                                        <div class="mt-10 right">
-                                            <button type="submit" class="genric-btn primary-border">Update</button>
-                                        </div>
-                                    </form>
-                                </div>
+                                @*<div class="row">
+                                        <form asp-action="MemberFamilyInfo" asp-controller="Member" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" asp-for="MemberFamilyInfo.MemberId" />
+                                            <input type="hidden" asp-for="MemberFamilyInfo.MemberFamilyDetails" value="@ViewBag.MemberList" />
+                                            <div class="mt-10 right">
+                                                <button type="submit" class="genric-btn primary-border">Update</button>
+                                            </div>
+                                        </form>
+                                    </div>*@
                             </div>
                         </section>
 
@@ -502,10 +537,10 @@
                             <div class="section-top-border">
                                 <div class="row">
                                     <div class="col-lg-10 col-md-10">
-                                        <form action="#">
-
+                                        <form asp-action="MemberPaymentInfo" asp-controller="ManageMembers" method="post">
+                                            <input type="hidden" asp-for="MemberPaymentInfo.MemberId" />
                                             <div class="input-group-icon mt-10">
-                                                <input type="text" name="charges_paid" readonly asp-for="MemberPaymentInfo.ChagesPaid" placeholder="Charges Paid" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Charges Paid'"
+                                                <input type="text" name="MemberPaymentInfo.ChagesPaid" readonly asp-for="MemberPaymentInfo.ChagesPaid" placeholder="Charges Paid" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Charges Paid'"
                                                        required class="single-input">
                                             </div>
                                             <div class="input-group-icon mt-10" style="display:none">
@@ -527,23 +562,35 @@
 
                                             <div class="input-group-icon mt-10">
                                                 <label>Transaction Date</label>
-                                                <input type="date" readonly name="TransactionDate" asp-for="MemberPaymentInfo.TransactionDate" placeholder="Transaction Date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Transaction Date'"
+                                                <input type="date" readonly name="MemberPaymentInfo.TransactionDate" asp-for="MemberPaymentInfo.TransactionDate" placeholder="Transaction Date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Transaction Date'"
                                                        required class="single-input">
                                             </div>
 
                                             <div class="input-group-icon mt-10">
-                                                <input type="text" name="RecieptNo." asp-for="MemberPaymentInfo.RecieptNo" placeholder="RecieptNo" onfocus="this.placeholder = ''" onblur="this.placeholder = 'RecieptNo'"
+                                                <input type="text" name="MemberPaymentInfo.RecieptNo" asp-for="MemberPaymentInfo.RecieptNo" placeholder="RecieptNo" onfocus="this.placeholder = ''" onblur="this.placeholder = 'RecieptNo'"
                                                        required class="single-input">
                                             </div>
 
                                             <div class="input-group-icon mt-10">
-                                                <input type="text" name="Membership Number" asp-for="MemberPaymentInfo.MemberShipIdM" placeholder="Membership Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Membership Number'"
+                                                <input type="text" name="MemberPaymentInfo.MembershipId" asp-for="MemberPaymentInfo.MembershipId" placeholder="Membership Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Membership Number'"
                                                        required class="single-input">
                                                 <label>Last assigned Membership No : @Model.MemberPaymentInfo.LastMemberShipId</label>
+                                            </div>
+                                            <div class="mt-10 center">
+                                                <button type="submit" class="genric-btn primary-border">Update</button>
                                             </div>
                                         </form>
                                     </div>
 
+                                </div>
+                                <div class="row">
+                                    <form asp-action="MarkVerify" asp-controller="ManageMembers" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" asp-for="MemberId" />
+                                       
+                                        <div class="mt-10 right">
+                                            <button type="submit" class="genric-btn primary-border">Mark Member Profile as Verified</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </section>

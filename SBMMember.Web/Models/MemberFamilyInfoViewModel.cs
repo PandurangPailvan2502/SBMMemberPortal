@@ -7,7 +7,9 @@ namespace SBMMember.Web.Models
 {
     public class MemberFamilyInfoViewModel
     {
+        public int FamilyDetailsID { get; set; }
         public int MemberId { get; set; }
+        public bool IsNew { get; set; }
         public string  Name { get; set; }
         public string  NameM { get; set; }
         public string  Relation { get; set; }

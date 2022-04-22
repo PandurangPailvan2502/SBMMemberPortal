@@ -56,7 +56,13 @@ namespace SBMMember.Data.DataFactory
 
         public override Member_FamilyDetails GetDetailsByMemberId(int MemberId)
         {
-            throw new NotImplementedException();
+            return dBContext.Member_FamilyDetails.Where(x => x.FamilyDetailsID == MemberId).FirstOrDefault();
+        }
+        public void DeleteById(int Id)
+        {
+            Member_FamilyDetails member_FamilyDetails = dBContext.Member_FamilyDetails.Where(x => x.FamilyDetailsID == Id).FirstOrDefault();
+            dBContext.Member_FamilyDetails.Remove(member_FamilyDetails);
+            dBContext.SaveChanges();
         }
         public List< Member_FamilyDetails> GetFamilyDetailsByMemberId(int MemberId)
         {
@@ -112,5 +118,6 @@ namespace SBMMember.Data.DataFactory
         ResponseDTO UpdateDetails(Member_FamilyDetails member_FamilyDetails);
         Member_FamilyDetails GetDetailsByMemberId(int MemberId);
         List<Member_FamilyDetails> GetFamilyDetailsByMemberId(int MemberId);
+        void DeleteById(int Id);
     }
 }

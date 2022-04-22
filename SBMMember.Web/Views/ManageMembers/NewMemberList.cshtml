@@ -70,7 +70,10 @@
                                     <td>@member.FormStatus</td>
                                     <td>
                                         <a title="Verfify" href="@Url.Action("VerifyMemberProfile","ManageMembers",new { memberId = member.MemberId})"><i class="ti-search"></i> Verify</a>
-                                        <a title="Approve" href="@Url.Action("ApproveMemberProfile","ManageMembers",new {memberId = member.MemberId})" class="delete-row" onclick="return confirm('Are sure wants to delete?');"><i class="ti-stamp"></i> Approve</a>
+                                        @if (member.FormStatus == "Verified")
+                                        {
+                                        <a title="Approve" href="@Url.Action("ApproveMemberProfile", "ManageMembers", new { memberId = member.MemberId })" class="delete-row" onclick="return confirm('Are sure wants to Approve This Member Profile?');"><i class="ti-stamp"></i> Approve</a>
+                                        }
                                     </td>
                                 </tr>
                             }

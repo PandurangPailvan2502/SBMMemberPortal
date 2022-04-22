@@ -72,7 +72,12 @@ namespace SBMMember.Data.DataFactory
             try
             {
                 Member_FormStatus member_FormStatus = dBContext.Member_FormStatuses.Where(x => x.MemberId == member_Form.MemberId).First();
-                member_FormStatus = member_Form;
+                member_FormStatus.FormStatus = member_Form.FormStatus;
+                member_FormStatus.VerifiedBy = member_Form.VerifiedBy;
+                member_FormStatus.VerifiedDate = member_Form.VerifiedDate;
+                member_FormStatus.ApprovedBy = member_Form.ApprovedBy;
+                member_FormStatus.ApprovedDate = member_Form.ApprovedDate;
+
                 int affectedRows = 0;
                 affectedRows = dBContext.SaveChanges();
                 if (affectedRows > 0)

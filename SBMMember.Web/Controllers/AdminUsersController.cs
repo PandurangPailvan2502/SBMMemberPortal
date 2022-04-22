@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SBMMember.Web.Controllers
 {
-   // [Authorize]
+   [Authorize]
     public class AdminUsersController : Controller
     {
         private readonly IMapper mapper;

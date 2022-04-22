@@ -78,7 +78,11 @@ namespace SBMMember.Data.DataFactory
             try
             {
                 Member_PaymentsAndReciepts member_Payments1 = dBContext.Member_PaymentsAndReciepts.Where(x => x.MemberId == member_Payments.MemberId).First();
-                member_Payments1 = member_Payments;
+                member_Payments1.ChagesPaid = member_Payments.ChagesPaid;
+                member_Payments1.TransactionDate = member_Payments.TransactionDate;
+                member_Payments1.MembershipId = member_Payments.MembershipId;
+                member_Payments1.MemberShipIdM =TranslationHelper.Translate(Convert.ToString( member_Payments.MembershipId));
+                member_Payments1.RecieptNo = member_Payments.RecieptNo;
                 int affectedRows = 0;
                 affectedRows = dBContext.SaveChanges();
                 if (affectedRows > 0)

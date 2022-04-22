@@ -96,7 +96,7 @@ namespace SBMMember.Data.DataFactory
                                                       on _apppersonal.MemberId equals _appqualification.MemberId
                                                       join _appFormStatus in context.Member_FormStatuses
                                                       on _apppersonal.MemberId equals _appFormStatus.MemberId
-                                                      where _appFormStatus.FormStatus == "Submitted"
+                                                      where (_appFormStatus.FormStatus == "Submitted" || _appFormStatus.FormStatus == "Verified")
                                                       select new MemberSearchByDTO
                                                       {
                                                           MemberId = _apppersonal.MemberId,
