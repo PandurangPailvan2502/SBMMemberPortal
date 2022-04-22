@@ -46,7 +46,7 @@ namespace SBMMember.Web.Controllers
         {
             return View();
         }
-        public IActionResult Privacy()
+        public IActionResult PrivacyPolicy()
         {
             return View();
         }
