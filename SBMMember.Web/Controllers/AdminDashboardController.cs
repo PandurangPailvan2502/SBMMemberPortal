@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SBMMember.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AdminDashboardController : Controller
     {
         private readonly IMemberBusinessDataFactory businessDataFactory;
@@ -24,8 +24,9 @@ namespace SBMMember.Web.Controllers
         private readonly IEventAdsDataFactory eventAdsDataFactory;
         private readonly IMapper mapper;
         private IWebHostEnvironment Environment;
+        private readonly IUpcomingEventsDataFactory upcomingEventsDataFactory;
         public AdminDashboardController(IMemberBusinessDataFactory dataFactory, IMapper _mapper, IJobPostingDataFactory _jobPostingDataFactory, IEventDataFactory _eventDataFactory, IWebHostEnvironment hostEnvironment,
-            IEventAdsDataFactory adsDataFactory)
+            IEventAdsDataFactory adsDataFactory,IUpcomingEventsDataFactory _upcomingEventsDataFactory)
         {
             businessDataFactory = dataFactory;
             mapper = _mapper;
@@ -33,6 +34,7 @@ namespace SBMMember.Web.Controllers
             eventDataFactory = _eventDataFactory;
             Environment = hostEnvironment;
             eventAdsDataFactory = adsDataFactory;
+            upcomingEventsDataFactory = _upcomingEventsDataFactory;
         }
         public IActionResult AdminHome()
         {
@@ -327,6 +329,46 @@ namespace SBMMember.Web.Controllers
             //string filePath = "~/file/test.pdf";
             Response.Headers.Add("Content-Disposition", $"inline; filename={filepath.Split('/')[2]}");
             return File(filepath, "application/pdf");
+        }
+
+        public IActionResult ManageEvents()
+        {
+            return View();
+        }
+
+      public IActionResult UpcomingEvents()
+        {
+            UpcomingEventsViewModel model = new UpcomingEventsViewModel();
+            model.EventDate =DateTime.Today;
+            model.EventInfos = upcomingEventsDataFactory.GetAll();
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult UpcomingEvents(UpcomingEventsViewModel model)
+        {
+            UpcomingEvent upcomingEvents = mapper.Map<UpcomingEvent>(model);
+            upcomingEventsDataFactory.AddDetails(upcomingEvents);
+            return RedirectToAction("UpcomingEvents");
+        }
+        public IActionResult EditUpcomingEvent(int id)
+        {
+            UpcomingEvent evnt = upcomingEventsDataFactory.GetDetailsById(id);
+            UpcomingEventsViewModel viewModel = mapper.Map<UpcomingEventsViewModel>(evnt);
+            return View(viewModel);
+        }
+        [HttpPost]
+        public IActionResult EditUpcomingEvent(UpcomingEventsViewModel viewModel)
+        {
+
+            UpcomingEvent upcoming = mapper.Map<UpcomingEvent>(viewModel);
+            upcomingEventsDataFactory.UpdateDetails(upcoming);
+            return RedirectToAction("UpcomingEvents");
+        }
+
+        public IActionResult DeleteUpcomingEvent(int id)
+        {
+            upcomingEventsDataFactory.DeleteById(id);
+            return RedirectToAction("UpcomingEvents");
         }
     }
 }

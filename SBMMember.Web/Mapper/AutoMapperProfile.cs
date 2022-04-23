@@ -42,6 +42,9 @@ namespace SBMMember.Web.Mapper
             CreateMap<AdminUsersViewModel, AdminUsers>();
             CreateMap<AdminUsers, AdminUsersViewModel>();
 
+            CreateMap<UpcomingEventsViewModel, UpcomingEvent>();
+            CreateMap<UpcomingEvent, UpcomingEventsViewModel>();
+
         }
     }
 }

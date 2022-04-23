@@ -1,0 +1,69 @@
+﻿@model UpcomingEventsViewModel
+@{
+    ViewData["Title"] = "EditUpcomingEvent";
+    Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
+}
+<section class="blog_area single-post-area section_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 posts-list">
+                <div class="col-lg-12">
+                    <div class="scroll">
+                        <p>Update Upcoming Event Details</p>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+
+
+                <div class="section-top-border">
+                    <div class="row" id="eventForm">
+                        <div class="col-lg-10 col-md-10">
+                            <form asp-action="EditUpcomingEvent" asp-controller="AdminDashboard" method="post" enctype="multipart/form-data">
+                                <input type="hidden" asp-for="Id" />
+                                <div class="input-group-icon mt-10">
+
+                                    <input type="date" class="single-input" asp-for="EventDate" placeholder="Event Date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Date'" />
+                                </div>
+
+
+                                <div class="input-group-icon mt-10">
+                                    <div class="form-select" id="default-select">
+                                        <select asp-for="EventTitle">
+                                            <option value=" 1">Select Event Title</option>
+                                            <option value="२६ जानेवारी प्रजासत्ताक दिवस">२६ जानेवारी प्रजासत्ताक दिवस</option>
+                                            <option value="१५ ऑगस्ट स्वातंत्र्यदिन">१५ ऑगस्ट स्वातंत्र्यदिन</option>
+                                            <option value="१ मे कामगार दिन व मेळावा">१ मे कामगार दिन व मेळावा</option>
+                                            <option value="वधू - वर मेळावा">वधू - वर मेळावा</option>
+                                            <option value="वृक्षारोप">वृक्षारोपण</option>
+                                            <option value="सरदार वल्लभ भाई पटेल जयंती">सरदार वल्लभ भाई पटेल जयंती</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mt-10">
+                                    <textarea class="single-textarea" name="EventDesc" asp-for="EventDesc" placeholder="EventDescription" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Description'"
+                                              required></textarea>
+                                </div>
+
+                                <div class="mt-10" style="float:right">
+                                    <input type="submit" class="genric-btn primary" style="background-color:#77002e;margin-right:20px">
+                                    <input type="button" id="btnCancel" class="genric-btn primary" style="background-color:#77002e;margin-right:20px" value="Cancel">
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+    @*Event list*@
+    
+</section>

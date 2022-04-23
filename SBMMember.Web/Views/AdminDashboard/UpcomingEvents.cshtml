@@ -1,0 +1,127 @@
+﻿@model UpcomingEventsViewModel
+@{
+    ViewData["Title"] = "UpcomingEvents";
+    Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#eventForm").hide();
+        $('#tblEvents').DataTable();
+        $("#btnAddNew").click(function () {
+            $("#eventForm").show();
+            $(this).hide();
+        });
+        $("#btnCancel").click(function () {
+            $("#eventForm").hide();
+            $("#btnAddNew").show();
+        });
+    });
+</script>
+<section class="blog_area single-post-area section_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 posts-list">
+                <div class="col-lg-12">
+                    <div class="scroll">
+                        <p>Upcoming Event Details</p>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+
+
+                <div class="section-top-border">
+                    <div class="row" id="eventForm">
+                        <div class="col-lg-10 col-md-10">
+                            <form asp-action="UpcomingEvents" asp-controller="AdminDashboard" method="post" enctype="multipart/form-data">
+
+                                <div class="input-group-icon mt-10">
+                                    
+                                    <input type="date" class="single-input" asp-for="EventDate" placeholder="Event Date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Date'" />
+                                </div>
+
+
+                                <div class="input-group-icon mt-10">
+                                    <div class="form-select" id="default-select">
+                                        <select asp-for="EventTitle">
+                                            <option value=" 1">Select Event Title</option>
+                                            <option value="२६ जानेवारी प्रजासत्ताक दिवस">२६ जानेवारी प्रजासत्ताक दिवस</option>
+                                            <option value="१५ ऑगस्ट स्वातंत्र्यदिन">१५ ऑगस्ट स्वातंत्र्यदिन</option>
+                                            <option value="१ मे कामगार दिन व मेळावा">१ मे कामगार दिन व मेळावा</option>
+                                            <option value="वधू - वर मेळावा">वधू - वर मेळावा</option>
+                                            <option value="वृक्षारोप">वृक्षारोपण</option>
+                                            <option value="सरदार वल्लभ भाई पटेल जयंती">सरदार वल्लभ भाई पटेल जयंती</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mt-10">
+                                    <textarea class="single-textarea" name="EventDesc" asp-for="EventDesc" placeholder="EventDescription" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Description'"
+                                              required></textarea>
+                                </div>
+                                
+                                <div class="mt-10" style="float:right">
+                                    <input type="submit" class="genric-btn primary" style="background-color:#77002e;margin-right:20px">
+                                    <input type="button" id="btnCancel" class="genric-btn primary" style="background-color:#77002e;margin-right:20px" value="Cancel">
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+    @*Event list*@
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <button value="Add New" id="btnAddNew" class="btn btn-danger">Add New</button>
+            </div>
+            <br />
+            <div class="col-lg-12">
+
+                <table id="tblEvents" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Event Date</th>
+                            <th>Event Title</th>
+                            <th>Event Desc</th>
+                            <th>Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.EventInfos != null)
+                        {
+                            foreach (var eventAd in Model.EventInfos)
+                            {
+                                <tr>
+                                    <td>@eventAd.EventDate</td>
+                                    <td>@eventAd.EventTitle</td>
+                                    <td>@eventAd.EventDesc</td>
+
+                                    <td>
+                                        <a href="@Url.Action("EditUpcomingEvent","AdminDashboard",new { id = eventAd.Id})"><i class="ti-pencil"></i></a>
+                                        <a title="Delete Event" href="@Url.Action("DeleteUpcomingEvent","AdminDashboard",new { id = eventAd.Id})" class="delete-row" onclick="return confirm('Are sure wants to delete?');"><i class="ti-close"></i></a>
+                                    </td>
+
+                                </tr>
+                            }
+
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+

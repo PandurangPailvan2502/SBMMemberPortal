@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "ManageEvents";
+    Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
+}
+
+<div class="container ">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <!------------icon dashbaord row-1--------------->
+            <div class="container">
+                <div class="row ">
+                    <div class="col-xs-4 r1c1 dashboard">
+                        <a asp-action="AddEvent" asp-controller="AdminDashboard">
+                            <img src="~/img/add-event.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Add Event Details</h3>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 r1c1 dashboard">
+                        <a asp-action="UpcomingEvents" asp-controller="AdminDashboard">
+                            <img src="~/img/add-event.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Add Upcoming Events</h3>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 r1c1 dashboard">
+                        @*<a asp-action="MemberList" asp-controller="ManageMembers">
+                            <img src="~/img/conversation.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Member List</h3>
+                        </a>*@
+                    </div>
+
+                </div>
+            </div>
+            <!------------End of icon dashbaord row-1--------------->
+        </div>
+    </div>
+</div>
+<div class="seperate"><hr style="border:1px dashed #a7a7a7"></div>
