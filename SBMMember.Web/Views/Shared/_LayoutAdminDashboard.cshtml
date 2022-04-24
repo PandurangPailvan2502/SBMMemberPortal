@@ -73,9 +73,17 @@
                     </div>
                 </div>
                 <div class="row ">
-                                <div class="col-xs-6 user-pr">
-                                <label>Welcome <span style="color:#7c0053;font-weight:bold">@User.Identity.Name</span></label><br />
-                                </div>
+                    <div class="col-xs-6 ">
+                    <div class="text-left">
+                        <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#exampleModal">
+                         <img src="~/img/threeline.jpg" class="menu-icon">
+                        </button>
+                        <!--img src="sbm logo-1.png" class="logo"-->
+                      </div>
+                    </div>
+                    <div class="col-xs-6 user-pr" style="margin-top:15px; margin-left:20px" >
+                    <label>Welcome <span style="color:#7c0053;font-weight:bold">@User.Identity.Name</span></label><br />
+                    </div>
                </div>
             </div>
             <!------------End of icon dashbaord row-1--------------->
@@ -91,7 +99,34 @@
     <div class="seperate"></div>
     @RenderBody()
 
-    
+  <div class="container demo" style="margin-top:50px">
+    <div class="modal left fade" id="exampleModal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="margin-top:70px">
+                    <div class="nav flex-sm-column no-flex">
+                       <ul>
+                        <li style="list-style:none;"><a asp-action="Index" asp-controller="MemberDashboard" class="nav-item nav-link active">Home</a></li>
+                        <li style="list-style:none;"><a asp-action="ViewLoggedMemberProfile" asp-controller="MemberDashboard" class="nav-item nav-link">Manage Member</a></li>
+                        <li style="list-style:none;"><a asp-action="MemberDoctors" asp-controller="MemberDashboard" class="nav-item nav-link">Manage Jobs</a></li>
+                        <li style="list-style:none;"><a asp-action="MemberSearchDashBoard" asp-controller="MemberDashboard" class="nav-item nav-link">Manage Events</a></li>
+                        <li style="list-style:none;"><a asp-action="MemberBloodGroupSearch" asp-controller="MemberDashboard" class="nav-item nav-link">Manage Businesses</a></li>
+                        <li style="list-style:none;"><a asp-action="JobDirectory" asp-controller="JobDirectory" class="nav-item nav-link">Manage Advertisements</a></li>
+                        <li style="list-style:none;"><a asp-action="BusinessDashboard" asp-controller="BusinessDashboard" class="nav-item nav-link">Manage Scrolling Ads</a></li>
+                        <li style="list-style:none;"><a asp-action="MatrimonySearch" asp-controller="Matrimony" class="nav-item nav-link">Manager Super User</a></li>
+                        <li style="list-style:none;"><a asp-action="SearchEventAds" asp-controller="Events" class="nav-item nav-link">Manage Marque text</a></li>
+                        <li style="list-style:none;"><a asp-action="EventDashboard" asp-controller="Events" class="nav-item nav-link">Logout</a></li>
+                        
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>  
    
 </body>
 
