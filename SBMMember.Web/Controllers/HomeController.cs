@@ -15,11 +15,13 @@ namespace SBMMember.Web.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IMemberDataFactory dataFactory;
         private readonly IConfiguration configuration;
-        public HomeController(ILogger<HomeController> logger,IMemberDataFactory memberDataFactory,IConfiguration _config)
+        private readonly IUpcomingEventsDataFactory upcomingEventsDataFactory;
+        public HomeController(ILogger<HomeController> logger,IMemberDataFactory memberDataFactory,IConfiguration _config, IUpcomingEventsDataFactory _upcomingEventsDataFactory)
         {
             _logger = logger;
             dataFactory = memberDataFactory;
             configuration = _config;
+            upcomingEventsDataFactory = _upcomingEventsDataFactory;
         }
 
         public IActionResult Index()
@@ -50,7 +52,14 @@ namespace SBMMember.Web.Controllers
         {
             return View();
         }
-
+        public IActionResult UpcomingEvents()
+        {
+            UpcomingEventsViewModel viewModel = new UpcomingEventsViewModel()
+            {
+                EventInfos = upcomingEventsDataFactory.GetAll()
+            };
+            return View(viewModel);
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
