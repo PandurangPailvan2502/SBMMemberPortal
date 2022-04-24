@@ -11,8 +11,12 @@
 }
 
 .admin-pr {width:70%}
-
 .logout-btn{background-color:#c70101; color:#ffffff; padding:8px; border-radius:5px; font-weight:bold;}
+.upcoming-event {padding:20px;margin:12px; 
+box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.75);
+-webkit-box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.95);
+-moz-box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.95);
+}
 .round {
     border-radius: 50%;
 }
