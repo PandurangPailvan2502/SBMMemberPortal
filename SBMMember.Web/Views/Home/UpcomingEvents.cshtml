@@ -29,30 +29,6 @@
             }
 
                     }
-            
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <td>Event Date</td>
-                        <td> Event Title</td>
-                        <td>Event Description</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model.EventInfos != null && Model.EventInfos.Count > 0)
-                    {
-                        foreach (var item in Model.EventInfos)
-                        {
-                            <tr>
-                                <td>@item.EventDate.ToShortDateString()</td>
-                                <td>@item.EventTitle</td>
-                                <td>@item.EventDesc</td>
-                            </tr>
-                        }
-
-                    }
-                </tbody>
-            </table>
         </div>
     </div>
 
