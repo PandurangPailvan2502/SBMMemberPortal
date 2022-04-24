@@ -54,8 +54,10 @@
                 <div class="container">
                     <div class="row ">
                         <div class="col-xs-4 r1c1 dashboard">
-                            <img src="~/img/forgot-password.png" class="dashboard-icon">
-                            <h3 style="color:#000000">Forgot Password</h3>
+                            <a asp-action="ForgotMPIN" asp-controller="Home">
+                                <img src="~/img/forgot-password.png" class="dashboard-icon">
+                                <h3 style="color:#000000">Forgot MPIN</h3>
+                            </a>
                         </div>
                         <div class="col-xs-4 r1c1 dashboard">
                             <a asp-action="UpcomingEvents" asp-controller="Home">

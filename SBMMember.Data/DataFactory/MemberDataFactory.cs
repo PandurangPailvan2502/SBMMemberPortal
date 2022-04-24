@@ -123,7 +123,37 @@ namespace SBMMember.Data.DataFactory
 
             return responseDTO;
         }
+        public ResponseDTO UpdateMPIN(Members _member)
+        {
+            ResponseDTO responseDTO = new ResponseDTO();
+            try
+            {
+                Members member = memberDBContext.Members.Where(x => x.Mobile == _member.Mobile).FirstOrDefault();
+                member.Mpin = _member.Mpin;
+                int affectedRows = 0;
+                affectedRows = memberDBContext.SaveChanges();
+                if (affectedRows > 0)
+                {
+                    responseDTO = new ResponseDTO()
+                    {
+                        Result = "Success",
+                        Message = "Member  MPIN updated successfully."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
 
+                Logger.LogError($"Error occured while updating member MPIN. Exception:{ex.Message}");
+                responseDTO = new ResponseDTO()
+                {
+                    Result = "Failed",
+                    Message = $"Member MPIN update operation failed.{ex.Message}"
+                };
+            }
+
+            return responseDTO;
+        }
         public void UpdateName(int MemberId,String FirstName,String MiddleName,string LastName)
         {
             try
@@ -153,5 +183,6 @@ namespace SBMMember.Data.DataFactory
         Members GetDetailsByMemberId(int MemberId);
         Members GetDetailsByMemberMobile(string mobile);
         void UpdateName(int MemberId, String FirstName, String MiddleName, string LastName);
+        ResponseDTO UpdateMPIN(Members _member);
     }
 }

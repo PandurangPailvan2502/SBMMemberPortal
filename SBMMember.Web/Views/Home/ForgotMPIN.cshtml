@@ -1,0 +1,69 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "ForgotMPIN";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<script>
+
+
+    $(document).ready(function () {
+
+        $('#mobileNumber').keypress(function (e) {
+
+            var charCode = (e.which) ? e.which : event.keyCode
+
+            if (String.fromCharCode(charCode).match(/[^0-9]/g))
+
+                return false;
+
+        });
+        $('#btnSendOtp').click(function (e) {
+            if ($('#mobileNumber').val().length < 10) {
+                //alert("Please enter 10 digit mobile Number.");
+                $("#lblError").html("Please enter 10 digit mobile number.");
+                $("#mobileNumber").focus();
+                e.preventDefault();
+            }
+        });
+
+    });//document close
+
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4"><a href="javascript:history.back()"><i class="ti-back-left"> Back</i></a></div>
+        <div class="col-lg-4 login-text">
+            <p style="font-size:16px;">To proceed with MPIN Reset first we will verify your mobile number</p>
+            <img src="~/img/login-icon.png" width="75px" height="75px">
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="login-type">
+                <div class="form-group">
+                    <div class="row"><p id="lblError" style="color:red;margin-left:40px;"><span>@ViewBag.AlreadyRegistered</span></p></div>
+                    <form method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="ForgotMPIN">
+                        <div class="input-group mb-3">
+                            <input id="mobileNumber" type="text" required oninvalid="this.setCustomValidity('Enter mobile number to procced further')"
+                                   oninput="this.setCustomValidity('')" name="MobileNumber" asp-for="MobileNumber" class="form-control myinputlogin" maxlength="10" placeholder='Enter Mobile No.' onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Mobile No.'">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12" style="text-align:center">
+                                <button class="btn btn_12" id="btnSendOtp" type="submit" text="Send OTP">Send OTP</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="navigation-top"></div>
+        </div>
+    </div>
+
+    <!---Existing member MPIN form --->
+
+    
+</div>
+
