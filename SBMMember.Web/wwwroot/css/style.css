@@ -12,10 +12,13 @@
 
 .admin-pr {width:70%}
 .logout-btn{background-color:#c70101; color:#ffffff; padding:8px; border-radius:5px; font-weight:bold;}
-.upcoming-event {padding:20px;margin:12px; 
-box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.75);
--webkit-box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.95);
--moz-box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.95);
+.login-btn {background-color:#02bd50;color:#ffffff;padding:8px;border-radius:5px;font-weight: bold; font-size:12px}
+.upcoming-event {
+    padding: 20px;
+    margin: 12px;
+    box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.75);
+    -webkit-box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.95);
+    -moz-box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.95);
 }
 .round {
     border-radius: 50%;
@@ -227,8 +230,8 @@ box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.75);
 @media only screen and (max-width: 576px) {
 .logo {min-width: 70%;max-width:85%;margin-left:-58px}
 .logo1 {margin-left: -35px;margin-top:-10px}
-.title-box h2 {font-size:28px;}
-.title-box h4 {font-size:20px;}
+.title-box h2 {font-size:22px;}
+.title-box h4 {font-size:16px;}
 .ic {font-size:24px}
 .scroll p {font-size: 12px}
 .menu-icon {width: 30%}

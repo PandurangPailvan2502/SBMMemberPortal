@@ -16,16 +16,18 @@
 
     <div class="container">
         <div class="row">
+
             @if (Model.EventInfos != null && Model.EventInfos.Count > 0)
                     {
                         foreach (var item in Model.EventInfos)
                         {
-            <div class="upcoming-event">
+            <div class="col-lg-12">
+                            <div class="upcoming-event">
                 <h6><span style="color:#7c0053;font-weight:bold">Event Date:</span> @item.EventDate.ToShortDateString()</h6>
                 <h6><span style="color:#7c0053;font-weight:bold">Event title:</span> @item.EventTitle</h6>
                 <h6><span style="color:#7c0053;font-weight:bold">Event Description:</span><br> @item.EventDesc</h6>
             </div>
-            
+            </div>
             }
 
                     }
