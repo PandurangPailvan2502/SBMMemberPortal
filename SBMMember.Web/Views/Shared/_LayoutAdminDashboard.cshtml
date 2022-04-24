@@ -69,10 +69,14 @@
                         <h4>(पिंपरी चिंचवड, पुणे)</h4>
                     </div>
                     <div class="col-xs-3 toolbar">
-                        <label>Welcome @User.Identity.Name</label><br />
-                        <i class="ti-power-off"></i> <a asp-action="Logout" asp-controller="AdminLogin" class="sp">Logout</a>
+                        <a asp-action="Logout" asp-controller="AdminLogin" class="logout-btn"><i class="ti-power-off"></i></a>
                     </div>
                 </div>
+                <div class="row ">
+                                <div class="col-xs-6 user-pr">
+                                <label>Welcome <span style="color:#7c0053;font-weight:bold">@User.Identity.Name</span></label><br />
+                                </div>
+               </div>
             </div>
             <!------------End of icon dashbaord row-1--------------->
         </div>
