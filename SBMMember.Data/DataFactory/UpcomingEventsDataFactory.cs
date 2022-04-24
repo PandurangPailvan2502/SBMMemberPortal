@@ -69,7 +69,7 @@ namespace SBMMember.Data.DataFactory
         }
         public List<UpcomingEvent> GetAll()
         {
-            return SBMDBContext.UpcomingEvents.Where(x=> x.Status == "Active").ToList();
+            return SBMDBContext.UpcomingEvents.Where(x=> x.Status == "Active" && x.EventDate>=DateTime.Today).ToList();
         }
         public override ResponseDTO UpdateDetails(UpcomingEvent upcomingEvents)
         {
