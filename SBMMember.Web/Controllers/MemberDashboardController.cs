@@ -294,8 +294,8 @@ namespace SBMMember.Web.Controllers
         //[Route("/MemberBloodGroupSearch")]
         public IActionResult MemberBloodGroupSearch()
         {
-            List<string> areas = personalDataFactory.GetDistinctAreas();
-            List<string> cities = personalDataFactory.GetDistinctCities();
+            List<string> areas = personalDataFactory.GetDistinctAreas().OrderBy(x => x).ToList();
+            List<string> cities = personalDataFactory.GetDistinctCities().OrderBy(x=>x).ToList();
             MemberBloodGroupSearchViewModel viewModel = new MemberBloodGroupSearchViewModel()
             {
                 Areas = areas.Select(x=>new SelectListItem() { Value=x,Text=x}).ToList(),

@@ -29,7 +29,7 @@
                                         <td><label class="lbl_profile">सभासद क्रमांक: @Model.MemberPaymentInfo.MemberShipIdM </label></td>
                                     </tr>
                                     <tr>
-                                        <td><label class="lbl_profile">जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue) { @Model.MemberPersonalInfo.BirthDate} </label></td>
+                                        <td><label class="lbl_profile">जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue) { @Model.MemberPersonalInfo.BirthDate.ToShortDateString()} </label></td>
                                     </tr>
                                     <tr><td><label class="lbl_profile">मोबाईल: @Model.MemberConatctInfo.Mobile1 </label></td></tr>
                                 </table>        
@@ -66,13 +66,13 @@
                                                     </div>
                                                    
 
-                                                    <div class="input-group-icon mt-10">
+                                                    @*<div class="input-group-icon mt-10">
                                                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                         <div class="form-select" id="default-select">
                                                            
                                                             <label><b>स्री / पुरुष : </b>@Model.MemberPersonalInfo.GenderM</label>
                                                         </div>
-                                                    </div>
+                                                    </div>*@
                                                     <div class="input-group-icon mt-10">
                                                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                         <div class="form-select" id="default-select">
@@ -81,7 +81,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="input-group-icon mt-10">
-                                                        <label><b>जन्म तारीख : </b>@if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue) { @Model.MemberPersonalInfo.BirthDate}</label>
+                                                        <label><b>जन्म तारीख : </b>@if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue) { @Model.MemberPersonalInfo.BirthDate.ToShortDateString()}</label>
                                                         
                                                     </div>
                                                     <div class="input-group-icon mt-10">

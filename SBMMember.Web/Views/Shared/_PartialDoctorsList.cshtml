@@ -14,7 +14,14 @@
                 <div class="row">
                     <div class="col-xs-3 search_pic">
                         <div text-align:center">
-                            <img src="~/img/doctor.png" class="pic_img">
+                            @if (Model.Gender == "Male")
+                            {
+                                <img src="~/img/doctor.png" class="pic_img">
+                            }
+                            else
+                            {
+                                <img src="~/img/doctor_female.jpg" class="pic_img">
+                            }
                         </div>
                     </div>
                     <div class="col-xs-9 pic_content">
@@ -22,23 +29,26 @@
                             <div class="row">
                                 <div class="col-xs-10 left-box"><lable class="searchname"> @Model.FullName</lable></div>
                             </div>
-                            <div class="row"> 
-                                <div class="col-xs-10 left-box"><lable> @Model.Qualification</lable></div>
-                            </div> 
                             <div class="row">
-                                <div class="col-xs-10 left-box"><lable>संपर्क : @Model.MobileNumber</lable>@if (!string.IsNullOrEmpty(Model.MobileNumber))
-                                {<a target="_blank" href="@("https://wa.me/91" + @Model.MobileNumber)"> <img src="~/img/whats-app.png" class="whatsapp"></a> }</div>
+                                <div class="col-xs-10 left-box"><lable> @Model.Qualification</lable></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-10 left-box">
+                                    <lable>संपर्क : @Model.MobileNumber</lable>@if (!string.IsNullOrEmpty(Model.MobileNumber))
+                                    {<a target="_blank" href="@("https://wa.me/91" + @Model.MobileNumber)"> <img src="~/img/whats-app.png" class="whatsapp"></a>}
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-5 left-box"><lable>Area,City: @Model.Area,@Model.City</lable></div>
-                              
+
                             </div>
                             <div class="row">
-                                <div class="col-xs-10"><br />
+                                <div class="col-xs-10">
+                                    <br />
                                     <a href="@Url.ActionLink("ViewMemberProfile","MemberDashboard",new{MemberId = Model.MemberId })" class="allviewbtn"><i class="ti-eye"></i> View</a>
                                 </div>
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>

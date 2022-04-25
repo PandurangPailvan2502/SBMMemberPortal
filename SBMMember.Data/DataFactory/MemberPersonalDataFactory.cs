@@ -156,12 +156,12 @@ namespace SBMMember.Data.DataFactory
 
        public List<string> GetDistinctAreas()
         {
-            return dBContext.Member_PersonalDetails.Select(x => x.Area).Distinct().ToList();
+            return dBContext.Member_PersonalDetails.Where(s => !string.IsNullOrWhiteSpace(s.Area)).Select(x => x.Area).Distinct().ToList();
         }
 
         public List<string> GetDistinctCities()
         {
-            return dBContext.Member_PersonalDetails.Select(x => x.City).Distinct().ToList();
+            return dBContext.Member_PersonalDetails.Where(s => !string.IsNullOrWhiteSpace(s.City)).Select(x => x.City).Distinct().ToList();
         }
     }
 
