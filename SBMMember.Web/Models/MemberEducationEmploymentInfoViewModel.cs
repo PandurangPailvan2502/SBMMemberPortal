@@ -9,6 +9,7 @@ namespace SBMMember.Web.Models
     {
         public int MemberId { get; set; }
         public bool IsNew { get; set; }
+        public string TabValue { get; set; }
         public string  Qualification { get; set; }
         public string  QualificationM { get; set; }
         public string  Proffession { get; set; }

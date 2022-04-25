@@ -12,7 +12,7 @@ using SBMMember.Web.Helper;
 
 namespace SBMMember.Web.Controllers
 {
-    [Authorize]
+   // [Authorize]
     public class ManageMembersController : Controller
     {
         private readonly IMemberDataFactory memberDataFactory;

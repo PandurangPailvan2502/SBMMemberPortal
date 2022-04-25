@@ -9,6 +9,7 @@ namespace SBMMember.Web.Models
     {
         public int MemberId { get; set; }
         public string ActiveTab { get; set; }
+        public string TabValue { get; set; }
 #nullable enable
         public int? LastMemberShipId { get; set; }
         public int? MembershipId { get; set; }

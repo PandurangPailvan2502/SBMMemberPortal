@@ -10,6 +10,7 @@ namespace SBMMember.Web.Models
     {
         public int MemberId { get; set; }
         public string ActiveTab { get; set; }
+        public string TabValue { get; set; }
         public bool IsNew { get; set; }
         public string  Prefix { get; set; }
         public string  PrefixM { get; set; }

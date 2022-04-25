@@ -11,8 +11,10 @@
             <div class="container">
                 <div class="row ">
                     <div class="col-xs-4 r1c1 dashboard">
-                        <a href="Admin-Member-Registration.html"><img src="~/img/add-friend-1.png" class="dashboard-icon"></a>
-                        <h3 style="color:#000000">Add New Member</h3>
+                        <a asp-action="MemberRegistration" asp-controller="MemberRegByAdmin">
+                            <img src="~/img/add-friend-1.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Add New Member</h3>
+                        </a>
                     </div>
                     <div class="col-xs-4 r1c1 dashboard">
                         <a asp-action="NewMemberList" asp-controller="ManageMembers">
