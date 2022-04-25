@@ -9,6 +9,8 @@ using System.Text;
 using System.Security.Cryptography;
 using SBMMember.Data.DataFactory;
 using SBMMember.Models;
+using SBMMember.Web.Helper;
+
 namespace SBMMember.Web.Controllers
 {
     public class PaymentController : Controller
@@ -18,13 +20,15 @@ namespace SBMMember.Web.Controllers
         private readonly string _secret;
         private readonly IMemberPaymentsDataFactory paymentsDataFactory;
         private readonly IMemberFormStatusDataFactory formStatusDataFactory;
-        public PaymentController(IConfiguration configuration, IMemberPaymentsDataFactory dataFactory,IMemberFormStatusDataFactory _formStatusDataFactory)
+        private readonly IMemberDataFactory memberDataFactory;
+        public PaymentController(IConfiguration configuration, IMemberPaymentsDataFactory dataFactory,IMemberFormStatusDataFactory _formStatusDataFactory, IMemberDataFactory _memberDataFactory)
         {
             Configuration = configuration;
             _Key = configuration.GetSection("PGKey").Value;
             _secret = configuration.GetSection("PGSecret").Value;
             paymentsDataFactory = dataFactory;
             formStatusDataFactory = _formStatusDataFactory;
+            memberDataFactory = _memberDataFactory;
         }
         public ViewResult AcceptMemberPayment(MemberPaymentViewModel model)
         {
@@ -120,7 +124,7 @@ namespace SBMMember.Web.Controllers
 
                 };
                 paymentsDataFactory.AddDetails(member_Payments);
-
+                sendRegistrationSMS(memberId);
                 //Add form status to submitted
                 Member_FormStatus member_Form = new Member_FormStatus()
                 {
@@ -136,6 +140,16 @@ namespace SBMMember.Web.Controllers
                 return View("PaymentFail");
 
 
+        }
+        private void sendRegistrationSMS(int memberId)
+        {
+            Members member = memberDataFactory.GetDetailsByMemberId(memberId);
+            if (member != null && member.MemberId > 0)
+            {
+                string memberName = $"{member.FirstName} {member.LastName}";
+                string smsTemplate = $"Dear {memberName}, Thank you for your membership registration at Samata Bhratru Mandal (PCMC Pune). Your profile is under verification & you will be notified once it is approved.";
+                SMSHelper.SendSMS(member.Mobile, smsTemplate);
+            }
         }
         private bool CompareSignatures(string orderId, string paymentId, string razorPaySignature)
         {

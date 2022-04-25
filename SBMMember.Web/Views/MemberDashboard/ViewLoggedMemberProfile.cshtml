@@ -29,7 +29,7 @@
                                         <td><label class="lbl_profile">सभासद क्रमांक: @Model.MemberPaymentInfo.MemberShipIdM </label></td>
                                     </tr>
                                     <tr>
-                                        <td><label class="lbl_profile">जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue) { @Model.MemberPersonalInfo.BirthDate} </label></td>
+                                        <td><label class="lbl_profile">जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue) { @Model.MemberPersonalInfo.BirthDate.ToShortDateString()} </label></td>
                                     </tr>
                                     <tr><td><label class="lbl_profile">मोबाईल: @Model.MemberConatctInfo.Mobile1 </label></td></tr>
                                 </table>        
@@ -55,12 +55,12 @@
                                                     <div class="view_profile_content">
                                                         <label class="viewprofilelabel">सभासदाचे नाव:</label>
                                                         <span class="vpc">@Model.MemberPersonalInfo.PrefixM @Model.MemberPersonalInfo.FirstNameM @Model.MemberPersonalInfo.MiddleNameM @Model.MemberPersonalInfo.LastNameM</span><br />
-                                                        <label class="viewprofilelabel">स्री / पुरुष:</label>
-                                                        <span class="vpc">@Model.MemberPersonalInfo.GenderM</span><br />
+                                                        @*<label class="viewprofilelabel">स्री / पुरुष:</label>
+                                                        <span class="vpc">@Model.MemberPersonalInfo.GenderM</span><br />*@
                                                         <label class="viewprofilelabel">वैवाहिक स्थिती:</label>
                                                         <span class="vpc">@Model.MemberPersonalInfo.MaritalStatusM</span><br />
                                                         <label class="viewprofilelabel">जन्म तारीख:</label>
-                                                        <span class="vpc">@if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue) { @Model.MemberPersonalInfo.BirthDate}</span><br />
+                                                        <span class="vpc">@if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue) { @Model.MemberPersonalInfo.BirthDate.ToShortDateString()}</span><br />
                                                         <label class="viewprofilelabel">रक्त गट:</label>
                                                         <span class="vpc">@Model.MemberPersonalInfo.BloodGroup</span><br />
                                                         <label class="viewprofilelabel">संपूर्ण पत्ता:</label>

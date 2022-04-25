@@ -31,13 +31,12 @@ namespace SBMMember.Web.Helper
                 education=x.education,
                 profileImage = "https://samatabhratrumandal.com" + x.profileImage
 
-            }).ToList();
+            }).OrderBy(x=>x.fullName).ToList();
         }
 
         public static List<CandidateSearchResponse> GetAllVar()
         {
             Dictionary<string, string> banners = new Dictionary<string, string>();
-
             RestClient restClient = new RestClient("https://samatabhratrumandal.com/RestAPI/api/candidate/GetAllCandidatesSearchResult/27");
 
             var request = new RestRequest();
@@ -55,7 +54,7 @@ namespace SBMMember.Web.Helper
                 education = x.education,
                 profileImage = "https://samatabhratrumandal.com" + x.profileImage
 
-            }).ToList();
+            }).OrderBy(x => x.fullName).ToList();
         }
 
         public static CandidateProfile GetCandidateProfileByCandidateId(string UserIdId)

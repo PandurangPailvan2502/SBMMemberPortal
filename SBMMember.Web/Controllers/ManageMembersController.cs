@@ -8,6 +8,7 @@ using SBMMember.Web.Models;
 using SBMMember.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using SBMMember.Web.Helper;
 
 namespace SBMMember.Web.Controllers
 {
@@ -211,6 +212,14 @@ namespace SBMMember.Web.Controllers
         public IActionResult ApproveMemberProfile(int memberId)
         {
             Member_FormStatus formStatus = formStatusDataFactory.GetDetailsByMemberId(memberId);
+            Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(memberId);
+            Members member = memberDataFactory.GetDetailsByMemberId(memberId);
+            string memberName = $"{member.FirstName} {member.LastName}";
+            string smstemp = $"Dear {memberName}, your membership is approved & activated by our team. {member_Payments.MembershipId} is your membership number. You can login to our official android app & enjoy the exclusive features by Samata Bhratru Mandal (PCMC Pune). Toll Free 02071173733.";
+            if(member!=null && member.MemberId>0)
+            {
+                SMSHelper.SendSMS(member.Mobile, smstemp);
+            }
             formStatus.VerifiedBy = User.Identity.Name;
             formStatus.VerifiedDate = DateTime.Now;
             formStatus.FormStatus = "Approved";

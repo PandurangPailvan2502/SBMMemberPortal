@@ -4,7 +4,12 @@
     ViewData["Title"] = "MemberSearchByArea";
     Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
 }
+<script>
+    $(document).ready(function () {
 
+        $("#Pincode").val("");
+    });
+</script>
 <!--------------dashboard-------------->
 <div class="container-fluid" style="margin-top:30px">
     <div class="row">
@@ -36,7 +41,7 @@
                                         <div class="orcondit"><h6>OR</h6></div>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input text="text" name="Pincode" asp-for="Pincode" class="single-input" placeholder="Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pincode'">
+                                            <input text="text" id="Pincode" name="Pincode" asp-for="Pincode" class="single-input" placeholder="Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pincode'">
                                         <div class="orcondit"><h6>OR</h6></div>
                                         </div>
                                         <div class="col-sm-3">

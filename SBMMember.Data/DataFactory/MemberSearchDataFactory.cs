@@ -64,8 +64,8 @@ namespace SBMMember.Data.DataFactory
                                                           District = _apppersonal.District != null ? _apppersonal.District : string.Empty,
                                                           Age = _apppersonal.Age,
                                                           BloodGroup=_apppersonal.BloodGroup,
-                                                          PrefixM=_apppersonal.PrefixM
-
+                                                          PrefixM=_apppersonal.PrefixM,
+                                                          Gender=_apppersonal.Gender
                                                       }).ToList();
 
             List<MemberSearchResponse> memberSearchesFinalResult = (from s in memberSearches.Where(x => x.Qualification.ToLower().Contains("m.b.b.s") || x.Qualification.ToLower().Contains("b.a.m.s")
@@ -82,7 +82,8 @@ namespace SBMMember.Data.DataFactory
                                                                         BirthDate = s.BirthdateM,
                                                                         NativePlace = s.NativePlaceM,
                                                                         Qualification = s.QualificationM,
-                                                                        BloodGroup=s.BloodGroup
+                                                                        BloodGroup=s.BloodGroup,
+                                                                        Gender=s.Gender
                                                                     }).ToList();
             return memberSearchesFinalResult;
         }
@@ -237,7 +238,9 @@ namespace SBMMember.Data.DataFactory
                                                                         BirthDate = s.BirthdateM,
                                                                         NativePlace = s.NativePlaceM,
                                                                         Qualification = s.QualificationM,
-                                                                        BloodGroup=s.BloodGroup
+                                                                        BloodGroup=s.BloodGroup,
+                                                                        Gender=s.Gender
+                                                                        
                                                                     }).ToList();
             return memberSearchesFinalResult;
         }
