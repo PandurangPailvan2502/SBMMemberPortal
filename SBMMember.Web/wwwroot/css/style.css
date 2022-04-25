@@ -5,12 +5,24 @@
   background-image: linear-gradient(to left, #ee390f 0%, #f9b700 51%, #ee390f 100%);
 }
 /*Business directory start*/
-.next {
-  background-color: #b3027d;
-  color: white; padding: 8px 16px; font-size:12px
+.next {background-color: #b3027d;color: white; padding: 8px 16px; font-size:12px}
+.round {
+    border-radius:10%;
+}
+.previous {
+    background-color:rgba(191,191,191,0.95);
+    color: #000000;
+    padding: 8px 16px;
+    font-size: 12px
 }
 
-.admin-pr {width:70%}
+.round {
+    border-radius: 5%;
+}
+.jobresulttitle {background-color: #eeeeee;height: 35px;width: 100%;padding:10px 0px 10px 15px;margin-top: 10px;margin-bottom: 10px}
+.admin-pr {
+    width: 70%
+}
 .logout-btn{background-color:#c70101; color:#ffffff; padding:8px; border-radius:5px; font-weight:bold;}
 .login-btn {background-color:#02bd50;color:#ffffff;padding:8px;border-radius:5px;font-weight: bold; font-size:12px}
 .upcoming-event {
@@ -20,9 +32,7 @@
     -webkit-box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.95);
     -moz-box-shadow: 1px 3px 9px -3px rgba(191,191,191,0.95);
 }
-.round {
-    border-radius: 50%;
-}
+
 .payment-thankyou {margin-top:45px; margin-bottom:40px; padding:10px; text-align:justify;
     border: 1px solid #7c0053;
     background-color: #ffffff;

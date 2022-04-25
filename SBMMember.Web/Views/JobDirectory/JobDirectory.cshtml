@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
 }
 
-<div class="container-fluid" style="margin-top:30px">
+<div class="container" style="margin-top:30px">
     <div class="row">
         <div class="col-lg-12">
             <div class="scroll" style="background-color:darkred">
@@ -13,84 +13,52 @@
         </div>
     </div>
 </div>
-<section class="blog_area single-post-area section_padding">
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 posts-list">
-                <div class="single-post">
-                    <div class="blog_details">
-                        <p class="excert">
-                            Showing Result(s) @Model.JobPostings.Count
-                        </p>
-                    </div>
-                </div>
+            <div class="col-lg-12">
+                <div class="jobresulttitle"><h4>Showing Result(s): <span style="color:#7c0053"> @Model.JobPostings.Count</span></h4></div>
+            </div>
+    </div>         
+                  
+               
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="container search_result">
-                                <div class="row">
-                                    <div class="col-lg-12 pic_content">
-                                        @if (Model.JobPostings.Count > 0)
-                                        {
-                                            foreach (JobPostingViewModel job in Model.JobPostings)
-                                            {
-
-
-                                        <div class="container mySlides">
+                        <div class="col-lg-12 search_result">
+                          
+                                 @if (Model.JobPostings.Count > 0)
+                                 {
+                                 foreach (JobPostingViewModel job in Model.JobPostings)
+                                 {
+                                 <div class="container mySlides">
                                             <div class="row">
-                                                <div class="col-lg-10 left-box"><lable><b>Job Title</b> : @job.JobTitle</lable></div>
+                                                <lable><b>Job Title</b>: <br />@job.JobTitle</lable><br />
+                                                <lable><b>Job Decsription</b>: <br />@job.JobDescription</lable><br />
+                                                <lable><b>Male/Female</b>:<br />@job.PositionFor</lable><br />
+                                                <lable><b>Age Limt</b>:<br /> @job.Age</lable><br />
+                                                <lable><b>Company name</b>:<br /> @job.CompanyName</lable><br />
+                                                <lable><b>Job Location</b>:<br /> @job.JobLocation</lable><br />
+                                                <lable><b>Qualification required</b>:<br /> @job.Qualification</lable><br />
+                                                <lable><b>Salary band</b>:<br /> @job.SalaryBand</lable><br />
+                                                <lable><b>Years of Experience</b>:<br /> @job.Experiance</lable><br />
+                                                <img src="~/img/whats-app.png" width="15px" height="15px"> <lable><b> Company Contact</b>:<br /> @job.CompanyContact</lable><br />
+                                                <lable><b>Email</b>:<br /> @job.CompanyEmail</lable><br />
                                             </div>
+                                            
+                                          
                                             <div class="row">
-                                                <div class="col-lg-10 left-box"><lable><b>Job Decsription</b> : @job.JobDescription</lable></div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><lable><b>Male/Female</b> : @job.PositionFor</lable></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><lable><b>Age Limt</b> : @job.Age</lable></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><lable><b>Company name</b> : @job.CompanyName</lable></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><lable><b>Job Location</b> : @job.JobLocation</lable></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><lable><b>Qualification required</b> : @job.Qualification</lable></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><lable><b>Salary band</b> : @job.SalaryBand</lable></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><lable><b>Years of Experiance</b> : @job.Experiance</lable></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><img src="~/img/whats-app.png" width="15px" height="15px"> <lable><b> Company Contact</b> : @job.CompanyContact</lable>  </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-10 left-box"><lable><b>Email</b> : @job.CompanyEmail</lable>  </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-5" style="float:right">
-                                                    <a href="#" class="previous round" onclick="plusSlides(-1)">Pre</a>
-                                                    <a href="#" class="next round" onclick="plusSlides(1)">Next</a>
+                                                <div class="col-lg-5" style="float:right; margin-top:20px">
+                                                    <a href="#" class="previous round" onclick="plusSlides(-1)"><i class="ti-angle-double-left"></i> Pevious</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href="#" class="next round" onclick="plusSlides(1)">Next <i class="ti-angle-double-right"></i></a>
                                                 </div>
                                             </div>
-                                        </div>
-                                            }
-                                        }
-                                    </div>
-                                </div>
-                            </div>
+                                 </div>
+                                 }
+                                 }
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-    </div>
-</section>
+           
 <script>
     var slideIndex = 1;
     showSlides(slideIndex);
