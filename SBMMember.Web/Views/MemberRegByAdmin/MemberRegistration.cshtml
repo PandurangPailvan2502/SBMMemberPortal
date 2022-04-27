@@ -89,7 +89,9 @@
                 <tr>
                     <td colspan="2">
                         <div id="myProgress">
-                        <div id="myBar"></div>
+                            @*<div id="myBar"></div>*@
+                            <label for="file">Member Profile Completion progress:</label>
+                            <progress style="vertical-align:bottom;height:50px;width:750px;" id="file" value="@Model.ProfilePercentage" max="100"></progress> @Model.ProfilePercentage%
                         </div>
                     </td>
                 </tr>
@@ -102,7 +104,7 @@
                                     <label for="@Model.MemberConatctInfo.TabValue" class="yel"><img src="~/img/contact-details-m.png" class="matri-icon"><br /> मुळगाव व संपर्क</label>
                                     <label for="@Model.MemberEducationEmploymentInfo.TabValue" class="yel"><img src="~/img/mortarboard.png" class="matri-icon"><br> शिक्षण / नोकरी </label>
                                     <label for="@Model.MemberFamilyInfo.TabValue" class="yel"><img src="~/img/people.png" class="matri-icon"><br> कुटुंबाविषयी माहिती </label>
-                                    @*<label for="tab5" class="yel"><img src="~/img/contact-img.png" class="matri-icon"><br> सभासदत्व नोंदणी शुल्क</label>*@
+                                    <label for="tab5" class="yel"><img src="~/img/contact-img.png" class="matri-icon"><br> सभासदत्व नोंदणी शुल्क</label>
                                 </section>
 
                                 <input name="tab" id="tab1" type="radio" @Model.MemberPersonalInfo.ActiveTab />
@@ -117,7 +119,7 @@
                                                     <div class="input-group-icon">
                                                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                         <div class="form-select" id="default-select">
-                                                            <select asp-for="MemberPersonalInfo.Prefix">
+                                                            <select asp-for="MemberPersonalInfo.Prefix" required>
                                                                 <option value="Title">Title</option>
                                                                 <option value="Shree">Shree</option>
                                                                 <option value="Sou">Sou</option>
@@ -462,7 +464,7 @@
                                             <!--</div>
         </form>-->
                                         </div>
-                                        <div class="row">
+                                        @*<div class="row">
                                             <div class="col-lg-10 col-md-10">
                                                 <form asp-action="GoToPayment" asp-controller="OTPVerify" method="post">
                                                     <input type="hidden" asp-for="MemberPaymentInfo.MemberId" />
@@ -473,6 +475,59 @@
 
                                                     <div class="input-group-icon mt-10">
                                                         <button type="submit" class="genric-btn primary-border">proceed to Pay</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>*@
+                                    </div>
+                                </section>
+
+                                <input name="tab" id="tab5" type="radio" @Model.MemberPaymentInfo.ActiveTab />
+                                <section class="tab-content">
+                                    <div class="section-top-border">
+                                        <div class="row">
+                                            <div class="col-lg-10 col-md-10">
+                                                <form asp-action="MemberPaymentAndReciptsInfo" asp-controller="MemberRegByAdmin" method="post">
+                                                    <input type="hidden" asp-for="MemberPaymentInfo.MemberId" />
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberPaymentInfo.ChagesPaid" asp-for="MemberPaymentInfo.ChagesPaid" placeholder="Charges Paid" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Charges Paid'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="input-group-icon mt-10">
+                                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+                                                        <div class="form-select" id="default-select">
+                                                            <select asp-for="MemberPaymentInfo.PaymentMode">
+                                                                <option value="0">Paid Through</option>
+                                                                <option value="Cash">Cash</option>
+                                                                <option value="Online">Online</option>
+                                                                <option value="Cheque">Cheque</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberPaymentInfo.TransactionNo" asp-for="MemberPaymentInfo.TransactionNo" placeholder="Transaction ID/ Ref. ID" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Transaction ID/ Ref. ID'"
+                                                               class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <label>Transaction Date</label>
+                                                        <input type="date" name="MemberPaymentInfo.TransactionDate" asp-for="MemberPaymentInfo.TransactionDate" placeholder="Transaction Date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Transaction Date'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberPaymentInfo.RecieptNo" asp-for="MemberPaymentInfo.RecieptNo" placeholder="RecieptNo" onfocus="this.placeholder = ''" onblur="this.placeholder = 'RecieptNo'"
+                                                               required class="single-input">
+                                                    </div>
+
+                                                    <div class="input-group-icon mt-10">
+                                                        <input type="text" name="MemberPaymentInfo.MembershipId" asp-for="MemberPaymentInfo.MembershipId" placeholder="Membership Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Membership Number'"
+                                                               required class="single-input">
+                                                    </div>
+                                                    <div class="mt-10 center">
+                                                        <button type="submit" class="genric-btn primary-border">Save</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -480,28 +535,6 @@
                                         </div>
                                     </div>
                                 </section>
-
-                                @*<input name="tab" id="tab5" type="radio" @Model.MemberPaymentInfo.ActiveTab />
-                                <section class="tab-content"> 
-                                    <div class="section-top-border">
-                                        <div class="row">
-                                            <div class="col-lg-10 col-md-10">
-                                                <form asp-action="GoToPayment" asp-controller="OTPVerify" method="post">
-                                                    <input type="hidden" asp-for="MemberPaymentInfo.MemberId" />
-                                                    <div class="input-group-icon mt-10">
-                                                        <label> सदस्य नोंदणी शुल्क भरणेसाठी खालील बटणावर क्लिक करा</label>
-                                                    </div>
-                                                    
-
-                                                    <div class="input-group-icon mt-10">
-                                                        <button type="submit" class="genric-btn primary-border">proceed to Pay</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </section>*@
                             </div>
                         </div>
                </div>

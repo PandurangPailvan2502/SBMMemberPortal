@@ -54,7 +54,7 @@ namespace SBMMember.Web.Controllers
             _MemberPersonalInfo.BirthDate = DateTime.Now.AddYears(-72);
             _MemberPersonalInfo.TabValue = "Tab1";
             _MemberPersonalInfo.IsNew = true;
-
+            viewModel.ProfilePercentage = "0";
             viewModel.MemberPersonalInfo = _MemberPersonalInfo;
             viewModel.MemberConatctInfo = new MemberContactInfoViewModel();
             viewModel.MemberEducationEmploymentInfo = new MemberEducationEmploymentInfoViewModel();
@@ -72,11 +72,12 @@ namespace SBMMember.Web.Controllers
             if (member_Personal.MemberId > 0)
             {
                 perosnalInfoViewModel.IsNew = false;
-                perosnalInfoViewModel.TabValue = "Tab1";
+                commonViewModel.ProfilePercentage = "20"; 
             }
             else
                 perosnalInfoViewModel.IsNew = true;
             perosnalInfoViewModel.MemberId = MemberId;
+            perosnalInfoViewModel.TabValue = "tab1";
             perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate == DateTime.MinValue ? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
            
 
@@ -87,11 +88,13 @@ namespace SBMMember.Web.Controllers
             if (member_contact.MemberId > 0)
             {
                 contactInfoViewModel.IsNew = false;
-                contactInfoViewModel.TabValue = "Tab2";
+                commonViewModel.ProfilePercentage = "40";
             }
             else
                 contactInfoViewModel.IsNew = true;
             contactInfoViewModel.MemberId = MemberId;
+            contactInfoViewModel.TabValue = "tab2";
+
             commonViewModel.MemberConatctInfo = contactInfoViewModel;
 
             Member_EducationEmploymentDetails member_education = educationEmploymentDataFactory.GetDetailsByMemberId(MemberId);
@@ -100,11 +103,11 @@ namespace SBMMember.Web.Controllers
             if (member_education.MemberId > 0)
             {
                 educationEmploymentInfoViewModel.IsNew = false;
-                educationEmploymentInfoViewModel.TabValue = "Tab3";
+                commonViewModel.ProfilePercentage = "60";
             }
             else
                 educationEmploymentInfoViewModel.IsNew = true;
-
+            educationEmploymentInfoViewModel.TabValue = "tab3";
             commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
 
             List<Member_FamilyDetails> member_Family = familyDetailsDataFactory.GetFamilyDetailsByMemberId(MemberId);
@@ -117,12 +120,10 @@ namespace SBMMember.Web.Controllers
             familyInfoViewModel.MemberId = MemberId;
             familyInfoViewModel.DOB = familyInfoViewModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoViewModel.DOB;
             familyInfoViewModel.MemberFamilyDetails = memberFamilies;
-            if(memberFamilies.Count>0)
-            {
-                familyInfoViewModel.TabValue = "Tab4";
-            }
+            familyInfoViewModel.TabValue = "tab4";
             commonViewModel.MemberFamilyInfo = familyInfoViewModel;
-            //if (memberFamilies.Count > 0)
+            if (memberFamilies.Count > 0)
+                commonViewModel.ProfilePercentage = "80";
             //    ViewBag.MemberList = memberFamilies;
 
             Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(MemberId);
@@ -157,7 +158,8 @@ namespace SBMMember.Web.Controllers
                   LastName=model.MemberPersonalInfo.LastName,
                   MiddleName=model.MemberPersonalInfo.MiddleName,
                  Status="Active",
-                 Createdate=DateTime.Now
+                 Createdate=DateTime.Now,
+                 UpdateDate=DateTime.Now
                  
                 };
                 var member = memberDataFactory.AddMember(members);
@@ -167,7 +169,7 @@ namespace SBMMember.Web.Controllers
             else
                 personalDataFactory.UpdateMemberPersonalDetails(personalDetails);
             //return RedirectToAction("InitialiseMemberRegistration", new { MemberId = model.MemberPersonalInfo.MemberId });
-            return RedirectToAction("ReInitialiseMemberForm", new { MemberId = model.MemberPersonalInfo.MemberId });
+            return RedirectToAction("ReInitialiseMemberForm", new { MemberId = personalDetails.MemberId });
         }
 
         [HttpPost]       
@@ -180,6 +182,9 @@ namespace SBMMember.Web.Controllers
                 contactDetailsDataFactory.AddDetails(member_ContactDetails);
             else
                 contactDetailsDataFactory.UpdateDetails(member_ContactDetails);
+            Members members = new Members() { Mobile = member_ContactDetails.Mobile1 ,MemberId=model.MemberConatctInfo.MemberId};
+            memberDataFactory.UpdateMobileNo(members);
+
             return RedirectToAction("ReInitialiseMemberForm", new { MemberId = model.MemberConatctInfo.MemberId });
         }
 
@@ -247,6 +252,26 @@ namespace SBMMember.Web.Controllers
 
             }
             return RedirectToAction("ReInitialiseMemberForm", new { MemberId = model.MemberFamilyInfo.MemberId });
+        }
+        [HttpPost]
+        public IActionResult MemberPaymentAndReciptsInfo(MemberFormCommonViewModel model)
+        {
+            Member_PaymentsAndReciepts member_Payments = mapper.Map<Member_PaymentsAndReciepts>(model.MemberPaymentInfo);          
+
+           
+                paymentsDataFactory.AddDetails(member_Payments);
+           
+
+            Member_FormStatus member_Form = new Member_FormStatus()
+            {
+                MemberId = model.MemberPaymentInfo.MemberId,
+                FormStatus = "Submitted",
+                FormSubmitDate = DateTime.Now
+            };
+           
+            formStatusDataFactory.AddDetails(member_Form);
+
+            return RedirectToActionPermanent("NewMemberList","ManageMembers");
         }
     }
 }

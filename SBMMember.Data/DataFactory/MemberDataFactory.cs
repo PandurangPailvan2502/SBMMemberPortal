@@ -154,6 +154,37 @@ namespace SBMMember.Data.DataFactory
 
             return responseDTO;
         }
+        public ResponseDTO UpdateMobileNo(Members _member)
+        {
+            ResponseDTO responseDTO = new ResponseDTO();
+            try
+            {
+                Members member = memberDBContext.Members.Where(x => x.MemberId == _member.MemberId && x.Status=="Active").FirstOrDefault();
+                member.Mobile = _member.Mobile;
+                int affectedRows = 0;
+                affectedRows = memberDBContext.SaveChanges();
+                if (affectedRows > 0)
+                {
+                    responseDTO = new ResponseDTO()
+                    {
+                        Result = "Success",
+                        Message = "Member Mobile updated successfully."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Logger.LogError($"Error occured while updating member Mobile. Exception:{ex.Message}");
+                responseDTO = new ResponseDTO()
+                {
+                    Result = "Failed",
+                    Message = $"Member Mobile update operation failed.{ex.Message}"
+                };
+            }
+
+            return responseDTO;
+        }
         public void UpdateName(int MemberId,String FirstName,String MiddleName,string LastName)
         {
             try
@@ -184,5 +215,6 @@ namespace SBMMember.Data.DataFactory
         Members GetDetailsByMemberMobile(string mobile);
         void UpdateName(int MemberId, String FirstName, String MiddleName, string LastName);
         ResponseDTO UpdateMPIN(Members _member);
+        ResponseDTO UpdateMobileNo(Members _member);
     }
 }
