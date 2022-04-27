@@ -97,6 +97,8 @@ namespace SBMMember.Data.DataFactory
                                                       on _apppersonal.MemberId equals _appqualification.MemberId
                                                       join _appFormStatus in context.Member_FormStatuses
                                                       on _apppersonal.MemberId equals _appFormStatus.MemberId
+                                                      join _member in context.Members
+                                                      on _apppersonal.MemberId equals _member.MemberId
                                                       where (_appFormStatus.FormStatus == "Submitted" || _appFormStatus.FormStatus == "Verified")
                                                       select new MemberSearchByDTO
                                                       {
@@ -144,6 +146,8 @@ namespace SBMMember.Data.DataFactory
                                                       on _apppersonal.MemberId equals _appFormStatus.MemberId
                                                       join _appPaymentstatus in context.Member_PaymentsAndReciepts
                                                       on _apppersonal.MemberId equals _appPaymentstatus.MemberId
+                                                      join _member in context.Members
+                                                     on _apppersonal.MemberId equals _member.MemberId
                                                       where _appFormStatus.FormStatus == "Approved"
                                                       select new MemberSearchByDTO
                                                       {

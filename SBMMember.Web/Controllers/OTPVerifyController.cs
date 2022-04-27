@@ -166,7 +166,7 @@ namespace SBMMember.Web.Controllers
         public IActionResult VerifyMPinNew(LoginViewModel _viewModel)
         {
             MemberFormCommonViewModel commonViewModel = new MemberFormCommonViewModel();
-
+            commonViewModel.ProfilePercentage = "0";
             var member = MemberDataFactory.GetDetailsByMemberMobile(_viewModel.MobileNumber);
             if (member.MemberId > 0 && member.Mobile.Trim() == _viewModel.MobileNumber.Trim() && member.Mpin.Trim() == _viewModel.MPIN.Trim())
             {
@@ -175,6 +175,7 @@ namespace SBMMember.Web.Controllers
                 if (member_Personal.MemberId > 0)
                 {
                     perosnalInfoViewModel.IsNew = false;
+                    commonViewModel.ProfilePercentage = "20";
                 }
                 else
                     perosnalInfoViewModel.IsNew = true;
@@ -187,6 +188,7 @@ namespace SBMMember.Web.Controllers
                 if (member_contact.MemberId > 0)
                 {
                     contactInfoViewModel.IsNew = false;
+                    commonViewModel.ProfilePercentage = "40";
                 }
                 else
                     contactInfoViewModel.IsNew = true;
@@ -199,6 +201,7 @@ namespace SBMMember.Web.Controllers
                 if (member_education.MemberId > 0)
                 {
                     educationEmploymentInfoViewModel.IsNew = false;
+                    commonViewModel.ProfilePercentage = "60";
                 }
                 else
                     educationEmploymentInfoViewModel.IsNew = true;
@@ -215,6 +218,8 @@ namespace SBMMember.Web.Controllers
                 familyInfoViewModel.MemberId = member.MemberId;
                 familyInfoViewModel.DOB = familyInfoViewModel.DOB== DateTime.MinValue ? DateTime.Now.AddYears(-72):familyInfoViewModel.DOB;
                 familyInfoViewModel.MemberFamilyDetails = memberFamilies;
+                if(memberFamilies.Count>0)
+                    commonViewModel.ProfilePercentage = "80";
                 commonViewModel.MemberFamilyInfo = familyInfoViewModel;
                 //ViewBag.MemberList = memberFamilies;
 
@@ -252,11 +257,13 @@ namespace SBMMember.Web.Controllers
         {
             MemberFormCommonViewModel commonViewModel = new MemberFormCommonViewModel();
             commonViewModel.MemberId = MemberId;
+            commonViewModel.ProfilePercentage = "0";
             Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(MemberId);
             MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
             if (member_Personal.MemberId > 0)
             {
                 perosnalInfoViewModel.IsNew = false;
+                commonViewModel.ProfilePercentage = "20";
             }
             else
                 perosnalInfoViewModel.IsNew = true;
@@ -270,6 +277,7 @@ namespace SBMMember.Web.Controllers
             if (member_contact.MemberId > 0)
             {
                 contactInfoViewModel.IsNew = false;
+                commonViewModel.ProfilePercentage = "40";
             }
             else
                 contactInfoViewModel.IsNew = true;
@@ -282,6 +290,7 @@ namespace SBMMember.Web.Controllers
             if (member_education.MemberId > 0)
             {
                 educationEmploymentInfoViewModel.IsNew = false;
+                commonViewModel.ProfilePercentage = "60";
             }
             else
                 educationEmploymentInfoViewModel.IsNew = true;
@@ -299,7 +308,8 @@ namespace SBMMember.Web.Controllers
             familyInfoViewModel.DOB = familyInfoViewModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoViewModel.DOB;
             familyInfoViewModel.MemberFamilyDetails = memberFamilies;
             commonViewModel.MemberFamilyInfo = familyInfoViewModel;
-            //if (memberFamilies.Count > 0)
+            if (memberFamilies.Count > 0)
+                commonViewModel.ProfilePercentage = "80";
             //    ViewBag.MemberList = memberFamilies;
 
             Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(MemberId);

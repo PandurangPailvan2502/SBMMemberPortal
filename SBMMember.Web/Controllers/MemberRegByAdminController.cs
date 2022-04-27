@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using SBMMember.Web.Models;
 using SBMMember.Models;
 using Microsoft.AspNetCore.Http;
+using SBMMember.Web.Helper;
 
 namespace SBMMember.Web.Controllers
 {
@@ -270,8 +271,18 @@ namespace SBMMember.Web.Controllers
             };
            
             formStatusDataFactory.AddDetails(member_Form);
-
+            sendRegistrationSMS(model.MemberPaymentInfo.MemberId);
             return RedirectToActionPermanent("NewMemberList","ManageMembers");
+        }
+        private void sendRegistrationSMS(int memberId)
+        {
+            Members member = memberDataFactory.GetDetailsByMemberId(memberId);
+            if (member != null && member.MemberId > 0)
+            {
+                string memberName = $"{member.FirstName} {member.LastName}";
+                string smsTemplate = $"Dear {memberName}, Thank you for your membership registration at Samata Bhratru Mandal (PCMC Pune). Your profile is under verification & you will be notified once it is approved.";
+                SMSHelper.SendSMS(member.Mobile, smsTemplate.Trim());
+            }
         }
     }
 }
