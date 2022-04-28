@@ -20,11 +20,75 @@
     }
 </style>
 <script>
+        // End jQuery Nice Select 
+
+   
+
     $(document).ready(function () {
+
+        $("#btnPersonalSave").click(function (e) {
+
+            if ($('#title').val() === '') {
+                e.preventDefault();
+                $('#title').focus();
+                alert("Please Select Title")
+            }
+           
+            else if ($('#selectGender').val() === '') {
+                e.preventDefault();
+                $('#selectGender').focus();
+                alert("Please Select Gender")
+            }
+            else if ($('#selectMaritalStatus').val() === '') {
+                e.preventDefault();
+                $('#selectBloodGroup').focus();
+                alert("Please Select Marital Status")
+            }
+            else if ($('#selectBloodGroup').val() === '') {
+                e.preventDefault();
+                $('#selectBloodGroup').focus();
+                alert("Please Select Blood Group")
+            }
+        });
+
+        $("#btneducationSave").click(function (e) {
+            if ($('#selectOccupation').val() === '') {
+                e.preventDefault();
+                $('#selectOccupation').focus();
+                alert("Please Select Occupation")
+            }
+
+        });
+        $("#btnAddFamilyMember").click(function (e) {
+
+            if ($('#selectRelation').val() === '') {
+                e.preventDefault();
+                $('#selectRelation').focus();
+                alert("Please Select Relation")
+            }
+            else if ($('#selectOccupation').val() === '') {
+                e.preventDefault();
+                $('#selectOccupation').focus();
+                alert("Please Select Occupation")
+            }
+            else if ($('#selectBloodGroup').val() === '') {
+                e.preventDefault();
+                $('#selectBloodGroup').focus();
+                alert("Please Select Blood Group")
+            }
+        });
+        $('#title').on('change', function () {
+            $(this).valid();
+        })
+
+        // Activate NiceSelect (Validate doesn't work)
+        $('#title').niceSelect();
 
         var pincodeval = $("#pincode").val();
         if (pincodeval == "0")
             $("#pincode").val("");
+        
+
         $('#MemberConatctInfo.Mobile1').keypress(function (e) {
 
             var charCode = (e.which) ? e.which : event.keyCode
@@ -117,14 +181,14 @@
                             <div class="section-top-border updatep">
                                 <div class="row">
                                     <div class="col-lg-10 col-md-10">
-                                        <form asp-action="MemberPersonalInfo" asp-controller="OTPVerify" method="post" enctype="multipart/form-data">
+                                        <form asp-action="MemberPersonalInfo" asp-controller="OTPVerify" method="post" enctype="multipart/form-data" id="personalInfoForm">
                                             <input type="hidden" asp-for="MemberPersonalInfo.MemberId" />
                                             <input type="hidden" asp-for="MemberPersonalInfo.IsNew" />
                                             <div class="input-group-icon">
                                                 <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                 <div class="form-select" id="default-select">
-                                                    <select asp-for="MemberPersonalInfo.Prefix">
-                                                        <option value="Title">Title</option>
+                                                    <select  id="title" asp-for="MemberPersonalInfo.Prefix" required>
+                                                        <option value="">Select Title</option>
                                                         <option value="Shree">Shree</option>
                                                         <option value="Sou">Sou</option>
                                                         <option value="Shreemati">Shreemati</option>
@@ -150,8 +214,8 @@
                                             <div class="input-group-icon">
                                                 <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                 <div class="form-select" id="default-select">
-                                                    <select asp-for="MemberPersonalInfo.Gender">
-                                                        <option value="Gender">Gender</option>
+                                                    <select asp-for="MemberPersonalInfo.Gender" id="selectGender" required>
+                                                        <option value="">Gender</option>
                                                         <option value="Male">Male</option>
                                                         <option value="Female">Female</option>
                                                     </select>
@@ -160,8 +224,8 @@
                                             <div class="input-group-icon">
                                                 <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                 <div class="form-select" id="default-select">
-                                                    <select asp-for="MemberPersonalInfo.MaritalStatus">
-                                                        <option value="0">Marital Status</option>
+                                                    <select asp-for="MemberPersonalInfo.MaritalStatus" required id="selectMaritalStatus">
+                                                        <option value="">Marital Status</option>
                                                         <option value="Married">Married</option>
                                                         <option value="Unmarried">Unmarried</option>
                                                     </select>
@@ -174,8 +238,8 @@
                                             <div class="input-group-icon mt-10">
                                                 <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                 <div class="form-select" id="default-select">
-                                                    <select asp-for="MemberPersonalInfo.BloodGroup">
-                                                        <option value="0">Blood Group</option>
+                                                    <select id="selectBloodGroup" asp-for="MemberPersonalInfo.BloodGroup" required>
+                                                        <option value="">Select Blood Group</option>
                                                         <option value="A+">A positive (A+)</option>
                                                         <option value="A-">A Negative (A-)</option>
                                                         <option value="B+">B Positive (B+)</option>
@@ -222,7 +286,7 @@
                                                        required class="single-input">
                                             </div>
                                             <div class="mt-10 center">
-                                                <button type="submit" class="genric-btn primary-border fa-align-right">Save</button>
+                                                <button id="btnPersonalSave" type="submit" class="genric-btn primary-border fa-align-right">Save</button>
                                             </div>
                                         </form>
                                     </div>
@@ -314,8 +378,8 @@
                                             <div class="input-group-icon mt-10">
                                                 <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                 <div class="form-select" id="default-select">
-                                                    <select asp-for="MemberEducationEmploymentInfo.Proffession">
-                                                        <option value="0">Occupation</option>
+                                                    <select asp-for="MemberEducationEmploymentInfo.Proffession" required id="selectOccupation">
+                                                        <option value="">Occupation</option>
                                                         <option value="Business">Business</option>
                                                         <option value="Job">Job</option>
                                                         <option value="Farmer">Farmer</option>
@@ -341,7 +405,7 @@
                                                        class="single-input">
                                             </div>
                                             <div class="mt-10 center">
-                                                <button type="submit" class="genric-btn primary-border">Save</button>
+                                                <button id="btneducationSave" type="submit" class="genric-btn primary-border">Save</button>
                                             </div>
                                         </form>
                                     </div>
@@ -367,8 +431,8 @@
                                             <div class="input-group-icon mt-10">
                                                 <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                 <div class="form-select" id="default-select">
-                                                    <select asp-for="MemberFamilyInfo.Relation">
-                                                        <option value="0">Relations</option>
+                                                    <select asp-for="MemberFamilyInfo.Relation" id="selectRelation">
+                                                        <option value="">Relations</option>
                                                         <option value="Husband">Husband</option>
                                                         <option value="Wife">Wife</option>
                                                         <option value="Daughter">Daughter</option>
@@ -385,8 +449,8 @@
                                             </div>
                                             <div class="input-group-icon mt-10">
                                                 <div class="form-select" id="default-select">
-                                                    <select asp-for="MemberFamilyInfo.Occupation">
-                                                        <option value="0">Family Member Occupation</option>
+                                                    <select asp-for="MemberFamilyInfo.Occupation" id="selectOccupation">
+                                                        <option value="">Family Member Occupation</option>
                                                         <option value="Working">Working</option>
                                                         <option value="Business">Business</option>
                                                         <option value="Housewife">Housewife</option>
@@ -405,8 +469,8 @@
                                                 Blood Group :
                                                 <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                 <div class="form-select" id="default-select">
-                                                    <select asp-for="MemberFamilyInfo.BloodGroup">
-                                                        <option value="0">-- Select Blood Group --</option>
+                                                    <select asp-for="MemberFamilyInfo.BloodGroup" id="selectBloodGroup">
+                                                        <option value="">-- Select Blood Group --</option>
                                                         <option value="A+">A positive (A+)</option>
                                                         <option value="A-">A Negative (A-)</option>
                                                         <option value="B+">B Positive (B+)</option>
@@ -420,7 +484,7 @@
                                             </div>
 
                                             <div class="mt-10 center">
-                                                <button class="genric-btn primary-border">Add to List</button>
+                                                <button id="btnAddFamilyMember" class="genric-btn primary-border">Add to List</button>
                                             </div>
                                             @if (Model.MemberFamilyInfo.MemberFamilyDetails != null)
                                             {
