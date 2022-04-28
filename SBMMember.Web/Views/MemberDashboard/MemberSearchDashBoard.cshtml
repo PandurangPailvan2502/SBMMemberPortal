@@ -23,11 +23,11 @@
                <!------------icon dashbaord row-1--------------->
                <div class="container">
                  <div class="row ">
-                     <div class="col-xs-6 r1c1 dashboard" style="cursor:pointer" id="SearchByName">
+                     <div class="col-xs-6 r1c1 dashboard" style="cursor:pointer;margin-left:20%" id="SearchByName">
                          <a asp-action="MemberSearchByName" asp-controller="MemberDashboard">  <img src="~/img/profile-pic.png" class="dashboard-icon"></a>
                        <h3 style="color:#000000">Search by Name</h3>
                      </div>
-                     <div class="col-xs-6 r1c1 dashboard" style="cursor:pointer">
+                     <div class="col-xs-6 r1c1 dashboard" style="cursor:pointer;">
                          <a asp-controller="MemberDashboard" asp-action="MemberSearchByArea">  <img src="~/img/maps.png" class="dashboard-icon" id="searchByArea"></a>
                        <h3 style="color:#000000">Search by Area</h3>
                      </div>
@@ -44,7 +44,7 @@
                <!------------icon dashbaord row-1--------------->
                <div class="container">
                  <div class="row ">
-                     <div class="col-xs-6 r1c1 dashboard" style="cursor:pointer">
+                     <div class="col-xs-6 r1c1 dashboard" style="cursor:pointer;margin-left:20%">
                          <a asp-action="MemberSearchByNative" asp-controller="MemberDashboard"><img src="~/img/map.png" class="dashboard-icon" id="searchByNative" ></a>
                        <h3 style="color:#000000">Search by Native Place</h3>
                      </div>
@@ -61,5 +61,7 @@
 
 <div class="seperate"></div>
 
+<div class="col-lg-12">
 @await Html.PartialAsync("_PartialSlider")
+</div>
 <!--------------end of dashboard-------------->
