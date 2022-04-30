@@ -8,7 +8,7 @@ namespace SBMMember.Web.Models
     public class MemberFormCommonViewModel
     {
         public int MemberId { get; set; }
-        public string ProfilePercentage { get; set; }
+        public int ProfilePercentage { get; set; }
         public MemberPerosnalInfoViewModel MemberPersonalInfo { get; set; }
         public MemberContactInfoViewModel MemberConatctInfo { get; set; }
         public MemberEducationEmploymentInfoViewModel MemberEducationEmploymentInfo { get; set; }

@@ -253,7 +253,7 @@
                                                     </div>
 
                                                     <div class="input-group-icon mt-10">
-                                                        <input type="text" name="MemberPersonalInfo.Pincode" asp-for="MemberPersonalInfo.Pincode" placeholder="Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pincode'"
+                                                        <input type="text" id="pincode" name="MemberPersonalInfo.Pincode" asp-for="MemberPersonalInfo.Pincode" placeholder="Pincode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pincode'"
                                                                required class="single-input">
                                                     </div>
 
@@ -410,6 +410,8 @@
                                                 <form asp-action="AddToList" asp-controller="MemberRegByAdmin" method="post" enctype="multipart/form-data">
                                                     @*<input type="hidden" asp-for="MemberFamilyInfo.MemberFamilyDetails" />*@
                                                     <input type="hidden" asp-for="MemberFamilyInfo.MemberId" />
+                                                    <input type="hidden" asp-for="MemberFamilyInfo.IsNew" />
+                                                    <input type="hidden" asp-for="MemberFamilyInfo.FamilyDetailsID" />
                                                     <div class="input-group-icon mt-10">
                                                         <input type="text" name="MemberFamilyInfo.Name" asp-for="MemberFamilyInfo.Name" placeholder="Family member Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Name'"
                                                                required class="single-input">
@@ -435,7 +437,7 @@
                                                     </div>
                                                     <div class="input-group-icon mt-10">
                                                         <div class="form-select" id="default-select">
-                                                            <select asp-for="MemberFamilyInfo.Occupation"id="selectOccupation">
+                                                            <select asp-for="MemberFamilyInfo.Occupation" id="selectOccupation">
                                                                 <option value="">Family Member Occupation</option>
                                                                 <option value="Working">Working</option>
                                                                 <option value="Business">Business</option>
@@ -470,31 +472,38 @@
                                                     </div>
 
                                                     <div class="mt-10 center">
-                                                        <button id="btnAddFamilyMember" class="genric-btn primary-border">Add to List</button>
+                                                        @if (Model.MemberFamilyInfo.IsNew)
+                                                        {
+                                                            <button id="btnAddFamilyMember" class="genric-btn primary-border">Add to List</button>
+                                                        }
+                                                        else
+                                                        {
+                                                            <button id="btnAddFamilyMember" class="genric-btn primary-border">Update to List</button>
+                                                        }
                                                     </div>
                                                     @if (Model.MemberFamilyInfo.MemberFamilyDetails != null)
                                                     {
                                                         <div class="mt-10 center">
-                                                            <table class="table table-info">
+                                                            <table class="table table-bordered">
                                                                 <thead>
                                                                     <tr style="font-weight:bold">
                                                                         <td>Name</td>
                                                                         <td>Relation</td>
-                                                                        <td>Education</td>
-                                                                        <td>Occupation</td>
-                                                                        <td>Blood Group</td>
+                                                                        <td>Operations</td>
+
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
 
                                                                     @foreach (var familyMember in Model.MemberFamilyInfo.MemberFamilyDetails)
                                                                     {
-                                                                        <tr style="background-color:#ffffff">
+                                                                        <tr>
                                                                             <td>@familyMember.Name</td>
                                                                             <td>@familyMember.Relation</td>
-                                                                            <td>@familyMember.Education</td>
-                                                                            <td>@familyMember.Occupation</td>
-                                                                            <td>@familyMember.BloodGroup</td>
+                                                                            <td>
+                                                                                <a title="Edit" href="@Url.Action("EditFamilyMember","MemberRegByAdmin",new { id = familyMember.FamilyDetailsID})"><i class="ti-pencil"></i></a>
+                                                                                <a title="Delete" href="@Url.Action("DeleteFamilyMember","MemberRegByAdmin",new { id =familyMember.FamilyDetailsID,memberId=familyMember.MemberId})" class="delete-row" onclick="return confirm('Are sure wants to delete?');"><i class="ti-close"></i></a>
+                                                                            </td>
                                                                         </tr>
 
                                                                     }
@@ -579,6 +588,7 @@
                                                     <div class="input-group-icon mt-10">
                                                         <input type="text" name="MemberPaymentInfo.MembershipId" asp-for="MemberPaymentInfo.MembershipId" placeholder="Membership Number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Membership Number'"
                                                                required class="single-input">
+                                                        <label>Last assigned Membership No : @Model.MemberPaymentInfo.LastMemberShipId</label>
                                                     </div>
                                                     <div class="mt-10 center">
                                                         <button type="submit" class="genric-btn primary-border">Save</button>

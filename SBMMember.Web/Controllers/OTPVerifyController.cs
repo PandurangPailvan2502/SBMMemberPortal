@@ -166,7 +166,7 @@ namespace SBMMember.Web.Controllers
         public IActionResult VerifyMPinNew(LoginViewModel _viewModel)
         {
             MemberFormCommonViewModel commonViewModel = new MemberFormCommonViewModel();
-            commonViewModel.ProfilePercentage = "0";
+            commonViewModel.ProfilePercentage = 0;
             var member = MemberDataFactory.GetDetailsByMemberMobile(_viewModel.MobileNumber);
             if (member.MemberId > 0 && member.Mobile.Trim() == _viewModel.MobileNumber.Trim() && member.Mpin.Trim() == _viewModel.MPIN.Trim())
             {
@@ -175,7 +175,7 @@ namespace SBMMember.Web.Controllers
                 if (member_Personal.MemberId > 0)
                 {
                     perosnalInfoViewModel.IsNew = false;
-                    commonViewModel.ProfilePercentage = "20";
+                    commonViewModel.ProfilePercentage += 20;
                 }
                 else
                     perosnalInfoViewModel.IsNew = true;
@@ -188,7 +188,7 @@ namespace SBMMember.Web.Controllers
                 if (member_contact.MemberId > 0)
                 {
                     contactInfoViewModel.IsNew = false;
-                    commonViewModel.ProfilePercentage = "40";
+                    commonViewModel.ProfilePercentage += 20;
                 }
                 else
                     contactInfoViewModel.IsNew = true;
@@ -201,7 +201,7 @@ namespace SBMMember.Web.Controllers
                 if (member_education.MemberId > 0)
                 {
                     educationEmploymentInfoViewModel.IsNew = false;
-                    commonViewModel.ProfilePercentage = "60";
+                    commonViewModel.ProfilePercentage += 20;
                 }
                 else
                     educationEmploymentInfoViewModel.IsNew = true;
@@ -217,9 +217,10 @@ namespace SBMMember.Web.Controllers
                 MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
                 familyInfoViewModel.MemberId = member.MemberId;
                 familyInfoViewModel.DOB = familyInfoViewModel.DOB== DateTime.MinValue ? DateTime.Now.AddYears(-72):familyInfoViewModel.DOB;
+                familyInfoViewModel.IsNew = true;
                 familyInfoViewModel.MemberFamilyDetails = memberFamilies;
                 if(memberFamilies.Count>0)
-                    commonViewModel.ProfilePercentage = "80";
+                    commonViewModel.ProfilePercentage += 20;
                 commonViewModel.MemberFamilyInfo = familyInfoViewModel;
                 //ViewBag.MemberList = memberFamilies;
 
@@ -257,13 +258,13 @@ namespace SBMMember.Web.Controllers
         {
             MemberFormCommonViewModel commonViewModel = new MemberFormCommonViewModel();
             commonViewModel.MemberId = MemberId;
-            commonViewModel.ProfilePercentage = "0";
+            commonViewModel.ProfilePercentage = 0;
             Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(MemberId);
             MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
             if (member_Personal.MemberId > 0)
             {
                 perosnalInfoViewModel.IsNew = false;
-                commonViewModel.ProfilePercentage = "20";
+                commonViewModel.ProfilePercentage += 20;
             }
             else
                 perosnalInfoViewModel.IsNew = true;
@@ -277,7 +278,7 @@ namespace SBMMember.Web.Controllers
             if (member_contact.MemberId > 0)
             {
                 contactInfoViewModel.IsNew = false;
-                commonViewModel.ProfilePercentage = "40";
+                commonViewModel.ProfilePercentage += 20;
             }
             else
                 contactInfoViewModel.IsNew = true;
@@ -290,7 +291,7 @@ namespace SBMMember.Web.Controllers
             if (member_education.MemberId > 0)
             {
                 educationEmploymentInfoViewModel.IsNew = false;
-                commonViewModel.ProfilePercentage = "60";
+                commonViewModel.ProfilePercentage += 20;
             }
             else
                 educationEmploymentInfoViewModel.IsNew = true;
@@ -305,11 +306,12 @@ namespace SBMMember.Web.Controllers
             }
             MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
             familyInfoViewModel.MemberId = MemberId;
+            familyInfoViewModel.IsNew = true;
             familyInfoViewModel.DOB = familyInfoViewModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoViewModel.DOB;
             familyInfoViewModel.MemberFamilyDetails = memberFamilies;
             commonViewModel.MemberFamilyInfo = familyInfoViewModel;
             if (memberFamilies.Count > 0)
-                commonViewModel.ProfilePercentage = "80";
+                commonViewModel.ProfilePercentage += 20;
             //    ViewBag.MemberList = memberFamilies;
 
             Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(MemberId);
@@ -330,7 +332,85 @@ namespace SBMMember.Web.Controllers
 
             return View("MemberRegistration", commonViewModel);
         }
+        public IActionResult InitialiseMemberRegistrationForFamily(MemberFamilyInfoViewModel familyModel)
+        {
+            MemberFormCommonViewModel commonViewModel = new MemberFormCommonViewModel();
+            commonViewModel.MemberId = familyModel.MemberId;
+            commonViewModel.ProfilePercentage = 0;
+            int MemberId = familyModel.MemberId;
+            Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(MemberId);
+            MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
+            if (member_Personal.MemberId > 0)
+            {
+                perosnalInfoViewModel.IsNew = false;
+                commonViewModel.ProfilePercentage += 20;
+            }
+            else
+                perosnalInfoViewModel.IsNew = true;
+            perosnalInfoViewModel.MemberId = MemberId;
+            perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate == DateTime.MinValue ? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
 
+            commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
+
+            Member_ContactDetails member_contact = contactDetailsDataFactory.GetDetailsByMemberId(MemberId);
+            MemberContactInfoViewModel contactInfoViewModel = mapper.Map<MemberContactInfoViewModel>(member_contact);
+            if (member_contact.MemberId > 0)
+            {
+                contactInfoViewModel.IsNew = false;
+                commonViewModel.ProfilePercentage += 20;
+            }
+            else
+                contactInfoViewModel.IsNew = true;
+            contactInfoViewModel.MemberId = MemberId;
+            commonViewModel.MemberConatctInfo = contactInfoViewModel;
+
+            Member_EducationEmploymentDetails member_education = educationEmploymentDataFactory.GetDetailsByMemberId(MemberId);
+            MemberEducationEmploymentInfoViewModel educationEmploymentInfoViewModel = mapper.Map<MemberEducationEmploymentInfoViewModel>(member_education);
+            educationEmploymentInfoViewModel.MemberId = MemberId;
+            if (member_education.MemberId > 0)
+            {
+                educationEmploymentInfoViewModel.IsNew = false;
+                commonViewModel.ProfilePercentage += 20;
+            }
+            else
+                educationEmploymentInfoViewModel.IsNew = true;
+
+            commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
+
+            List<Member_FamilyDetails> member_Family = familyDetailsDataFactory.GetFamilyDetailsByMemberId(MemberId);
+            List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
+            foreach (Member_FamilyDetails family in member_Family)
+            {
+                memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
+            }
+            //MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
+            //familyInfoViewModel.MemberId = MemberId;
+            familyModel.DOB = familyModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyModel.DOB;
+            familyModel.MemberFamilyDetails = memberFamilies;
+            familyModel.IsNew = false;
+            commonViewModel.MemberFamilyInfo = familyModel;
+            if (memberFamilies.Count > 0)
+                commonViewModel.ProfilePercentage += 20;
+            //    ViewBag.MemberList = memberFamilies;
+
+            Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(MemberId);
+            MemberPaymentRecieptsViewModel paymentViewModel = mapper.Map<MemberPaymentRecieptsViewModel>(member_Payments);
+            paymentViewModel.MemberId = MemberId;
+            commonViewModel.MemberPaymentInfo = paymentViewModel;
+
+            if (member_Personal.MemberId == 0)
+                perosnalInfoViewModel.ActiveTab = "Checked";
+            else if (member_contact.MemberId == 0)
+                contactInfoViewModel.ActiveTab = "Checked";
+            else if (member_education.MemberId == 0)
+                educationEmploymentInfoViewModel.ActiveTab = "Checked";
+            else if (memberFamilies.Count == 0 || member_Payments.MemberId > 0 || member_Payments.MemberId == 0)
+                ViewBag.FamilyTab = "Checked";
+            //else if (member_Payments.MemberId == 0)
+            //    paymentViewModel.ActiveTab = "Checked";
+
+            return View("MemberRegistration", commonViewModel);
+        }
         [HttpPost]
         public IActionResult MemberEduEmpInfo(MemberFormCommonViewModel model)
         {
@@ -347,6 +427,19 @@ namespace SBMMember.Web.Controllers
 
             return RedirectToAction("InitialiseMemberRegistration", new { MemberId = model.MemberEducationEmploymentInfo.MemberId });
 
+        }
+        public IActionResult EditFamilyMember(int id)
+        {
+            Member_FamilyDetails member_Family = familyDetailsDataFactory.GetDetailsByMemberId(id);
+            MemberFamilyInfoViewModel model = mapper.Map<MemberFamilyInfoViewModel>(member_Family);
+
+            return RedirectToAction("InitialiseMemberRegistrationForFamily", model);
+        }
+        public IActionResult DeleteFamilyMember(int id, int memberId)
+        {
+            familyDetailsDataFactory.DeleteById(id);
+
+            return RedirectToAction("InitialiseMemberRegistration", new { MemberId =memberId });
         }
         [HttpPost]
         public IActionResult MemberPersonalInfo(MemberFormCommonViewModel model)
@@ -380,20 +473,11 @@ namespace SBMMember.Web.Controllers
         {
             if (Request.Method == HttpMethods.Post)
             {
-                //memberFamilies.Add(model.MemberFamilyInfo);
-                //ViewBag.MemberList = memberFamilies;
-
-                Member_FamilyDetails member = new Member_FamilyDetails()
-                {
-                    MemberID=model.MemberFamilyInfo.MemberId,
-                    Name = model.MemberFamilyInfo.Name,
-                    Relation = model.MemberFamilyInfo.Relation,
-                    BloodGroup = model.MemberFamilyInfo.BloodGroup,
-                    Education = model.MemberFamilyInfo.Education,
-                    DOB = model.MemberFamilyInfo.DOB,
-                    Occupation = model.MemberFamilyInfo.Occupation
-                };
-                familyDetailsDataFactory.AddDetails(member);
+                Member_FamilyDetails member_Family = mapper.Map<Member_FamilyDetails>(model.MemberFamilyInfo);
+                if (model.MemberFamilyInfo.IsNew)
+                    familyDetailsDataFactory.AddDetails(member_Family);
+                else
+                    familyDetailsDataFactory.UpdateDetails(member_Family);
             }
             ModelState.Clear();
             

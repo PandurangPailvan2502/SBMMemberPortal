@@ -20,9 +20,9 @@
     }
 </style>
 <script>
-        // End jQuery Nice Select 
+    // End jQuery Nice Select
 
-   
+
 
     $(document).ready(function () {
 
@@ -33,7 +33,7 @@
                 $('#title').focus();
                 alert("Please Select Title")
             }
-           
+
             else if ($('#selectGender').val() === '') {
                 e.preventDefault();
                 $('#selectGender').focus();
@@ -66,9 +66,9 @@
                 $('#selectRelation').focus();
                 alert("Please Select Relation")
             }
-            else if ($('#selectOccupation').val() === '') {
+            else if ($('#selectFamilyOccupation').val() === '') {
                 e.preventDefault();
-                $('#selectOccupation').focus();
+                $('#selectFamilyOccupation').focus();
                 alert("Please Select Occupation")
             }
             else if ($('#selectBloodGroup').val() === '') {
@@ -87,7 +87,7 @@
         var pincodeval = $("#pincode").val();
         if (pincodeval == "0")
             $("#pincode").val("");
-        
+
 
         $('#MemberConatctInfo.Mobile1').keypress(function (e) {
 
@@ -147,8 +147,12 @@
                                     <td><label class="lbl_profile">सभासद क्रमांक: @Model.MemberPaymentInfo.MemberShipIdM </label></td>
                                 </tr>
                                 <tr>
-                                    <td><label class="lbl_profile">जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
-                                    {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()} </label></td>
+                                    <td>
+                                        <label class="lbl_profile">
+                                            जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
+                                            {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()}
+                                        </label>
+                                    </td>
                                 </tr>
                                 <tr><td><label class="lbl_profile">मोबाईल: @Model.MemberConatctInfo.Mobile1 </label></td></tr>
                             </table>
@@ -187,7 +191,7 @@
                                             <div class="input-group-icon">
                                                 <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                 <div class="form-select" id="default-select">
-                                                    <select  id="title" asp-for="MemberPersonalInfo.Prefix" required>
+                                                    <select id="title" asp-for="MemberPersonalInfo.Prefix" required>
                                                         <option value="">Select Title</option>
                                                         <option value="Shree">Shree</option>
                                                         <option value="Sou">Sou</option>
@@ -424,6 +428,8 @@
                                         <form asp-action="AddToList" asp-controller="OTPVerify" method="post" enctype="multipart/form-data">
                                             @*<input type="hidden" asp-for="MemberFamilyInfo.MemberFamilyDetails" />*@
                                             <input type="hidden" asp-for="MemberFamilyInfo.MemberId" />
+                                            <input type="hidden" asp-for="MemberFamilyInfo.IsNew" />
+                                            <input type="hidden" asp-for="MemberFamilyInfo.FamilyDetailsID" />
                                             <div class="input-group-icon mt-10">
                                                 <input type="text" name="MemberFamilyInfo.Name" asp-for="MemberFamilyInfo.Name" placeholder="Family member Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Name'"
                                                        required class="single-input">
@@ -449,7 +455,7 @@
                                             </div>
                                             <div class="input-group-icon mt-10">
                                                 <div class="form-select" id="default-select">
-                                                    <select asp-for="MemberFamilyInfo.Occupation" id="selectOccupation">
+                                                    <select asp-for="MemberFamilyInfo.Occupation" id="selectFamilyOccupation">
                                                         <option value="">Family Member Occupation</option>
                                                         <option value="Working">Working</option>
                                                         <option value="Business">Business</option>
@@ -484,31 +490,39 @@
                                             </div>
 
                                             <div class="mt-10 center">
-                                                <button id="btnAddFamilyMember" class="genric-btn primary-border">Add to List</button>
+                                                @if (Model.MemberFamilyInfo.IsNew)
+                                                {
+                                                    <button id="btnAddFamilyMember" class="genric-btn primary-border">Add to List</button>
+                                                }
+                                                else
+                                                {
+                                                    <button id="btnAddFamilyMember" class="genric-btn primary-border">Update to List</button>
+                                                }
                                             </div>
                                             @if (Model.MemberFamilyInfo.MemberFamilyDetails != null)
                                             {
                                                 <div class="mt-10 center">
-                                                    <table class="table table-info">
+                                                    <table class="table table-bordered">
                                                         <thead>
                                                             <tr style="font-weight:bold">
                                                                 <td>Name</td>
                                                                 <td>Relation</td>
-                                                                <td>Education</td>
-                                                                <td>Occupation</td>
-                                                                <td>Blood Group</td>
+                                                                <td>Operations</td>
+                                                                @*<td>Occupation</td>
+                            <td>Blood Group</td>*@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
 
                                                             @foreach (var familyMember in Model.MemberFamilyInfo.MemberFamilyDetails)
                                                             {
-                                                                <tr style="background-color:#ffffff">
+                                                                <tr>
                                                                     <td>@familyMember.Name</td>
                                                                     <td>@familyMember.Relation</td>
-                                                                    <td>@familyMember.Education</td>
-                                                                    <td>@familyMember.Occupation</td>
-                                                                    <td>@familyMember.BloodGroup</td>
+                                                                    <td>
+                                                                        <a title="Edit" href="@Url.Action("EditFamilyMember","OTPVerify",new { id = familyMember.FamilyDetailsID})"><i class="ti-pencil"></i></a>
+                                                                        <a title="Delete" href="@Url.Action("DeleteFamilyMember","OTPVerify",new { id =familyMember.FamilyDetailsID,memberId=familyMember.MemberId})" class="delete-row" onclick="return confirm('Are sure wants to delete?');"><i class="ti-close"></i></a>
+                                                                    </td>
                                                                 </tr>
 
                                                             }

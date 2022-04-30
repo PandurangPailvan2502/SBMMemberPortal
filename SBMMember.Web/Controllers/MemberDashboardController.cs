@@ -15,6 +15,7 @@ using SBMMember.Web.Models.MemberSearchModels;
 using SBMMember.Models.MemberSearch;
 using SBMMember.Web.Helper;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Http;
 
 namespace SBMMember.Web.Controllers
 {
@@ -71,18 +72,29 @@ namespace SBMMember.Web.Controllers
 
             var memberId = User.Claims?.FirstOrDefault(x => x.Type.Equals("MemberId", StringComparison.OrdinalIgnoreCase))?.Value;
             int MemberId = Convert.ToInt32(memberId);
-
+            commonViewModel.ProfilePercentage = 0;
             Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(MemberId);
-            MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
-            commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
+            if (member_Personal.MemberId > 0)
+            {
+                MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
+                commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
+                commonViewModel.ProfilePercentage += 20;
+            }
 
             Member_ContactDetails member_contact = contactDetailsDataFactory.GetDetailsByMemberId(MemberId);
-            MemberContactInfoViewModel contactInfoViewModel = mapper.Map<MemberContactInfoViewModel>(member_contact);
-            commonViewModel.MemberConatctInfo = contactInfoViewModel;
-
+            if (member_contact.MemberId > 0)
+            {
+                MemberContactInfoViewModel contactInfoViewModel = mapper.Map<MemberContactInfoViewModel>(member_contact);
+                commonViewModel.MemberConatctInfo = contactInfoViewModel;
+                commonViewModel.ProfilePercentage += 20;
+            }
             Member_EducationEmploymentDetails member_education = educationEmploymentDataFactory.GetDetailsByMemberId(MemberId);
-            MemberEducationEmploymentInfoViewModel educationEmploymentInfoViewModel = mapper.Map<MemberEducationEmploymentInfoViewModel>(member_education);
-            commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
+            if (member_education.MemberId > 0)
+            {
+                MemberEducationEmploymentInfoViewModel educationEmploymentInfoViewModel = mapper.Map<MemberEducationEmploymentInfoViewModel>(member_education);
+                commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
+                commonViewModel.ProfilePercentage += 20;
+            }
 
             List<Member_FamilyDetails> member_Family = familyDetailsDataFactory.GetFamilyDetailsByMemberId(MemberId);
             List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
@@ -90,13 +102,37 @@ namespace SBMMember.Web.Controllers
             {
                 memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
             }
-            ViewBag.MemberList = memberFamilies;
+            //ViewBag.MemberList = memberFamilies;
+            MemberFamilyInfoViewModel familyInfoview = new MemberFamilyInfoViewModel();
+            familyInfoview.MemberFamilyDetails = memberFamilies;
+            familyInfoview.MemberId = MemberId;
+
+            commonViewModel.MemberFamilyInfo = familyInfoview;
+            if(memberFamilies.Count>0)
+                commonViewModel.ProfilePercentage += 20;
 
             Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(MemberId);
-            MemberPaymentRecieptsViewModel paymentViewModel = mapper.Map<MemberPaymentRecieptsViewModel>(member_Payments);
-            commonViewModel.MemberPaymentInfo = paymentViewModel;
+            if (member_Payments.MemberId > 0)
+            {
+                MemberPaymentRecieptsViewModel paymentViewModel = mapper.Map<MemberPaymentRecieptsViewModel>(member_Payments);
+                commonViewModel.MemberPaymentInfo = paymentViewModel;
+                commonViewModel.ProfilePercentage += 20;
+            }
 
             return View(commonViewModel);
+        }
+        public IActionResult EditFamilyMember(int id)
+        {
+            Member_FamilyDetails member_Family = familyDetailsDataFactory.GetDetailsByMemberId(id);
+            MemberFamilyInfoViewModel model = mapper.Map<MemberFamilyInfoViewModel>(member_Family);
+
+            return RedirectToAction("ProfileUpdate");
+        }
+        public IActionResult DeleteFamilyMember(int id, int memberId)
+        {
+            familyDetailsDataFactory.DeleteById(id);
+
+            return RedirectToAction("ProfileUpdate");
         }
         public IActionResult ViewLoggedMemberProfile()
         {
@@ -104,18 +140,30 @@ namespace SBMMember.Web.Controllers
 
             var memberId = User.Claims?.FirstOrDefault(x => x.Type.Equals("MemberId", StringComparison.OrdinalIgnoreCase))?.Value;
             int MemberId = Convert.ToInt32(memberId);
-
+            commonViewModel.ProfilePercentage=0;
             Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(MemberId);
-            MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
-            commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
+            if (member_Personal.MemberId > 0)
+            {
+                MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
+                commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
+                commonViewModel.ProfilePercentage += 20;
+            }
 
             Member_ContactDetails member_contact = contactDetailsDataFactory.GetDetailsByMemberId(MemberId);
-            MemberContactInfoViewModel contactInfoViewModel = mapper.Map<MemberContactInfoViewModel>(member_contact);
-            commonViewModel.MemberConatctInfo = contactInfoViewModel;
+            if (member_contact.MemberId > 0)
+            {
+                MemberContactInfoViewModel contactInfoViewModel = mapper.Map<MemberContactInfoViewModel>(member_contact);
+                commonViewModel.MemberConatctInfo = contactInfoViewModel;
+                commonViewModel.ProfilePercentage += 20;
+            }
 
             Member_EducationEmploymentDetails member_education = educationEmploymentDataFactory.GetDetailsByMemberId(MemberId);
-            MemberEducationEmploymentInfoViewModel educationEmploymentInfoViewModel = mapper.Map<MemberEducationEmploymentInfoViewModel>(member_education);
-            commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
+            if (member_education.MemberId > 0)
+            {
+                MemberEducationEmploymentInfoViewModel educationEmploymentInfoViewModel = mapper.Map<MemberEducationEmploymentInfoViewModel>(member_education);
+                commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
+                commonViewModel.ProfilePercentage += 20;
+            }
 
             List<Member_FamilyDetails> member_Family = familyDetailsDataFactory.GetFamilyDetailsByMemberId(MemberId);
             List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
@@ -123,12 +171,18 @@ namespace SBMMember.Web.Controllers
             {
                 memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
             }
-            ViewBag.MemberList = memberFamilies;
+            if(memberFamilies.Count>0)
+            {
+                commonViewModel.ProfilePercentage += 20;
+            }
 
             Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(MemberId);
-            MemberPaymentRecieptsViewModel paymentViewModel = mapper.Map<MemberPaymentRecieptsViewModel>(member_Payments);
-            commonViewModel.MemberPaymentInfo = paymentViewModel;
-
+            if (member_Payments.MemberId > 0)
+            {
+                MemberPaymentRecieptsViewModel paymentViewModel = mapper.Map<MemberPaymentRecieptsViewModel>(member_Payments);
+                commonViewModel.MemberPaymentInfo = paymentViewModel;
+                commonViewModel.ProfilePercentage += 20;
+            }
             return View(commonViewModel);
         }
         [HttpPost]
@@ -154,7 +208,22 @@ namespace SBMMember.Web.Controllers
 
             return RedirectToAction("ProfileUpdate");
         }
+        [HttpPost]
+        public IActionResult AddToList(MemberFormCommonViewModel model)
+        {
+            if (Request.Method == HttpMethods.Post)
+            {
+                Member_FamilyDetails member_Family = mapper.Map<Member_FamilyDetails>(model.MemberFamilyInfo);
+                if (model.MemberFamilyInfo.IsNew)
+                    familyDetailsDataFactory.AddDetails(member_Family);
+                else
+                    familyDetailsDataFactory.UpdateDetails(member_Family);
+            }
+            ModelState.Clear();
 
+
+            return RedirectToAction("ProfileUpdate");
+        }
         public IActionResult MemberSearchDashBoard()
         {
             BannerAndMarqueeViewModel viewModel = new BannerAndMarqueeViewModel()

@@ -146,14 +146,14 @@
                                                     @if (ViewBag.MemberList != null)
                                                     {
                                                         <div class="mt-10 center">
-                                                            <table class="table table-info">
+                                                            <table class="table table-bordered">
                                                                 <thead>
                                                                     <tr>
                                                                         <td>कुटुंबातील व्यक्तीचे नाव</td>
                                                                         <td>नाते</td>
-                                                                        <td>शिक्षण </td>
+                                                                        @*<td>शिक्षण </td>
                                                                         <td>कुटुंबातील व्यक्तीचे काम </td>
-                                                                        <td>रक्त गट</td>
+                                                                        <td>रक्त गट</td>*@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
@@ -163,9 +163,9 @@
                                                                         <tr>
                                                                             <td>@familyMember.NameM</td>
                                                                             <td>@familyMember.RelationM</td>
-                                                                            <td>@familyMember.EducationM</td>
+                                                                            @*<td>@familyMember.EducationM</td>
                                                                             <td>@familyMember.OccupationM</td>
-                                                                            <td>@familyMember.BloodGroup</td>
+                                                                            <td>@familyMember.BloodGroup</td>*@
                                                                         </tr>
 
                                                                     }

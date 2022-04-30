@@ -55,7 +55,8 @@
                 <tr>
                     <td colspan="2">
                         <div id="myProgress">
-                        <div id="myBar"></div>
+                            <label for="file">Member Profile Completion Status:</label>
+                            <progress style="vertical-align:bottom;height:50px;width:750px;" id="file" value="@Model.ProfilePercentage" max="100"></progress> @Model.ProfilePercentage%
                         </div>
                     </td>
                 </tr>
@@ -317,9 +318,10 @@
 
                                         <div class="row">
                                             <div class="col-lg-10 col-md-10">
-                                                <form asp-action="AddToList" asp-controller="Member" method="post" enctype="multipart/form-data">
+                                                <form asp-action="AddToList" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
                                                     <input type="hidden" asp-for="MemberFamilyInfo.MemberFamilyDetails" />
                                                     <input type="hidden" asp-for="MemberFamilyInfo.MemberId" />
+                                                    <input type="hidden" asp-for="MemberFamilyInfo.FamilyDetailsID" />
                                                     <div class="input-group-icon mt-10">
                                                         <input type="text" name="Name" asp-for="MemberFamilyInfo.Name" placeholder="Family member Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Name'"
                                                                required class="single-input">
@@ -382,30 +384,30 @@
                                                     <div class="mt-10 center">
                                                         <button class="genric-btn primary-border">Add to List</button>
                                                     </div>
-                                                    @if (ViewBag.MemberList != null)
+                                                    @if (Model.MemberFamilyInfo.MemberFamilyDetails != null)
                                                     {
                                                         <div class="mt-10 center">
-                                                            <table class="table table-info">
+                                                            <table class="table table-bordered">
                                                                 <thead>
                                                                     <tr>
                                                                         <td>Name</td>
                                                                         <td>Relation</td>
-                                                                        <td>Education</td>
-                                                                        <td>Occupation</td>
-                                                                        <td>Blood Group</td>
+                                                                        <td>Operations</td>
+                                                                        
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
 
-                                                                    @foreach (var familyMember in ViewBag.MemberList)
+                                                                    @foreach (var familyMember in Model.MemberFamilyInfo.MemberFamilyDetails)
                                                                     {
-                                                                        <tr>
-                                                                            <td>@familyMember.Name</td>
-                                                                            <td>@familyMember.Relation</td>
-                                                                            <td>@familyMember.Education</td>
-                                                                            <td>@familyMember.Occupation</td>
-                                                                            <td>@familyMember.BloodGroup</td>
-                                                                        </tr>
+                                                                    <tr>
+                                                                        <td>@familyMember.Name</td>
+                                                                        <td>@familyMember.Relation</td>
+                                                                        <td>
+                                                                            <a title="Edit" href="@Url.Action("EditFamilyMember","MemberDashboard",new { id = familyMember.FamilyDetailsID})"><i class="ti-pencil"></i></a>
+                                                                            <a title="Delete" href="@Url.Action("DeleteFamilyMember","MemberDashboard",new { id =familyMember.FamilyDetailsID,memberId=familyMember.MemberId})" class="delete-row" onclick="return confirm('Are sure wants to delete?');"><i class="ti-close"></i></a>
+                                                                        </td>
+                                                                    </tr>
 
                                                                     }
 
@@ -419,7 +421,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="row">
+                                        @*<div class="row">
                                             <form asp-action="MemberFamilyInfo" asp-controller="Member" method="post" enctype="multipart/form-data">
                                                 <input type="hidden" asp-for="MemberFamilyInfo.MemberId" />
                                                 <input type="hidden" asp-for="MemberFamilyInfo.MemberFamilyDetails" value="@ViewBag.MemberList" />
@@ -427,7 +429,7 @@
                                                     <button type="submit" class="genric-btn primary-border">Update</button>
                                                 </div>
                                             </form>
-                                        </div>
+                                        </div>*@
                                     </div>
                                 </section>
 
