@@ -157,7 +157,7 @@ namespace SBMMember.Web.Controllers
             if (commonViewModel.MemberFamilyInfo.IsNew)
                 familyDetailsDataFactory.AddDetails(member_Family);
             else
-                familyDetailsDataFactory.UpdateDetails(member_Family);
+                familyDetailsDataFactory.UpdateDetailsNoTranslation(member_Family);
 
             return RedirectToAction("VerifyMemberProfile",new { MemberId= commonViewModel.MemberFamilyInfo.MemberId });
         }
@@ -170,14 +170,14 @@ namespace SBMMember.Web.Controllers
         public IActionResult MemberPersonalInfo(MemberFormCommonViewModel formCommonViewModel)
         {
             Member_PersonalDetails member_Personal = mapper.Map<Member_PersonalDetails>(formCommonViewModel.MemberPersonalInfo);
-            personalDataFactory.UpdateMemberPersonalDetails(member_Personal);
+            personalDataFactory.UpdateMemberPersonalDetailsNoTranslation(member_Personal);
             return RedirectToAction("VerifyMemberProfile", new { MemberId = formCommonViewModel.MemberPersonalInfo.MemberId });
         }
         [HttpPost]
         public IActionResult MemberContactInfo(MemberFormCommonViewModel formCommonViewModel)
         {
             Member_ContactDetails member_Contact = mapper.Map<Member_ContactDetails>(formCommonViewModel.MemberConatctInfo);
-            contactDetailsDataFactory.UpdateDetails(member_Contact);
+            contactDetailsDataFactory.UpdateDetailsNoTransalation(member_Contact);
             return RedirectToAction("VerifyMemberProfile",new { MemberId = formCommonViewModel.MemberConatctInfo.MemberId });
         }
 
@@ -185,7 +185,7 @@ namespace SBMMember.Web.Controllers
         public IActionResult MemberEduEmpInfo(MemberFormCommonViewModel formCommonViewModel)
         {
             Member_EducationEmploymentDetails member_Education = mapper.Map<Member_EducationEmploymentDetails>(formCommonViewModel.MemberEducationEmploymentInfo);
-            educationEmploymentDataFactory.UpdateDetails(member_Education);
+            educationEmploymentDataFactory.UpdateDetailsNoTranslation(member_Education);
 
             return RedirectToAction("VerifyMemberProfile", formCommonViewModel.MemberEducationEmploymentInfo.MemberId);
         } 

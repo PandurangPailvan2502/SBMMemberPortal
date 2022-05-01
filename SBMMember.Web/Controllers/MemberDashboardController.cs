@@ -106,7 +106,8 @@ namespace SBMMember.Web.Controllers
             MemberFamilyInfoViewModel familyInfoview = new MemberFamilyInfoViewModel();
             familyInfoview.MemberFamilyDetails = memberFamilies;
             familyInfoview.MemberId = MemberId;
-
+            familyInfoview.IsNew = true;
+            familyInfoview.DOB= familyInfoview.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoview.DOB;
             commonViewModel.MemberFamilyInfo = familyInfoview;
             if(memberFamilies.Count>0)
                 commonViewModel.ProfilePercentage += 20;
@@ -121,12 +122,67 @@ namespace SBMMember.Web.Controllers
 
             return View(commonViewModel);
         }
+        public IActionResult ProfileUpdateForFamily(MemberFamilyInfoViewModel memberFamily)
+        {
+            MemberFormCommonViewModel commonViewModel = new MemberFormCommonViewModel();
+
+            var memberId = User.Claims?.FirstOrDefault(x => x.Type.Equals("MemberId", StringComparison.OrdinalIgnoreCase))?.Value;
+            int MemberId = Convert.ToInt32(memberId);
+            commonViewModel.ProfilePercentage = 0;
+            Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(MemberId);
+            if (member_Personal.MemberId > 0)
+            {
+                MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
+                commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
+                commonViewModel.ProfilePercentage += 20;
+            }
+
+            Member_ContactDetails member_contact = contactDetailsDataFactory.GetDetailsByMemberId(MemberId);
+            if (member_contact.MemberId > 0)
+            {
+                MemberContactInfoViewModel contactInfoViewModel = mapper.Map<MemberContactInfoViewModel>(member_contact);
+                commonViewModel.MemberConatctInfo = contactInfoViewModel;
+                commonViewModel.ProfilePercentage += 20;
+            }
+            Member_EducationEmploymentDetails member_education = educationEmploymentDataFactory.GetDetailsByMemberId(MemberId);
+            if (member_education.MemberId > 0)
+            {
+                MemberEducationEmploymentInfoViewModel educationEmploymentInfoViewModel = mapper.Map<MemberEducationEmploymentInfoViewModel>(member_education);
+                commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
+                commonViewModel.ProfilePercentage += 20;
+            }
+
+            List<Member_FamilyDetails> member_Family = familyDetailsDataFactory.GetFamilyDetailsByMemberId(MemberId);
+            List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
+            foreach (Member_FamilyDetails family in member_Family)
+            {
+                memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
+            }
+            //ViewBag.MemberList = memberFamilies;
+            //MemberFamilyInfoViewModel familyInfoview = new MemberFamilyInfoViewModel();
+            memberFamily.MemberFamilyDetails = memberFamilies;
+            memberFamily.MemberId = MemberId;
+            memberFamily.IsNew = false;
+            commonViewModel.MemberFamilyInfo = memberFamily;
+            if (memberFamilies.Count > 0)
+                commonViewModel.ProfilePercentage += 20;
+
+            Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(MemberId);
+            if (member_Payments.MemberId > 0)
+            {
+                MemberPaymentRecieptsViewModel paymentViewModel = mapper.Map<MemberPaymentRecieptsViewModel>(member_Payments);
+                commonViewModel.MemberPaymentInfo = paymentViewModel;
+                commonViewModel.ProfilePercentage += 20;
+            }
+
+            return View("ProfileUpdate",commonViewModel);
+        }
         public IActionResult EditFamilyMember(int id)
         {
             Member_FamilyDetails member_Family = familyDetailsDataFactory.GetDetailsByMemberId(id);
             MemberFamilyInfoViewModel model = mapper.Map<MemberFamilyInfoViewModel>(member_Family);
 
-            return RedirectToAction("ProfileUpdate");
+            return RedirectToAction("ProfileUpdateForFamily",model);
         }
         public IActionResult DeleteFamilyMember(int id, int memberId)
         {

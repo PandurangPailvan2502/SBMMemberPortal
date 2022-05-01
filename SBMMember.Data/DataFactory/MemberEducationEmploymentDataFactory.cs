@@ -11,7 +11,7 @@ namespace SBMMember.Data.DataFactory
     {
         private readonly SBMMemberDBContext dBContext;
         private readonly ILogger<MemberEducationEmploymentDataFactory> Logger;
-        public MemberEducationEmploymentDataFactory(SBMMemberDBContext memberDBContext,ILogger<MemberEducationEmploymentDataFactory> _logger)
+        public MemberEducationEmploymentDataFactory(SBMMemberDBContext memberDBContext, ILogger<MemberEducationEmploymentDataFactory> _logger)
         {
             dBContext = memberDBContext;
             Logger = _logger;
@@ -25,7 +25,7 @@ namespace SBMMember.Data.DataFactory
             member_EducationEmployment.CompanyAddressM = TranslationHelper.Translate(member_EducationEmployment.CompanyAddress);
             member_EducationEmployment.BusinessNameM = TranslationHelper.Translate(member_EducationEmployment.BusinessName);
             member_EducationEmployment.BusinessAddressM = TranslationHelper.Translate(member_EducationEmployment.BusinessAddress);
-           
+
             try
             {
                 int affectedRows = 0;
@@ -81,18 +81,79 @@ namespace SBMMember.Data.DataFactory
                 Member_EducationEmploymentDetails member_Education = dBContext.Member_EducationEmploymentDetails.Where(x => x.MemberId == educationEmploymentDetails.MemberId).First();
                 //member_Education = educationEmploymentDetails;
                 member_Education.BusinessAddress = educationEmploymentDetails.BusinessAddress;
-                member_Education.BusinessAddressM =TranslationHelper.Translate( educationEmploymentDetails.BusinessAddress);
+                if (educationEmploymentDetails.BusinessAddress != null)
+                {
+                    member_Education.BusinessAddressM = TranslationHelper.Translate(educationEmploymentDetails.BusinessAddress);
+                }
                 member_Education.BusinessName = educationEmploymentDetails.BusinessName;
-                member_Education.BusinessNameM =TranslationHelper.Translate(educationEmploymentDetails.BusinessName);
+                if (educationEmploymentDetails.BusinessName != null)
+                {
+                    educationEmploymentDetails.BusinessNameM = TranslationHelper.Translate(educationEmploymentDetails.BusinessName);
+                };
                 member_Education.CompanyAddress = educationEmploymentDetails.CompanyAddress;
-                member_Education.CompanyAddressM =TranslationHelper.Translate(educationEmploymentDetails.CompanyAddress);
+                if (educationEmploymentDetails.CompanyAddress != null)
+                {
+                    member_Education.CompanyAddressM = TranslationHelper.Translate(educationEmploymentDetails.CompanyAddress);
+                }
                 member_Education.CompanyName = educationEmploymentDetails.CompanyName;
-                member_Education.CompanyNameM =TranslationHelper.Translate( educationEmploymentDetails.CompanyName);
+                if (educationEmploymentDetails.CompanyName != null)
+                {
+                    member_Education.CompanyNameM = TranslationHelper.Translate(educationEmploymentDetails.CompanyName);
+                }
                 member_Education.Proffession = educationEmploymentDetails.Proffession;
-                member_Education.ProffessionM =TranslationHelper.Translate( educationEmploymentDetails.Proffession);
+                if (educationEmploymentDetails.Proffession != null)
+                {
+                    member_Education.ProffessionM = TranslationHelper.Translate(educationEmploymentDetails.Proffession);
+                }
                 member_Education.Qualification = educationEmploymentDetails.Qualification;
-                member_Education.QualificationM =TranslationHelper.Translate( educationEmploymentDetails.Qualification);
-                
+                if (educationEmploymentDetails.Qualification != null)
+                {
+                    member_Education.QualificationM = TranslationHelper.Translate(educationEmploymentDetails.Qualification);
+                }
+                int affectedRows = 0;
+                affectedRows = dBContext.SaveChanges();
+                if (affectedRows > 0)
+                {
+                    responseDTO = new ResponseDTO()
+                    {
+                        Result = "Success",
+                        Message = "Member education and employment details updated successfully."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Logger.LogError($"Error occured while updating member education and employment details. Exception:{ex.Message}");
+                responseDTO = new ResponseDTO()
+                {
+                    Result = "Failed",
+                    Message = "Member education and employment details update operation failed."
+                };
+            }
+
+            return responseDTO;
+        }
+        public ResponseDTO UpdateDetailsNoTranslation(Member_EducationEmploymentDetails educationEmploymentDetails)
+        {
+            ResponseDTO responseDTO = new ResponseDTO();
+            try
+            {
+                Member_EducationEmploymentDetails member_Education = dBContext.Member_EducationEmploymentDetails.Where(x => x.MemberId == educationEmploymentDetails.MemberId).First();
+                //member_Education = educationEmploymentDetails;
+                member_Education.BusinessAddress = educationEmploymentDetails.BusinessAddress;
+                member_Education.BusinessAddressM = educationEmploymentDetails.BusinessAddressM;
+                member_Education.BusinessName = educationEmploymentDetails.BusinessName;
+                member_Education.BusinessNameM = educationEmploymentDetails.BusinessNameM;
+                member_Education.CompanyAddress = educationEmploymentDetails.CompanyAddress;
+                member_Education.CompanyAddressM = educationEmploymentDetails.CompanyAddressM;
+                member_Education.CompanyName = educationEmploymentDetails.CompanyName;
+                member_Education.CompanyNameM = educationEmploymentDetails.CompanyNameM;
+                member_Education.Proffession = educationEmploymentDetails.Proffession;
+                member_Education.ProffessionM = educationEmploymentDetails.ProffessionM;
+                member_Education.Qualification = educationEmploymentDetails.Qualification;
+                member_Education.QualificationM = educationEmploymentDetails.QualificationM;
+
                 int affectedRows = 0;
                 affectedRows = dBContext.SaveChanges();
                 if (affectedRows > 0)
@@ -124,5 +185,6 @@ namespace SBMMember.Data.DataFactory
         ResponseDTO AddDetails(Member_EducationEmploymentDetails member_EducationEmployment);
         Member_EducationEmploymentDetails GetDetailsByMemberId(int MemberId);
         ResponseDTO UpdateDetails(Member_EducationEmploymentDetails educationEmploymentDetails);
+        ResponseDTO UpdateDetailsNoTranslation(Member_EducationEmploymentDetails educationEmploymentDetails);
     }
 }

@@ -26,7 +26,7 @@ namespace SBMMember.Data
         public DbSet<AdminUsers> AdminUsers { get; set; }
         public DbSet<MarqueeText> MarqueeTexts { get; set; }
         public DbSet<UpcomingEvent> UpcomingEvents { get; set; }
-
+        public DbSet<EventTitles> EventTitles { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Members>().ToTable("Members");
@@ -44,6 +44,7 @@ namespace SBMMember.Data
             modelBuilder.Entity<AdminUsers>().ToTable("AdminUsers");
             modelBuilder.Entity<MarqueeText>().ToTable("MarqueeText");
             modelBuilder.Entity<UpcomingEvent>().ToTable("UpcomingEvents");
+            modelBuilder.Entity<EventTitles>().ToTable("EventTitles");
         }
     }
 }

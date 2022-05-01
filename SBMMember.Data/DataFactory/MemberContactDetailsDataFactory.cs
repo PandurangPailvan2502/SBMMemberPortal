@@ -131,6 +131,59 @@ namespace SBMMember.Data.DataFactory
 
             return responseDTO;
         }
+        public  ResponseDTO UpdateDetailsNoTransalation(Member_ContactDetails member_ContactDetails)
+        {
+            ResponseDTO responseDTO = new ResponseDTO();
+            try
+            {
+                Member_ContactDetails member_Contact = dBContext.Member_ContactDetails.Where(x => x.MemberId == member_ContactDetails.MemberId).First();
+                //member_Contact = member_ContactDetails;
+                member_Contact.EmailId = member_ContactDetails.EmailId;
+                member_Contact.LandLine = member_ContactDetails.LandLine;
+                member_Contact.LandLineM = member_ContactDetails.LandLineM;
+                member_Contact.Mobile1 = member_ContactDetails.Mobile1;
+                member_Contact.Mobile1M = member_ContactDetails.Mobile1M;
+                member_Contact.Mobile2 = member_ContactDetails.Mobile2;
+                member_Contact.Mobile2M = member_ContactDetails.Mobile2M;
+                member_Contact.NativePlace = member_ContactDetails.NativePlace;
+                member_Contact.NativePlaceM = member_ContactDetails.NativePlaceM;
+                member_Contact.NativePlaceDist = member_ContactDetails.NativePlaceDist;
+                member_Contact.NativePlaceDistM = member_ContactDetails.NativePlaceDistM;
+                member_Contact.NativePlaceTaluka = member_ContactDetails.NativePlaceTaluka;
+                member_Contact.NativePlaceTalukaM = member_ContactDetails.NativePlaceTalukaM;
+                member_Contact.RelativeAddress = member_ContactDetails.RelativeAddress;
+                member_Contact.RelativeAddressM = member_ContactDetails.RelativeAddressM;
+                member_Contact.RelativeContact1 = member_ContactDetails.RelativeContact1;
+                member_Contact.RelativeContact1M = member_ContactDetails.RelativeContact1M;
+                member_Contact.RelativeContact2 = member_ContactDetails.RelativeContact2;
+                member_Contact.RelativeContact2M = member_ContactDetails.RelativeContact2M;
+                member_Contact.RelativeName = member_ContactDetails.RelativeName;
+                member_Contact.RelativeNameM = member_ContactDetails.RelativeNameM;
+
+                int affectedRows = 0;
+                affectedRows = dBContext.SaveChanges();
+                if (affectedRows > 0)
+                {
+                    responseDTO = new ResponseDTO()
+                    {
+                        Result = "Success",
+                        Message = "Member contact details updated successfully."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+
+                logger.LogError($"Error occured while updating member contact details. Exception:{ex.Message}");
+                responseDTO = new ResponseDTO()
+                {
+                    Result = "Failed",
+                    Message = "Member contact details update operation failed."
+                };
+            }
+
+            return responseDTO;
+        }
     }
 
     public interface IMemberContactDetailsDataFactory
@@ -138,5 +191,6 @@ namespace SBMMember.Data.DataFactory
         ResponseDTO AddDetails(Member_ContactDetails member_ContactDetails);
         Member_ContactDetails GetDetailsByMemberId(int MemberId);
         ResponseDTO UpdateDetails(Member_ContactDetails member_ContactDetails);
+        ResponseDTO UpdateDetailsNoTransalation(Member_ContactDetails member_ContactDetails);
     }
 }
