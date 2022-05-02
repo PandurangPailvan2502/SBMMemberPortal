@@ -25,6 +25,7 @@ namespace SBMMember.Web.Controllers
         private readonly IMemberPaymentsDataFactory paymentsDataFactory;
         private readonly IMapper mapper;
         private readonly IMemberFormStatusDataFactory formStatusDataFactory;
+        private readonly IEventTitlesDataFactory eventTitlesDataFactory;
         public ManageMembersController(IMemberDataFactory dataFactory,
             IMemberSearchDataFactory searchDataFactory,
             IMemberPersonalDataFactory _personalDataFactory,
@@ -33,7 +34,8 @@ namespace SBMMember.Web.Controllers
             IMemberFamilyDetailsDataFactory _familyDetailsDataFactory,
             IMemberPaymentsDataFactory _paymentsDataFactory,
             IMapper _mapper,
-            IMemberFormStatusDataFactory _formStatusDataFactory
+            IMemberFormStatusDataFactory _formStatusDataFactory,
+            IEventTitlesDataFactory _eventTitlesDataFactory
             )
         {
             memberDataFactory = dataFactory;
@@ -45,6 +47,7 @@ namespace SBMMember.Web.Controllers
             paymentsDataFactory = _paymentsDataFactory;
             mapper = _mapper;
             formStatusDataFactory = _formStatusDataFactory;
+            eventTitlesDataFactory = _eventTitlesDataFactory;
         }
         public IActionResult MemberList()
         {
@@ -227,5 +230,8 @@ namespace SBMMember.Web.Controllers
             //return RedirectToAction("VerifyMemberProfile", new { MemberId = model.MemberId });
             return RedirectToAction("NewMemberList");
         }
+
+
+       
     }
 }

@@ -45,6 +45,9 @@ namespace SBMMember.Web.Mapper
             CreateMap<UpcomingEventsViewModel, UpcomingEvent>();
             CreateMap<UpcomingEvent, UpcomingEventsViewModel>();
 
+            CreateMap<EventTitlesViewModel, EventTitles>();
+            CreateMap<EventTitles, EventTitlesViewModel>();
+
         }
     }
 }

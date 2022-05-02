@@ -59,15 +59,15 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <br>
-                                    <div class="form-select" id="default-select" ">
-                                        <select name="EventTitle" asp-for="EventTitle" required>
-                                            <option value=" 1">Select Event Title</option>
+                                    <div class="form-select" id="default-select">
+                                        <select asp-for="EventTitle" asp-items="Model.EventTitles" required>
+                                            @*<option value=" 1">Select Event Title</option>
                                             <option value="२६ जानेवारी प्रजासत्ताक दिवस">२६ जानेवारी प्रजासत्ताक दिवस</option>
                                             <option value="१५ ऑगस्ट स्वातंत्र्यदिन">१५ ऑगस्ट स्वातंत्र्यदिन</option>
                                             <option value="१ मे कामगार दिन व मेळावा">१ मे कामगार दिन व मेळावा</option>
                                             <option value="वधू - वर मेळावा">वधू - वर मेळावा</option>
                                             <option value="वृक्षारोपण">वृक्षारोपण</option>
-                                            <option value="सरदार वल्लभ भाई पटेल जयंती">सरदार वल्लभ भाई पटेल जयंती</option>
+                                            <option value="सरदार वल्लभ भाई पटेल जयंती">सरदार वल्लभ भाई पटेल जयंती</option>*@
                                         </select>
                                     </div>
                                 </div>
