@@ -58,14 +58,15 @@
                                             <div class="searchname"><h6>OR</h6></div>
                                         </div>
                                         <div class="col-sm-4" id="CT">
-                                            <div class="form-select" id="default-select">
-                                                <select asp-for="City" asp-items="Model.Cities"></select>
+                                            <div class="form-select" id="default-select" >
+                                                <select asp-for="City" asp-items="Model.Cities" style="height:100px" ></select>
                                             </div>
                                             <div class="searchname"><h6>OR</h6></div>
                                         </div>
                                         <div class="col-sm-4" id="AR">
                                             <div class="form-select" id="default-select">
-                                                <select asp-for="Area" asp-items="Model.Areas"></select>
+                                                <select asp-for="Area" asp-items="Model.Areas" onmouseover="this.size=10;" onmouseout="this.size=1;" style="max-height: 160px;
+            overflow: scroll;"></select>
                                                 
                                             </div>
                                             <div class="searchname"><h6>OR</h6></div>
