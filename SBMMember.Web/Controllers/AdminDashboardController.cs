@@ -12,6 +12,7 @@ using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using SBMMember.Web.Helper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SBMMember.Web.Controllers
 {
@@ -25,8 +26,9 @@ namespace SBMMember.Web.Controllers
         private readonly IMapper mapper;
         private IWebHostEnvironment Environment;
         private readonly IUpcomingEventsDataFactory upcomingEventsDataFactory;
+        private readonly IEventTitlesDataFactory eventTitlesDataFactory;
         public AdminDashboardController(IMemberBusinessDataFactory dataFactory, IMapper _mapper, IJobPostingDataFactory _jobPostingDataFactory, IEventDataFactory _eventDataFactory, IWebHostEnvironment hostEnvironment,
-            IEventAdsDataFactory adsDataFactory,IUpcomingEventsDataFactory _upcomingEventsDataFactory)
+            IEventAdsDataFactory adsDataFactory, IUpcomingEventsDataFactory _upcomingEventsDataFactory, IEventTitlesDataFactory _eventTitlesDataFactory)
         {
             businessDataFactory = dataFactory;
             mapper = _mapper;
@@ -35,6 +37,7 @@ namespace SBMMember.Web.Controllers
             Environment = hostEnvironment;
             eventAdsDataFactory = adsDataFactory;
             upcomingEventsDataFactory = _upcomingEventsDataFactory;
+            eventTitlesDataFactory = _eventTitlesDataFactory;
         }
         public IActionResult AdminHome()
         {
@@ -161,9 +164,11 @@ namespace SBMMember.Web.Controllers
         {
             EventViewModel viewModel = new EventViewModel()
             {
-                EventInfos = eventDataFactory.GetAllEventList()
+                EventInfos = eventDataFactory.GetAllEventList(),
+               EventTitles = eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList()
             };
             //viewModel.EventNameM = TranslationHelper.Translate("Samata Bhratru");
+            viewModel.EventTitles.Insert(0, new SelectListItem() { Text = " Select Event Title ", Value = "0" });
             return View(viewModel);
         }
         [HttpPost]
@@ -233,8 +238,8 @@ namespace SBMMember.Web.Controllers
                 EventName = model.EventName,
                 EventDescription = model.EventDescription,
                 EventYear = model.EventYear,
-                EventId=model.EventId
-              
+                EventId = model.EventId
+
             };
             eventDataFactory.UpdateEventInfo(eventInfo);
             return RedirectToAction("AddEvent");
@@ -247,8 +252,10 @@ namespace SBMMember.Web.Controllers
         {
             EventAdsViewModel adsViewModel = new EventAdsViewModel()
             {
-                EventAds = eventAdsDataFactory.GetAllEventAds()
-            };
+                EventAds = eventAdsDataFactory.GetAllEventAds(),
+                EventTitles= eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList()
+        };
+            adsViewModel.EventTitles.Insert(0, new SelectListItem() { Text = " Select Event Title ", Value = "0" });
             return View(adsViewModel);
         }
         [HttpPost]
@@ -299,13 +306,13 @@ namespace SBMMember.Web.Controllers
         {
             EventAds eventAds = new EventAds()
             {
-                Id=model.Id,
+                Id = model.Id,
                 EventTitle = model.EventTitle,
                 EventYear = model.EventYear,
                 FilePath = model.file != null ? $"~/EventAds/{model.file.FileName}" : model.FilePath
             };
             eventAdsDataFactory.UpdateEventAds(eventAds);
-            if(model.file!=null)
+            if (model.file != null)
             {
                 string path = Path.Combine(this.Environment.WebRootPath, "EventAds");
                 if (!Directory.Exists(path))
@@ -336,11 +343,14 @@ namespace SBMMember.Web.Controllers
             return View();
         }
 
-      public IActionResult UpcomingEvents()
+        public IActionResult UpcomingEvents()
         {
             UpcomingEventsViewModel model = new UpcomingEventsViewModel();
-            model.EventDate =DateTime.Today;
+            model.EventDate = DateTime.Today;
             model.EventInfos = upcomingEventsDataFactory.GetAll();
+            model.EventTitles = eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList();
+            model.EventTitles.Insert(0, new SelectListItem() { Text = " Select Event Title ", Value = "0" });
+
             return View(model);
         }
         [HttpPost]
@@ -369,6 +379,44 @@ namespace SBMMember.Web.Controllers
         {
             upcomingEventsDataFactory.DeleteById(id);
             return RedirectToAction("UpcomingEvents");
+        }
+
+
+
+        public IActionResult EventTitles()
+        {
+            EventTitlesViewModel viewModel = new EventTitlesViewModel()
+            {
+                EventTitles = eventTitlesDataFactory.GetEventTitles()
+            };
+            return View(viewModel);
+        }
+
+        public IActionResult AddEventTitle(EventTitlesViewModel titlesViewModel)
+        {
+            EventTitles eventTitles = mapper.Map<EventTitles>(titlesViewModel);
+            eventTitlesDataFactory.AddDetails(eventTitles);
+            return RedirectToAction("EventTitles");
+        }
+
+        public IActionResult EditEventTitle(int id)
+        {
+            EventTitles eventtitle = eventTitlesDataFactory.GetEventTitleGetById(id);
+            EventTitlesViewModel model = mapper.Map<EventTitlesViewModel>(eventtitle);
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult EditEventTitle(EventTitlesViewModel titlesViewModel)
+        {
+            EventTitles title = mapper.Map<EventTitles>(titlesViewModel);
+            eventTitlesDataFactory.UpdateDetails(title);
+            return RedirectToAction("EventTitles");
+        }
+
+        public IActionResult DeleteEventTitle(int id)
+        {
+            eventTitlesDataFactory.DeleteEventTitle(id);
+            return RedirectToAction("EventTitles");
         }
     }
 }

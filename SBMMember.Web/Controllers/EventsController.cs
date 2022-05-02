@@ -7,6 +7,8 @@ using SBMMember.Web.Models;
 using SBMMember.Data.DataFactory;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
+using SBMMember.Web.Helper;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SBMMember.Web.Controllers
 {
@@ -16,12 +18,13 @@ namespace SBMMember.Web.Controllers
         private readonly IEventDataFactory eventDataFactory;
         private readonly IEventAdsDataFactory eventAdsDataFactory;
         private readonly ILogger<EventsController> logger;
-
-        public EventsController( IEventDataFactory dataFactory,ILogger<EventsController> _logger,IEventAdsDataFactory adsDataFactory)
+        private readonly IEventTitlesDataFactory eventTitlesDataFactory;
+        public EventsController(IEventDataFactory dataFactory, ILogger<EventsController> _logger, IEventAdsDataFactory adsDataFactory, IEventTitlesDataFactory _eventTitlesDataFactory)
         {
             eventDataFactory = dataFactory;
             eventAdsDataFactory = adsDataFactory;
             logger = _logger;
+            eventTitlesDataFactory = _eventTitlesDataFactory;
         }
         public IActionResult EventDashboard()
         {
@@ -30,22 +33,35 @@ namespace SBMMember.Web.Controllers
 
         public IActionResult SearchEvents()
         {
-            SearchEventViewModel model = new SearchEventViewModel();
+            SearchEventViewModel model = new SearchEventViewModel()
+            {
+                EventYears = YearHelper.GetYears(),
+                EventTitles = eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList()
+            };
+            model.EventTitles.Insert(0, new SelectListItem() { Text = " Select Event Title ", Value = "0" });
+            model.EventYears.Insert(0, new SelectListItem() { Text = " Select Event Year ", Value = "0" });
             return View(model);
         }
         [HttpPost]
-        public IActionResult SearchEvents(SearchEventViewModel model) 
+        public IActionResult SearchEvents(SearchEventViewModel model)
         {
             SearchEventViewModel viewModel = new SearchEventViewModel()
             {
-                Events = eventDataFactory.GetEventListByEventYear(model.EventYear)
+                Events = eventDataFactory.GetEventListByEventYear(model.EventYear),
+                EventYears = YearHelper.GetYears(),
+                EventTitles = eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList()
             };
+            viewModel.EventTitles.Insert(0, new SelectListItem() { Text = " Select Event Title ", Value = "0" });
+            viewModel.EventYears.Insert(0, new SelectListItem() { Text = " Select Event Year ", Value = "0" });
             return View(viewModel);
         }
 
         public IActionResult SearchEventAds()
         {
-            EventAdsSearchViewModel model = new EventAdsSearchViewModel();
+            EventAdsSearchViewModel model = new EventAdsSearchViewModel()
+            {
+                EventYears = YearHelper.GetYears()
+            };
             return View(model);
         }
         [HttpPost]
@@ -53,8 +69,10 @@ namespace SBMMember.Web.Controllers
         {
             EventAdsSearchViewModel viewModel = new EventAdsSearchViewModel()
             {
-                EventAds = eventAdsDataFactory.GetEventAdsByYear(model.EventYear)
-        };
+                EventAds = eventAdsDataFactory.GetEventAdsByYear(model.EventYear),
+                EventYears=YearHelper.GetYears()
+            };
+            viewModel.EventYears.Insert(0, new SelectListItem() { Text = " Select Event Year ", Value = "0" });
             return View(viewModel);
         }
         [HttpGet]
@@ -76,7 +94,7 @@ namespace SBMMember.Web.Controllers
                 EventDescription = eventInfo.EventDescription,
                 EventYear = eventInfo.EventYear,
                 GalleryImages = eventDataFactory.GetGalleryphotosByeventId(_eventId)
-        };
+            };
             return View(detailsViewModel);
         }
     }

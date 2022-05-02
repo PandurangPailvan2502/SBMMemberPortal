@@ -1,0 +1,44 @@
+﻿@model EventTitlesViewModel
+@{
+    ViewData["Title"] = "EditEventTitle";
+    Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
+}
+
+<section class="blog_area single-post-area section_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="scroll">
+                    <p>Update Event Title</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-top-border">
+                    <div class="row" id="eventForm">
+                        <div class="col-lg-10 col-md-10">
+                            <form asp-action="EditEventTitle" asp-controller="AdminDashboard" method="post" enctype="multipart/form-data">
+                                <input type="hidden" asp-for="Id" />
+                                <div class="input-group-icon mt-10">
+
+                                    <input type="text" class="single-input" required asp-for="EventTitle" placeholder="Event Date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Title'" />
+                                </div>
+
+
+
+                                <div class="mt-10" style="float:right">
+                                    <input type="submit" class="genric-btn primary" style="background-color:#77002e;margin-right:20px">
+                                    <input type="button" id="btnCancel" class="genric-btn primary" style="background-color:#77002e;margin-right:20px" value="Cancel">
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Event list*@
+    
+</section>

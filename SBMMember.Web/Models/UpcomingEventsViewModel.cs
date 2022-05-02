@@ -1,4 +1,5 @@
-﻿using SBMMember.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using SBMMember.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace SBMMember.Web.Models
         public DateTime EventDate { get; set; }
         public string EventTitle { get; set; }
         public string EventDesc { get; set; }
+        public List<SelectListItem> EventTitles { get; set; }
         public List<UpcomingEvent> EventInfos { get; set; }
     }
 }

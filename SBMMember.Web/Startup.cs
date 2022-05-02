@@ -69,7 +69,8 @@ namespace SBMMember.Web
             services.AddScoped<IEventAdsDataFactory, EventAdsDataFactory>();
             services.AddScoped<IAdminUsersDataFactory, AdminUsersDataFactory>();
             services.AddScoped<IMarqueeDataFactory, MarqueeDataFactory>();
-            services.AddScoped<IUpcomingEventsDataFactory, UpcomingEventsDataFactory>(); 
+            services.AddScoped<IUpcomingEventsDataFactory, UpcomingEventsDataFactory>();
+            services.AddScoped<IEventTitlesDataFactory, EventTitlesDataFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

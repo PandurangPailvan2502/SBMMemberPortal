@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SBMMember.Models;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,7 @@ namespace SBMMember.Web.Models
         public IFormFile file { get; set; }
         public string FilePath { get; set; }
         public List<EventAds> EventAds { get; set; }
+        public List<SelectListItem> EventTitles { get; set; }
+        public List<SelectListItem> EventYears { get; set; }
     }
 }
