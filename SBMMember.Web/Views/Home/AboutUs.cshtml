@@ -3,144 +3,145 @@
     ViewData["Title"] = "AboutUs";
     Layout = "~/Views/Shared/_LayoutMemberHome.cshtml";
 }
-<style>
-    .box-about {
-        background-color: #ffffff;
-        padding: 50px;
-        box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.7);
-        border-radius: 3px;
-        -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.7);
-        margin-top: 20px;
-        -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.7);
-        height: auto
-    }
-</style>
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
+@await Html.PartialAsync("_PartialAboutUs")
+@*<style>
+        .box-about {
+            background-color: #ffffff;
+            padding: 50px;
+            box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.7);
+            border-radius: 3px;
+            -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.7);
+            margin-top: 20px;
+            -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.7);
+            height: auto
+        }
+    </style>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="box-about">
-                                <div class="row">
-                                    <h2>About us</h2>
-                                    <p style="text-align:justify">Samata Bhratru Mandal is a social body registered under a non-profitable organization helping& supporting together for Leva Patidar Community people in India, Majorly in Pune PCMC in Maharashtra.
-Samata Bhratru Mandal was established in the year of 1997 in Pune. To begin with some cultural events, in the first year a cultural program was held at BhandaraDongar, Dehu. The event was well attended by the Leva Patidar community people across from Maharashtra with great attendance.
-</p>
-<p><b><u>The establishment number of Samata Bhratru Mandal is MH 862-97/PUNE (Trust Reg. No. F 14103 PUNE)</u></b></p>
-                                    
-<h5>After doing the registration of the board, Samata Bhratru Mandal decided to do the social work in various fields mentioned below.</h5>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="box-about">
+                                    <div class="row">
+                                        <h2>About us</h2>
+                                        <p style="text-align:justify">Samata Bhratru Mandal is a social body registered under a non-profitable organization helping& supporting together for Leva Patidar Community people in India, Majorly in Pune PCMC in Maharashtra.
+    Samata Bhratru Mandal was established in the year of 1997 in Pune. To begin with some cultural events, in the first year a cultural program was held at BhandaraDongar, Dehu. The event was well attended by the Leva Patidar community people across from Maharashtra with great attendance.
+    </p>
+    <p><b><u>The establishment number of Samata Bhratru Mandal is MH 862-97/PUNE (Trust Reg. No. F 14103 PUNE)</u></b></p>
 
-                                    <ul>
-                                        <li>1. Academic </li>
-                                        <li>2. Medical </li>
-                                        <li>3. Sports-related</li>
-                                        <li>4. Industry related</li>
-                                    </ul>
+    <h5>After doing the registration of the board, Samata Bhratru Mandal decided to do the social work in various fields mentioned below.</h5>
+
+                                        <ul>
+                                            <li>1. Academic </li>
+                                            <li>2. Medical </li>
+                                            <li>3. Sports-related</li>
+                                            <li>4. Industry related</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="box-about">
+                                    <div class="row">
+                                        <h2>Aim and Objectives</h2>
+                                        <hr><div style="height:10px; width:100%"></div>
+                                        <p>
+                                            1. The welfare of the community through social work <br>
+                                            2. Social integration <br>
+                                            3. Priority to education and educational progress<br>
+                                            4. Helping a person in need<br>
+                                            5. Help for industry growth<br>
+                                            5. Encouraging the community<br>
+                                            6. Preserving culture through various programs<br>
+                                            7. Save the environment<br>
+                                            8. Assist in the renewal of the nation<br>
+                                            9. Arranging Vadhu Var Melava<br>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="box-about">
+                                    <div class="row">
+                                        <h2>Our Android App</h2>
+                                        <hr>
+                                        <p>Samata Bhratru Mandal android application for Vadhu Var Melava and profile search comes with great features.
+    Our Android app is the first application designed by Samata Bhratru Mandal and published on the Google Play Store to offer great features for members of Samata Bhratru Mandal.
+    100% Secure portal</p>
+                                        <div style="height:10px; width:100%"></div>
+                                        <p>
+                                            1. Users need to log in with their existing username and password registered on our official website www.samatabhratrumandal.com<br>
+                                            2. Use forgot password to recall your password on your registered mobile.<br>
+                                            3. Search your matching profile with filters applied like, education, birth year, height, Gotra, etc.<br>
+                                            4. Send and receive Interest.<br>
+                                            5. Bookmark the shortlisted candidate<br>
+                                            6. Direct video calling feature after profile accepted<br>
+                                            7. One-click Kundali Match<br>
+                                            8. Set your profile pic gallery<br>
+                                            9. Store your biodata and one-click share<br>
+                                            10. Get updated with the latest features via notifications.<br>
+                                        </p>
+                                        <p>
+                                            For more details please visit the website www.samatabhratrumandal.com
+                                            For any help please write us at <a href="mailto:samatabhratrumandal@gmail.com"> samatabhratrumandal@gmail.com</a><br>
+                                            <b>Toll-Free: 02071173733</b>
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="box-about">
+                                    <div class="row">
+                                        <h2>Our Membership Android App</h2>
+                                        <hr>
+                                        <p>Samata Bhratru Mandal offers a free android application for all our membersand has a great features.
+    Our Android app is the first application designed by Samata Bhratru Mandal named “SBM Member” and published on the Google Play Store to offer great features for members of Samata Bhratru Mandal
+    </p>
+                                        <div style="height:10px; width:100%"></div>
+                                        <p>
+                                            1. Become a new member is very easy with 1 click payment<br>
+                                            2. Members can view their profile and update the information at any time<br>
+                                            3. Search a complete member’s database with ease of filters<br>
+                                            4. Search for blood and doctors with no additional efforts<br>
+                                            5. Get notified with the latest alerts and notifications about upcoming events<br>
+                                            6. Search past events of Samata Bhratru Mandal and get the memories refreshed<br>
+                                            7. Get updated with the latest jobs available within the members organization with zero cost<br>
+                                            8. Register your business and start connecting people<br>
+                                        </p>
+                                        <p>With many more exiting features designed and developed for Samata Bhratru Mandal’s members, we committed for maintaining best relationships with all our Leva Patil members across India.</p>
+                                        <p>
+                                            For more details please visit the website www.samatabhratrumandal.com
+                                            For any help please write us at <a href="mailto:samatabhratrumandal@gmail.com"> samatabhratrumandal@gmail.com</a><br>
+                                            <b>Toll-Free: 02071173733</b>
+                                        </p>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="box-about">
-                                <div class="row">
-                                    <h2>Aim and Objectives</h2>
-                                    <hr><div style="height:10px; width:100%"></div>
-                                    <p>
-                                        1. The welfare of the community through social work <br>
-                                        2. Social integration <br>
-                                        3. Priority to education and educational progress<br>
-                                        4. Helping a person in need<br>
-                                        5. Help for industry growth<br>
-                                        5. Encouraging the community<br>
-                                        6. Preserving culture through various programs<br>
-                                        7. Save the environment<br>
-                                        8. Assist in the renewal of the nation<br>
-                                        9. Arranging Vadhu Var Melava<br>
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="box-about">
-                                <div class="row">
-                                    <h2>Our Android App</h2>
-                                    <hr>
-                                    <p>Samata Bhratru Mandal android application for Vadhu Var Melava and profile search comes with great features. 
-Our Android app is the first application designed by Samata Bhratru Mandal and published on the Google Play Store to offer great features for members of Samata Bhratru Mandal. 
-100% Secure portal</p>
-                                    <div style="height:10px; width:100%"></div>
-                                    <p>
-                                        1. Users need to log in with their existing username and password registered on our official website www.samatabhratrumandal.com<br>
-                                        2. Use forgot password to recall your password on your registered mobile.<br>
-                                        3. Search your matching profile with filters applied like, education, birth year, height, Gotra, etc.<br>
-                                        4. Send and receive Interest.<br>
-                                        5. Bookmark the shortlisted candidate<br>
-                                        6. Direct video calling feature after profile accepted<br>
-                                        7. One-click Kundali Match<br>
-                                        8. Set your profile pic gallery<br>
-                                        9. Store your biodata and one-click share<br>
-                                        10. Get updated with the latest features via notifications.<br>
-                                    </p>
-                                    <p>
-                                        For more details please visit the website www.samatabhratrumandal.com
-                                        For any help please write us at <a href="mailto:samatabhratrumandal@gmail.com"> samatabhratrumandal@gmail.com</a><br>
-                                        <b>Toll-Free: 02071173733</b>
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="box-about">
-                                <div class="row">
-                                    <h2>Our Membership Android App</h2>
-                                    <hr>
-                                    <p>Samata Bhratru Mandal offers a free android application for all our membersand has a great features. 
-Our Android app is the first application designed by Samata Bhratru Mandal named “SBM Member” and published on the Google Play Store to offer great features for members of Samata Bhratru Mandal
-</p>
-                                    <div style="height:10px; width:100%"></div>
-                                    <p>
-                                        1. Become a new member is very easy with 1 click payment<br>
-                                        2. Members can view their profile and update the information at any time<br>
-                                        3. Search a complete member’s database with ease of filters<br>
-                                        4. Search for blood and doctors with no additional efforts<br>
-                                        5. Get notified with the latest alerts and notifications about upcoming events<br>
-                                        6. Search past events of Samata Bhratru Mandal and get the memories refreshed<br>
-                                        7. Get updated with the latest jobs available within the members organization with zero cost<br>
-                                        8. Register your business and start connecting people<br>
-                                    </p>
-                                    <p>With many more exiting features designed and developed for Samata Bhratru Mandal’s members, we committed for maintaining best relationships with all our Leva Patil members across India.</p>
-                                    <p>
-                                        For more details please visit the website www.samatabhratrumandal.com
-                                        For any help please write us at <a href="mailto:samatabhratrumandal@gmail.com"> samatabhratrumandal@gmail.com</a><br>
-                                        <b>Toll-Free: 02071173733</b>
-                                    </p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-
         </div>
-    </div>
-</section>
+    </section>*@

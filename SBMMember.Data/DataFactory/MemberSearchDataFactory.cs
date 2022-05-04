@@ -186,6 +186,57 @@ namespace SBMMember.Data.DataFactory
 
             return memberSearches;
         }
+        public int GetRecentMembersCount()
+        {
+            List<MemberSearchByDTO> memberSearches = (from _apppersonal in context.Member_PersonalDetails
+                                                      join _appconatct in context.Member_ContactDetails
+                                                      on _apppersonal.MemberId equals _appconatct.MemberId
+                                                      join _appqualification in context.Member_EducationEmploymentDetails
+                                                      on _apppersonal.MemberId equals _appqualification.MemberId
+                                                      join _appFormStatus in context.Member_FormStatuses
+                                                      on _apppersonal.MemberId equals _appFormStatus.MemberId
+                                                      join _appPaymentstatus in context.Member_PaymentsAndReciepts
+                                                      on _apppersonal.MemberId equals _appPaymentstatus.MemberId
+                                                      join _member in context.Members
+                                                     on _apppersonal.MemberId equals _member.MemberId
+                                                      where (_appFormStatus.FormStatus == "Approved" && _appFormStatus.ApprovedDate>=DateTime.Now.AddDays(-15))
+                                                      select new MemberSearchByDTO
+                                                      {
+                                                          MemberId = _apppersonal.MemberId,
+                                                          FirstName = _apppersonal.FirstName,
+                                                          FirstNameM = _apppersonal.FirstNameM,
+                                                          MiddleName = _apppersonal.MiddleName,
+                                                          MiddleNameM = _apppersonal.MiddleNameM,
+                                                          LastName = _apppersonal.LastName,
+                                                          LastNameM = _apppersonal.LastNameM,
+                                                          BirthDate = _apppersonal.BirthDate,
+                                                          BirthdateM = _apppersonal.BirthDateM,
+                                                          Qualification = _appqualification.Qualification,
+                                                          QualificationM = _appqualification.QualificationM,
+                                                          Proffession = _appqualification.Proffession,
+                                                          MobileNumber = _appconatct.Mobile1,
+                                                          NativePlace = _appconatct.NativePlace,
+                                                          NativePlaceM = _appconatct.NativePlaceM,
+                                                          NativePlaceTaluka = _appconatct.NativePlaceTaluka,
+                                                          NativePlaceDistrict = _appconatct.NativePlaceDist,
+                                                          Area = _apppersonal.Area,
+                                                          AreaM = _apppersonal.AreaM,
+                                                          City = _apppersonal.City,
+                                                          CityM = _apppersonal.CityM,
+                                                          Pincode = _apppersonal.Pincode,
+                                                          District = _apppersonal.District != null ? _apppersonal.District : string.Empty,
+                                                          Age = _apppersonal.Age,
+                                                          BloodGroup = _apppersonal.BloodGroup,
+                                                          PrefixM = _apppersonal.PrefixM,
+                                                          Prefix = _apppersonal.Prefix,
+                                                          FormStatus = _appFormStatus.FormStatus,
+                                                          MemberAppId = _appPaymentstatus.MembershipId
+
+
+                                                      }).ToList();
+
+            return memberSearches.Count;
+        }
         public List<MemberSearchResponse> GetAllMemberssSearchResultByFilterValues(Dictionary<string, string> keyValuePairs)
         {
             var pr = GetDynamicExpression(keyValuePairs);
@@ -319,5 +370,7 @@ namespace SBMMember.Data.DataFactory
         List<MemberSearchResponse> GetAllDoctors();
         List<MemberSearchByDTO> GetAllNewlySubmittedMembers();
         List<MemberSearchByDTO> GetAllApprovedMembers();
+
+        int GetRecentMembersCount();
     }
 }

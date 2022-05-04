@@ -19,16 +19,25 @@ namespace SBMMember.Web.Controllers
         private readonly IMemberFormStatusDataFactory formStatusDataFactory;
         private readonly IMemberPaymentsDataFactory paymentsDataFactory;
         private readonly IMemberPersonalDataFactory personalDataFactory;
-        public LoginController(IMemberDataFactory _dataFactory,IMemberFormStatusDataFactory statusDataFactory, IMemberPaymentsDataFactory _paymentsDataFactory, IMemberPersonalDataFactory _personalDataFactory)
+        private readonly IMarqueeDataFactory marqueeDataFactory;
+        public LoginController(IMemberDataFactory _dataFactory,IMemberFormStatusDataFactory statusDataFactory, IMemberPaymentsDataFactory _paymentsDataFactory, IMemberPersonalDataFactory _personalDataFactory,
+             IMarqueeDataFactory _marqueeDataFactory)
         {
             memberDataFactory = _dataFactory;
             formStatusDataFactory = statusDataFactory;
             paymentsDataFactory = _paymentsDataFactory;
             personalDataFactory = _personalDataFactory;
+            marqueeDataFactory = _marqueeDataFactory;
         }
         public IActionResult Login()
         {
-            return View();
+            List<string> marqueetxt = marqueeDataFactory.GetMarquees().Select(x => x.Marquee).ToList();
+
+            LoginViewModel model = new LoginViewModel()
+            {
+                MarqueeString = string.Join(", ", marqueetxt)
+            };
+            return View(model);
         }
 
         [HttpPost]
@@ -66,7 +75,14 @@ namespace SBMMember.Web.Controllers
             {
                 ViewBag.ErrorOnLogin = "Invalid Mobile number or MPin";
             }
-            return View();
+
+            List<string> marqueetxt = marqueeDataFactory.GetMarquees().Select(x => x.Marquee).ToList();
+
+            LoginViewModel _model = new LoginViewModel()
+            {
+                MarqueeString = string.Join(", ", marqueetxt)
+            };
+            return View(_model);
         }
 
         

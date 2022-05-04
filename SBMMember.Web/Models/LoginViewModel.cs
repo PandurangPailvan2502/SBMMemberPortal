@@ -16,5 +16,6 @@ namespace SBMMember.Web.Models
         public bool IsOTPMismatch { get; set; }
         public string OTPInput { get; set; }
         public bool RememberMe { get; set; }
+        public string MarqueeString { get; set; }
     }
 }

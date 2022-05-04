@@ -204,6 +204,40 @@ namespace SBMMember.Data.DataFactory
 
             return responseDTO;
         }
+
+        public ResponseDTO UpdateMemberProfileImage(int MemberId,string imagePath)
+        {
+            ResponseDTO responseDTO = new ResponseDTO();
+            try
+            {
+                Member_PersonalDetails personalDetails = dBContext.Member_PersonalDetails.Where(x => x.MemberId == MemberId).First();
+
+                personalDetails.MemberProfileImage = imagePath;
+                int affectedRows = 0;
+                //dBContext.Update(personalDetails);
+                affectedRows = dBContext.SaveChanges();
+                if (affectedRows > 0)
+                {
+                    responseDTO = new ResponseDTO()
+                    {
+                        Result = "Success",
+                        Message = "Member profile image details updated successfully."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+
+                logger.LogError($"Error occured while updating member profile image details. Exception:{ex.Message}");
+                responseDTO = new ResponseDTO()
+                {
+                    Result = "Failed",
+                    Message = "Member profile image details update operation failed."
+                };
+            }
+
+            return responseDTO;
+        }
         public Member_PersonalDetails GetMemberPersonalDetailsByMemberId(int memberId)
         {
             Member_PersonalDetails personalDetails=new Member_PersonalDetails();
@@ -242,6 +276,7 @@ namespace SBMMember.Data.DataFactory
         List<string> GetDistinctAreas();
         List<string> GetDistinctCities();
         ResponseDTO UpdateMemberPersonalDetailsNoTranslation(Member_PersonalDetails member_Personal);
+        ResponseDTO UpdateMemberProfileImage(int MemberId, string imagePath);
     }
 
    

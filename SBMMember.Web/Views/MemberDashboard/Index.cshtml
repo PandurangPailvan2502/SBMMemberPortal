@@ -1,4 +1,4 @@
-﻿
+﻿@model BannerAndMarqueeViewModel
 
 @{
     ViewData["Title"] = "Index";
@@ -45,7 +45,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="scroll">
-                <p><marquee>Welcome to SBM Member portal.</marquee></p>
+                <p><marquee>@Model.MarqueeString</marquee></p>
             </div>
         </div>
     </div>
@@ -148,11 +148,11 @@
                             <td>Recent Jobs</td>
                         </tr>
                         <tr>
-                            <td style="background-color:#db044c;color:#ffffff;font-size:16px;">1</td>
+                            <td style="background-color:#db044c;color:#ffffff;font-size:16px;">@Model.NotificationCount</td>
                             <td style="width:5px"></td>
-                            <td style="background-color:#ffda08;color:#ffffff;font-size:16px;">25</td>
+                            <td style="background-color:#ffda08;color:#ffffff;font-size:16px;">@Model.NewMemberCount</td>
                             <td style="width:5px"></td>
-                            <td style="background-color:#be0303;color:#ffffff;font-size:16px;">3</td>
+                            <td style="background-color:#be0303;color:#ffffff;font-size:16px;">@Model.RecentJobCount</td>
                         </tr>
                     </tbody>
                 </table>
@@ -174,7 +174,11 @@
 
                             <td><img src="~/img/videomeet.png" class="table-button"></td>
                             <td style="width:20px"></td>
-                            <td><img src="~/img/about us-1.png" class="table-button"></td>
+                            <td>
+                                <a asp-action="AboutUs" asp-controller="MemberDashboard">
+                                    <img src="~/img/about us-1.png" class="table-button">
+                                </a>
+                            </td>
 
                         </tr>
                     </tbody>

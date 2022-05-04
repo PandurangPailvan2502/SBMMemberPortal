@@ -120,6 +120,11 @@ namespace SBMMember.Data.DataFactory
             var jobPost = memberDBContext.JobPostings.Where(x => x.Id == jobId && x.Status == "Active").FirstOrDefault();
             return jobPost;
         }
+
+        public int RecentJobCount()
+        {
+            return memberDBContext.JobPostings.Where(x => x.PostedOn >= DateTime.Now.AddDays(-15) && x.Status=="Active").Count();
+        }
     }
     public interface IJobPostingDataFactory
     {
@@ -128,6 +133,6 @@ namespace SBMMember.Data.DataFactory
         ResponseDTO UpdateJobDetails(JobPostings jobPostings);
         ResponseDTO DeleteJobDetails(int JobId);
         JobPostings GetJobDetails(int jobId);
-
+        int RecentJobCount();
     }
 }

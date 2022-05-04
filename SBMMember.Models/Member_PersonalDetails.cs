@@ -48,6 +48,7 @@ namespace SBMMember.Models
         public string? StateM { get; set; }
         public int? Pincode { get; set; }
         public string? PincodeM { get; set; }
+        public string? MemberProfileImage { get; set; }
         public DateTime? CreateDate { get; set; }
         public DateTime? UpdateDate { get; set; }
         public string? CreatedBy { get; set; }

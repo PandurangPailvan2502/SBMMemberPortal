@@ -165,7 +165,8 @@ namespace SBMMember.Web.Controllers
             EventViewModel viewModel = new EventViewModel()
             {
                 EventInfos = eventDataFactory.GetAllEventList(),
-               EventTitles = eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList()
+               EventTitles = eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList(),
+               EventYears=YearHelper.GetYears()
             };
             //viewModel.EventNameM = TranslationHelper.Translate("Samata Bhratru");
             viewModel.EventTitles.Insert(0, new SelectListItem() { Text = " Select Event Title ", Value = "0" });
@@ -253,7 +254,8 @@ namespace SBMMember.Web.Controllers
             EventAdsViewModel adsViewModel = new EventAdsViewModel()
             {
                 EventAds = eventAdsDataFactory.GetAllEventAds(),
-                EventTitles= eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList()
+                EventTitles= eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList(),
+                EventYears=YearHelper.GetYears()
         };
             adsViewModel.EventTitles.Insert(0, new SelectListItem() { Text = " Select Event Title ", Value = "0" });
             return View(adsViewModel);
@@ -286,8 +288,12 @@ namespace SBMMember.Web.Controllers
             ModelState.Clear();
             EventAdsViewModel adsViewModel = new EventAdsViewModel()
             {
-                EventAds = eventAdsDataFactory.GetAllEventAds()
+                EventAds = eventAdsDataFactory.GetAllEventAds(),
+                EventTitles = eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList(),
+                EventYears = YearHelper.GetYears()
             };
+            adsViewModel.EventTitles.Insert(0, new SelectListItem() { Text = " Select Event Title ", Value = "0" });
+            adsViewModel.EventYears.Insert(0, new SelectListItem() { Text = " Select Event Year ", Value = "0" });
             return View(adsViewModel);
         }
         public IActionResult DeleteEventAd(int Id)

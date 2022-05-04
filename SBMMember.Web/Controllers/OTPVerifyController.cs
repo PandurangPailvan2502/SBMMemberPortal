@@ -25,6 +25,7 @@ namespace SBMMember.Web.Controllers
         private readonly SBMMemberDBContext dBContext;
         private readonly IConfiguration configuration;
         private readonly IMapper mapper;
+        private readonly IMarqueeDataFactory marqueeDataFactory;
         //private static List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
 
         public OTPVerifyController(IMemberDataFactory dataFactory,
@@ -34,7 +35,7 @@ namespace SBMMember.Web.Controllers
             IMemberFamilyDetailsDataFactory memberFamilyDetailsDataFactory,
             IMemberPaymentsDataFactory _paymentsDataFactory,
             SBMMemberDBContext sBMMemberDBContext,
-            IConfiguration _configuration, IMapper _mapper)
+            IConfiguration _configuration, IMapper _mapper, IMarqueeDataFactory _marqueeDataFactory)
         {
             MemberDataFactory = dataFactory;
             personalDataFactory = memberPersonalDataFactory;
@@ -45,10 +46,17 @@ namespace SBMMember.Web.Controllers
             dBContext = sBMMemberDBContext;
             configuration = _configuration;
             mapper = _mapper;
+            marqueeDataFactory = _marqueeDataFactory;
         }
         public IActionResult Index()
         {
-            return View();
+            List<string> marqueetxt = marqueeDataFactory.GetMarquees().Select(x => x.Marquee).ToList();
+
+            LoginViewModel model = new LoginViewModel()
+            {
+                MarqueeString = string.Join(", ", marqueetxt)
+            };
+            return View(model);
         }
 
         [HttpPost]
@@ -58,9 +66,14 @@ namespace SBMMember.Web.Controllers
             if (member.Mobile != null && member.MemberId > 0)
             {
 
+                List<string> marqueetxt = marqueeDataFactory.GetMarquees().Select(x => x.Marquee).ToList();
 
+                LoginViewModel model = new LoginViewModel()
+                {
+                    MarqueeString = string.Join(", ", marqueetxt)
+                };
                 ViewBag.AlreadyRegistered = $"{mobile} is already registered.Try with another number. OR Use below login option to submit remaining form details";
-                return View("Index");
+                return View("Index",model);
 
             }
             else

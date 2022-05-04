@@ -16,6 +16,8 @@ using SBMMember.Models.MemberSearch;
 using SBMMember.Web.Helper;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Http;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace SBMMember.Web.Controllers
 {
@@ -34,6 +36,10 @@ namespace SBMMember.Web.Controllers
         private static List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
         private readonly SBMMemberDBContext dBContext;
         private readonly IConfiguration configuration;
+        private readonly IMarqueeDataFactory marqueeDataFactory;
+        private IWebHostEnvironment Environment;
+        private readonly IJobPostingDataFactory jobPostingDataFactory;
+       
         public MemberDashboardController(IMemberDataFactory dataFactory,
             IMemberPersonalDataFactory memberPersonalDataFactory,
             IMemberContactDetailsDataFactory memberContactDetailsDataFactory,
@@ -44,7 +50,10 @@ namespace SBMMember.Web.Controllers
             ILogger<MemberController> logger,
             IMapper Mapper,
             SBMMemberDBContext memberDBContext,
-            IConfiguration _configuration)
+            IConfiguration _configuration,
+            IMarqueeDataFactory _marqueeDataFactory,
+            IWebHostEnvironment _environment,
+            IJobPostingDataFactory _jobPostingDataFactory)
         {
             Logger = logger;
             mapper = Mapper;
@@ -57,15 +66,54 @@ namespace SBMMember.Web.Controllers
             searchDataFactory = memberSearchDataFactory;
             dBContext = memberDBContext;
             configuration = _configuration;
+            marqueeDataFactory = _marqueeDataFactory;
+            Environment = _environment;
+            jobPostingDataFactory = _jobPostingDataFactory;
 
         }
 
         [Authorize]
         public IActionResult Index()
         {
-            return View();
+
+            List<string> marquess = marqueeDataFactory.GetMarquees().Select(x => x.Marquee).ToList();
+            string marqueeText = string.Join(",", marquess);
+            
+            BannerAndMarqueeViewModel viewModel = new BannerAndMarqueeViewModel()
+            {
+                //Banners = BannerHelper.GetBanners(),
+                MarqueeString = marqueeText,
+                NotificationCount=0,
+                NewMemberCount=searchDataFactory.GetRecentMembersCount(),
+                RecentJobCount=jobPostingDataFactory.RecentJobCount()
+
+            };
+            return View(viewModel);
         }
 
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+        public IActionResult UploadProfileImage(MemberFormCommonViewModel commonViewModel)
+        {
+            string path = Path.Combine(this.Environment.WebRootPath, "MemberProfileImages");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string FilePath = $"~/MemberProfileImages/{commonViewModel.file.FileName}";
+            string fileName = Path.GetFileName(commonViewModel.file.FileName);
+            string fullPath = Path.Combine(path, fileName);
+            using (FileStream stream = new FileStream(fullPath, FileMode.Create))
+            {
+                commonViewModel.file.CopyTo(stream);
+
+            }
+            personalDataFactory.UpdateMemberProfileImage(commonViewModel.MemberId, FilePath);
+
+            return RedirectToAction("ProfileUpdate");
+        }
         public IActionResult ProfileUpdate()
         {
             MemberFormCommonViewModel commonViewModel = new MemberFormCommonViewModel();
@@ -73,6 +121,7 @@ namespace SBMMember.Web.Controllers
             var memberId = User.Claims?.FirstOrDefault(x => x.Type.Equals("MemberId", StringComparison.OrdinalIgnoreCase))?.Value;
             int MemberId = Convert.ToInt32(memberId);
             commonViewModel.ProfilePercentage = 0;
+            commonViewModel.MemberId = MemberId;
             Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(MemberId);
             if (member_Personal.MemberId > 0)
             {

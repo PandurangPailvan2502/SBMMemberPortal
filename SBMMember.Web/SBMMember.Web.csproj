@@ -106,6 +106,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="MemberProfileImages\" />
     <Folder Include="Views\MemberBloodGroupSearch\" />
     <Folder Include="Views\Shared\PartialViews\" />
     <Folder Include="wwwroot\EventAds\" />

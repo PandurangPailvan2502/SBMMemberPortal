@@ -15,5 +15,7 @@ namespace SBMMember.Web.Models
         public string EventDesc { get; set; }
         public List<SelectListItem> EventTitles { get; set; }
         public List<UpcomingEvent> EventInfos { get; set; }
+        public string MarqueeString { get; set; }
+
     }
 }

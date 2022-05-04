@@ -7,7 +7,8 @@ using SBMMember.Data.DataFactory;
 using SBMMember.Models;
 using System;
 using Microsoft.Extensions.Configuration;
-
+using System.Collections.Generic;
+using System.Linq;
 namespace SBMMember.Web.Controllers
 {
     public class HomeController : Controller
@@ -16,13 +17,15 @@ namespace SBMMember.Web.Controllers
         private readonly IMemberDataFactory memberdataFactory;
         private readonly IConfiguration configuration;
         private readonly IUpcomingEventsDataFactory upcomingEventsDataFactory;
+        private readonly IMarqueeDataFactory marqueeDataFactory;
 
-        public HomeController(ILogger<HomeController> logger, IMemberDataFactory memberDataFactory, IConfiguration _config, IUpcomingEventsDataFactory _upcomingEventsDataFactory)
+        public HomeController(ILogger<HomeController> logger, IMemberDataFactory memberDataFactory, IConfiguration _config, IUpcomingEventsDataFactory _upcomingEventsDataFactory, IMarqueeDataFactory _marqueeDataFactory)
         {
             _logger = logger;
             memberdataFactory = memberDataFactory;
             configuration = _config;
             upcomingEventsDataFactory = _upcomingEventsDataFactory;
+            marqueeDataFactory = _marqueeDataFactory;
         }
 
         public IActionResult Index()
@@ -32,38 +35,63 @@ namespace SBMMember.Web.Controllers
         }
         public IActionResult MemberHome()
         {
-
-
+            List<string> marquess = marqueeDataFactory.GetMarquees().Select(x => x.Marquee).ToList();
+            string marqueeText = string.Join(",", marquess);
             BannerAndMarqueeViewModel viewModel = new BannerAndMarqueeViewModel()
             {
-                Banners = BannerHelper.GetBanners()
+                Banners = BannerHelper.GetBanners(),
+                MarqueeString = marqueeText
             };
+
+
             //int subcharge =Convert.ToInt32(configuration.GetSection("SubscriptionCharges").Value);
             return View(viewModel);
         }
         public IActionResult AboutUs()
         {
-            return View();
+
+            return View(GetBannerAndMarqueeModel());
+        }
+        private BannerAndMarqueeViewModel GetBannerAndMarqueeModel()
+        {
+            List<string> marquess = marqueeDataFactory.GetMarquees().Select(x => x.Marquee).ToList();
+            string marqueeText = string.Join(",", marquess);
+            BannerAndMarqueeViewModel viewModel = new BannerAndMarqueeViewModel()
+            {
+                //Banners = BannerHelper.GetBanners(),
+                MarqueeString = marqueeText
+            };
+            return viewModel;
         }
         public IActionResult ContactUs()
         {
-            return View();
+            return View(GetBannerAndMarqueeModel());
         }
         public IActionResult PrivacyPolicy()
         {
-            return View();
+            return View(GetBannerAndMarqueeModel());
         }
         public IActionResult UpcomingEvents()
         {
-            UpcomingEventsViewModel viewModel = new UpcomingEventsViewModel()
+            List<string> marquess = marqueeDataFactory.GetMarquees().Select(x => x.Marquee).ToList();
+            string marqueeText = string.Join(",", marquess);
+
+            BannerAndMarqueeViewModel viewModel = new BannerAndMarqueeViewModel()
             {
-                EventInfos = upcomingEventsDataFactory.GetAll()
+                EventInfos = upcomingEventsDataFactory.GetAll(),
+                MarqueeString=marqueeText
             };
             return View(viewModel);
         }
         public IActionResult ForgotMPIN()
         {
-            return View();
+            List<string> marquess = marqueeDataFactory.GetMarquees().Select(x => x.Marquee).ToList();
+            string marqueeText = string.Join(",", marquess);
+            LoginViewModel model = new LoginViewModel()
+            {
+                MarqueeString = marqueeText
+            };
+            return View(model);
         }
         [HttpPost]
         public IActionResult ForgotMPIN(LoginViewModel model)
@@ -74,7 +102,7 @@ namespace SBMMember.Web.Controllers
                 ViewBag.AlreadyRegistered = $"Member Profile Does not exit with Provided Mobile No:{model.MobileNumber}";
                 return View();
             }
-            else if(member.Status!="Active")
+            else if (member.Status != "Active")
             {
                 ViewBag.AlreadyRegistered = $"Member Profile is in InActive state with Provided Mobile No:{model.MobileNumber}";
                 return View();
@@ -118,7 +146,7 @@ namespace SBMMember.Web.Controllers
                 Mpin = model.MPIN
             };
             memberdataFactory.UpdateMPIN(members);
-         return   RedirectToActionPermanent("Login", "Login");
+            return RedirectToActionPermanent("Login", "Login");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

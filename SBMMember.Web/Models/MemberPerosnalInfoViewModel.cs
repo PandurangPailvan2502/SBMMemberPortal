@@ -48,6 +48,6 @@ namespace SBMMember.Web.Models
         public string  StateM { get; set; }
         public int  Pincode { get; set; }
         public string  PincodeM { get; set; }
-
+        public string MemberProfileImage { get; set; }
     }
 }

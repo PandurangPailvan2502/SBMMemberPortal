@@ -6,201 +6,212 @@
 }
 
 
-    <div class="container">
-        <div class="row">
-            <div class="edit4btn">
-                <p class="padding:20px;margin:10px; color:#ffffff; background-color:#000000"><i class="ti-pencil-alt"></i><a asp-action="ProfileUpdate" asp-controller="MemberDashboard"> Edit Profile</a></p>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="edit4btn">
+            <p class="padding:20px;margin:10px; color:#ffffff; background-color:#000000"><i class="ti-pencil-alt"></i><a asp-action="ProfileUpdate" asp-controller="MemberDashboard"> Edit Profile</a></p>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-               <table>
-                   <tr>
-                       <td style="background-color:#7c0053"><div class="photo-container1">
-                                        <img src="~/img/Noavatar.png" class="view_prof_i">
-                                    </div></td>
-                        <td width="100%" style="background-color:#7c0053">
-                            <section class="data-content1">
-                                <table>
-                                    <tr>
-                                        <td><label class="lbl_profile"><strong>सभासदाचे नाव:</strong> @Model.MemberPersonalInfo.PrefixM @Model.MemberPersonalInfo.FirstNameM @Model.MemberPersonalInfo.MiddleNameM @Model.MemberPersonalInfo.LastNameM</label></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="lbl_profile">सभासद क्रमांक: @Model.MemberPaymentInfo.MemberShipIdM </label></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label class="lbl_profile">जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue) { @Model.MemberPersonalInfo.BirthDate.ToShortDateString()} </label></td>
-                                    </tr>
-                                    <tr><td><label class="lbl_profile">मोबाईल: @Model.MemberConatctInfo.Mobile1 </label></td></tr>
-                                </table>        
-                               </section>
-                        </td>
-                   </tr>
-               </table>
-               <div class="Scriptcontent">
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <table>
+                <tr>
+                    <td style="background-color:#7c0053">
+                        <div class="photo-container1">
+                            @if (Model.MemberPersonalInfo.MemberProfileImage != null)
+                            {
+                                <img src="~/MemberProfileImages/@Model.MemberPersonalInfo.MemberProfileImage.Split('/')[2]" class="view_prof_i">
+                            }
+                            else
+                            {
+                                <img src="~/img/Noavatar.png" class="view_prof_i">
+                            }
+                        </div>
+                    </td>
+                    <td width="100%" style="background-color:#7c0053">
+                        <section class="data-content1">
+                            <table>
+                                <tr>
+                                    <td><label class="lbl_profile"><strong>सभासदाचे नाव:</strong> @Model.MemberPersonalInfo.PrefixM @Model.MemberPersonalInfo.FirstNameM @Model.MemberPersonalInfo.MiddleNameM @Model.MemberPersonalInfo.LastNameM</label></td>
+                                </tr>
+                                <tr>
+                                    <td><label class="lbl_profile">सभासद क्रमांक: @Model.MemberPaymentInfo.MemberShipIdM </label></td>
+                                </tr>
+                                <tr>
+                                    <td><label class="lbl_profile">जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
+                                    {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()} </label></td>
+                                </tr>
+                                <tr><td><label class="lbl_profile">मोबाईल: @Model.MemberConatctInfo.Mobile1 </label></td></tr>
+                            </table>
+                        </section>
+                    </td>
+                </tr>
+            </table>
+            <div class="Scriptcontent">
 
-                                <section class="tabs-container">
-                                    <label for="tab1" class="yel"><img src="~/img/profile.png" class="matri-icon"><br /> वैयक्तिक माहिती </label>
-                                    <label for="tab2" class="yel"><img src="~/img/contact-details-m.png" class="matri-icon"><br /> मुळगाव व संपर्क</label>
-                                    <label for="tab3" class="yel"><img src="~/img/mortarboard.png" class="matri-icon"><br> शिक्षण / नोकरी </label>
-                                    <label for="tab4" class="yel"><img src="~/img/people.png" class="matri-icon"><br> कुटुंबाविषयी माहिती </label>
-                                    <label for="tab5" class="yel"><img src="~/img/contact-img.png" class="matri-icon"><br> सभासदत्व माहिती</label>
+                <section class="tabs-container">
+                    <label for="tab1" class="yel"><img src="~/img/profile.png" class="matri-icon"><br /> वैयक्तिक माहिती </label>
+                    <label for="tab2" class="yel"><img src="~/img/contact-details-m.png" class="matri-icon"><br /> मुळगाव व संपर्क</label>
+                    <label for="tab3" class="yel"><img src="~/img/mortarboard.png" class="matri-icon"><br> शिक्षण / नोकरी </label>
+                    <label for="tab4" class="yel"><img src="~/img/people.png" class="matri-icon"><br> कुटुंबाविषयी माहिती </label>
+                    <label for="tab5" class="yel"><img src="~/img/contact-img.png" class="matri-icon"><br> सभासदत्व माहिती</label>
 
-                                </section>
-                                <input name="tab" id="tab1" type="radio" checked />
-                                <section class="tab-content">
-                                <div class="profile_view_content">
-                                    <form asp-action="MemberPersonalInfo" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
-                                                    <input type="hidden" asp-for="MemberPersonalInfo.MemberId" />
-                                                    <div class="view_profile_content">
-                                                        <label class="viewprofilelabel">सभासदाचे नाव:</label>
-                                                        <span class="vpc">@Model.MemberPersonalInfo.PrefixM @Model.MemberPersonalInfo.FirstNameM @Model.MemberPersonalInfo.MiddleNameM @Model.MemberPersonalInfo.LastNameM</span><br />
-                                                        @*<label class="viewprofilelabel">स्री / पुरुष:</label>
-                                                        <span class="vpc">@Model.MemberPersonalInfo.GenderM</span><br />*@
-                                                        <label class="viewprofilelabel">वैवाहिक स्थिती:</label>
-                                                        <span class="vpc">@Model.MemberPersonalInfo.MaritalStatusM</span><br />
-                                                        <label class="viewprofilelabel">जन्म तारीख:</label>
-                                                        <span class="vpc">@if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue) { @Model.MemberPersonalInfo.BirthDate.ToShortDateString()}</span><br />
-                                                        <label class="viewprofilelabel">रक्त गट:</label>
-                                                        <span class="vpc">@Model.MemberPersonalInfo.BloodGroup</span><br />
-                                                        <label class="viewprofilelabel">संपूर्ण पत्ता:</label>
-                                                        <span class="vpc">@Model.MemberPersonalInfo.AddressM</span><br />
-                                                        <label class="viewprofilelabel">एरिया:</label>
-                                                        <span class="vpc">@Model.MemberPersonalInfo.AreaM</span><br />
-                                                        <label class="viewprofilelabel">शहर:</label>
-                                                        <span class="vpc">@Model.MemberPersonalInfo.CityM</span><br />
-                                                        <label class="viewprofilelabel">पिन कोड:</label>
-                                                        <span class="vpc">@Model.MemberPersonalInfo.PincodeM</span><br />
-                                                        <label class="viewprofilelabel">तालुका:</label>
-                                                        <span class="vpc">@Model.MemberPersonalInfo.TalukaM</span><br />
-                                                        <label class="viewprofilelabel">जिल्हा:</label>
-                                                        <span class="vpc">@Model.MemberPersonalInfo.DistrictM</span><br />
-                                                        <label class="viewprofilelabel">राज्य:</label>
-                                                        <span class="vpc">@Model.MemberPersonalInfo.StateM</span><br />
-                                                        </div>
-                                               </form>
-                                </div>    
-                                </section>
+                </section>
+                <input name="tab" id="tab1" type="radio" checked />
+                <section class="tab-content">
+                    <div class="profile_view_content">
+                        <form asp-action="MemberPersonalInfo" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="MemberPersonalInfo.MemberId" />
+                            <div class="view_profile_content">
+                                <label class="viewprofilelabel">सभासदाचे नाव:</label>
+                                <span class="vpc">@Model.MemberPersonalInfo.PrefixM @Model.MemberPersonalInfo.FirstNameM @Model.MemberPersonalInfo.MiddleNameM @Model.MemberPersonalInfo.LastNameM</span><br />
+                                @*<label class="viewprofilelabel">स्री / पुरुष:</label>
+                                    <span class="vpc">@Model.MemberPersonalInfo.GenderM</span><br />*@
+                                <label class="viewprofilelabel">वैवाहिक स्थिती:</label>
+                                <span class="vpc">@Model.MemberPersonalInfo.MaritalStatusM</span><br />
+                                <label class="viewprofilelabel">जन्म तारीख:</label>
+                                <span class="vpc">@if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
+                                {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()}</span><br />
+                                <label class="viewprofilelabel">रक्त गट:</label>
+                                <span class="vpc">@Model.MemberPersonalInfo.BloodGroup</span><br />
+                                <label class="viewprofilelabel">संपूर्ण पत्ता:</label>
+                                <span class="vpc">@Model.MemberPersonalInfo.AddressM</span><br />
+                                <label class="viewprofilelabel">एरिया:</label>
+                                <span class="vpc">@Model.MemberPersonalInfo.AreaM</span><br />
+                                <label class="viewprofilelabel">शहर:</label>
+                                <span class="vpc">@Model.MemberPersonalInfo.CityM</span><br />
+                                <label class="viewprofilelabel">पिन कोड:</label>
+                                <span class="vpc">@Model.MemberPersonalInfo.PincodeM</span><br />
+                                <label class="viewprofilelabel">तालुका:</label>
+                                <span class="vpc">@Model.MemberPersonalInfo.TalukaM</span><br />
+                                <label class="viewprofilelabel">जिल्हा:</label>
+                                <span class="vpc">@Model.MemberPersonalInfo.DistrictM</span><br />
+                                <label class="viewprofilelabel">राज्य:</label>
+                                <span class="vpc">@Model.MemberPersonalInfo.StateM</span><br />
+                            </div>
+                        </form>
+                    </div>
+                </section>
 
 
-                                <input name="tab" id="tab2" type="radio" />
-                                <section class="tab-content">
-                                        <div class="profile_view_content">
-                                        <form asp-controller="MemberDashboard" asp-action="MemberContactInfo" method="post" enctype="multipart/form-data">
-                                                    <input type="hidden" asp-for="MemberConatctInfo.MemberId" />
-                                                    
-                                                    <label class="viewprofilelabel">सभासदाचे मुळगाव:</label>
-                                                    <span class="vpc">@Model.MemberConatctInfo.NativePlaceM</span><br />
-                                                    <label class="viewprofilelabel">मुळगाव तालुका:</label>
-                                                    <span class="vpc">@Model.MemberConatctInfo.NativePlaceTalukaM</span><br />
-                                                    <label class="viewprofilelabel">मुळगाव जिल्हा:</label>
-                                                    <span class="vpc">@Model.MemberConatctInfo.NativePlaceDistM</span><br />
-                                                    <label class="viewprofilelabel">संपर्क १:</label>
-                                                    <span class="vpc">@Model.MemberConatctInfo.Mobile1M</span><br />
-                                                    <label class="viewprofilelabel">संपर्क २:</label>
-                                                    <span class="vpc">@Model.MemberConatctInfo.Mobile2M</span><br />
-                                                    <label class="viewprofilelabel">ई-मेल:</label>
-                                                    <span class="vpc">@Model.MemberConatctInfo.EmailId</span><br />
-                                                    <label class="viewprofilelabel">जवळच्या नातेवाईकाचे संपूर्ण नाव:</label>
-                                                    <span class="vpc">@Model.MemberConatctInfo.RelativeNameM</span><br />
-                                                    <label class="viewprofilelabel">जवळच्या नातेवाईकाचा संपूर्ण पत्ता:</label>
-                                                    <span class="vpc">@Model.MemberConatctInfo.RelativeAddressM</span><br />
-                                                    <label class="viewprofilelabel">जवळच्या नातेवाईकाचा संपर्क नं  १:</label>
-                                                    <span class="vpc">@Model.MemberConatctInfo.RelativeContact1M</span><br />
-                                                    <label class="viewprofilelabel">जवळच्या नातेवाईकाचा संपर्क नं  २:</label>
-                                                    <span class="vpc">@Model.MemberConatctInfo.RelativeContact2M</span><br />
-                                       </form>
-                                        </div>
-                                </section>
+                <input name="tab" id="tab2" type="radio" />
+                <section class="tab-content">
+                    <div class="profile_view_content">
+                        <form asp-controller="MemberDashboard" asp-action="MemberContactInfo" method="post" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="MemberConatctInfo.MemberId" />
 
-                                <input name="tab" id="tab3" type="radio" />
-                                <section class="tab-content">
-                                    <div class="profile_view_content">
-                                       <form asp-action="MemberEduEmpInfo" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
-                                                    <input type="hidden" asp-for="MemberEducationEmploymentInfo.MemberId" />
-                                                    <label class="viewprofilelabel">सभासदाचे शिक्षण:</label>
-                                                    <span class="vpc">@Model.MemberEducationEmploymentInfo.QualificationM</span><br />
-                                                    <label class="viewprofilelabel">व्यवसाय/नोकरी शेतकरी/विद्यार्थी:</label>
-                                                    <span class="vpc">@Model.MemberEducationEmploymentInfo.ProffessionM</span><br />
-                                                    <label class="viewprofilelabel">कंपनीचे नाव:</label>
-                                                    <span class="vpc">@Model.MemberEducationEmploymentInfo.CompanyNameM</span><br />
-                                                    <label class="viewprofilelabel">कंपनीचा पत्ता:</label>
-                                                    <span class="vpc">@Model.MemberEducationEmploymentInfo.CompanyAddressM</span><br />
-                                                    <label class="viewprofilelabel">कंपनीचा पत्ता:</label>
-                                                    <span class="vpc">@Model.MemberEducationEmploymentInfo.CompanyAddressM</span><br />
-                                                    <label class="viewprofilelabel">व्यवसायाचे नाव:</label>
-                                                    <span class="vpc">@Model.MemberEducationEmploymentInfo.BusinessNameM</span><br />
-                                                    <label class="viewprofilelabel">व्यवसायाचा पत्ता:</label>
-                                                    <span class="vpc">@Model.MemberEducationEmploymentInfo.BusinessAddressM</span><br />
-                                       </form>
-                                    </div>
-                                </section>
+                            <label class="viewprofilelabel">सभासदाचे मुळगाव:</label>
+                            <span class="vpc">@Model.MemberConatctInfo.NativePlaceM</span><br />
+                            <label class="viewprofilelabel">मुळगाव तालुका:</label>
+                            <span class="vpc">@Model.MemberConatctInfo.NativePlaceTalukaM</span><br />
+                            <label class="viewprofilelabel">मुळगाव जिल्हा:</label>
+                            <span class="vpc">@Model.MemberConatctInfo.NativePlaceDistM</span><br />
+                            <label class="viewprofilelabel">संपर्क १:</label>
+                            <span class="vpc">@Model.MemberConatctInfo.Mobile1M</span><br />
+                            <label class="viewprofilelabel">संपर्क २:</label>
+                            <span class="vpc">@Model.MemberConatctInfo.Mobile2M</span><br />
+                            <label class="viewprofilelabel">ई-मेल:</label>
+                            <span class="vpc">@Model.MemberConatctInfo.EmailId</span><br />
+                            <label class="viewprofilelabel">जवळच्या नातेवाईकाचे संपूर्ण नाव:</label>
+                            <span class="vpc">@Model.MemberConatctInfo.RelativeNameM</span><br />
+                            <label class="viewprofilelabel">जवळच्या नातेवाईकाचा संपूर्ण पत्ता:</label>
+                            <span class="vpc">@Model.MemberConatctInfo.RelativeAddressM</span><br />
+                            <label class="viewprofilelabel">जवळच्या नातेवाईकाचा संपर्क नं  १:</label>
+                            <span class="vpc">@Model.MemberConatctInfo.RelativeContact1M</span><br />
+                            <label class="viewprofilelabel">जवळच्या नातेवाईकाचा संपर्क नं  २:</label>
+                            <span class="vpc">@Model.MemberConatctInfo.RelativeContact2M</span><br />
+                        </form>
+                    </div>
+                </section>
 
-                                <input name="tab" id="tab4" type="radio" />
-                                <section class="tab-content">
-                                   <div class="profile_view_content">
-                                        <form asp-action="AddToList" asp-controller="Member" method="post" enctype="multipart/form-data">
-                                                    <input type="hidden" asp-for="MemberFamilyInfo.MemberFamilyDetails" />
-                                                    <input type="hidden" asp-for="MemberFamilyInfo.MemberId" />
-                                                    
-                                                    @if (ViewBag.MemberList != null)
-                                                    {
-                                                        <div class="mt-10 center">
-                                                            <table class="table table-bordered">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <td>कुटुंबातील व्यक्तीचे नाव</td>
-                                                                        <td>नाते</td>
-                                                                        @*<td>शिक्षण </td>
-                                                                        <td>कुटुंबातील व्यक्तीचे काम </td>
-                                                                        <td>रक्त गट</td>*@
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
+                <input name="tab" id="tab3" type="radio" />
+                <section class="tab-content">
+                    <div class="profile_view_content">
+                        <form asp-action="MemberEduEmpInfo" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="MemberEducationEmploymentInfo.MemberId" />
+                            <label class="viewprofilelabel">सभासदाचे शिक्षण:</label>
+                            <span class="vpc">@Model.MemberEducationEmploymentInfo.QualificationM</span><br />
+                            <label class="viewprofilelabel">व्यवसाय/नोकरी शेतकरी/विद्यार्थी:</label>
+                            <span class="vpc">@Model.MemberEducationEmploymentInfo.ProffessionM</span><br />
+                            <label class="viewprofilelabel">कंपनीचे नाव:</label>
+                            <span class="vpc">@Model.MemberEducationEmploymentInfo.CompanyNameM</span><br />
+                            <label class="viewprofilelabel">कंपनीचा पत्ता:</label>
+                            <span class="vpc">@Model.MemberEducationEmploymentInfo.CompanyAddressM</span><br />
+                            <label class="viewprofilelabel">कंपनीचा पत्ता:</label>
+                            <span class="vpc">@Model.MemberEducationEmploymentInfo.CompanyAddressM</span><br />
+                            <label class="viewprofilelabel">व्यवसायाचे नाव:</label>
+                            <span class="vpc">@Model.MemberEducationEmploymentInfo.BusinessNameM</span><br />
+                            <label class="viewprofilelabel">व्यवसायाचा पत्ता:</label>
+                            <span class="vpc">@Model.MemberEducationEmploymentInfo.BusinessAddressM</span><br />
+                        </form>
+                    </div>
+                </section>
 
-                                                                    @foreach (var familyMember in ViewBag.MemberList)
-                                                                    {
-                                                                        <tr>
-                                                                            <td>@familyMember.NameM</td>
-                                                                            <td>@familyMember.RelationM</td>
-                                                                            @*<td>@familyMember.EducationM</td>
-                                                                            <td>@familyMember.OccupationM</td>
-                                                                            <td>@familyMember.BloodGroup</td>*@
-                                                                        </tr>
+                <input name="tab" id="tab4" type="radio" />
+                <section class="tab-content">
+                    <div class="profile_view_content">
+                        <form asp-action="AddToList" asp-controller="Member" method="post" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="MemberFamilyInfo.MemberFamilyDetails" />
+                            <input type="hidden" asp-for="MemberFamilyInfo.MemberId" />
 
-                                                                    }
+                            @if (ViewBag.MemberList != null)
+                            {
+                                <div class="mt-10 center">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <td>कुटुंबातील व्यक्तीचे नाव</td>
+                                                <td>नाते</td>
+                                                @*<td>शिक्षण </td>
+                                                    <td>कुटुंबातील व्यक्तीचे काम </td>
+                                                    <td>रक्त गट</td>*@
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-                                                                </tbody>
-                                                            </table>
+                                            @foreach (var familyMember in ViewBag.MemberList)
+                                            {
+                                                <tr>
+                                                    <td>@familyMember.NameM</td>
+                                                    <td>@familyMember.RelationM</td>
+                                                    @*<td>@familyMember.EducationM</td>
+                                                        <td>@familyMember.OccupationM</td>
+                                                        <td>@familyMember.BloodGroup</td>*@
+                                                </tr>
 
-                                                        </div>
-                                                    }
-                                        </form>
-                                   </div>
-                                </section>
+                                            }
 
-                                <input name="tab" id="tab5" type="radio" />
-                                <section class="tab-content">
-                                    <div class="profile_view_content">
-                                                <form action="#">
-                                                    <label class="viewprofilelabel">सभासदत्व रक्कम:</label>
-                                                    <span class="vpc">@Model.MemberPaymentInfo.ChagesPaid</span><br />
-                                                    <label class="viewprofilelabel">माध्यम (कॅश / ऑनलाईन / चेक):</label>
-                                                    <span class="vpc">@Model.MemberPaymentInfo.PaymentMode</span><br />
-                                                    <label class="viewprofilelabel">पैसे भरल्याचे नं:</label>
-                                                    <span class="vpc">@Model.MemberPaymentInfo.TransactionNo</span><br />
-                                                    <label class="viewprofilelabel">पैसे भरलेल्याची तारीख:</label>
-                                                    <span class="vpc">@Model.MemberPaymentInfo.TransactionDate</span><br />
-                                                    <label class="viewprofilelabel">पावती क्र:</label>
-                                                    <span class="vpc">@Model.MemberPaymentInfo.RecieptNo</span><br />
-                                                    <label class="viewprofilelabel">सभासद क्रमांक:</label>
-                                                    <span class="vpc">@Model.MemberPaymentInfo.MemberShipIdM</span><br />
-                                                </form>
-                                    </div>
-                                </section>
-                </div>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            }
+                        </form>
+                    </div>
+                </section>
+
+                <input name="tab" id="tab5" type="radio" />
+                <section class="tab-content">
+                    <div class="profile_view_content">
+                        <form action="#">
+                            <label class="viewprofilelabel">सभासदत्व रक्कम:</label>
+                            <span class="vpc">@Model.MemberPaymentInfo.ChagesPaid</span><br />
+                            <label class="viewprofilelabel">माध्यम (कॅश / ऑनलाईन / चेक):</label>
+                            <span class="vpc">@Model.MemberPaymentInfo.PaymentMode</span><br />
+                            <label class="viewprofilelabel">पैसे भरल्याचे नं:</label>
+                            <span class="vpc">@Model.MemberPaymentInfo.TransactionNo</span><br />
+                            <label class="viewprofilelabel">पैसे भरलेल्याची तारीख:</label>
+                            <span class="vpc">@Model.MemberPaymentInfo.TransactionDate</span><br />
+                            <label class="viewprofilelabel">पावती क्र:</label>
+                            <span class="vpc">@Model.MemberPaymentInfo.RecieptNo</span><br />
+                            <label class="viewprofilelabel">सभासद क्रमांक:</label>
+                            <span class="vpc">@Model.MemberPaymentInfo.MemberShipIdM</span><br />
+                        </form>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
+</div>
 
 
