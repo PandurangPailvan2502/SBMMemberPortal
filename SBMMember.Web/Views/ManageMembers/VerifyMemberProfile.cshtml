@@ -47,14 +47,27 @@
                 <tr>
                     <td style="background-color:#7c0053">
                         <div class="photo-container1">
-                            <img src="~/img/Noavatar.png" class="view_prof_i">
-                            <div class="image-upload" style="text-align:center;color:#ffffff">
-                                <label for="file-input">
-                                    edit
-                                    <img src="~/img/upload_icon.png" width="20px" height="15px">
-                                </label>
-                                <input id="file-input" type="file" />
-                            </div>
+                            <form asp-action="UploadProfileImage" asp-controller="OTPVerify" method="post" enctype="multipart/form-data">
+                                <input type="hidden" asp-for="MemberId" />
+                                @if (Model.MemberPersonalInfo.MemberProfileImage != null)
+                                {
+                                    <img src="~/MemberProfileImages/@Model.MemberPersonalInfo.MemberProfileImage.Split('/')[2]" class="view_prof_i">
+                                }
+                                else
+                                {
+                                    <img src="~/img/Noavatar.png" class="view_prof_i">
+                                }
+                                <div class="image-upload" style="text-align:center;color:#ffffff">
+                                    <label for="file-input">
+                                        edit
+                                        <img src="~/img/upload_icon.png" width="20px" height="15px">
+                                    </label>
+                                    <input id="file-input" type="file" asp-for="file" />
+                                </div>
+                                @*<div>
+                                    <button type="submit" style="font-size:10px;">Set profile Image</button>
+                                </div>*@
+                            </form>
                         </div>
                     </td>
                     <td width="100%" style="background-color:#7c0053">
