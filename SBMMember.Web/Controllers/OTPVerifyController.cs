@@ -11,6 +11,8 @@ using SBMMember.Models;
 using SBMMember.Data;
 using Microsoft.Extensions.Configuration;
 using AutoMapper;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace SBMMember.Web.Controllers
 {
@@ -26,6 +28,7 @@ namespace SBMMember.Web.Controllers
         private readonly IConfiguration configuration;
         private readonly IMapper mapper;
         private readonly IMarqueeDataFactory marqueeDataFactory;
+        private IWebHostEnvironment Environment;
         //private static List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
 
         public OTPVerifyController(IMemberDataFactory dataFactory,
@@ -35,7 +38,7 @@ namespace SBMMember.Web.Controllers
             IMemberFamilyDetailsDataFactory memberFamilyDetailsDataFactory,
             IMemberPaymentsDataFactory _paymentsDataFactory,
             SBMMemberDBContext sBMMemberDBContext,
-            IConfiguration _configuration, IMapper _mapper, IMarqueeDataFactory _marqueeDataFactory)
+            IConfiguration _configuration, IMapper _mapper, IMarqueeDataFactory _marqueeDataFactory, IWebHostEnvironment _Environment)
         {
             MemberDataFactory = dataFactory;
             personalDataFactory = memberPersonalDataFactory;
@@ -47,6 +50,7 @@ namespace SBMMember.Web.Controllers
             configuration = _configuration;
             mapper = _mapper;
             marqueeDataFactory = _marqueeDataFactory;
+            Environment = _Environment;
         }
         public IActionResult Index()
         {
@@ -183,6 +187,7 @@ namespace SBMMember.Web.Controllers
             var member = MemberDataFactory.GetDetailsByMemberMobile(_viewModel.MobileNumber);
             if (member.MemberId > 0 && member.Mobile.Trim() == _viewModel.MobileNumber.Trim() && member.Mpin.Trim() == _viewModel.MPIN.Trim())
             {
+                commonViewModel.MemberId = member.MemberId;
                 Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(member.MemberId);
                 MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
                 if (member_Personal.MemberId > 0)
@@ -466,7 +471,25 @@ namespace SBMMember.Web.Controllers
                 personalDataFactory.UpdateMemberPersonalDetails(personalDetails);
             return RedirectToAction("InitialiseMemberRegistration", new { MemberId = model.MemberPersonalInfo.MemberId });
         }
+        public IActionResult UploadProfileImage(MemberFormCommonViewModel commonViewModel)
+        {
+            string path = Path.Combine(this.Environment.WebRootPath, "MemberProfileImages");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string FilePath = $"~/MemberProfileImages/{commonViewModel.file.FileName}";
+            string fileName = Path.GetFileName(commonViewModel.file.FileName);
+            string fullPath = Path.Combine(path, fileName);
+            using (FileStream stream = new FileStream(fullPath, FileMode.Create))
+            {
+                commonViewModel.file.CopyTo(stream);
 
+            }
+            personalDataFactory.UpdateMemberProfileImage(commonViewModel.MemberId, FilePath);
+
+            return RedirectToAction("InitialiseMemberRegistration", new { MemberId = commonViewModel.MemberId });
+        }
         [HttpPost]
         public IActionResult MemberContactInfo(MemberFormCommonViewModel model)
         {

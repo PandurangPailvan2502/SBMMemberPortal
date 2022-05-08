@@ -48,6 +48,9 @@ namespace SBMMember.Web.Mapper
             CreateMap<EventTitlesViewModel, EventTitles>();
             CreateMap<EventTitles, EventTitlesViewModel>();
 
+            CreateMap<MarqueeViewModel, MarqueeText>();
+            CreateMap<MarqueeText, MarqueeViewModel>();
+
         }
     }
 }
