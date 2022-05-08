@@ -11,12 +11,12 @@
         <div class="col-lg-12">
             <div class="container search_result">
                 <div class="row">
-                    <div class="col-xs-3 search_pic">
-                        <div text-align:center">
-                            <img src="@Model.profileImage" class="pic_img">
+                    <div class="col-xs-4 search_pic">
+                        <div sstyle="text-align:center">
+                            <img src="@Model.profileImage" class="matrimony_pic_img">
                         </div>
                     </div>
-                    <div class="col-xs-9 pic_content">
+                    <div class="col-xs-8 pic_content">
                         <div class="container">
                             <div class="row">
                                 <div class="col-xs-10 left-box"><lable class="searchname">@Model.fullName</lable></div>
@@ -30,8 +30,7 @@
                                
                             </div>
                              <div class="row">
-                               <br />
-                                 <div class="col-xs-10 left-box" style="float:right"><a href="@Url.ActionLink("MatrimonyCandidateProfile","Matrimony",new{UserIdId = Model.userId })" class="allviewbtn"><i class="ti-eye"> </i> View</a></div>
+                                 <div class="col-xs-10 left-box" style="float:right; margin-top:10px;margin-bottom:20px"><a href="@Url.ActionLink("MatrimonyCandidateProfile","Matrimony",new{UserIdId = Model.userId })" class="allviewbtn"><i class="ti-eye"> </i> View</a></div>
                             </div>
 
                         </div>
