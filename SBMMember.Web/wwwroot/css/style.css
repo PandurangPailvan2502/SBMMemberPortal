@@ -181,8 +181,8 @@
 @media only screen and (min-width: 1201px) {
     .logo {min-width: 40%;max-width: 43%;margin-left: -127px;float:left;}
 .logo1 {margin-left: -120px;}
-.title-box h2 {font-size:35px}
-.title-box h4 {font-size: 22px;}
+.title-box h2 {font-size:22px;margin-top:5px; text-align:center; margin-left:-47px}
+.title-box h4 {font-size:16px;margin-top:5px; margin-left:-47px}
 .ic {font-size: 35px}
 .scroll p {font-size: 20px}
 .menu-icon {width: 30%}
@@ -196,8 +196,8 @@
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
 .logo {min-width: 40%;max-width: 43%;margin-left: -144px;}
 .logo1 {margin-left: -120px}
-.title-box h2 {font-size: 55px}
-.title-box h4 {font-size: 34px;}
+.title-box h2 {font-size:22px;margin-top:5px; text-align:center; margin-left:-47px}
+.title-box h4 {font-size:16px;margin-top:5px; margin-left:-47px}
 .ic {font-size:18px}
 .scroll p {font-size: 18px}
 .menu-icon {width: 30%}
@@ -210,8 +210,8 @@
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 .logo {min-width: 40%;max-width: 52%;margin-left: -96px;}
 .logo1 {margin-left:-75px;}
-.title-box h2 {font-size: 42px}
-.title-box h4 {font-size:28px;}
+.title-box h2 {font-size:22px;margin-top:5px; text-align:center; margin-left:-47px}
+.title-box h4 {font-size:16px;margin-top:5px; margin-left:-47px}
 .ic {font-size:24px}
 .scroll p {font-size: 16px}
 .menu-icon {width: 30%}
@@ -226,8 +226,8 @@
 .logo { min-width: 70%; max-width: 73%; margin-left: -75px;}
 .logo1 {margin-left: -75px;}
 .logo2 {min-width: 40%;max-width: 43%;margin-left: -144px;}
-.title-box h2 {font-size:30px;}
-.title-box h4 {font-size:22px;}
+.title-box h2 {font-size:22px;margin-top:5px; text-align:center; margin-left:-47px}
+.title-box h4 {font-size:16px;margin-top:5px; margin-left:-47px}
 .ic {font-size:24px}
 .scroll p {font-size: 14px}
 .menu-icon {width: 30%}
@@ -240,8 +240,8 @@
 @media only screen and (max-width: 576px) {
 .logo {min-width: 70%;max-width:85%;margin-left:-58px}
 .logo1 {margin-left: -35px;margin-top:-10px}
-.title-box h2 {font-size:22px;}
-.title-box h4 {font-size:16px;}
+.title-box h2 {font-size:22px;margin-top:5px; text-align:center; margin-left:-47px}
+.title-box h4 {font-size:16px;margin-top:5px; margin-left:-47px}
 .ic {font-size:24px}
 .scroll p {font-size: 12px}
 .menu-icon {width: 30%}
