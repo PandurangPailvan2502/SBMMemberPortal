@@ -47,7 +47,7 @@ namespace SBMMember.Data.DataFactory
                     responseDTO = new ResponseDTO()
                     {
                         Result = "Success",
-                        Message = "Member Admin User details saved successfully."
+                        Message = "Admin User details saved successfully."
                     };
                 }
             }

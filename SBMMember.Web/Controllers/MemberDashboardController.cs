@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using NToastNotify;
 
 namespace SBMMember.Web.Controllers
 {
@@ -39,7 +40,8 @@ namespace SBMMember.Web.Controllers
         private readonly IMarqueeDataFactory marqueeDataFactory;
         private IWebHostEnvironment Environment;
         private readonly IJobPostingDataFactory jobPostingDataFactory;
-       
+        private readonly IToastNotification _toastNotification;
+
         public MemberDashboardController(IMemberDataFactory dataFactory,
             IMemberPersonalDataFactory memberPersonalDataFactory,
             IMemberContactDetailsDataFactory memberContactDetailsDataFactory,
@@ -53,7 +55,7 @@ namespace SBMMember.Web.Controllers
             IConfiguration _configuration,
             IMarqueeDataFactory _marqueeDataFactory,
             IWebHostEnvironment _environment,
-            IJobPostingDataFactory _jobPostingDataFactory)
+            IJobPostingDataFactory _jobPostingDataFactory, IToastNotification toast)
         {
             Logger = logger;
             mapper = Mapper;
@@ -69,6 +71,7 @@ namespace SBMMember.Web.Controllers
             marqueeDataFactory = _marqueeDataFactory;
             Environment = _environment;
             jobPostingDataFactory = _jobPostingDataFactory;
+            _toastNotification = toast;
 
         }
 
@@ -78,14 +81,14 @@ namespace SBMMember.Web.Controllers
 
             List<string> marquess = marqueeDataFactory.GetMarquees().Select(x => x.Marquee).ToList();
             string marqueeText = string.Join(",", marquess);
-            
+
             BannerAndMarqueeViewModel viewModel = new BannerAndMarqueeViewModel()
             {
                 //Banners = BannerHelper.GetBanners(),
                 MarqueeString = marqueeText,
-                NotificationCount=0,
-                NewMemberCount=searchDataFactory.GetRecentMembersCount(),
-                RecentJobCount=jobPostingDataFactory.RecentJobCount()
+                NotificationCount = 0,
+                NewMemberCount = searchDataFactory.GetRecentMembersCount(),
+                RecentJobCount = jobPostingDataFactory.RecentJobCount()
 
             };
             return View(viewModel);
@@ -110,7 +113,11 @@ namespace SBMMember.Web.Controllers
                 commonViewModel.file.CopyTo(stream);
 
             }
-            personalDataFactory.UpdateMemberProfileImage(commonViewModel.MemberId, FilePath);
+            ResponseDTO response = personalDataFactory.UpdateMemberProfileImage(commonViewModel.MemberId, FilePath);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
 
             return RedirectToAction("ProfileUpdate");
         }
@@ -156,9 +163,9 @@ namespace SBMMember.Web.Controllers
             familyInfoview.MemberFamilyDetails = memberFamilies;
             familyInfoview.MemberId = MemberId;
             familyInfoview.IsNew = true;
-            familyInfoview.DOB= familyInfoview.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoview.DOB;
+            familyInfoview.DOB = familyInfoview.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoview.DOB;
             commonViewModel.MemberFamilyInfo = familyInfoview;
-            if(memberFamilies.Count>0)
+            if (memberFamilies.Count > 0)
                 commonViewModel.ProfilePercentage += 20;
 
             Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(MemberId);
@@ -224,19 +231,19 @@ namespace SBMMember.Web.Controllers
                 commonViewModel.ProfilePercentage += 20;
             }
 
-            return View("ProfileUpdate",commonViewModel);
+            return View("ProfileUpdate", commonViewModel);
         }
         public IActionResult EditFamilyMember(int id)
         {
             Member_FamilyDetails member_Family = familyDetailsDataFactory.GetDetailsByMemberId(id);
             MemberFamilyInfoViewModel model = mapper.Map<MemberFamilyInfoViewModel>(member_Family);
 
-            return RedirectToAction("ProfileUpdateForFamily",model);
+            return RedirectToAction("ProfileUpdateForFamily", model);
         }
         public IActionResult DeleteFamilyMember(int id, int memberId)
         {
             familyDetailsDataFactory.DeleteById(id);
-
+            _toastNotification.AddSuccessToastMessage("Family member removed successfully.");
             return RedirectToAction("ProfileUpdate");
         }
         public IActionResult ViewLoggedMemberProfile()
@@ -245,7 +252,7 @@ namespace SBMMember.Web.Controllers
 
             var memberId = User.Claims?.FirstOrDefault(x => x.Type.Equals("MemberId", StringComparison.OrdinalIgnoreCase))?.Value;
             int MemberId = Convert.ToInt32(memberId);
-            commonViewModel.ProfilePercentage=0;
+            commonViewModel.ProfilePercentage = 0;
             Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(MemberId);
             if (member_Personal.MemberId > 0)
             {
@@ -276,7 +283,7 @@ namespace SBMMember.Web.Controllers
             {
                 memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
             }
-            if(memberFamilies.Count>0)
+            if (memberFamilies.Count > 0)
             {
                 commonViewModel.ProfilePercentage += 20;
             }
@@ -294,23 +301,34 @@ namespace SBMMember.Web.Controllers
         public IActionResult MemberPersonalInfo(MemberFormCommonViewModel formCommonViewModel)
         {
             Member_PersonalDetails member_Personal = mapper.Map<Member_PersonalDetails>(formCommonViewModel.MemberPersonalInfo);
-            personalDataFactory.UpdateMemberPersonalDetails(member_Personal);
-
+            ResponseDTO response = personalDataFactory.UpdateMemberPersonalDetails(member_Personal);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("ProfileUpdate");
         }
         [HttpPost]
         public IActionResult MemberContactInfo(MemberFormCommonViewModel formCommonViewModel)
         {
             Member_ContactDetails member_Contact = mapper.Map<Member_ContactDetails>(formCommonViewModel.MemberConatctInfo);
-            contactDetailsDataFactory.UpdateDetails(member_Contact);
+            ResponseDTO response = contactDetailsDataFactory.UpdateDetails(member_Contact);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+
             return RedirectToAction("ProfileUpdate");
         }
         [HttpPost]
         public IActionResult MemberEduEmpInfo(MemberFormCommonViewModel formCommonViewModel)
         {
             Member_EducationEmploymentDetails member_Education = mapper.Map<Member_EducationEmploymentDetails>(formCommonViewModel.MemberEducationEmploymentInfo);
-            educationEmploymentDataFactory.UpdateDetails(member_Education);
-
+            ResponseDTO response = educationEmploymentDataFactory.UpdateDetails(member_Education);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("ProfileUpdate");
         }
         [HttpPost]
@@ -318,11 +336,17 @@ namespace SBMMember.Web.Controllers
         {
             if (Request.Method == HttpMethods.Post)
             {
+                ResponseDTO response = new ResponseDTO();
                 Member_FamilyDetails member_Family = mapper.Map<Member_FamilyDetails>(model.MemberFamilyInfo);
                 if (model.MemberFamilyInfo.IsNew)
-                    familyDetailsDataFactory.AddDetails(member_Family);
+                  response=  familyDetailsDataFactory.AddDetails(member_Family);
                 else
-                    familyDetailsDataFactory.UpdateDetails(member_Family);
+                  response=  familyDetailsDataFactory.UpdateDetails(member_Family);
+
+                if (response.Result == "Success")
+                    _toastNotification.AddSuccessToastMessage(response.Message);
+                else
+                    _toastNotification.AddErrorToastMessage(response.Message);
             }
             ModelState.Clear();
 
@@ -469,10 +493,10 @@ namespace SBMMember.Web.Controllers
         public IActionResult MemberBloodGroupSearch()
         {
             List<string> areas = personalDataFactory.GetDistinctAreas().OrderBy(x => x).ToList();
-            List<string> cities = personalDataFactory.GetDistinctCities().OrderBy(x=>x).ToList();
+            List<string> cities = personalDataFactory.GetDistinctCities().OrderBy(x => x).ToList();
             MemberBloodGroupSearchViewModel viewModel = new MemberBloodGroupSearchViewModel()
             {
-                Areas = areas.Select(x=>new SelectListItem() { Value=x,Text=x}).ToList(),
+                Areas = areas.Select(x => new SelectListItem() { Value = x, Text = x }).ToList(),
                 Cities = cities.Select(x => new SelectListItem() { Value = x, Text = x }).ToList()
             };
             viewModel.Areas.Insert(0, new SelectListItem() { Text = " Select Area ", Value = "0" });
@@ -491,7 +515,7 @@ namespace SBMMember.Web.Controllers
             searchViewModel.Cities.Insert(0, new SelectListItem() { Text = " Select City ", Value = "0" });
 
             Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
-            if (searchViewModel.BloodGroup!="0")
+            if (searchViewModel.BloodGroup != "0")
                 keyValuePairs.Add("BloodGroup", searchViewModel.BloodGroup);
             if (searchViewModel.Gender != "0")
                 keyValuePairs.Add("Gender", searchViewModel.Gender);
@@ -521,7 +545,7 @@ namespace SBMMember.Web.Controllers
         {
             MemberFormCommonViewModel commonViewModel = new MemberFormCommonViewModel();
 
-           // var memberId = User.Claims?.FirstOrDefault(x => x.Type.Equals("MemberId", StringComparison.OrdinalIgnoreCase))?.Value;
+            // var memberId = User.Claims?.FirstOrDefault(x => x.Type.Equals("MemberId", StringComparison.OrdinalIgnoreCase))?.Value;
             //int MemberId = Convert.ToInt32(memberId);
 
             Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(MemberId);

@@ -48,86 +48,93 @@
     <script src="~/js/waypoints.min.js"></script>
     <!-- custom js -->
     <script src="~/js/custom.js"></script>
+   
+
+    
+
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
 </head>
 
 <body>
     <!--------------profile name top bar---------------->
-  <div class="container">
-    <div class="row">
-        <div class="col-lg-12">
-            <!------------icon dashbaord row-1--------------->
-            <div class="container">
-                <div class="row ">
-                    <div class="col-xs-3 logo-box">
-                        <a asp-controller="AdminDashboard" asp-action="AdminHome">  <img src="~/img/sbm logo-1.png" width="80px" height="80px" class="logo1"></a>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!------------icon dashbaord row-1--------------->
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-xs-3 logo-box">
+                            <a asp-controller="AdminDashboard" asp-action="AdminHome">  <img src="~/img/sbm logo-1.png" width="80px" height="80px" class="logo1"></a>
+                        </div>
+                        <div class="col-xs-6 title-box">
+                            <h2>समता भ्रातृ मंडळ</h2>
+                            <h4>(पिंपरी चिंचवड, पुणे)</h4>
+                        </div>
+                        <div class="col-xs-3 toolbar">
+                            <a asp-action="Logout" asp-controller="AdminLogin" class="logout-btn"><i class="ti-power-off"></i></a>
+                        </div>
                     </div>
-                    <div class="col-xs-6 title-box">
-                        <h2>समता भ्रातृ मंडळ</h2>
-                        <h4>(पिंपरी चिंचवड, पुणे)</h4>
-                    </div>
-                    <div class="col-xs-3 toolbar">
-                        <a asp-action="Logout" asp-controller="AdminLogin" class="logout-btn"><i class="ti-power-off"></i></a>
+                    <div class="row ">
+                        <div class="col-xs-6 ">
+                            <div class="text-left">
+                                <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#exampleModal">
+                                    <img src="~/img/threeline.jpg" class="menu-icon">
+                                </button>
+                                <!--img src="sbm logo-1.png" class="logo"-->
+                            </div>
+                        </div>
+                        <div class="col-xs-6 user-pr" style="margin-top:15px; margin-left:20px">
+                            <label>Welcome <span style="color:#7c0053;font-weight:bold">@User.Identity.Name</span></label><br />
+                        </div>
                     </div>
                 </div>
-                <div class="row ">
-                    <div class="col-xs-6 ">
-                    <div class="text-left">
-                        <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#exampleModal">
-                         <img src="~/img/threeline.jpg" class="menu-icon">
-                        </button>
-                        <!--img src="sbm logo-1.png" class="logo"-->
-                      </div>
-                    </div>
-                    <div class="col-xs-6 user-pr" style="margin-top:15px; margin-left:20px" >
-                    <label>Welcome <span style="color:#7c0053;font-weight:bold">@User.Identity.Name</span></label><br />
-                    </div>
-               </div>
+                <!------------End of icon dashbaord row-1--------------->
             </div>
-            <!------------End of icon dashbaord row-1--------------->
         </div>
+
+
+
+
     </div>
-    
-    
 
-
-</div>
-    
     <!----------------------end of scroll bar---------------->
+    @await Component.InvokeAsync("NToastNotify")
     <div class="seperate"></div>
     @RenderBody()
 
-  <div class="container demo" style="margin-top:50px">
-    <div class="modal left fade" id="exampleModal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body" style="margin-top:70px">
-                    <div class="nav flex-sm-column no-flex">
-                       <ul>
-                        <li style="list-style:none;"><a asp-action="Index" asp-controller="AdminDashboard" class="nav-item nav-link active">Home</a></li>
-                        <li style="list-style:none;"><a asp-action="ManageMembers" asp-controller="AdminDashboard" class="nav-item nav-link">Manage Members</a></li>
-                        <li style="list-style:none;"><a asp-action="JobPost" asp-controller="AdminDashboard" class="nav-item nav-link">Manage Jobs</a></li>
-                        <li style="list-style:none;"><a asp-action="ManageEvents" asp-controller="AdminDashboard" class="nav-item nav-link">Manage Events</a></li>
-                        <li style="list-style:none;"><a asp-action="AddBusiness" asp-controller="AdminDashboard" class="nav-item nav-link">Manage Businesses</a></li>
-                        <li style="list-style:none;"><a asp-action="AddEventAds" asp-controller="AdminDashboard" class="nav-item nav-link">Manage Advertisements</a></li>
-                        <li style="list-style:none;"><a asp-action="ManageBanners" asp-controller="Banner" class="nav-item nav-link">Manage Scrolling Ads</a></li>
-                        <li style="list-style:none;"><a asp-action="ManageAdminUsers" asp-controller="AdminUsers" class="nav-item nav-link">Manager Super Users</a></li>
-                        <li style="list-style:none;"><a asp-action="ManaageMarquees" asp-controller="Marquee" class="nav-item nav-link">Manage Marque text</a></li>
-                        <li style="list-style:none;"><a asp-action="Logout" asp-controller="AdminLogin" class="nav-item nav-link">Logout</a></li>
-                        
-                        </ul>
+    <div class="container demo" style="margin-top:50px">
+        <div class="modal left fade" id="exampleModal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body" style="margin-top:70px">
+                        <div class="nav flex-sm-column no-flex">
+                            <ul>
+                                <li style="list-style:none;"><a asp-action="AdminHome" asp-controller="AdminDashboard" class="nav-item nav-link active">Home</a></li>
+                                <li style="list-style:none;"><a asp-action="ManageMembers" asp-controller="AdminDashboard" class="nav-item nav-link">Manage Members</a></li>
+                                <li style="list-style:none;"><a asp-action="JobPost" asp-controller="AdminDashboard" class="nav-item nav-link">Manage Jobs</a></li>
+                                <li style="list-style:none;"><a asp-action="ManageEvents" asp-controller="AdminDashboard" class="nav-item nav-link">Manage Events</a></li>
+                                <li style="list-style:none;"><a asp-action="AddBusiness" asp-controller="AdminDashboard" class="nav-item nav-link">Manage Businesses</a></li>
+                                <li style="list-style:none;"><a asp-action="AddEventAds" asp-controller="AdminDashboard" class="nav-item nav-link">Manage Advertisements</a></li>
+                                <li style="list-style:none;"><a asp-action="ManageBanners" asp-controller="Banner" class="nav-item nav-link">Manage Scrolling Ads</a></li>
+                                <li style="list-style:none;"><a asp-action="ManageAdminUsers" asp-controller="AdminUsers" class="nav-item nav-link">Manager Super Users</a></li>
+                                <li style="list-style:none;"><a asp-action="ManaageMarquees" asp-controller="Marquee" class="nav-item nav-link">Manage Marque text</a></li>
+                                <li style="list-style:none;"><a asp-action="Logout" asp-controller="AdminLogin" class="nav-item nav-link">Logout</a></li>
+
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-  </div>  
-   
+
 </body>
 
 </html>

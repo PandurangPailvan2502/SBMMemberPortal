@@ -9,15 +9,15 @@ using SBMMember.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using SBMMember.Web.Helper;
-
+using NToastNotify;
 namespace SBMMember.Web.Controllers
 {
-   // [Authorize]
+    // [Authorize]
     public class ManageMembersController : Controller
     {
         private readonly IMemberDataFactory memberDataFactory;
         private readonly IMemberSearchDataFactory memberSearchDataFactory;
-        
+
         private readonly IMemberPersonalDataFactory personalDataFactory;
         private readonly IMemberContactDetailsDataFactory contactDetailsDataFactory;
         private readonly IMemberEducationEmploymentDataFactory educationEmploymentDataFactory;
@@ -26,6 +26,7 @@ namespace SBMMember.Web.Controllers
         private readonly IMapper mapper;
         private readonly IMemberFormStatusDataFactory formStatusDataFactory;
         private readonly IEventTitlesDataFactory eventTitlesDataFactory;
+        private readonly IToastNotification _toastNotification;
         public ManageMembersController(IMemberDataFactory dataFactory,
             IMemberSearchDataFactory searchDataFactory,
             IMemberPersonalDataFactory _personalDataFactory,
@@ -35,7 +36,8 @@ namespace SBMMember.Web.Controllers
             IMemberPaymentsDataFactory _paymentsDataFactory,
             IMapper _mapper,
             IMemberFormStatusDataFactory _formStatusDataFactory,
-            IEventTitlesDataFactory _eventTitlesDataFactory
+            IEventTitlesDataFactory _eventTitlesDataFactory,
+            IToastNotification toast
             )
         {
             memberDataFactory = dataFactory;
@@ -48,6 +50,7 @@ namespace SBMMember.Web.Controllers
             mapper = _mapper;
             formStatusDataFactory = _formStatusDataFactory;
             eventTitlesDataFactory = _eventTitlesDataFactory;
+            _toastNotification = toast;
         }
         public IActionResult MemberList()
         {
@@ -139,30 +142,37 @@ namespace SBMMember.Web.Controllers
             paymentViewModel.LastMemberShipId = paymentsDataFactory.LastMembershipNo();
             commonViewModel.MemberPaymentInfo = paymentViewModel;
 
-            return View("VerifyMemberProfile",commonViewModel);
+            return View("VerifyMemberProfile", commonViewModel);
             //return  RedirectToAction("NewMemberList");
         }
         public IActionResult EditFamilyMember(int id)
         {
             Member_FamilyDetails member_Family = familyDetailsDataFactory.GetDetailsByMemberId(id);
             MemberFamilyInfoViewModel model = mapper.Map<MemberFamilyInfoViewModel>(member_Family);
-            
+
             return RedirectToAction("VerifyMemberProfileNew", model);
         }
-        public IActionResult DeleteFamilyMember(int id,int memberId)
+        public IActionResult DeleteFamilyMember(int id, int memberId)
         {
             familyDetailsDataFactory.DeleteById(id);
+            _toastNotification.AddSuccessToastMessage("Family member removed successfully.");
             return RedirectToAction("VerifyMemberProfile", new { MemberId = memberId });
         }
         public IActionResult AddToList(MemberFormCommonViewModel commonViewModel)
         {
             Member_FamilyDetails member_Family = mapper.Map<Member_FamilyDetails>(commonViewModel.MemberFamilyInfo);
+            ResponseDTO response = new ResponseDTO();
             if (commonViewModel.MemberFamilyInfo.IsNew)
-                familyDetailsDataFactory.AddDetails(member_Family);
+                response = familyDetailsDataFactory.AddDetails(member_Family);
             else
-                familyDetailsDataFactory.UpdateDetailsNoTranslation(member_Family);
+                response = familyDetailsDataFactory.UpdateDetailsNoTranslation(member_Family);
 
-            return RedirectToAction("VerifyMemberProfile",new { MemberId= commonViewModel.MemberFamilyInfo.MemberId });
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+
+            return RedirectToAction("VerifyMemberProfile", new { MemberId = commonViewModel.MemberFamilyInfo.MemberId });
         }
         //public IActionResult ApproveMemberProfile(int memberId)
         //{
@@ -173,31 +183,46 @@ namespace SBMMember.Web.Controllers
         public IActionResult MemberPersonalInfo(MemberFormCommonViewModel formCommonViewModel)
         {
             Member_PersonalDetails member_Personal = mapper.Map<Member_PersonalDetails>(formCommonViewModel.MemberPersonalInfo);
-            personalDataFactory.UpdateMemberPersonalDetailsNoTranslation(member_Personal);
+            ResponseDTO response = personalDataFactory.UpdateMemberPersonalDetailsNoTranslation(member_Personal);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("VerifyMemberProfile", new { MemberId = formCommonViewModel.MemberPersonalInfo.MemberId });
         }
         [HttpPost]
         public IActionResult MemberContactInfo(MemberFormCommonViewModel formCommonViewModel)
         {
             Member_ContactDetails member_Contact = mapper.Map<Member_ContactDetails>(formCommonViewModel.MemberConatctInfo);
-            contactDetailsDataFactory.UpdateDetailsNoTransalation(member_Contact);
-            return RedirectToAction("VerifyMemberProfile",new { MemberId = formCommonViewModel.MemberConatctInfo.MemberId });
+            ResponseDTO response = contactDetailsDataFactory.UpdateDetailsNoTransalation(member_Contact);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+            return RedirectToAction("VerifyMemberProfile", new { MemberId = formCommonViewModel.MemberConatctInfo.MemberId });
         }
 
         [HttpPost]
         public IActionResult MemberEduEmpInfo(MemberFormCommonViewModel formCommonViewModel)
         {
             Member_EducationEmploymentDetails member_Education = mapper.Map<Member_EducationEmploymentDetails>(formCommonViewModel.MemberEducationEmploymentInfo);
-            educationEmploymentDataFactory.UpdateDetailsNoTranslation(member_Education);
-
+            ResponseDTO response = educationEmploymentDataFactory.UpdateDetailsNoTranslation(member_Education);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("VerifyMemberProfile", formCommonViewModel.MemberEducationEmploymentInfo.MemberId);
-        } 
+        }
         [HttpPost]
         public IActionResult MemberPaymentInfo(MemberFormCommonViewModel memberFormCommon)
         {
             Member_PaymentsAndReciepts member_Payments = mapper.Map<Member_PaymentsAndReciepts>(memberFormCommon.MemberPaymentInfo);
-            paymentsDataFactory.UpdateDetails(member_Payments);
-            return RedirectToAction("VerifyMemberProfile",new { MemberId = memberFormCommon.MemberPaymentInfo.MemberId });
+            ResponseDTO response = paymentsDataFactory.UpdateDetails(member_Payments);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+            return RedirectToAction("VerifyMemberProfile", new { MemberId = memberFormCommon.MemberPaymentInfo.MemberId });
         }
         [HttpPost]
         public IActionResult MarkVerify(MemberFormCommonViewModel model)
@@ -208,6 +233,7 @@ namespace SBMMember.Web.Controllers
             formStatus.FormStatus = "Verified";
             formStatusDataFactory.UpdateDetails(formStatus);
             //return RedirectToAction("VerifyMemberProfile", new { MemberId = model.MemberId });
+            _toastNotification.AddSuccessToastMessage("Member successfully verified.");
             return RedirectToAction("NewMemberList");
         }
 
@@ -219,7 +245,7 @@ namespace SBMMember.Web.Controllers
             Members member = memberDataFactory.GetDetailsByMemberId(memberId);
             string memberName = $"{member.FirstName} {member.LastName}";
             string smstemp = $"Dear {memberName}, your membership is approved & activated by our team. {member_Payments.MembershipId} is your membership number. You can login to our official android app & enjoy the exclusive features by Samata Bhratru Mandal (PCMC Pune). Toll Free 02071173733.";
-            if(member!=null && member.MemberId>0)
+            if (member != null && member.MemberId > 0)
             {
                 SMSHelper.SendSMS(member.Mobile, smstemp);
             }
@@ -228,10 +254,11 @@ namespace SBMMember.Web.Controllers
             formStatus.FormStatus = "Approved";
             formStatusDataFactory.UpdateDetails(formStatus);
             //return RedirectToAction("VerifyMemberProfile", new { MemberId = model.MemberId });
+            _toastNotification.AddSuccessToastMessage("Membership approved successfully.");
             return RedirectToAction("NewMemberList");
         }
 
 
-       
+
     }
 }
