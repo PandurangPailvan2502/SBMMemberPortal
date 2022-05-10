@@ -194,6 +194,7 @@
 .event_pic_img {width:50%}
 .matrimony_pic_img{width:100px; height:110px}
 .blood_pic_img {width:100px; height:110px}
+.whatsapp1 {width:25px; height:25px}
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -212,6 +213,7 @@
 .event_pic_img {width:55%}
 .matrimony_pic_img{width:100px; height:110px}
 .blood_pic_img {width:100px; height:110px}
+.whatsapp1 {width:25px; height:25px}
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 .logo {min-width: 40%;max-width: 52%;margin-left: -96px;}
@@ -229,6 +231,7 @@
 .event_pic_img {width:100%}
 .matrimony_pic_img{width:100px; height:110px}
 .blood_pic_img {width:100px; height:110px}
+.whatsapp1 {width:25px; height:25px}
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -248,6 +251,7 @@
 .event_pic_img {width:100%}
 .matrimony_pic_img{width:100px; height:110px}
 .blood_pic_img {width:100px; height:110px}
+.whatsapp1 {width:25px; height:25px}
 }
 @media only screen and (max-width: 576px) {
 .logo {min-width: 70%;max-width:85%;margin-left:-58px}
@@ -266,6 +270,7 @@
 .searchname {font-weight: bold;font-size:16px;text-align:center; margin:5px 0px 5px 0px;}
 .matrimony_pic_img{width:100px; height:110px}
 .blood_pic_img {width:80px; height:110px}
+.whatsapp1 {width:25px; height:25px}
 }
 
 

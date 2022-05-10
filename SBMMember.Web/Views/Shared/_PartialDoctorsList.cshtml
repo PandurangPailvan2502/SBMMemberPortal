@@ -16,11 +16,11 @@
                         <div style="text-align:center">
                             @if (Model.Gender == "Male")
                             {
-                                <img src="~/img/doctor.png" class="pic_img">
+                                <img src="~/img/doctor.png" class="blood_pic_img">
                             }
                             else
                             {
-                                <img src="~/img/doctor_female.jpg" class="pic_img">
+                                <img src="~/img/doctor_female.jpg" class="blood_pic_img">
                             }
                         </div>
                     </div>
@@ -43,8 +43,8 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-xs-10">
-                                    <br />
+                                <div class="col-xs-10" style="margin-top:10px;margin-bottom:10px;float:left;margin-left:-10px;">
+                                   
                                     <a href="@Url.ActionLink("ViewMemberProfile","MemberDashboard",new{MemberId = Model.MemberId })" class="allviewbtn"><i class="ti-eye"></i> View</a>
                                 </div>
                             </div>
