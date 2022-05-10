@@ -14,6 +14,7 @@ namespace SBMMember.Web.Models
         public int NotificationCount { get; set; }
         public int NewMemberCount { get; set; }
         public int RecentJobCount { get; set; }
+        public MemberMeetings MemberMeeting { get; set; }
         public List<UpcomingEvent> EventInfos { get; set; }
     }
 }

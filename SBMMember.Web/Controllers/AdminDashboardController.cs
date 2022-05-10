@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Hosting;
 using SBMMember.Web.Helper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NToastNotify;
+//using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace SBMMember.Web.Controllers
 {
@@ -27,8 +29,12 @@ namespace SBMMember.Web.Controllers
         private IWebHostEnvironment Environment;
         private readonly IUpcomingEventsDataFactory upcomingEventsDataFactory;
         private readonly IEventTitlesDataFactory eventTitlesDataFactory;
+        // private readonly INotyfService _notyf;
+        private readonly IToastNotification _toastNotification;
+        private readonly IMemberMeetingsDataFactory meetingsDataFactory;
         public AdminDashboardController(IMemberBusinessDataFactory dataFactory, IMapper _mapper, IJobPostingDataFactory _jobPostingDataFactory, IEventDataFactory _eventDataFactory, IWebHostEnvironment hostEnvironment,
-            IEventAdsDataFactory adsDataFactory, IUpcomingEventsDataFactory _upcomingEventsDataFactory, IEventTitlesDataFactory _eventTitlesDataFactory)
+            IEventAdsDataFactory adsDataFactory, IUpcomingEventsDataFactory _upcomingEventsDataFactory, IEventTitlesDataFactory _eventTitlesDataFactory,
+            IToastNotification toast,IMemberMeetingsDataFactory memberMeetings)
         {
             businessDataFactory = dataFactory;
             mapper = _mapper;
@@ -38,6 +44,9 @@ namespace SBMMember.Web.Controllers
             eventAdsDataFactory = adsDataFactory;
             upcomingEventsDataFactory = _upcomingEventsDataFactory;
             eventTitlesDataFactory = _eventTitlesDataFactory;
+            _toastNotification = toast;
+            meetingsDataFactory = memberMeetings;
+            //_notyf = notyf;
         }
         public IActionResult AdminHome()
         {
@@ -62,7 +71,14 @@ namespace SBMMember.Web.Controllers
         }
         public IActionResult DeleteJobPosting(int Id)
         {
-            jobPostingDataFactory.DeleteJobDetails(Id);
+
+            ResponseDTO response = jobPostingDataFactory.DeleteJobDetails(Id);
+            if (response.Result == "Success")
+            {
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            }
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("JobPost");
         }
         public IActionResult JobEdit(int Id)
@@ -70,6 +86,8 @@ namespace SBMMember.Web.Controllers
             JobPostings job = jobPostingDataFactory.GetJobDetails(Id);
             JobPostingViewModel model = mapper.Map<JobPostingViewModel>(job);
             ViewBag.EditMode = "Yes";
+            // _notyf.Success($"{job.JobTitle} updated successfully.");
+
             return View("JobEdit", model);
         }
         [HttpPost]
@@ -79,13 +97,21 @@ namespace SBMMember.Web.Controllers
             jobPostingDataFactory.UpdateJobDetails(job);
 
             ModelState.Clear();
+            // Alert($"{job.JobTitle} updated successfully.", Enum.NotificationType.success);
+            _toastNotification.AddSuccessToastMessage($"{job.JobTitle} updated successfully.");
             return RedirectToAction("JobPost");
         }
         [HttpPost]
         public IActionResult JobPost(JobPostingViewModel model)
         {
             JobPostings job = mapper.Map<JobPostings>(model);
-            jobPostingDataFactory.AddJobDetails(job);
+            ResponseDTO response = jobPostingDataFactory.AddJobDetails(job);
+            if (response.Result == "Success")
+            {
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            }
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
 
             ModelState.Clear();
             List<JobPostings> jobPostings = jobPostingDataFactory.GetJobPostings();
@@ -125,7 +151,11 @@ namespace SBMMember.Web.Controllers
             var memberId = User.Claims?.FirstOrDefault(x => x.Type.Equals("MemberId", StringComparison.OrdinalIgnoreCase))?.Value;
             int MemberId = Convert.ToInt32(memberId);
             member_Business.MemberId = MemberId;
-            businessDataFactory.AddDetails(member_Business);
+            ResponseDTO response = businessDataFactory.AddDetails(member_Business);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
 
             //return View();
             List<Member_BusinessDetails> buisnessList = businessDataFactory.GetAllBusinessDetails();
@@ -143,7 +173,11 @@ namespace SBMMember.Web.Controllers
         }
         public IActionResult DeleteBusiness(int Id)
         {
-            businessDataFactory.DeleteDetailsById(Id);
+            ResponseDTO response = businessDataFactory.DeleteDetailsById(Id);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("AddBusiness");
         }
         public IActionResult EditBusiness(int Id)
@@ -157,7 +191,12 @@ namespace SBMMember.Web.Controllers
         public IActionResult EditBusiness(MemberBusinessViewModel model)
         {
             Member_BusinessDetails member_Business = mapper.Map<Member_BusinessDetails>(model);
-            businessDataFactory.UpdateDetails(member_Business);
+            ResponseDTO response = businessDataFactory.UpdateDetails(member_Business);
+
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("AddBusiness");
         }
         public IActionResult AddEvent()
@@ -165,8 +204,8 @@ namespace SBMMember.Web.Controllers
             EventViewModel viewModel = new EventViewModel()
             {
                 EventInfos = eventDataFactory.GetAllEventList(),
-               EventTitles = eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList(),
-               EventYears=YearHelper.GetYears()
+                EventTitles = eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList(),
+                EventYears = YearHelper.GetYears()
             };
             //viewModel.EventNameM = TranslationHelper.Translate("Samata Bhratru");
             viewModel.EventTitles.Insert(0, new SelectListItem() { Text = " Select Event Title ", Value = "0" });
@@ -210,11 +249,13 @@ namespace SBMMember.Web.Controllers
                 eventDataFactory.AddEventGallery(gallery);
             }
             ModelState.Clear();
+            _toastNotification.AddSuccessToastMessage("Event details added Successfully.");
             return View();
         }
         public IActionResult DeleteEvent(int Id)
         {
             eventDataFactory.DeleteEventInfo(Id);
+            _toastNotification.AddSuccessToastMessage("Event Ino deleted successfully.");
             return RedirectToAction("AddEvent");
         }
         public IActionResult EditEvent(int Id)
@@ -243,6 +284,7 @@ namespace SBMMember.Web.Controllers
 
             };
             eventDataFactory.UpdateEventInfo(eventInfo);
+            _toastNotification.AddSuccessToastMessage("EventInfo Added successfully");
             return RedirectToAction("AddEvent");
         }
         public IActionResult ManageMembers()
@@ -254,9 +296,9 @@ namespace SBMMember.Web.Controllers
             EventAdsViewModel adsViewModel = new EventAdsViewModel()
             {
                 EventAds = eventAdsDataFactory.GetAllEventAds(),
-                EventTitles= eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList(),
-                EventYears=YearHelper.GetYears()
-        };
+                EventTitles = eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList(),
+                EventYears = YearHelper.GetYears()
+            };
             adsViewModel.EventTitles.Insert(0, new SelectListItem() { Text = " Select Event Title ", Value = "0" });
             return View(adsViewModel);
         }
@@ -284,7 +326,11 @@ namespace SBMMember.Web.Controllers
                 model.file.CopyTo(stream);
 
             }
-            eventAdsDataFactory.AddEventAds(eventAds);
+            ResponseDTO response = eventAdsDataFactory.AddEventAds(eventAds);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             ModelState.Clear();
             EventAdsViewModel adsViewModel = new EventAdsViewModel()
             {
@@ -298,7 +344,11 @@ namespace SBMMember.Web.Controllers
         }
         public IActionResult DeleteEventAd(int Id)
         {
-            eventAdsDataFactory.DeleteEventAds(Id);
+            ResponseDTO response = eventAdsDataFactory.DeleteEventAds(Id);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("AddEventAds");
         }
         public IActionResult EditEventAd(int Id)
@@ -317,7 +367,11 @@ namespace SBMMember.Web.Controllers
                 EventYear = model.EventYear,
                 FilePath = model.file != null ? $"~/EventAds/{model.file.FileName}" : model.FilePath
             };
-            eventAdsDataFactory.UpdateEventAds(eventAds);
+            ResponseDTO response = eventAdsDataFactory.UpdateEventAds(eventAds);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             if (model.file != null)
             {
                 string path = Path.Combine(this.Environment.WebRootPath, "EventAds");
@@ -363,7 +417,11 @@ namespace SBMMember.Web.Controllers
         public IActionResult UpcomingEvents(UpcomingEventsViewModel model)
         {
             UpcomingEvent upcomingEvents = mapper.Map<UpcomingEvent>(model);
-            upcomingEventsDataFactory.AddDetails(upcomingEvents);
+            ResponseDTO response = upcomingEventsDataFactory.AddDetails(upcomingEvents);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("UpcomingEvents");
         }
         public IActionResult EditUpcomingEvent(int id)
@@ -377,13 +435,18 @@ namespace SBMMember.Web.Controllers
         {
 
             UpcomingEvent upcoming = mapper.Map<UpcomingEvent>(viewModel);
-            upcomingEventsDataFactory.UpdateDetails(upcoming);
+            ResponseDTO response = upcomingEventsDataFactory.UpdateDetails(upcoming);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("UpcomingEvents");
         }
 
         public IActionResult DeleteUpcomingEvent(int id)
         {
             upcomingEventsDataFactory.DeleteById(id);
+            _toastNotification.AddSuccessToastMessage($"Event details removed successfully.");
             return RedirectToAction("UpcomingEvents");
         }
 
@@ -401,7 +464,11 @@ namespace SBMMember.Web.Controllers
         public IActionResult AddEventTitle(EventTitlesViewModel titlesViewModel)
         {
             EventTitles eventTitles = mapper.Map<EventTitles>(titlesViewModel);
-            eventTitlesDataFactory.AddDetails(eventTitles);
+            ResponseDTO response = eventTitlesDataFactory.AddDetails(eventTitles);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("EventTitles");
         }
 
@@ -415,14 +482,73 @@ namespace SBMMember.Web.Controllers
         public IActionResult EditEventTitle(EventTitlesViewModel titlesViewModel)
         {
             EventTitles title = mapper.Map<EventTitles>(titlesViewModel);
-            eventTitlesDataFactory.UpdateDetails(title);
+            ResponseDTO response = eventTitlesDataFactory.UpdateDetails(title);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("EventTitles");
         }
 
         public IActionResult DeleteEventTitle(int id)
         {
-            eventTitlesDataFactory.DeleteEventTitle(id);
+          ResponseDTO response=  eventTitlesDataFactory.DeleteEventTitle(id);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("EventTitles");
+        }
+
+        public IActionResult MemberMeetings()
+        {
+            MemberMeetingsViewModel viewModel = new MemberMeetingsViewModel()
+            {
+                MemberMeetings = meetingsDataFactory.GetMemberMeetings(),
+                MeetingDate = DateTime.Now
+            };
+            return View(viewModel);
+        }
+        [HttpPost]
+        public IActionResult AddMemberMeeting(MemberMeetingsViewModel model)
+        {
+            MemberMeetings meetings = mapper.Map<MemberMeetings>(model);
+            ResponseDTO response = meetingsDataFactory.AddMeetingDetails(meetings);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+            return RedirectToAction("MemberMeetings");
+        }
+
+        public IActionResult EditMeeting(int Id)
+        {
+            MemberMeetings meetings = meetingsDataFactory.GetMemberMeetingById(Id);
+            MemberMeetingsViewModel model = mapper.Map<MemberMeetingsViewModel>(meetings);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditMeeting(MemberMeetingsViewModel viewModel)
+        {
+            MemberMeetings meetings = mapper.Map<MemberMeetings>(viewModel);
+            ResponseDTO response = meetingsDataFactory.UpdateMeetingDetails(meetings);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+            return RedirectToAction("MemberMeetings");
+        }
+
+        public IActionResult DeleteMeeting(int Id)
+        {
+            ResponseDTO response = meetingsDataFactory.DeleteMeetingDetails(Id);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+            return RedirectToAction("MemberMeetings");
         }
     }
 }

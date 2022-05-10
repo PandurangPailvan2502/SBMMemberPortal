@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
+using NToastNotify;
+//using AspNetCoreHero.ToastNotification;
 
 namespace SBMMember.Web
 {
@@ -71,6 +73,14 @@ namespace SBMMember.Web
             services.AddScoped<IMarqueeDataFactory, MarqueeDataFactory>();
             services.AddScoped<IUpcomingEventsDataFactory, UpcomingEventsDataFactory>();
             services.AddScoped<IEventTitlesDataFactory, EventTitlesDataFactory>();
+            services.AddScoped<IMemberMeetingsDataFactory, MemberMeetingsDataFactory>();
+            // services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
+           services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
+           {
+               ProgressBar = true,
+               Timeout = 5000
+           });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -101,7 +111,7 @@ namespace SBMMember.Web
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseNToastNotify();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

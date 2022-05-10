@@ -13,7 +13,7 @@ using Microsoft.Extensions.Configuration;
 using AutoMapper;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
-
+using NToastNotify;
 namespace SBMMember.Web.Controllers
 {
     public class OTPVerifyController : Controller
@@ -29,6 +29,7 @@ namespace SBMMember.Web.Controllers
         private readonly IMapper mapper;
         private readonly IMarqueeDataFactory marqueeDataFactory;
         private IWebHostEnvironment Environment;
+        private IToastNotification _toastNotification;
         //private static List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
 
         public OTPVerifyController(IMemberDataFactory dataFactory,
@@ -38,7 +39,7 @@ namespace SBMMember.Web.Controllers
             IMemberFamilyDetailsDataFactory memberFamilyDetailsDataFactory,
             IMemberPaymentsDataFactory _paymentsDataFactory,
             SBMMemberDBContext sBMMemberDBContext,
-            IConfiguration _configuration, IMapper _mapper, IMarqueeDataFactory _marqueeDataFactory, IWebHostEnvironment _Environment)
+            IConfiguration _configuration, IMapper _mapper, IMarqueeDataFactory _marqueeDataFactory, IWebHostEnvironment _Environment, IToastNotification toast)
         {
             MemberDataFactory = dataFactory;
             personalDataFactory = memberPersonalDataFactory;
@@ -51,6 +52,7 @@ namespace SBMMember.Web.Controllers
             mapper = _mapper;
             marqueeDataFactory = _marqueeDataFactory;
             Environment = _Environment;
+            _toastNotification = toast;
         }
         public IActionResult Index()
         {
@@ -77,7 +79,7 @@ namespace SBMMember.Web.Controllers
                     MarqueeString = string.Join(", ", marqueetxt)
                 };
                 ViewBag.AlreadyRegistered = $"{mobile} is already registered.Try with another number. OR Use below login option to submit remaining form details";
-                return View("Index",model);
+                return View("Index", model);
 
             }
             else
@@ -198,7 +200,7 @@ namespace SBMMember.Web.Controllers
                 else
                     perosnalInfoViewModel.IsNew = true;
                 perosnalInfoViewModel.MemberId = member.MemberId;
-                perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate==DateTime.MinValue? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
+                perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate == DateTime.MinValue ? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
                 commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
 
                 Member_ContactDetails member_contact = contactDetailsDataFactory.GetDetailsByMemberId(member.MemberId);
@@ -227,17 +229,17 @@ namespace SBMMember.Web.Controllers
                 commonViewModel.MemberEducationEmploymentInfo = educationEmploymentInfoViewModel;
 
                 List<Member_FamilyDetails> member_Family = familyDetailsDataFactory.GetFamilyDetailsByMemberId(member.MemberId);
-               List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
+                List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
                 foreach (Member_FamilyDetails family in member_Family)
                 {
                     memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
                 }
                 MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
                 familyInfoViewModel.MemberId = member.MemberId;
-                familyInfoViewModel.DOB = familyInfoViewModel.DOB== DateTime.MinValue ? DateTime.Now.AddYears(-72):familyInfoViewModel.DOB;
+                familyInfoViewModel.DOB = familyInfoViewModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoViewModel.DOB;
                 familyInfoViewModel.IsNew = true;
                 familyInfoViewModel.MemberFamilyDetails = memberFamilies;
-                if(memberFamilies.Count>0)
+                if (memberFamilies.Count > 0)
                     commonViewModel.ProfilePercentage += 20;
                 commonViewModel.MemberFamilyInfo = familyInfoViewModel;
                 //ViewBag.MemberList = memberFamilies;
@@ -253,7 +255,7 @@ namespace SBMMember.Web.Controllers
                     contactInfoViewModel.ActiveTab = "Checked";
                 else if (member_education.MemberId == 0)
                     educationEmploymentInfoViewModel.ActiveTab = "Checked";
-                else if ((memberFamilies.Count == 0 || member_Payments.MemberId > 0)&& member_Payments.MemberId == 0)
+                else if ((memberFamilies.Count == 0 || member_Payments.MemberId > 0) && member_Payments.MemberId == 0)
                     ViewBag.FamilyTab = "Checked";
                 //else if (member_Payments.MemberId == 0)
                 //    paymentViewModel.ActiveTab = "Checked";
@@ -343,7 +345,7 @@ namespace SBMMember.Web.Controllers
                 contactInfoViewModel.ActiveTab = "Checked";
             else if (member_education.MemberId == 0)
                 educationEmploymentInfoViewModel.ActiveTab = "Checked";
-            else if (memberFamilies.Count == 0 || member_Payments.MemberId > 0|| member_Payments.MemberId == 0)
+            else if (memberFamilies.Count == 0 || member_Payments.MemberId > 0 || member_Payments.MemberId == 0)
                 ViewBag.FamilyTab = "Checked";
             //else if (member_Payments.MemberId == 0)
             //    paymentViewModel.ActiveTab = "Checked";
@@ -436,12 +438,16 @@ namespace SBMMember.Web.Controllers
             member_EducationEmployment.CreateDate = DateTime.Now;
             member_EducationEmployment.UpdateDate = DateTime.Now;
 
+            ResponseDTO response = new ResponseDTO();
             if (model.MemberEducationEmploymentInfo.IsNew)
-                educationEmploymentDataFactory.AddDetails(member_EducationEmployment);
+                response = educationEmploymentDataFactory.AddDetails(member_EducationEmployment);
             else
-                educationEmploymentDataFactory.UpdateDetails(member_EducationEmployment);
+                response = educationEmploymentDataFactory.UpdateDetails(member_EducationEmployment);
 
-
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
 
             return RedirectToAction("InitialiseMemberRegistration", new { MemberId = model.MemberEducationEmploymentInfo.MemberId });
 
@@ -456,8 +462,8 @@ namespace SBMMember.Web.Controllers
         public IActionResult DeleteFamilyMember(int id, int memberId)
         {
             familyDetailsDataFactory.DeleteById(id);
-
-            return RedirectToAction("InitialiseMemberRegistration", new { MemberId =memberId });
+            _toastNotification.AddSuccessToastMessage("Family member removed successfully.");
+            return RedirectToAction("InitialiseMemberRegistration", new { MemberId = memberId });
         }
         [HttpPost]
         public IActionResult MemberPersonalInfo(MemberFormCommonViewModel model)
@@ -465,10 +471,17 @@ namespace SBMMember.Web.Controllers
             Member_PersonalDetails personalDetails = mapper.Map<Member_PersonalDetails>(model.MemberPersonalInfo);
             //personalDetails.CreateDate = DateTime.Now;
             MemberDataFactory.UpdateName(personalDetails.MemberId, personalDetails.FirstName, personalDetails.MiddleName, personalDetails.LastName);
+            ResponseDTO response = new ResponseDTO();
             if (model.MemberPersonalInfo.IsNew)
-                personalDataFactory.AddMemberPersonalDetails(personalDetails);
+                response = personalDataFactory.AddMemberPersonalDetails(personalDetails);
             else
-                personalDataFactory.UpdateMemberPersonalDetails(personalDetails);
+                response = personalDataFactory.UpdateMemberPersonalDetails(personalDetails);
+
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+
             return RedirectToAction("InitialiseMemberRegistration", new { MemberId = model.MemberPersonalInfo.MemberId });
         }
         public IActionResult UploadProfileImage(MemberFormCommonViewModel commonViewModel)
@@ -486,8 +499,11 @@ namespace SBMMember.Web.Controllers
                 commonViewModel.file.CopyTo(stream);
 
             }
-            personalDataFactory.UpdateMemberProfileImage(commonViewModel.MemberId, FilePath);
-
+            ResponseDTO response = personalDataFactory.UpdateMemberProfileImage(commonViewModel.MemberId, FilePath);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("InitialiseMemberRegistration", new { MemberId = commonViewModel.MemberId });
         }
         [HttpPost]
@@ -496,10 +512,18 @@ namespace SBMMember.Web.Controllers
             Member_ContactDetails member_ContactDetails = mapper.Map<Member_ContactDetails>(model.MemberConatctInfo);
             member_ContactDetails.CreateDate = DateTime.Now;
             member_ContactDetails.UpdateDate = DateTime.Now;
+
+            ResponseDTO response = new ResponseDTO();
             if (model.MemberConatctInfo.IsNew)
-                contactDetailsDataFactory.AddDetails(member_ContactDetails);
+                response = contactDetailsDataFactory.AddDetails(member_ContactDetails);
             else
-                contactDetailsDataFactory.UpdateDetails(member_ContactDetails);
+                response = contactDetailsDataFactory.UpdateDetails(member_ContactDetails);
+
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+
             return RedirectToAction("InitialiseMemberRegistration", new { MemberId = model.MemberConatctInfo.MemberId });
         }
 
@@ -510,13 +534,20 @@ namespace SBMMember.Web.Controllers
             if (Request.Method == HttpMethods.Post)
             {
                 Member_FamilyDetails member_Family = mapper.Map<Member_FamilyDetails>(model.MemberFamilyInfo);
+                ResponseDTO response = new ResponseDTO();
+
                 if (model.MemberFamilyInfo.IsNew)
-                    familyDetailsDataFactory.AddDetails(member_Family);
+                   response= familyDetailsDataFactory.AddDetails(member_Family);
                 else
-                    familyDetailsDataFactory.UpdateDetails(member_Family);
+                   response= familyDetailsDataFactory.UpdateDetails(member_Family);
+
+                if (response.Result == "Success")
+                    _toastNotification.AddSuccessToastMessage(response.Message);
+                else
+                    _toastNotification.AddErrorToastMessage(response.Message);
             }
             ModelState.Clear();
-            
+
 
             return RedirectToAction("InitialiseMemberRegistration", new { MemberId = model.MemberFamilyInfo.MemberId });
         }
@@ -538,7 +569,7 @@ namespace SBMMember.Web.Controllers
                 };
                 familyDetailsDataFactory.AddDetails(_FamilyDetails);
 
-               
+
 
             }
             return RedirectToAction("InitialiseMemberRegistration", new { MemberId = model.MemberFamilyInfo.MemberId });
@@ -559,7 +590,7 @@ namespace SBMMember.Web.Controllers
                            ).FirstOrDefault();
             MemberPaymentViewModel memberPayment = new MemberPaymentViewModel()
             {
-                MemberId =model.MemberPaymentInfo.MemberId,
+                MemberId = model.MemberPaymentInfo.MemberId,
                 MemberName = data.Name,
                 Mobile = data.Conatct,
                 Email = data.Email,

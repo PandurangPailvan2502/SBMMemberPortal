@@ -99,7 +99,7 @@ namespace SBMMember.Data.DataFactory
                     return responseDTO = new ResponseDTO()
                     {
                         Result = "Success",
-                        Message = "Job Details Deleted Successfully."
+                        Message = $"{jobPost.JobTitle} Details Deleted Successfully."
                     };
             }
             catch (Exception ex)

@@ -154,10 +154,10 @@
                             <input type="hidden" asp-for="MemberFamilyInfo.MemberFamilyDetails" />
                             <input type="hidden" asp-for="MemberFamilyInfo.MemberId" />
 
-                            @if (ViewBag.MemberList != null)
+                            @if (Model.MemberFamilyInfo.MemberFamilyDetails != null)
                             {
                                 <div class="mt-10 center">
-                                    <table class="table table-bordered">
+                                    <table class="table table-striped">
                                         <thead>
                                             <tr>
                                                 <td>कुटुंबातील व्यक्तीचे नाव</td>
@@ -169,7 +169,7 @@
                                         </thead>
                                         <tbody>
 
-                                            @foreach (var familyMember in ViewBag.MemberList)
+                                            @foreach (var familyMember in Model.MemberFamilyInfo.MemberFamilyDetails)
                                             {
                                                 <tr>
                                                     <td>@familyMember.NameM</td>

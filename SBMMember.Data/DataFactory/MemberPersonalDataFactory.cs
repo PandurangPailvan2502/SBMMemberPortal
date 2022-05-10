@@ -221,7 +221,7 @@ namespace SBMMember.Data.DataFactory
                     responseDTO = new ResponseDTO()
                     {
                         Result = "Success",
-                        Message = "Member profile image details updated successfully."
+                        Message = "Member profile image updated successfully."
                     };
                 }
             }

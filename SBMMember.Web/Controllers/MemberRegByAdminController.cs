@@ -9,7 +9,7 @@ using SBMMember.Web.Models;
 using SBMMember.Models;
 using Microsoft.AspNetCore.Http;
 using SBMMember.Web.Helper;
-
+using NToastNotify;
 namespace SBMMember.Web.Controllers
 {
     public class MemberRegByAdminController : Controller
@@ -24,7 +24,7 @@ namespace SBMMember.Web.Controllers
         private readonly IMemberPaymentsDataFactory paymentsDataFactory;
         private readonly IMapper mapper;
         private readonly IMemberFormStatusDataFactory formStatusDataFactory;
-
+        private readonly IToastNotification _toastNotification;
 
         public MemberRegByAdminController(IMemberDataFactory dataFactory,
            IMemberSearchDataFactory searchDataFactory,
@@ -34,7 +34,8 @@ namespace SBMMember.Web.Controllers
            IMemberFamilyDetailsDataFactory _familyDetailsDataFactory,
            IMemberPaymentsDataFactory _paymentsDataFactory,
            IMapper _mapper,
-           IMemberFormStatusDataFactory _formStatusDataFactory
+           IMemberFormStatusDataFactory _formStatusDataFactory,
+           IToastNotification toast
            )
         {
             memberDataFactory = dataFactory;
@@ -46,6 +47,7 @@ namespace SBMMember.Web.Controllers
             paymentsDataFactory = _paymentsDataFactory;
             mapper = _mapper;
             formStatusDataFactory = _formStatusDataFactory;
+            _toastNotification = toast;
         }
         public IActionResult MemberRegistration()
         {
@@ -55,7 +57,7 @@ namespace SBMMember.Web.Controllers
             _MemberPersonalInfo.BirthDate = DateTime.Now.AddYears(-72);
             _MemberPersonalInfo.TabValue = "Tab1";
             _MemberPersonalInfo.IsNew = true;
-            viewModel.ProfilePercentage =0;
+            viewModel.ProfilePercentage = 0;
             viewModel.MemberPersonalInfo = _MemberPersonalInfo;
             viewModel.MemberConatctInfo = new MemberContactInfoViewModel();
             viewModel.MemberEducationEmploymentInfo = new MemberEducationEmploymentInfoViewModel();
@@ -80,7 +82,7 @@ namespace SBMMember.Web.Controllers
             perosnalInfoViewModel.MemberId = MemberId;
             perosnalInfoViewModel.TabValue = "tab1";
             perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate == DateTime.MinValue ? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
-           
+
 
             commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
 
@@ -202,7 +204,7 @@ namespace SBMMember.Web.Controllers
                 memberFamilies.Add(mapper.Map<MemberFamilyInfoViewModel>(family));
             }
             //MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
-           // familyInfoViewModel.MemberId = MemberId;
+            // familyInfoViewModel.MemberId = MemberId;
             familyModel.DOB = familyModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyModel.DOB;
             familyModel.MemberFamilyDetails = memberFamilies;
             familyModel.TabValue = "tab4";
@@ -238,7 +240,7 @@ namespace SBMMember.Web.Controllers
         public IActionResult DeleteFamilyMember(int id, int memberId)
         {
             familyDetailsDataFactory.DeleteById(id);
-
+            _toastNotification.AddSuccessToastMessage("Family member removed successfully.");
             return RedirectToAction("ReInitialiseMemberForm", new { MemberId = memberId });
         }
         [HttpPost]
@@ -248,40 +250,51 @@ namespace SBMMember.Web.Controllers
             Member_PersonalDetails personalDetails = mapper.Map<Member_PersonalDetails>(model.MemberPersonalInfo);
             //personalDetails.CreateDate = DateTime.Now;
             //MemberDataFactory.UpdateName(personalDetails.MemberId, personalDetails.FirstName, personalDetails.MiddleName, personalDetails.LastName);
-
+            ResponseDTO response = new ResponseDTO();
             if (model.MemberPersonalInfo.IsNew)
             {
                 Members members = new Members()
                 {
-                  FirstName=model.MemberPersonalInfo.FirstName,
-                  LastName=model.MemberPersonalInfo.LastName,
-                  MiddleName=model.MemberPersonalInfo.MiddleName,
-                 Status="Active",
-                 Createdate=DateTime.Now,
-                 UpdateDate=DateTime.Now
-                 
+                    FirstName = model.MemberPersonalInfo.FirstName,
+                    LastName = model.MemberPersonalInfo.LastName,
+                    MiddleName = model.MemberPersonalInfo.MiddleName,
+                    Status = "Active",
+                    Createdate = DateTime.Now,
+                    UpdateDate = DateTime.Now
+
                 };
                 var member = memberDataFactory.AddMember(members);
                 personalDetails.MemberId = member.MemberId;
-                personalDataFactory.AddMemberPersonalDetails(personalDetails);
+                response = personalDataFactory.AddMemberPersonalDetails(personalDetails);
             }
             else
-                personalDataFactory.UpdateMemberPersonalDetails(personalDetails);
+                response = personalDataFactory.UpdateMemberPersonalDetails(personalDetails);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
             //return RedirectToAction("InitialiseMemberRegistration", new { MemberId = model.MemberPersonalInfo.MemberId });
             return RedirectToAction("ReInitialiseMemberForm", new { MemberId = personalDetails.MemberId });
         }
 
-        [HttpPost]       
+        [HttpPost]
         public IActionResult MemberContactInfo(MemberFormCommonViewModel model)
         {
             Member_ContactDetails member_ContactDetails = mapper.Map<Member_ContactDetails>(model.MemberConatctInfo);
             member_ContactDetails.CreateDate = DateTime.Now;
             member_ContactDetails.UpdateDate = DateTime.Now;
+            ResponseDTO response = new ResponseDTO();
             if (model.MemberConatctInfo.IsNew)
-                contactDetailsDataFactory.AddDetails(member_ContactDetails);
+                response = contactDetailsDataFactory.AddDetails(member_ContactDetails);
             else
-                contactDetailsDataFactory.UpdateDetails(member_ContactDetails);
-            Members members = new Members() { Mobile = member_ContactDetails.Mobile1 ,MemberId=model.MemberConatctInfo.MemberId};
+                response = contactDetailsDataFactory.UpdateDetails(member_ContactDetails);
+
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+
+            Members members = new Members() { Mobile = member_ContactDetails.Mobile1, MemberId = model.MemberConatctInfo.MemberId };
             memberDataFactory.UpdateMobileNo(members);
 
             return RedirectToAction("ReInitialiseMemberForm", new { MemberId = model.MemberConatctInfo.MemberId });
@@ -294,12 +307,16 @@ namespace SBMMember.Web.Controllers
             member_EducationEmployment.CreateDate = DateTime.Now;
             member_EducationEmployment.UpdateDate = DateTime.Now;
 
+            ResponseDTO response = new ResponseDTO();
             if (model.MemberEducationEmploymentInfo.IsNew)
-                educationEmploymentDataFactory.AddDetails(member_EducationEmployment);
+                response = educationEmploymentDataFactory.AddDetails(member_EducationEmployment);
             else
-                educationEmploymentDataFactory.UpdateDetails(member_EducationEmployment);
+                response = educationEmploymentDataFactory.UpdateDetails(member_EducationEmployment);
 
-
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
 
             return RedirectToAction("ReInitialiseMemberForm", new { MemberId = model.MemberEducationEmploymentInfo.MemberId });
 
@@ -307,20 +324,25 @@ namespace SBMMember.Web.Controllers
         [HttpPost]
         public IActionResult AddToList(MemberFormCommonViewModel model)
         {
+            ResponseDTO response = new ResponseDTO();
+
             if (Request.Method == HttpMethods.Post)
             {
                 if (Request.Method == HttpMethods.Post)
                 {
                     Member_FamilyDetails member_Family = mapper.Map<Member_FamilyDetails>(model.MemberFamilyInfo);
                     if (model.MemberFamilyInfo.IsNew)
-                        familyDetailsDataFactory.AddDetails(member_Family);
+                        response = familyDetailsDataFactory.AddDetails(member_Family);
                     else
-                        familyDetailsDataFactory.UpdateDetails(member_Family);
+                        response = familyDetailsDataFactory.UpdateDetails(member_Family);
                 }
                 ModelState.Clear();
 
             }
-          
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
 
 
             return RedirectToAction("ReInitialiseMemberForm", new { MemberId = model.MemberFamilyInfo.MemberId });
@@ -351,11 +373,15 @@ namespace SBMMember.Web.Controllers
         [HttpPost]
         public IActionResult MemberPaymentAndReciptsInfo(MemberFormCommonViewModel model)
         {
-            Member_PaymentsAndReciepts member_Payments = mapper.Map<Member_PaymentsAndReciepts>(model.MemberPaymentInfo);          
+            Member_PaymentsAndReciepts member_Payments = mapper.Map<Member_PaymentsAndReciepts>(model.MemberPaymentInfo);
 
-           
-                paymentsDataFactory.AddDetails(member_Payments);
-           
+
+          ResponseDTO response=  paymentsDataFactory.AddDetails(member_Payments);
+
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
 
             Member_FormStatus member_Form = new Member_FormStatus()
             {
@@ -363,10 +389,10 @@ namespace SBMMember.Web.Controllers
                 FormStatus = "Submitted",
                 FormSubmitDate = DateTime.Now
             };
-           
+
             formStatusDataFactory.AddDetails(member_Form);
             sendRegistrationSMS(model.MemberPaymentInfo.MemberId);
-            return RedirectToActionPermanent("NewMemberList","ManageMembers");
+            return RedirectToActionPermanent("NewMemberList", "ManageMembers");
         }
         private void sendRegistrationSMS(int memberId)
         {
