@@ -57,7 +57,7 @@
                 <thead>
                     <tr style="background-color:#eeeeee;padding:5px">
                         <th><h5 style="margin:5px">Event Name</h5></th>
-                        <th><h5 style="margin:5px">File</h5></th>
+                        <!--th><h5 style="margin:5px">File</h5></th-->
                         <th><h5 style="margin:5px">Action</h5></th>
                     </tr>
                 </thead>
@@ -66,10 +66,13 @@
                     {
                         foreach (var EventAd in Model.EventAds)
                         {
-                            <tr>
+                            <tr style="margin-bottom:5px;">
                                 <td> @EventAd.EventTitle</td>
-                                <td>File</td>
-                                <td><a asp-action="GetPdf" asp-controller="Events" asp-route-filepath="@EventAd.FilePath" class="genric-btn primary-border"><i class="ti-download"/>view</a></td>
+                                <!--td>File</td-->
+                                <td>
+                                    <a asp-action="GetPdf" asp-controller="Events" asp-route-filepath="@EventAd.FilePath" class="viewbtn" style="margin-bottom:10px;"><i class="ti-download"> </i> view</a>
+                                   
+                                </td>
                             </tr>
                         }
                     }
