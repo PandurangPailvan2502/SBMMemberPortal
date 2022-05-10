@@ -54,16 +54,16 @@
 
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-lg-12">
 
                                         <div class="container">
-                                         <div class="row ">
-                                             <div class="col-xs-6">
+                                         <div class="row " style="text-align:center">
+                                             <div class="col-md-12">
                                                  <button class="btn btn_121a" type="submit" text="Send OTP">Verify OTP</button>
                                              </div>
-                                             <div class="col-xs-6">
+                                             <!--div class="col-xs-6">
                                                   @*<button class="btn btn_121b" type="submit" text="resend OTP">Resend OTP</button>*@
-                                             </div>
+                                             </div-->
                                          </div>
                                        </div>
                                  </div>
@@ -72,15 +72,15 @@
                                 </div>
                             </form>
                             <form asp-action="SendOTP" asp-controller="OTPVerify" method="post">
-                                <div class="row">
-                                    <div class="col-md-12">
+                                <div class="row" style="text-align:center">
+                                    <div class="col-lg-12">
                                         <input asp-for="MobileNumber" name="mobile" type="hidden" />
                                         <div class="container">
                                             <div class="row ">
-                                                <div class="col-xs-6">
+                                                <!--div class="col-md-12">
                                                     @*<button class="btn btn_121a" type="submit" text="Send OTP">Verify OTP</button>*@
-                                                </div>
-                                                <div class="col-xs-6">
+                                                </div-->
+                                                <div class="col-md-12">
                                                     <button class="btn btn_121b" type="submit" text="resend OTP">Resend OTP</button>
                                                 </div>
                                             </div>
