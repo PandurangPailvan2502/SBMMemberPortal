@@ -31,10 +31,10 @@ namespace SBMMember.Web.Controllers
         private readonly IEventTitlesDataFactory eventTitlesDataFactory;
         // private readonly INotyfService _notyf;
         private readonly IToastNotification _toastNotification;
-
+        private readonly IMemberMeetingsDataFactory meetingsDataFactory;
         public AdminDashboardController(IMemberBusinessDataFactory dataFactory, IMapper _mapper, IJobPostingDataFactory _jobPostingDataFactory, IEventDataFactory _eventDataFactory, IWebHostEnvironment hostEnvironment,
             IEventAdsDataFactory adsDataFactory, IUpcomingEventsDataFactory _upcomingEventsDataFactory, IEventTitlesDataFactory _eventTitlesDataFactory,
-            IToastNotification toast)
+            IToastNotification toast,IMemberMeetingsDataFactory memberMeetings)
         {
             businessDataFactory = dataFactory;
             mapper = _mapper;
@@ -45,6 +45,7 @@ namespace SBMMember.Web.Controllers
             upcomingEventsDataFactory = _upcomingEventsDataFactory;
             eventTitlesDataFactory = _eventTitlesDataFactory;
             _toastNotification = toast;
+            meetingsDataFactory = memberMeetings;
             //_notyf = notyf;
         }
         public IActionResult AdminHome()
@@ -497,6 +498,57 @@ namespace SBMMember.Web.Controllers
             else
                 _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("EventTitles");
+        }
+
+        public IActionResult MemberMeetings()
+        {
+            MemberMeetingsViewModel viewModel = new MemberMeetingsViewModel()
+            {
+                MemberMeetings = meetingsDataFactory.GetMemberMeetings(),
+                MeetingDate = DateTime.Now
+            };
+            return View(viewModel);
+        }
+        [HttpPost]
+        public IActionResult AddMemberMeeting(MemberMeetingsViewModel model)
+        {
+            MemberMeetings meetings = mapper.Map<MemberMeetings>(model);
+            ResponseDTO response = meetingsDataFactory.AddMeetingDetails(meetings);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+            return RedirectToAction("MemberMeetings");
+        }
+
+        public IActionResult EditMeeting(int Id)
+        {
+            MemberMeetings meetings = meetingsDataFactory.GetMemberMeetingById(Id);
+            MemberMeetingsViewModel model = mapper.Map<MemberMeetingsViewModel>(meetings);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditMeeting(MemberMeetingsViewModel viewModel)
+        {
+            MemberMeetings meetings = mapper.Map<MemberMeetings>(viewModel);
+            ResponseDTO response = meetingsDataFactory.UpdateMeetingDetails(meetings);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+            return RedirectToAction("MemberMeetings");
+        }
+
+        public IActionResult DeleteMeeting(int Id)
+        {
+            ResponseDTO response = meetingsDataFactory.DeleteMeetingDetails(Id);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+            return RedirectToAction("MemberMeetings");
         }
     }
 }

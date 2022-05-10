@@ -172,7 +172,20 @@
                     <tbody>
                         <tr>
 
-                            <td><img src="~/img/videomeet.png" class="table-button"></td>
+                            <td>
+                                @if (Model.MemberMeeting != null)
+                                {
+                                    <a href="@Model.MemberMeeting.MeetingURL" target="_blank">
+                                        <img src="~/img/videomeet.png" class="table-button">
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="#">
+                                        <img src="~/img/videomeet.png" class="table-button">
+                                    </a>
+                                }
+                            </td>
                             <td style="width:20px"></td>
                             <td>
                                 <a asp-action="AboutUs" asp-controller="MemberDashboard">
@@ -189,8 +202,3 @@
     </div>
 </div>
 <!--------------end of dashboard-------------->
-
-
-
-
-

@@ -41,7 +41,7 @@ namespace SBMMember.Web.Controllers
         private IWebHostEnvironment Environment;
         private readonly IJobPostingDataFactory jobPostingDataFactory;
         private readonly IToastNotification _toastNotification;
-
+        private readonly IMemberMeetingsDataFactory meetingsDataFactory;
         public MemberDashboardController(IMemberDataFactory dataFactory,
             IMemberPersonalDataFactory memberPersonalDataFactory,
             IMemberContactDetailsDataFactory memberContactDetailsDataFactory,
@@ -55,7 +55,7 @@ namespace SBMMember.Web.Controllers
             IConfiguration _configuration,
             IMarqueeDataFactory _marqueeDataFactory,
             IWebHostEnvironment _environment,
-            IJobPostingDataFactory _jobPostingDataFactory, IToastNotification toast)
+            IJobPostingDataFactory _jobPostingDataFactory, IToastNotification toast,IMemberMeetingsDataFactory memberMeetingsDataFactory)
         {
             Logger = logger;
             mapper = Mapper;
@@ -72,6 +72,7 @@ namespace SBMMember.Web.Controllers
             Environment = _environment;
             jobPostingDataFactory = _jobPostingDataFactory;
             _toastNotification = toast;
+            meetingsDataFactory = memberMeetingsDataFactory;
 
         }
 
@@ -88,7 +89,8 @@ namespace SBMMember.Web.Controllers
                 MarqueeString = marqueeText,
                 NotificationCount = 0,
                 NewMemberCount = searchDataFactory.GetRecentMembersCount(),
-                RecentJobCount = jobPostingDataFactory.RecentJobCount()
+                RecentJobCount = jobPostingDataFactory.RecentJobCount(),
+                MemberMeeting=meetingsDataFactory.GetMemberMeetings().Where(x=>x.Status=="Active" && x.IsActive==1).FirstOrDefault()
 
             };
             return View(viewModel);
@@ -287,6 +289,9 @@ namespace SBMMember.Web.Controllers
             {
                 commonViewModel.ProfilePercentage += 20;
             }
+            MemberFamilyInfoViewModel memberFamilyInfo = new MemberFamilyInfoViewModel();
+            memberFamilyInfo.MemberFamilyDetails = memberFamilies;
+            commonViewModel.MemberFamilyInfo = memberFamilyInfo;
 
             Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(MemberId);
             if (member_Payments.MemberId > 0)

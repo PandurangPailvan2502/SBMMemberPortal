@@ -249,8 +249,8 @@ namespace SBMMember.Web.Controllers
             {
                 SMSHelper.SendSMS(member.Mobile, smstemp);
             }
-            formStatus.VerifiedBy = User.Identity.Name;
-            formStatus.VerifiedDate = DateTime.Now;
+            formStatus.ApprovedBy = User.Identity.Name;
+            formStatus.ApprovedDate = DateTime.Now;
             formStatus.FormStatus = "Approved";
             formStatusDataFactory.UpdateDetails(formStatus);
             //return RedirectToAction("VerifyMemberProfile", new { MemberId = model.MemberId });

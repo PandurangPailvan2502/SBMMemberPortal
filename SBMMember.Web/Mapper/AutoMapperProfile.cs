@@ -51,6 +51,9 @@ namespace SBMMember.Web.Mapper
             CreateMap<MarqueeViewModel, MarqueeText>();
             CreateMap<MarqueeText, MarqueeViewModel>();
 
+            CreateMap<MemberMeetingsViewModel, MemberMeetings>();
+            CreateMap<MemberMeetings, MemberMeetingsViewModel>();
+
         }
     }
 }

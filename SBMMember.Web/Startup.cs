@@ -73,6 +73,7 @@ namespace SBMMember.Web
             services.AddScoped<IMarqueeDataFactory, MarqueeDataFactory>();
             services.AddScoped<IUpcomingEventsDataFactory, UpcomingEventsDataFactory>();
             services.AddScoped<IEventTitlesDataFactory, EventTitlesDataFactory>();
+            services.AddScoped<IMemberMeetingsDataFactory, MemberMeetingsDataFactory>();
             // services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
            services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
            {
