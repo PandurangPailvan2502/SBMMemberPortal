@@ -391,7 +391,8 @@ namespace SBMMember.Web.Controllers
                 keyValuePairs.Add("MiddleName", model.MiddleName);
             if (!string.IsNullOrEmpty(model.LastName))
                 keyValuePairs.Add("LastName", model.LastName);
-
+            if (!string.IsNullOrEmpty(model.MemberId))
+                keyValuePairs.Add("MemberId", model.MemberId);
             List<MemberSearchResponse> memberData = searchDataFactory.GetAllMemberssSearchResultByFilterValues(keyValuePairs);
             List<MemberSearchResponseViewModel> filteredMember = new List<MemberSearchResponseViewModel>();
             foreach (MemberSearchResponse response in memberData)

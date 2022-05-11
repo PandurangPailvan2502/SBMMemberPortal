@@ -8,7 +8,7 @@ namespace SBMMember.Models.MemberSearch
     public class MemberSearchByDTO
     {
         public int MemberId { get; set; }
-        public int? MemberAppId { get; set; }
+        public int? MemberShippId { get; set; }
         public string Prefix { get; set; }
         public string PrefixM { get; set; }
         public string FirstName { get; set; }
