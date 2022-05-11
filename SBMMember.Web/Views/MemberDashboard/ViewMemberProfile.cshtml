@@ -5,7 +5,38 @@
     Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
 }
 
+<script>
+    $(document).ready(function () {
 
+        $("#tblFamily a").click(function () {
+
+           // alert($(this).attr("id"));
+            $.ajax({
+                //base address/controller/Action
+                url: '/MemberDashboard/GetFmemberDetails',
+                type: 'GET',
+                dataType: 'json',
+                data: {
+                    //Passing Input parameter
+                    id: $(this).attr("id")
+                },
+                success: function (result) {
+                    //write something
+                    //alert(result[0].Name);
+                    //var data = jQuery.parseJSON(result);
+                    var data = JSON.stringify(result);
+                    //alert(data);
+                    var data2 = JSON.parse(data);
+                    var finalString = "Family Member Name: " + data2.nameM + "\nRelation: " + data2.relationM + "\nEducation: " + data2.educationM + "\nOccupation: " + data2.occupationM + "\nBlood Group: " + data2.bloodgroup;
+                    alert(finalString);
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+        });
+    });
+</script>
 <div class="container">
     <div class="row">
         <div class="edit4btn">
@@ -38,8 +69,12 @@
                                     <td><label class="lbl_profile">सभासद क्रमांक: @Model.MemberPaymentInfo.MemberShipIdM </label></td>
                                 </tr>
                                 <tr>
-                                    <td><label class="lbl_profile">जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
-                                    {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()} </label></td>
+                                    <td>
+                                        <label class="lbl_profile">
+                                            जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
+                                            {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()}
+                                        </label>
+                                    </td>
                                 </tr>
                                 <tr><td><label class="lbl_profile">मोबाईल: @Model.MemberConatctInfo.Mobile1 </label></td></tr>
                             </table>
@@ -91,8 +126,10 @@
                                         </div>
                                     </div>
                                     <div class="input-group-icon mt-10">
-                                        <label><b>जन्म तारीख : </b>@if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
-                                        {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()}</label>
+                                        <label>
+                                            <b>जन्म तारीख : </b>@if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
+                                            {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()}
+                                        </label>
 
                                     </div>
                                     <div class="input-group-icon mt-10">
@@ -267,14 +304,14 @@
                                     @if (ViewBag.MemberList != null)
                                     {
                                         <div class="mt-10 center">
-                                            <table class="table table-info">
+                                            <table class="table table-striped" id="tblFamily">
                                                 <thead>
                                                     <tr>
                                                         <td>कुटुंबातील व्यक्तीचे नाव</td>
                                                         <td>नाते</td>
-                                                        <td>शिक्षण </td>
-                                                        <td>कुटुंबातील व्यक्तीचे काम </td>
-                                                        <td>रक्त गट</td>
+                                                        <td> </td>
+                                                        @* <td>कुटुंबातील व्यक्तीचे काम </td>
+                                                            <td>रक्त गट</td>*@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -284,9 +321,9 @@
                                                         <tr>
                                                             <td>@familyMember.NameM</td>
                                                             <td>@familyMember.RelationM</td>
-                                                            <td>@familyMember.EducationM</td>
-                                                            <td>@familyMember.OccupationM</td>
-                                                            <td>@familyMember.BloodGroup</td>
+                                                            <td><a id="@familyMember.FamilyDetailsID" href="#">View Details</a></td>
+                                                            @*<td>@familyMember.OccupationM</td>
+                                                                <td>@familyMember.BloodGroup</td>*@
                                                         </tr>
 
                                                     }

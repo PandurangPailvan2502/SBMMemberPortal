@@ -19,7 +19,8 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using NToastNotify;
-
+using Newtonsoft.Json;
+using System.Web;
 namespace SBMMember.Web.Controllers
 {
     [Authorize]
@@ -301,6 +302,14 @@ namespace SBMMember.Web.Controllers
                 commonViewModel.ProfilePercentage += 20;
             }
             return View(commonViewModel);
+        }
+        [HttpGet]
+        public JsonResult GetFmemberDetails(int id)
+        {
+           
+            var familyMemberInfo = familyDetailsDataFactory.GetDetailsByMemberId(id);
+            
+            return Json(familyMemberInfo);
         }
         [HttpPost]
         public IActionResult MemberPersonalInfo(MemberFormCommonViewModel formCommonViewModel)
