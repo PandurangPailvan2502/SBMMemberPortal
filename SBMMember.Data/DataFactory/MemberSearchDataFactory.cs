@@ -351,7 +351,7 @@ namespace SBMMember.Data.DataFactory
                         pr = pr.And(x => x.Proffession.ToLower().Contains(keyValuePair.Value.ToLower()) || x.Proffession.Contains(keyValuePair.Value.Trim()));
                         break;
                     case "bloodgroup":
-                        pr = pr.And(x => x.BloodGroup.ToLower().Contains(keyValuePair.Value.ToLower()) || x.BloodGroup.Contains(keyValuePair.Value.Trim()));
+                        pr = pr.And(x => x.BloodGroup.ToLower()==keyValuePair.Value.ToLower() || x.BloodGroup==keyValuePair.Value.Trim());
                         break;
                     case "gender":
                         pr = pr.And(x => x.Gender.ToLower().Contains(keyValuePair.Value.ToLower()) || x.Gender.Contains(keyValuePair.Value.Trim()));
