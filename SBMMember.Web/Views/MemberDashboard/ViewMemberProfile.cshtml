@@ -5,41 +5,7 @@
     Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
 }
 
-<script>
-    $(document).ready(function () {
 
-        $("#tblFamily .btn").click(function () {
-            var $controlId = $(this).attr("id");
-          
-            $.ajax({
-                //base address/controller/Action
-                url: '/MemberDashboard/GetFmemberDetails',
-                type: 'GET',
-                dataType: 'json',
-                data: {
-                    //Passing Input parameter
-                    id: $(this).attr("id")
-                },
-                success: function (result) {
-                   
-                    var data = JSON.stringify(result);
-                   
-                    var data2 = JSON.parse(data);
-                   
-                    $("#mem_name").html(data2.nameM);
-                    $("#mem_relation").html(data2.relationM);
-                    $("#mem_dob").html(data2.dob);
-                    $("#mem_education").html(data2.educationM);
-                    $("#mem_bloodgroup").html(data2.bloodgroup);
-                    $("#" + $controlId).attr("data-target", "#exampleModalCenter");
-                },
-                error: function () {
-                    alert("error");
-                }
-            });
-        });
-    });
-</script>
 <div class="container">
     <div class="row">
         <div class="edit4btn">
@@ -324,7 +290,7 @@
                                                         <tr>
                                                             <td>@familyMember.NameM</td>
                                                             <td>@familyMember.RelationM</td>
-                                                            <td><button type="button" id="@familyMember.FamilyDetailsID" class="btn btn-sm btn-info" data-toggle="modal" data-target="#exampleModalCenter">View Details</button></td>
+                                                            <td><button type="button" id="@familyMember.FamilyDetailsID" class="btn btn-sm btn-info" data-toggle="modal" data-target="#@("Family"+@familyMember.FamilyDetailsID)">View Details</button></td>
                                                             @*<td>@familyMember.OccupationM</td>
                                                                 <td>@familyMember.BloodGroup</td>*@
                                                         </tr>
@@ -402,42 +368,54 @@
     </div>
 </div>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">कुटुंब सदस्य माहिती</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+
+
+
+@if (ViewBag.MemberList != null)
+{
+
+    @foreach (var familyMember in ViewBag.MemberList)
+    {
+        <div class="modal fade" id="@("Family"+@familyMember.FamilyDetailsID)" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">कुटुंब सदस्य माहिती</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group-icon mt-10">
+                            <span><b>नाव : </b><span id="mem_name">@familyMember.NameM</span></span>
+
+                        </div>
+                        <div class="input-group-icon mt-10">
+                            <span><b>नाते : </b><span id="mem_relation">@familyMember.RelationM</span></span>
+
+                        </div>
+
+                        <div class="input-group-icon mt-10">
+                            <span><b>जन्म तारीख :  </b><span id="mem_dob">@familyMember.DOB</span></span>
+
+                        </div>
+                        <div class="input-group-icon mt-10">
+                            <span><b>रक्त गट :  </b><span id="mem_bloodgroup">@familyMember.BloodGroup</span></span>
+
+                        </div>
+                        <div class="input-group-icon mt-10">
+                            <span><b> शिक्षण :  </b><span id="mem_education">@familyMember.EducationM</span></span>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                           
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <div class="input-group-icon mt-10">
-                    <span><b>नाव : </b><span id="mem_name"></span></span>
+        </div>
 
-                </div>
-                <div class="input-group-icon mt-10">
-                    <span><b>नाते : </b><span id="mem_relation"></span></span>
+    }
 
-                </div>
-
-                <div class="input-group-icon mt-10">
-                    <span><b>जन्म तारीख :  </b><span id="mem_dob"></span></span>
-
-                </div>
-                <div class="input-group-icon mt-10">
-                    <span><b>रक्त गट :  </b><span id="mem_bloodgroup"></span></span>
-
-                </div>
-                <div class="input-group-icon mt-10">
-                    <span><b> शिक्षण :  </b><span id="mem_education"></span></span>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
-                </div>
-            </div>
-    </div>
-</div>
-</div>
+}
