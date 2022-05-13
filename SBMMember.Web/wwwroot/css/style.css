@@ -45,7 +45,7 @@
 .searchname {font-weight: bold;font-size: 18px;text-align:center; margin:10px 0px 10px 0px;}
 .btntbl { text-align:center;margin:10px 0px 10px 0px;width:100%; border:1px;}
 .allsubmitbtn {border-radius:5px; background-color:#7c0053; color:#ffffff; padding:10px;width:100px;border:none}
-.allresetbtn {border-radius:5px; background-color:#f31b1b; color:#ffffff; padding:10px;width:100px;border:none}
+.allresetbtn {border-radius:5px; background-color:#f31b1b; color:#ffffff; padding:10px 30px;width:100px;border:none}
 .allviewbtn {border-radius: 5px;background-color: #7c0053;color: #ffffff;padding:10px;width:120px;border: none}
 .orcondit {
     text-align: center;

@@ -401,6 +401,14 @@ namespace SBMMember.Web.Controllers
                 filteredMember.Add(responseViewModel);
             }
             model.MemberList = filteredMember;
+            if (filteredMember.Count > 0)
+            {
+                _toastNotification.AddInfoToastMessage($"{filteredMember.Count} matching results found..");
+            }
+            else
+            {
+                _toastNotification.AddWarningToastMessage($"No matching results found..");
+            }
             return View(model);
         }
         public IActionResult MemberSearchByArea()
@@ -429,6 +437,14 @@ namespace SBMMember.Web.Controllers
                 filteredMember.Add(responseViewModel);
             }
             model.MemberList = filteredMember;
+            if (filteredMember.Count > 0)
+            {
+                _toastNotification.AddInfoToastMessage($"{filteredMember.Count} matching results found..");
+            }
+            else
+            {
+                _toastNotification.AddWarningToastMessage($"No matching results found..");
+            }
             return View(model);
 
         }
@@ -457,6 +473,14 @@ namespace SBMMember.Web.Controllers
                 filteredMember.Add(responseViewModel);
             }
             model.MemberList = filteredMember;
+            if (filteredMember.Count > 0)
+            {
+                _toastNotification.AddInfoToastMessage($"{filteredMember.Count} matching results found..");
+            }
+            else
+            {
+                _toastNotification.AddWarningToastMessage($"No matching results found..");
+            }
             return View(model);
         }
 
@@ -485,6 +509,14 @@ namespace SBMMember.Web.Controllers
                 filteredMember.Add(responseViewModel);
             }
             model.MemberList = filteredMember;
+            if (filteredMember.Count > 0)
+            {
+                _toastNotification.AddInfoToastMessage($"{filteredMember.Count} matching results found..");
+            }
+            else
+            {
+                _toastNotification.AddWarningToastMessage($"No matching results found..");
+            }
             return View(model);
         }
 
@@ -501,6 +533,7 @@ namespace SBMMember.Web.Controllers
             {
                 MemberList = filteredMember
             };
+            _toastNotification.AddInfoToastMessage($"{filteredMember.Count} matching result(s) found..");
             return View(model);
         }
 
@@ -553,6 +586,14 @@ namespace SBMMember.Web.Controllers
                 filteredMember.Add(responseViewModel);
             }
             searchViewModel.MemberList = filteredMember;
+            if(filteredMember.Count>0)
+            {
+                _toastNotification.AddInfoToastMessage($"{filteredMember.Count} matching results found..");
+            }
+            else
+            {
+                _toastNotification.AddWarningToastMessage($"No matching results found..");
+            }
             return View(searchViewModel);
         }
 

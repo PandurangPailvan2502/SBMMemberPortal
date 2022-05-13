@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SBMMember.Models;
+using LinqKit;
+
 namespace SBMMember.Data.DataFactory
 {
    public class EventDataFactory: IEventDataFactory
@@ -65,10 +67,10 @@ namespace SBMMember.Data.DataFactory
             return responseDTO;
         }
 
-        public List<EventInfo> GetEventListByEventYear(string year)
+        public List<EventInfo> GetEventListByEventParameters(Dictionary<string, string> keyValuePairs)
         {
-
-            return eventDBContext.EventInfos.Where(x => x.EventYear == year).ToList();
+            var pr = GetDynamicExpression(keyValuePairs);
+            return eventDBContext.EventInfos.Where(pr).ToList();
         }
         public List<EventInfo> GetAllEventList()
         {
@@ -85,13 +87,39 @@ namespace SBMMember.Data.DataFactory
         {
             return eventDBContext.EventGalleries.Where(x => x.EventId == eventId && x.Status == "Active").ToList();
         }
+
+
+        private ExpressionStarter<EventInfo> GetDynamicExpression(Dictionary<string, string> keyValuePairs)
+        {
+            var pr = PredicateBuilder.New<EventInfo>();
+            foreach (var keyValuePair in keyValuePairs)
+            {
+                string key = keyValuePair.Key.ToString().ToLower();
+                switch (key)
+                {
+
+                    case "eventtitle":
+                        pr = pr.And(x => x.EventName.ToLower().Contains(keyValuePair.Value.ToLower()) || x.EventName.Contains(keyValuePair.Value.Trim()));
+                        break;
+                    case "eventyear":
+                        pr = pr.And(x => x.EventYear.ToLower().Contains(keyValuePair.Value.ToLower()) || x.EventYear.Contains(keyValuePair.Value.Trim()));
+                        break;
+                    
+                    default:
+                        break;
+                }
+
+            }
+            return pr;
+        }
+
     }
 
     public interface IEventDataFactory
     {
         EventInfo AddEventInfo(EventInfo _eventInfo);
         ResponseDTO AddEventGallery(EventGallery eventGallery);
-        List<EventInfo> GetEventListByEventYear(string year);
+        List<EventInfo> GetEventListByEventParameters(Dictionary<string, string> keyValuePairs);
         List<EventInfo> GetAllEventList();
         EventInfo GetEventInfoByeventId(int eventId);
         List<EventGallery> GetGalleryphotosByeventId(int eventId);

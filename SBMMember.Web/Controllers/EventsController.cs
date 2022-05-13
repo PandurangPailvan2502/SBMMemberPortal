@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
 using SBMMember.Web.Helper;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
+using NToastNotify;
 namespace SBMMember.Web.Controllers
 {
     [Authorize]
@@ -19,12 +19,14 @@ namespace SBMMember.Web.Controllers
         private readonly IEventAdsDataFactory eventAdsDataFactory;
         private readonly ILogger<EventsController> logger;
         private readonly IEventTitlesDataFactory eventTitlesDataFactory;
-        public EventsController(IEventDataFactory dataFactory, ILogger<EventsController> _logger, IEventAdsDataFactory adsDataFactory, IEventTitlesDataFactory _eventTitlesDataFactory)
+        private readonly IToastNotification toastNotification;
+        public EventsController(IEventDataFactory dataFactory, ILogger<EventsController> _logger, IEventAdsDataFactory adsDataFactory, IEventTitlesDataFactory _eventTitlesDataFactory,IToastNotification toast)
         {
             eventDataFactory = dataFactory;
             eventAdsDataFactory = adsDataFactory;
             logger = _logger;
             eventTitlesDataFactory = _eventTitlesDataFactory;
+            toastNotification = toast;
         }
         public IActionResult EventDashboard()
         {
@@ -45,9 +47,23 @@ namespace SBMMember.Web.Controllers
         [HttpPost]
         public IActionResult SearchEvents(SearchEventViewModel model)
         {
+            Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+            if (model.EventTitle!="0")
+                keyValuePairs.Add("EventTitle", model.EventTitle);
+            if (model.EventYear!="0")
+                keyValuePairs.Add("EventYear", model.EventYear);
+            var events = eventDataFactory.GetEventListByEventParameters(keyValuePairs);
+            if(events.Count>0)
+            {
+                toastNotification.AddInfoToastMessage($"{events.Count} matching result(s) found..");
+            }
+            else
+            {
+                toastNotification.AddWarningToastMessage($"No matching results found..");
+            }
             SearchEventViewModel viewModel = new SearchEventViewModel()
             {
-                Events = eventDataFactory.GetEventListByEventYear(model.EventYear),
+                Events =events,
                 EventYears = YearHelper.GetYears(),
                 EventTitles = eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList()
             };
@@ -72,6 +88,14 @@ namespace SBMMember.Web.Controllers
                 EventAds = eventAdsDataFactory.GetEventAdsByYear(model.EventYear),
                 EventYears=YearHelper.GetYears()
             };
+            if (viewModel.EventAds.Count > 0)
+            {
+                toastNotification.AddInfoToastMessage($"{viewModel.EventAds.Count} matching result(s) found..");
+            }
+            else
+            {
+                toastNotification.AddWarningToastMessage($"No matching results found..");
+            }
             viewModel.EventYears.Insert(0, new SelectListItem() { Text = " Select Event Year ", Value = "0" });
             return View(viewModel);
         }
