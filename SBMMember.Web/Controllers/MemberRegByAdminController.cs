@@ -10,6 +10,9 @@ using SBMMember.Models;
 using Microsoft.AspNetCore.Http;
 using SBMMember.Web.Helper;
 using NToastNotify;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+
 namespace SBMMember.Web.Controllers
 {
     public class MemberRegByAdminController : Controller
@@ -25,7 +28,7 @@ namespace SBMMember.Web.Controllers
         private readonly IMapper mapper;
         private readonly IMemberFormStatusDataFactory formStatusDataFactory;
         private readonly IToastNotification _toastNotification;
-
+        private IWebHostEnvironment Environment;
         public MemberRegByAdminController(IMemberDataFactory dataFactory,
            IMemberSearchDataFactory searchDataFactory,
            IMemberPersonalDataFactory _personalDataFactory,
@@ -35,7 +38,8 @@ namespace SBMMember.Web.Controllers
            IMemberPaymentsDataFactory _paymentsDataFactory,
            IMapper _mapper,
            IMemberFormStatusDataFactory _formStatusDataFactory,
-           IToastNotification toast
+           IToastNotification toast,
+           IWebHostEnvironment environment
            )
         {
             memberDataFactory = dataFactory;
@@ -48,6 +52,7 @@ namespace SBMMember.Web.Controllers
             mapper = _mapper;
             formStatusDataFactory = _formStatusDataFactory;
             _toastNotification = toast;
+            Environment = environment;
         }
         public IActionResult MemberRegistration()
         {
@@ -394,6 +399,7 @@ namespace SBMMember.Web.Controllers
             sendRegistrationSMS(model.MemberPaymentInfo.MemberId);
             return RedirectToActionPermanent("NewMemberList", "ManageMembers");
         }
+
         private void sendRegistrationSMS(int memberId)
         {
             Members member = memberDataFactory.GetDetailsByMemberId(memberId);
@@ -403,6 +409,29 @@ namespace SBMMember.Web.Controllers
                 string smsTemplate = $"Dear {memberName}, Thank you for your membership registration at Samata Bhratru Mandal (PCMC Pune). Your profile is under verification & you will be notified once it is approved.";
                 SMSHelper.SendSMS(member.Mobile, smsTemplate.Trim());
             }
+        }
+
+        public IActionResult UploadProfileImage(MemberFormCommonViewModel commonViewModel)
+        {
+            string path = Path.Combine(this.Environment.WebRootPath, "MemberProfileImages");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string FilePath = $"~/MemberProfileImages/{commonViewModel.file.FileName}";
+            string fileName = Path.GetFileName(commonViewModel.file.FileName);
+            string fullPath = Path.Combine(path, fileName);
+            using (FileStream stream = new FileStream(fullPath, FileMode.Create))
+            {
+                commonViewModel.file.CopyTo(stream);
+
+            }
+            ResponseDTO response = personalDataFactory.UpdateMemberProfileImage(commonViewModel.MemberId, FilePath);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+            return RedirectToAction("ReInitialiseMemberForm", new { MemberId = commonViewModel.MemberId });
         }
     }
 }

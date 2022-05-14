@@ -90,12 +90,7 @@
                 alert("Please Select Blood Group")
             }
         });
-        $('#title').on('change', function () {
-            $(this).valid();
-        })
-
-        // Activate NiceSelect (Validate doesn't work)
-        $('#title').niceSelect();
+      
 
         var pincodeval = $("#pincode").val();
         if (pincodeval == "0")
@@ -150,6 +145,8 @@
                                 {
                                     <img src="~/img/Noavatar.png" class="view_prof_i">
                                 }
+                                @if (Model.MemberPersonalInfo != null && !Model.MemberPersonalInfo.IsNew)
+                                {
                                 <div class="image-upload" style="text-align:center;color:#ffffff">
                                     <label for="file-input">
                                         edit
@@ -160,6 +157,7 @@
                                 <div>
                                     <button type="submit" id="btnSetProfile" style="font-size:10px;">Set profile Image</button>
                                 </div>
+                                }
                             </form>
                         </div>
                     </td>
@@ -217,8 +215,8 @@
                                             <div class="input-group-icon">
                                                 <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                 <div class="form-select" id="default-select">
-                                                    <select id="title" asp-for="MemberPersonalInfo.Prefix" required>
-                                                        <option value="">Select Title</option>
+                                                    <select  asp-for="MemberPersonalInfo.Prefix" id="title" required>
+                                                        <option value="">Title</option>
                                                         <option value="Shree">Shree</option>
                                                         <option value="Sou">Sou</option>
                                                         <option value="Shreemati">Shreemati</option>
@@ -359,7 +357,7 @@
 
                                             <div class="input-group-icon mt-10">
                                                 <input type="text" id="MemberConatctInfo.Mobile2" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" maxlength="10" name="MemberConatctInfo.Mobile2" asp-for="MemberConatctInfo.Mobile2" placeholder="Personal Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 2'"
-                                                       required class="single-input">
+                                                       class="single-input">
                                             </div>
 
                                             <div class="input-group-icon mt-10">
@@ -380,7 +378,7 @@
                                             </div>
                                             <div class="input-group-icon mt-10">
                                                 <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" maxlength="10" name="MemberConatctInfo.RelativeContact2" asp-for="MemberConatctInfo.RelativeContact2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
-                                                       required class="single-input">
+                                                       class="single-input">
                                             </div>
                                             <div class="mt-10 center">
                                                 <button type="submit" class="genric-btn primary-border">Save</button>

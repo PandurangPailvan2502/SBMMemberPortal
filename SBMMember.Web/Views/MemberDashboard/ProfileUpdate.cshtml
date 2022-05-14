@@ -89,12 +89,7 @@
                 alert("Please Select Blood Group")
             }
         });
-        $('#title').on('change', function () {
-            $(this).valid();
-        })
-
-        // Activate NiceSelect (Validate doesn't work)
-        $('#title').niceSelect();
+       
 
         var pincodeval = $("#pincode").val();
         if (pincodeval == "0")
@@ -347,7 +342,7 @@
 
 
                                             <div class="input-group-icon mt-10">
-                                                <input type="text" name="MemberConatctInfo.Mobile1" asp-for="MemberConatctInfo.Mobile1" placeholder="Personal Mobile 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 1'"
+                                                <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" name="MemberConatctInfo.Mobile1" asp-for="MemberConatctInfo.Mobile1" placeholder="Personal Mobile 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 1'"
                                                        required class="single-input">
                                             </div>
 
@@ -356,8 +351,8 @@
                                             </div>
 
                                             <div class="input-group-icon mt-10">
-                                                <input type="text" name="MemberConatctInfo.Mobile2" asp-for="MemberConatctInfo.Mobile2" placeholder="Personal Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 2'"
-                                                       required class="single-input">
+                                                <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" name="MemberConatctInfo.Mobile2" asp-for="MemberConatctInfo.Mobile2" placeholder="Personal Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 2'"
+                                                       class="single-input">
                                             </div>
 
                                             <div class="input-group-icon mt-10" style="display:none">
@@ -373,12 +368,12 @@
                                                        required class="single-input">
                                             </div>
                                             <div class="input-group-icon mt-10" style="display:none">
-                                                <input type="text" name="MemberConatctInfo.RelativeContact1" asp-for="MemberConatctInfo.RelativeContact1" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 1'"
+                                                <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" name="MemberConatctInfo.RelativeContact1" asp-for="MemberConatctInfo.RelativeContact1" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 1'"
                                                        required class="single-input">
                                             </div>
                                             <div class="input-group-icon mt-10" style="display:none">
-                                                <input type="text" name="MemberConatctInfo.RelativeContact2" asp-for="MemberConatctInfo.RelativeContact2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
-                                                       required class="single-input">
+                                                <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" name="MemberConatctInfo.RelativeContact2" asp-for="MemberConatctInfo.RelativeContact2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
+                                                        class="single-input">
                                             </div>
                                             <div class="mt-10 center">
                                                 <button type="submit" class="genric-btn primary-border">Update</button>

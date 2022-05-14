@@ -168,7 +168,9 @@
             </div>
         </div>
     </div>
-    @await Component.InvokeAsync("NToastNotify")
+    <div class="container">
+        @await Component.InvokeAsync("NToastNotify")
+    </div>
     @RenderBody()
     <!--------------end of dashboard-------------->
 

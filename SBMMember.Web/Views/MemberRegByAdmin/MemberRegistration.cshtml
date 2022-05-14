@@ -114,13 +114,30 @@
                 <tr>
                 <td style="background-color:#7c0053">
                     <div class="photo-container1">
-                    <img src="~/img/Noavatar.png" class="view_prof_i">
-                    @*<div class="image-upload" style="text-align:center;color:#ffffff">
-                    <label for="file-input">edit
-                    <img src="~/img/upload_icon.png" width="20px" height="15px">
-                    </label>
-                    <input id="file-input" type="file" />
-                    </div>*@
+                        <form asp-action="UploadProfileImage" asp-controller="MemberRegByAdmin" method="post" enctype="multipart/form-data">
+                            <input type="hidden" asp-for="MemberId" />
+                            @if (Model.MemberPersonalInfo.MemberProfileImage != null)
+                            {
+                                <img src="~/MemberProfileImages/@Model.MemberPersonalInfo.MemberProfileImage.Split('/')[2]" class="view_prof_i">
+                            }
+                            else
+                            {
+                                <img src="~/img/Noavatar.png" class="view_prof_i">
+                            }
+                            @if (Model.MemberPersonalInfo != null && !Model.MemberPersonalInfo.IsNew)
+                            {
+                                <div class="image-upload" style="text-align:center;color:#ffffff">
+                                    <label for="file-input">
+                                        edit
+                                        <img src="~/img/upload_icon.png" width="20px" height="15px">
+                                    </label>
+                                    <input id="file-input" type="file" asp-for="file" />
+                                </div>
+                                <div>
+                                    <button type="submit" id="btnSetProfile" style="font-size:10px;">Set profile Image</button>
+                                </div>
+                            }
+                        </form>
                     </div>
                 </td>
                         <td width="100%" style="background-color:#7c0053">
@@ -315,7 +332,7 @@
 
                                                     <div class="input-group-icon mt-10">
                                                         <input type="text"  id="MemberConatctInfo.Mobile2" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" maxlength="10" name="MemberConatctInfo.Mobile2" asp-for="MemberConatctInfo.Mobile2" placeholder="Personal Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 2'"
-                                                               required class="single-input">
+                                                                class="single-input">
                                                     </div>
 
                                                     <div class="input-group-icon mt-10">
@@ -336,7 +353,7 @@
                                                     </div>
                                                     <div class="input-group-icon mt-10">
                                                         <input type="text"  onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" maxlength="10" name="MemberConatctInfo.RelativeContact2" asp-for="MemberConatctInfo.RelativeContact2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
-                                                               required class="single-input">
+                                                                class="single-input">
                                                     </div>
                                                     <div class="mt-10 center">
                                                         <button type="submit" class="genric-btn primary-border">Save</button>
