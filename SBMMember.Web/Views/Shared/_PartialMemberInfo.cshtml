@@ -11,13 +11,20 @@
                 <div class="row">
                     <div class="col-xs-3 search_pic">
                         <div text-align:center">
-                            @if (Model.Gender == "Male")
+                            @if (Model.ProfileImage != null)
                             {
-                                <img src="~/img/avatar7.png" class="blood_pic_img">
+                                <img src="~/MemberProfileImages/@Model.ProfileImage.Split('/')[2]" class="blood_pic_img">
                             }
                             else
                             {
-                                <img src="~/img/female-avtar.png" class="blood_pic_img">
+                                @if (Model.Gender == "Male")
+                                {
+                                    <img src="~/img/avatar7.png" class="blood_pic_img">
+                                }
+                                else
+                                {
+                                    <img src="~/img/female-avtar.png" class="blood_pic_img">
+                                }
                             }
                         </div>
                     </div>
@@ -44,7 +51,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-xs-10" style="margin-top:10px;margin-bottom:10px;float:left;margin-left:-10px;">
-                                   
+
                                     <a href="@Url.ActionLink("ViewMemberProfile","MemberDashboard",new{MemberId = Model.MemberId })" class="allviewbtn"><i class="ti-eye"></i> View</a>
                                 </div>
                             </div>

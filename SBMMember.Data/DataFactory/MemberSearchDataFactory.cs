@@ -65,7 +65,8 @@ namespace SBMMember.Data.DataFactory
                                                           Age = _apppersonal.Age,
                                                           BloodGroup = _apppersonal.BloodGroup,
                                                           PrefixM = _apppersonal.PrefixM,
-                                                          Gender = _apppersonal.Gender
+                                                          Gender = _apppersonal.Gender,
+                                                          ProfileImage=_apppersonal.MemberProfileImage
                                                       }).ToList();
 
             List<MemberSearchResponse> memberSearchesFinalResult = (from s in memberSearches.Where(x => x.Qualification.ToLower().Contains("m.b.b.s") || x.Qualification.ToLower().Contains("b.a.m.s")
@@ -83,7 +84,8 @@ namespace SBMMember.Data.DataFactory
                                                                         NativePlace = s.NativePlaceM,
                                                                         Qualification = s.QualificationM,
                                                                         BloodGroup = s.BloodGroup,
-                                                                        Gender = s.Gender
+                                                                        Gender = s.Gender,
+                                                                        ProfileImage=s.ProfileImage
                                                                     }).ToList();
             return memberSearchesFinalResult;
         }
@@ -280,7 +282,8 @@ namespace SBMMember.Data.DataFactory
                                                           Age = _apppersonal.Age,
                                                           BloodGroup = _apppersonal.BloodGroup,
                                                           Gender = _apppersonal.Gender,
-                                                          MemberShippId = _appPaymentstatus.MembershipId
+                                                          MemberShippId = _appPaymentstatus.MembershipId,
+                                                          ProfileImage=_apppersonal.MemberProfileImage
 
                                                       }).ToList();
 
@@ -297,8 +300,9 @@ namespace SBMMember.Data.DataFactory
                                                                         NativePlace = s.NativePlaceM,
                                                                         Qualification = s.QualificationM,
                                                                         BloodGroup = s.BloodGroup,
-                                                                        Gender = s.Gender
-
+                                                                        Gender = s.Gender,
+                                                                        ProfileImage=s.ProfileImage
+                                                                        
                                                                     }).ToList();
             return memberSearchesFinalResult;
         }

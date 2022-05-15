@@ -38,5 +38,6 @@ namespace SBMMember.Models.MemberSearch
         public string Gender { get; set; }
         public string GenderM { get; set; }
         public string FormStatus { get; set; }
+        public string ProfileImage { get; set; }
     }
 }

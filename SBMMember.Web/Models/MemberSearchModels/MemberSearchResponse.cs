@@ -18,5 +18,6 @@ namespace SBMMember.Web.Models.MemberSearchModels
         public string NativePlace { get; set; }
         public string BloodGroup { get; set; }
         public string Gender { get; set; }
+        public string ProfileImage { get; set; }
     }
 }
