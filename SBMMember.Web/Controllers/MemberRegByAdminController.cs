@@ -59,7 +59,7 @@ namespace SBMMember.Web.Controllers
             MemberFormCommonViewModel viewModel = new MemberFormCommonViewModel();
             MemberPerosnalInfoViewModel _MemberPersonalInfo = new MemberPerosnalInfoViewModel();
             _MemberPersonalInfo.ActiveTab = "Checked";
-            _MemberPersonalInfo.BirthDate = DateTime.Now.AddYears(-72);
+           // _MemberPersonalInfo.BirthDate = DateTime.Now.AddYears(-72);
             _MemberPersonalInfo.TabValue = "Tab1";
             _MemberPersonalInfo.IsNew = true;
             viewModel.ProfilePercentage = 0;
@@ -86,7 +86,7 @@ namespace SBMMember.Web.Controllers
                 perosnalInfoViewModel.IsNew = true;
             perosnalInfoViewModel.MemberId = MemberId;
             perosnalInfoViewModel.TabValue = "tab1";
-            perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate == DateTime.MinValue ? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
+            //perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate == DateTime.MinValue ? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
 
 
             commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
@@ -126,7 +126,7 @@ namespace SBMMember.Web.Controllers
             }
             MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
             familyInfoViewModel.MemberId = MemberId;
-            familyInfoViewModel.DOB = familyInfoViewModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoViewModel.DOB;
+           // familyInfoViewModel.DOB = familyInfoViewModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoViewModel.DOB;
             familyInfoViewModel.MemberFamilyDetails = memberFamilies;
             familyInfoViewModel.TabValue = "tab4";
             familyInfoViewModel.IsNew = true;
@@ -170,7 +170,7 @@ namespace SBMMember.Web.Controllers
                 perosnalInfoViewModel.IsNew = true;
             perosnalInfoViewModel.MemberId = MemberId;
             perosnalInfoViewModel.TabValue = "tab1";
-            perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate == DateTime.MinValue ? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
+            //perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate == DateTime.MinValue ? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
 
 
             commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
@@ -210,7 +210,7 @@ namespace SBMMember.Web.Controllers
             }
             //MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
             // familyInfoViewModel.MemberId = MemberId;
-            familyModel.DOB = familyModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyModel.DOB;
+            //familyModel.DOB = familyModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyModel.DOB;
             familyModel.MemberFamilyDetails = memberFamilies;
             familyModel.TabValue = "tab4";
             familyModel.IsNew = false;

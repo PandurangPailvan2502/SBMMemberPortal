@@ -22,6 +22,20 @@
 </style>
 <script>
     $(document).ready(function () {
+
+
+        $("#btnSetProfile").bind("click", function (e) {
+
+            var fileuploadValue = $("#file-input").val();
+            if (fileuploadValue === '') {
+                var message = "Please select Profile image to procced."
+
+                alert(message);
+                e.preventDefault();
+            }
+
+        });
+
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth() + 1; //January is 0!
@@ -47,7 +61,7 @@
                 <tr>
                     <td style="background-color:#7c0053">
                         <div class="photo-container1">
-                            <form asp-action="UploadProfileImage" asp-controller="OTPVerify" method="post" enctype="multipart/form-data">
+                            <form asp-action="UploadProfileImage" asp-controller="ManageMembers" method="post" enctype="multipart/form-data">
                                 <input type="hidden" asp-for="MemberId" />
                                 @if (Model.MemberPersonalInfo.MemberProfileImage != null)
                                 {
@@ -64,9 +78,9 @@
                                     </label>
                                     <input id="file-input" type="file" asp-for="file" />
                                 </div>
-                                @*<div>
-                                    <button type="submit" style="font-size:10px;">Set profile Image</button>
-                                </div>*@
+                                <div>
+                                        <button type="submit" id="btnSetProfile" style="font-size:10px;">Set profile Image</button>
+                                    </div>
                             </form>
                         </div>
                     </td>
@@ -290,7 +304,7 @@
 
 
                                             <div class="input-group-icon mt-10">
-                                                <input type="text" name="MemberConatctInfo.Mobile1"  onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" maxlength="10" asp-for="MemberConatctInfo.Mobile1" placeholder="Personal Mobile 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 1'"
+                                                <input type="text" name="MemberConatctInfo.Mobile1" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" maxlength="10" asp-for="MemberConatctInfo.Mobile1" placeholder="Personal Mobile 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 1'"
                                                        required class="single-input">
                                                 <input type="text" name="MemberConatctInfo.Mobile1M" asp-for="MemberConatctInfo.Mobile1M" placeholder="Personal Mobile 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 1'"
                                                        required class="single-input">
@@ -301,10 +315,10 @@
                                             </div>
 
                                             <div class="input-group-icon mt-10">
-                                                <input type="text" name="MemberConatctInfo.Mobile2" maxlength="10"  onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" asp-for="MemberConatctInfo.Mobile2" placeholder="Personal Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 2'"
-                                                        class="single-input">
+                                                <input type="text" name="MemberConatctInfo.Mobile2" maxlength="10" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" asp-for="MemberConatctInfo.Mobile2" placeholder="Personal Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 2'"
+                                                       class="single-input">
                                                 <input type="text" name="MemberConatctInfo.Mobile2M" asp-for="MemberConatctInfo.Mobile2M" placeholder="Personal Mobile 2" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 2'"
-                                                        class="single-input">
+                                                       class="single-input">
                                             </div>
 
                                             <div class="input-group-icon mt-10">
@@ -331,9 +345,9 @@
                                             </div>
                                             <div class="input-group-icon mt-10">
                                                 <input type="text" name="MemberConatctInfo.RelativeContact2" asp-for="MemberConatctInfo.RelativeContact2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
-                                                        class="single-input">
+                                                       class="single-input">
                                                 <input type="text" name="MemberConatctInfo.RelativeContact2M" asp-for="MemberConatctInfo.RelativeContact2M" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
-                                                        class="single-input">
+                                                       class="single-input">
                                             </div>
                                             <div class="mt-10 center">
                                                 <button type="submit" class="genric-btn primary-border">Update</button>
@@ -377,25 +391,25 @@
                                             <div class="input-group-icon mt-10">
                                                 <input type="text" name="MemberEducationEmploymentInfo.CompanyName" asp-for="MemberEducationEmploymentInfo.CompanyName" placeholder="Company Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Name'"
                                                        required class="single-input">
-                                                <input type="text" name="MemberEducationEmploymentInfo.CompanyNameM" asp-for="MemberEducationEmploymentInfo.CompanyNameM" placeholder="Company Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Name'"
+                                                <input type="text" name="MemberEducationEmploymentInfo.CompanyNameM" asp-for="MemberEducationEmploymentInfo.CompanyNameM" placeholder="Company Name in Marathi" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Name in Marathi'"
                                                        required class="single-input">
                                             </div>
                                             <div class="input-group-icon mt-10">
                                                 <input type="text" name="MemberEducationEmploymentInfo.CompanyAddress" asp-for="MemberEducationEmploymentInfo.CompanyAddress" placeholder="Company Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Address'"
                                                        required class="single-input">
-                                                <input type="text" name="MemberEducationEmploymentInfo.CompanyAddressM" asp-for="MemberEducationEmploymentInfo.CompanyAddressM" placeholder="Company Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Address'"
+                                                <input type="text" name="MemberEducationEmploymentInfo.CompanyAddressM" asp-for="MemberEducationEmploymentInfo.CompanyAddressM" placeholder="Company Address in Marathi" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Address in Marathi'"
                                                        required class="single-input">
                                             </div>
                                             <div class="input-group-icon mt-10">
                                                 <input type="text" name="MemberEducationEmploymentInfo.BusinessName" asp-for="MemberEducationEmploymentInfo.BusinessName" placeholder="Business Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Name'"
                                                        required class="single-input">
-                                                <input type="text" name="MemberEducationEmploymentInfo.BusinessNameM" asp-for="MemberEducationEmploymentInfo.BusinessNameM" placeholder="Business Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Name'"
+                                                <input type="text" name="MemberEducationEmploymentInfo.BusinessNameM" asp-for="MemberEducationEmploymentInfo.BusinessNameM" placeholder="Business Name in Marathi" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Name in Marathi'"
                                                        required class="single-input">
                                             </div>
                                             <div class="input-group-icon mt-10">
                                                 <input type="text" name="MemberEducationEmploymentInfo.BusinessAddress" asp-for="MemberEducationEmploymentInfo.BusinessAddress" placeholder="Business Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Address'"
                                                        class="single-input">
-                                                <input type="text" name="MemberEducationEmploymentInfo.BusinessAddressM" asp-for="MemberEducationEmploymentInfo.BusinessAddressM" placeholder="Business Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Address'"
+                                                <input type="text" name="MemberEducationEmploymentInfo.BusinessAddressM" asp-for="MemberEducationEmploymentInfo.BusinessAddressM" placeholder="Business Address in Marathi" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Address in Marathi'"
                                                        class="single-input">
                                             </div>
                                             <div class="mt-10 center">
@@ -423,7 +437,7 @@
                                             <div class="input-group-icon mt-10">
                                                 <input type="text" name="MemberFamilyInfo.Name" asp-for="MemberFamilyInfo.Name" placeholder="Family member Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Name'"
                                                        required class="single-input">
-                                                <input type="text" name="MemberFamilyInfo.NameM" asp-for="MemberFamilyInfo.NameM" placeholder="Family member Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Name'"
+                                                <input type="text" name="MemberFamilyInfo.NameM" asp-for="MemberFamilyInfo.NameM" placeholder="Family member Name in Marathi" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Name in Marathi'"
                                                        required class="single-input">
                                             </div>
                                             <div class="input-group-icon mt-10">
@@ -439,14 +453,14 @@
                                                         <option value="Mother">Mother</option>
                                                     </select>
                                                 </div>
-                                                <input type="text" name="MemberFamilyInfo.RelationM" asp-for="MemberFamilyInfo.RelationM" placeholder="Family member Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Name'"
+                                                <input type="text" name="MemberFamilyInfo.RelationM" asp-for="MemberFamilyInfo.RelationM" placeholder="Family member Name in Marathi" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member relation in Marathi'"
                                                        required class="single-input">
                                             </div>
 
                                             <div class="input-group-icon mt-10">
                                                 <input type="text" name="MemberFamilyInfo.Education" asp-for="MemberFamilyInfo.Education" placeholder="Family member Education" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Education'"
                                                        required class="single-input">
-                                                <input type="text" name="MemberFamilyInfo.EducationM" asp-for="MemberFamilyInfo.EducationM" placeholder="Family member Education" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Education'"
+                                                <input type="text" name="MemberFamilyInfo.EducationM" asp-for="MemberFamilyInfo.EducationM" placeholder="Family member Education in Marathi" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Education in Marathi'"
                                                        required class="single-input">
                                             </div>
                                             <div class="input-group-icon mt-10">
@@ -460,13 +474,22 @@
                                                         <option value="Retired">Retired</option>
                                                     </select>
                                                 </div>
-                                                <input type="text" name="MemberFamilyInfo.OccupationM" asp-for="MemberFamilyInfo.OccupationM" placeholder="Family member Education" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Occupation'"
+                                                <input type="text" name="MemberFamilyInfo.OccupationM" asp-for="MemberFamilyInfo.OccupationM" placeholder="Family member Education in Marathi" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Family member Occupation in Marathi'"
                                                        required class="single-input">
                                             </div>
 
                                             <div class="input-group-icon mt-10">
-                                                Date of Birth: <input type="date" min="1950-01-01" id="DOB" name="" MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
-                                                                      required class="single-input">
+                                                Date of Birth:
+                                                @if (Model.MemberFamilyInfo.DOB == DateTime.MinValue)
+                                                {
+                                                    <input type="date" min="" id="DOB" value="@DateTime.Today" name="" MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                                                           required class="single-input">
+                                                }
+                                                else
+                                                {
+                                                    <input type="date" min="" id="DOB" name="" MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                                                           required class="single-input">
+                                                }
 
                                             </div>
 
@@ -494,14 +517,14 @@
                                             @if (Model.MemberFamilyInfo.MemberFamilyDetails != null)
                                             {
                                                 <div class="mt-10 center">
-                                                    <table class="table table-info">
+                                                    <table class="table table-striped">
                                                         <thead>
                                                             <tr>
                                                                 <td>Name</td>
                                                                 <td>Relation</td>
-                                                                <td>Education</td>
-                                                                <td>Occupation</td>
-                                                                <td>Blood Group</td>
+                                                                @*<td>Education</td>
+                                                                    <td>Occupation</td>
+                                                                    <td>Blood Group</td>*@
                                                                 <td>Operations</td>
                                                             </tr>
                                                         </thead>
@@ -512,9 +535,9 @@
                                                                 <tr>
                                                                     <td>@familyMember.NameM</td>
                                                                     <td>@familyMember.RelationM</td>
-                                                                    <td>@familyMember.EducationM</td>
-                                                                    <td>@familyMember.OccupationM</td>
-                                                                    <td>@familyMember.BloodGroup</td>
+                                                                    @*<td>@familyMember.EducationM</td>
+                                                                        <td>@familyMember.OccupationM</td>
+                                                                        <td>@familyMember.BloodGroup</td>*@
                                                                     <td>
                                                                         <a title="Edit" href="@Url.Action("EditFamilyMember","ManageMembers",new { id = familyMember.FamilyDetailsID})"><i class="ti-pencil"></i></a>
                                                                         <a title="Delete" href="@Url.Action("DeleteFamilyMember","ManageMembers",new { id =familyMember.FamilyDetailsID,memberId=familyMember.MemberId})" class="delete-row" onclick="return confirm('Are sure wants to delete?');"><i class="ti-close"></i></a>
@@ -599,7 +622,7 @@
                                 <div class="row">
                                     <form asp-action="MarkVerify" asp-controller="ManageMembers" method="post" enctype="multipart/form-data">
                                         <input type="hidden" asp-for="MemberId" />
-                                       
+
                                         <div class="mt-10 right">
                                             <button type="submit" class="genric-btn primary-border">Mark Member Profile as Verified</button>
                                         </div>

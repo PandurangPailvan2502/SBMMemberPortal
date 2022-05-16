@@ -166,7 +166,7 @@ namespace SBMMember.Web.Controllers
             familyInfoview.MemberFamilyDetails = memberFamilies;
             familyInfoview.MemberId = MemberId;
             familyInfoview.IsNew = true;
-            familyInfoview.DOB = familyInfoview.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoview.DOB;
+            //familyInfoview.DOB = familyInfoview.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoview.DOB;
             commonViewModel.MemberFamilyInfo = familyInfoview;
             if (memberFamilies.Count > 0)
                 commonViewModel.ProfilePercentage += 20;
@@ -315,7 +315,7 @@ namespace SBMMember.Web.Controllers
         public IActionResult MemberPersonalInfo(MemberFormCommonViewModel formCommonViewModel)
         {
             Member_PersonalDetails member_Personal = mapper.Map<Member_PersonalDetails>(formCommonViewModel.MemberPersonalInfo);
-            ResponseDTO response = personalDataFactory.UpdateMemberPersonalDetails(member_Personal);
+            ResponseDTO response = personalDataFactory.UpdateMemberPersonalDetailsForProfileUpdate(member_Personal);
             if (response.Result == "Success")
                 _toastNotification.AddSuccessToastMessage(response.Message);
             else

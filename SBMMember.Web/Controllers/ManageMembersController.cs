@@ -10,6 +10,8 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using SBMMember.Web.Helper;
 using NToastNotify;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 namespace SBMMember.Web.Controllers
 {
     // [Authorize]
@@ -27,6 +29,8 @@ namespace SBMMember.Web.Controllers
         private readonly IMemberFormStatusDataFactory formStatusDataFactory;
         private readonly IEventTitlesDataFactory eventTitlesDataFactory;
         private readonly IToastNotification _toastNotification;
+        private readonly IWebHostEnvironment Environment;
+
         public ManageMembersController(IMemberDataFactory dataFactory,
             IMemberSearchDataFactory searchDataFactory,
             IMemberPersonalDataFactory _personalDataFactory,
@@ -37,7 +41,8 @@ namespace SBMMember.Web.Controllers
             IMapper _mapper,
             IMemberFormStatusDataFactory _formStatusDataFactory,
             IEventTitlesDataFactory _eventTitlesDataFactory,
-            IToastNotification toast
+            IToastNotification toast,
+            IWebHostEnvironment environment
             )
         {
             memberDataFactory = dataFactory;
@@ -51,6 +56,7 @@ namespace SBMMember.Web.Controllers
             formStatusDataFactory = _formStatusDataFactory;
             eventTitlesDataFactory = _eventTitlesDataFactory;
             _toastNotification = toast;
+            Environment = environment;
         }
         public IActionResult MemberList()
         {
@@ -95,7 +101,7 @@ namespace SBMMember.Web.Controllers
             }
             MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
             familyInfoViewModel.MemberFamilyDetails = memberFamilies;
-            familyInfoViewModel.DOB = DateTime.Now.AddYears(-72);
+            //familyInfoViewModel.DOB = DateTime.Now.AddYears(-72);
             commonViewModel.MemberFamilyInfo = familyInfoViewModel;
 
             Member_PaymentsAndReciepts member_Payments = paymentsDataFactory.GetDetailsByMemberId(_MemberId);
@@ -178,7 +184,28 @@ namespace SBMMember.Web.Controllers
         //{
         //    return RedirectToAction("NewMemberList");
         //}
+        public IActionResult UploadProfileImage(MemberFormCommonViewModel commonViewModel)
+        {
+            string path = Path.Combine(this.Environment.WebRootPath, "MemberProfileImages");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            string FilePath = $"~/MemberProfileImages/{commonViewModel.file.FileName}";
+            string fileName = Path.GetFileName(commonViewModel.file.FileName);
+            string fullPath = Path.Combine(path, fileName);
+            using (FileStream stream = new FileStream(fullPath, FileMode.Create))
+            {
+                commonViewModel.file.CopyTo(stream);
 
+            }
+            ResponseDTO response = personalDataFactory.UpdateMemberProfileImage(commonViewModel.MemberId, FilePath);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+            return RedirectToAction("VerifyMemberProfile", new { MemberId = commonViewModel.MemberId });
+        }
         [HttpPost]
         public IActionResult MemberPersonalInfo(MemberFormCommonViewModel formCommonViewModel)
         {
@@ -211,7 +238,7 @@ namespace SBMMember.Web.Controllers
                 _toastNotification.AddSuccessToastMessage(response.Message);
             else
                 _toastNotification.AddErrorToastMessage(response.Message);
-            return RedirectToAction("VerifyMemberProfile", formCommonViewModel.MemberEducationEmploymentInfo.MemberId);
+            return RedirectToAction("VerifyMemberProfile", new { MemberId = formCommonViewModel.MemberEducationEmploymentInfo.MemberId });
         }
         [HttpPost]
         public IActionResult MemberPaymentInfo(MemberFormCommonViewModel memberFormCommon)

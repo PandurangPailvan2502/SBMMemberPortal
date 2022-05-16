@@ -41,7 +41,7 @@
                                     <td>
                                         <label class="lbl_profile">
                                             जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
-                                            {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()}
+                                            {@Model.MemberPersonalInfo.BirthDate.ToString("dd-MM-yyyy")}
                                         </label>
                                     </td>
                                 </tr>
@@ -396,7 +396,7 @@
                         </div>
 
                         <div class="input-group-icon mt-10">
-                            <span><b>जन्म तारीख :  </b><span id="mem_dob">@familyMember.DOB</span></span>
+                            <span><b>जन्म तारीख :  </b><span id="mem_dob">@familyMember.DOB.ToString("dd-MM-yyyy")</span></span>
 
                         </div>
                         <div class="input-group-icon mt-10">

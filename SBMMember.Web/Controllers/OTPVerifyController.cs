@@ -200,7 +200,7 @@ namespace SBMMember.Web.Controllers
                 else
                     perosnalInfoViewModel.IsNew = true;
                 perosnalInfoViewModel.MemberId = member.MemberId;
-                perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate == DateTime.MinValue ? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
+               // perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate == DateTime.MinValue ? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
                 commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
 
                 Member_ContactDetails member_contact = contactDetailsDataFactory.GetDetailsByMemberId(member.MemberId);
@@ -236,7 +236,7 @@ namespace SBMMember.Web.Controllers
                 }
                 MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
                 familyInfoViewModel.MemberId = member.MemberId;
-                familyInfoViewModel.DOB = familyInfoViewModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoViewModel.DOB;
+                //familyInfoViewModel.DOB = familyInfoViewModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoViewModel.DOB;
                 familyInfoViewModel.IsNew = true;
                 familyInfoViewModel.MemberFamilyDetails = memberFamilies;
                 if (memberFamilies.Count > 0)
@@ -289,7 +289,7 @@ namespace SBMMember.Web.Controllers
             else
                 perosnalInfoViewModel.IsNew = true;
             perosnalInfoViewModel.MemberId = MemberId;
-            perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate == DateTime.MinValue ? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
+            //perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate == DateTime.MinValue ? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
 
             commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
 
@@ -368,7 +368,7 @@ namespace SBMMember.Web.Controllers
             else
                 perosnalInfoViewModel.IsNew = true;
             perosnalInfoViewModel.MemberId = MemberId;
-            perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate == DateTime.MinValue ? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
+           // perosnalInfoViewModel.BirthDate = perosnalInfoViewModel.BirthDate == DateTime.MinValue ? DateTime.Now.AddYears(-72) : perosnalInfoViewModel.BirthDate;
 
             commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
 
@@ -405,7 +405,7 @@ namespace SBMMember.Web.Controllers
             }
             //MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
             //familyInfoViewModel.MemberId = MemberId;
-            familyModel.DOB = familyModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyModel.DOB;
+            //familyModel.DOB = familyModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyModel.DOB;
             familyModel.MemberFamilyDetails = memberFamilies;
             familyModel.IsNew = false;
             commonViewModel.MemberFamilyInfo = familyModel;

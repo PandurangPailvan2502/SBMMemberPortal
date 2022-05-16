@@ -89,7 +89,7 @@
                 alert("Please Select Blood Group")
             }
         });
-       
+
 
         var pincodeval = $("#pincode").val();
         if (pincodeval == "0")
@@ -167,8 +167,12 @@
                                     <td><label class="lbl_profile">सभासद क्रमांक: @Model.MemberPaymentInfo.MemberShipIdM </label></td>
                                 </tr>
                                 <tr>
-                                    <td><label class="lbl_profile">जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
-                                    {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()} </label></td>
+                                    <td>
+                                        <label class="lbl_profile">
+                                            जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
+                                            {@Model.MemberPersonalInfo.BirthDate.ToString("dd-MM-yyyy")}
+                                        </label>
+                                    </td>
                                 </tr>
                                 <tr><td><label class="lbl_profile">मोबाईल: @Model.MemberConatctInfo.Mobile1 </label></td></tr>
                             </table>
@@ -373,7 +377,7 @@
                                             </div>
                                             <div class="input-group-icon mt-10" style="display:none">
                                                 <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" name="MemberConatctInfo.RelativeContact2" asp-for="MemberConatctInfo.RelativeContact2" placeholder="Reference Mobile Number 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Reference Mobile Number 2'"
-                                                        class="single-input">
+                                                       class="single-input">
                                             </div>
                                             <div class="mt-10 center">
                                                 <button type="submit" class="genric-btn primary-border">Update</button>
@@ -420,7 +424,7 @@
                                             </div>
                                             <div class="input-group-icon mt-10">
                                                 <input type="text" name="MemberEducationEmploymentInfo.BusinessName" asp-for="MemberEducationEmploymentInfo.BusinessName" placeholder="Business Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Name'"
-                                                        class="single-input">
+                                                       class="single-input">
                                             </div>
                                             <div class="input-group-icon mt-10">
                                                 <input type="text" name="MemberEducationEmploymentInfo.BusinessAddress" asp-for="MemberEducationEmploymentInfo.BusinessAddress" placeholder="Business Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Business Address'"
@@ -484,8 +488,17 @@
                                             </div>
 
                                             <div class="input-group-icon mt-10">
-                                                Date of Birth: <input id="familyDOB" type="date" name="MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
-                                                                      required class="single-input">
+                                                Date of Birth:
+                                                @if (Model.MemberFamilyInfo.DOB==DateTime.MinValue)
+                                                {
+                                                    <input id="familyDOB" type="date" value="@DateTime.Today" name="MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                                                           required class="single-input">
+                                                }
+                                                else
+                                                {
+                                                <input id="familyDOB" type="date" name="MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                                                       required class="single-input">
+                                                }
                                             </div>
 
                                             <div class="input-group-icon mt-10">

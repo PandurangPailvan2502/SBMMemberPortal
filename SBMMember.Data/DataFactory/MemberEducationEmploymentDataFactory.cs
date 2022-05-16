@@ -23,7 +23,9 @@ namespace SBMMember.Data.DataFactory
             member_EducationEmployment.ProffessionM = TranslationHelper.Translate(member_EducationEmployment.Proffession);
             member_EducationEmployment.CompanyNameM = TranslationHelper.Translate(member_EducationEmployment.CompanyName);
             member_EducationEmployment.CompanyAddressM = TranslationHelper.Translate(member_EducationEmployment.CompanyAddress);
+            if(member_EducationEmployment.BusinessName!=null)
             member_EducationEmployment.BusinessNameM = TranslationHelper.Translate(member_EducationEmployment.BusinessName);
+            if(member_EducationEmployment.BusinessAddress!=null)
             member_EducationEmployment.BusinessAddressM = TranslationHelper.Translate(member_EducationEmployment.BusinessAddress);
 
             try

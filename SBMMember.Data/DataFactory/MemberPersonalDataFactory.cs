@@ -134,6 +134,76 @@ namespace SBMMember.Data.DataFactory
 
             return responseDTO;
         }
+        public ResponseDTO UpdateMemberPersonalDetailsForProfileUpdate(Member_PersonalDetails member_Personal)
+        {
+            ResponseDTO responseDTO = new ResponseDTO();
+            try
+            {
+                Member_PersonalDetails personalDetails = dBContext.Member_PersonalDetails.Where(x => x.MemberId == member_Personal.MemberId).First();
+                //personalDetails = member_Personal;
+                personalDetails.Address = member_Personal.Address;
+                personalDetails.AddressM = TranslationHelper.Translate(member_Personal.Address);
+                personalDetails.Age = member_Personal.Age;
+                //personalDetails.AgeM =TranslationHelper.Translate( member_Personal.Age);
+                personalDetails.Area = member_Personal.Area;
+                personalDetails.AreaM = TranslationHelper.Translate(member_Personal.Area);
+                personalDetails.BirthDate = member_Personal.BirthDate;
+                personalDetails.BirthDateM = TranslationHelper.Translate(Convert.ToString(member_Personal.BirthDate));
+                personalDetails.BloodGroup = member_Personal.BloodGroup;
+                personalDetails.BloodGroupM = member_Personal.BloodGroupM;
+                personalDetails.City = member_Personal.City;
+                personalDetails.CityM = TranslationHelper.Translate(member_Personal.City);
+                personalDetails.District = member_Personal.District;
+                personalDetails.DistrictM = TranslationHelper.Translate(member_Personal.District);
+               // personalDetails.FirstName = member_Personal.FirstName;
+               // personalDetails.FirstNameM = TranslationHelper.Translate(member_Personal.FirstName);
+                personalDetails.Gender = member_Personal.Gender;
+                personalDetails.GenderM = TranslationHelper.Translate(member_Personal.Gender);
+                personalDetails.LandMark = member_Personal.LandMark;
+                personalDetails.LandMarkM = TranslationHelper.Translate(member_Personal.LandMark);
+               // personalDetails.LastName = member_Personal.LastName;
+                //personalDetails.LastNameM = TranslationHelper.Translate(member_Personal.LastName);
+                personalDetails.MaritalStatus = member_Personal.MaritalStatus;
+                personalDetails.MaritalStatusM = TranslationHelper.Translate(member_Personal.MaritalStatus);
+              //  personalDetails.MiddleName = member_Personal.MiddleName;
+               // personalDetails.MiddleNameM = TranslationHelper.Translate(member_Personal.MiddleName);
+                personalDetails.Pincode = member_Personal.Pincode;
+                personalDetails.PincodeM = TranslationHelper.Translate(Convert.ToString(member_Personal.Pincode));
+                personalDetails.Prefix = member_Personal.Prefix;
+                personalDetails.PrefixM = TranslationHelper.Translate(member_Personal.Prefix);
+                personalDetails.State = member_Personal.State;
+                personalDetails.StateM = TranslationHelper.Translate(member_Personal.State);
+                personalDetails.SubArea = member_Personal.SubArea;
+                personalDetails.SubAreaM = TranslationHelper.Translate(member_Personal.SubArea);
+                personalDetails.Taluka = member_Personal.Taluka;
+                personalDetails.TalukaM = TranslationHelper.Translate(member_Personal.Taluka);
+
+
+                int affectedRows = 0;
+                //dBContext.Update(personalDetails);
+                affectedRows = dBContext.SaveChanges();
+                if (affectedRows > 0)
+                {
+                    responseDTO = new ResponseDTO()
+                    {
+                        Result = "Success",
+                        Message = "Member personal details updated successfully."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+
+                logger.LogError($"Error occured while updating member personal details. Exception:{ex.Message}");
+                responseDTO = new ResponseDTO()
+                {
+                    Result = "Failed",
+                    Message = "Member personal details update operation failed."
+                };
+            }
+
+            return responseDTO;
+        }
         public ResponseDTO UpdateMemberPersonalDetailsNoTranslation(Member_PersonalDetails member_Personal)
         {
             ResponseDTO responseDTO = new ResponseDTO();
@@ -277,6 +347,7 @@ namespace SBMMember.Data.DataFactory
         List<string> GetDistinctCities();
         ResponseDTO UpdateMemberPersonalDetailsNoTranslation(Member_PersonalDetails member_Personal);
         ResponseDTO UpdateMemberProfileImage(int MemberId, string imagePath);
+        ResponseDTO UpdateMemberPersonalDetailsForProfileUpdate(Member_PersonalDetails member_Personal);
     }
 
    

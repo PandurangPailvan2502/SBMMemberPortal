@@ -24,12 +24,14 @@ namespace SBMMember.Data.DataFactory
             member_ContactDetails.NativePlaceTalukaM = TranslationHelper.Translate(member_ContactDetails.NativePlaceTaluka);
             member_ContactDetails.NativePlaceDistM = TranslationHelper.Translate(member_ContactDetails.NativePlaceDist);
             member_ContactDetails.Mobile1M = TranslationHelper.Translate(member_ContactDetails.Mobile1);
+            if(member_ContactDetails.Mobile2!=null)
             member_ContactDetails.Mobile2M = TranslationHelper.Translate(member_ContactDetails.Mobile2);
             member_ContactDetails.LandLineM = TranslationHelper.Translate(member_ContactDetails.LandLine);
             member_ContactDetails.RelativeNameM = TranslationHelper.Translate(member_ContactDetails.RelativeName);
             member_ContactDetails.RelativeAddressM = TranslationHelper.Translate(member_ContactDetails.RelativeAddress);
             member_ContactDetails.RelativeContact1M = TranslationHelper.Translate(member_ContactDetails.RelativeContact1);
-            member_ContactDetails.RelativeContact2M = TranslationHelper.Translate(member_ContactDetails.RelativeContact2);
+            if (member_ContactDetails.RelativeContact2 != null)
+                member_ContactDetails.RelativeContact2M = TranslationHelper.Translate(member_ContactDetails.RelativeContact2);
 
             try
             {
@@ -91,6 +93,7 @@ namespace SBMMember.Data.DataFactory
                 member_Contact.Mobile1 = member_ContactDetails.Mobile1;
                 member_Contact.Mobile1M =TranslationHelper.Translate( member_ContactDetails.Mobile1);
                 member_Contact.Mobile2 = member_ContactDetails.Mobile2;
+                if (member_ContactDetails.Mobile2!=null)
                 member_Contact.Mobile2M =TranslationHelper.Translate( member_ContactDetails.Mobile2);
                 member_Contact.NativePlace = member_ContactDetails.NativePlace;
                 member_Contact.NativePlaceM =TranslationHelper.Translate( member_ContactDetails.NativePlace);
@@ -103,7 +106,8 @@ namespace SBMMember.Data.DataFactory
                 member_Contact.RelativeContact1 = member_ContactDetails.RelativeContact1;
                 member_Contact.RelativeContact1M =TranslationHelper.Translate( member_ContactDetails.RelativeContact1);
                 member_Contact.RelativeContact2 = member_ContactDetails.RelativeContact2;
-                member_Contact.RelativeContact2M =TranslationHelper.Translate( member_ContactDetails.RelativeContact2);
+                if (member_ContactDetails.RelativeContact2 != null)
+                    member_Contact.RelativeContact2M =TranslationHelper.Translate( member_ContactDetails.RelativeContact2);
                 member_Contact.RelativeName = member_ContactDetails.RelativeName;
                 member_Contact.RelativeNameM =TranslationHelper.Translate( member_ContactDetails.RelativeName);
                 

@@ -90,7 +90,7 @@
                 alert("Please Select Blood Group")
             }
         });
-      
+
 
         var pincodeval = $("#pincode").val();
         if (pincodeval == "0")
@@ -147,16 +147,16 @@
                                 }
                                 @if (Model.MemberPersonalInfo != null && !Model.MemberPersonalInfo.IsNew)
                                 {
-                                <div class="image-upload" style="text-align:center;color:#ffffff">
-                                    <label for="file-input">
-                                        edit
-                                        <img src="~/img/upload_icon.png" width="20px" height="15px">
-                                    </label>
-                                    <input id="file-input" type="file" asp-for="file" />
-                                </div>
-                                <div>
-                                    <button type="submit" id="btnSetProfile" style="font-size:10px;">Set profile Image</button>
-                                </div>
+                                    <div class="image-upload" style="text-align:center;color:#ffffff">
+                                        <label for="file-input">
+                                            edit
+                                            <img src="~/img/upload_icon.png" width="20px" height="15px">
+                                        </label>
+                                        <input id="file-input" type="file" asp-for="file" />
+                                    </div>
+                                    <div>
+                                        <button type="submit" id="btnSetProfile" style="font-size:10px;">Set profile Image</button>
+                                    </div>
                                 }
                             </form>
                         </div>
@@ -174,7 +174,7 @@
                                     <td>
                                         <label class="lbl_profile">
                                             जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
-                                            {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()}
+                                            {@Model.MemberPersonalInfo.BirthDate.ToString("dd-MM-yyyy")}
                                         </label>
                                     </td>
                                 </tr>
@@ -187,7 +187,7 @@
                     <td colspan="2">
                         <div id="myProgress">
                             <label for="file">Member Profile Completion Status:@Model.ProfilePercentage%</label>
-                            <progress style="vertical-align:bottom;height:50px;width:100%;" id="file" value="@Model.ProfilePercentage" max="100"></progress> 
+                            <progress style="vertical-align:bottom;height:50px;width:100%;" id="file" value="@Model.ProfilePercentage" max="100"></progress>
                         </div>
                     </td>
                 </tr>
@@ -215,7 +215,7 @@
                                             <div class="input-group-icon">
                                                 <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                                 <div class="form-select" id="default-select">
-                                                    <select  asp-for="MemberPersonalInfo.Prefix" id="title" required>
+                                                    <select asp-for="MemberPersonalInfo.Prefix" id="title" required>
                                                         <option value="">Title</option>
                                                         <option value="Shree">Shree</option>
                                                         <option value="Sou">Sou</option>
@@ -261,7 +261,14 @@
                                             </div>
                                             <div class="input-group-icon mt-10">
                                                 <label>Date of Birth</label>
-                                                <input type="date" id="birthdateCtrl" min="1950-01-01" max="" name="MemberPersonalInfo.BirthDate" asp-for="MemberPersonalInfo.BirthDate" class="single-input">
+                                                @if (Model.MemberPersonalInfo.BirthDate == DateTime.MinValue)
+                                                {
+                                                    <input type="date" id="birthdateCtrl" value="@DateTime.Today" name="MemberPersonalInfo.BirthDate" asp-for="MemberPersonalInfo.BirthDate" class="single-input">
+                                                }
+                                                else
+                                                {
+                                                    <input type="date" id="birthdateCtrl" name="MemberPersonalInfo.BirthDate" asp-for="MemberPersonalInfo.BirthDate" class="single-input">
+                                                }
                                             </div>
                                             <div class="input-group-icon mt-10">
                                                 <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
@@ -491,8 +498,18 @@
                                             </div>
 
                                             <div class="input-group-icon mt-10">
-                                                Date of Birth: <input type="date" id="familyDOB" min="1950-01-01" name="MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
-                                                                      required class="single-input">
+                                                Date of Birth:
+                                                @if (Model.MemberFamilyInfo.DOB == DateTime.MinValue)
+                                                {
+                                                    <input type="date" id="familyDOB" value="@DateTime.Today" name="MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                                                           required class="single-input">
+                                                }
+                                                else
+
+                                                {
+                                                    <input type="date" id="familyDOB"  name="MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                                                           required class="single-input">
+                                                }
                                             </div>
 
                                             <div class="input-group-icon mt-10">
@@ -533,7 +550,7 @@
                                                                 <td>Relation</td>
                                                                 <td>Operations</td>
                                                                 @*<td>Occupation</td>
-                            <td>Blood Group</td>*@
+                                                                    <td>Blood Group</td>*@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
