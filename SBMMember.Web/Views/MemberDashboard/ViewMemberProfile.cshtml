@@ -68,14 +68,14 @@
 
                     <div class="section-top-border">
                         <div class="row">
-                            <div class="col-lg-10 col-md-10">
+                            <div class="col-lg-10 col-md-10" style="margin-left:10px;">
                                 <form asp-action="MemberPersonalInfo" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
                                     <input type="hidden" asp-for="MemberPersonalInfo.MemberId" />
                                     <div class="input-group-icon mt-10">
                                         <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
                                         <div class="form-select" id="default-select">
 
-                                            <label><b>सभासदाचे नाव : </b>@Model.MemberPersonalInfo.PrefixM @Model.MemberPersonalInfo.FirstNameM @Model.MemberPersonalInfo.MiddleNameM @Model.MemberPersonalInfo.LastNameM</label>
+                                            <label style="font-weight:bold; font-size:18px">@Model.MemberPersonalInfo.PrefixM @Model.MemberPersonalInfo.FirstNameM @Model.MemberPersonalInfo.MiddleNameM @Model.MemberPersonalInfo.LastNameM</label><br />
                                         </div>
                                     </div>
 
@@ -88,67 +88,25 @@
                                             </div>
                                         </div>*@
                                     <div class="input-group-icon mt-10">
-                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
-                                        <div class="form-select" id="default-select">
+                                       
+                                      
 
-                                            <label><b>वैवाहिक स्थिती : </b> @Model.MemberPersonalInfo.MaritalStatusM</label>
-                                        </div>
-                                    </div>
-                                    <div class="input-group-icon mt-10">
-                                        <label>
-                                            <b>जन्म तारीख : </b>@if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
+                                            <label><b>वैवाहिक स्थिती : </b><br /> @Model.MemberPersonalInfo.MaritalStatusM</label><br /><br />
+                                            
+                                            <label><b>जन्म तारीख : </b><br /> @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
                                             {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()}
-                                        </label>
-
+                                            </label><br /><br />
+                                    
+                                            <label><b>रक्त गट : </b><br /> @Model.MemberPersonalInfo.BloodGroup</label><br /><br />
+                                            <label><b>संपूर्ण पत्ता : </b><br />@Model.MemberPersonalInfo.AddressM</label><br /><br />
+                                            <label><b>एरिया :</b><br /> @Model.MemberPersonalInfo.AreaM</label><br /><br />
+                                            <span><b>शहर : </b><br />@Model.MemberPersonalInfo.CityM</span><br /><br />
+                                            <span><b>पिन कोड : </b><br />@Model.MemberPersonalInfo.PincodeM</span><br /><br />
+                                            <span><b>तालुका : </b><br />@Model.MemberPersonalInfo.TalukaM</span><br /><br />
+                                            <span><b>जिल्हा : </b><br />@Model.MemberPersonalInfo.DistrictM</span><br /><br />
+                                            <span><b>राज्य :</b> <br />@Model.MemberPersonalInfo.StateM</span><br /><br />
                                     </div>
-                                    <div class="input-group-icon mt-10">
-                                        <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
-                                        <div class="form-select" id="default-select">
-
-                                            <label><b>रक्त गट : </b> @Model.MemberPersonalInfo.BloodGroup</label>
-                                        </div>
-                                    </div>
-                                    <div class="input-group-icon mt-10">
-
-                                        <label><b>संपूर्ण पत्ता : </b>@Model.MemberPersonalInfo.AddressM</label>
-                                    </div>
-
-                                    <div class="input-group-icon mt-10">
-                                        <label><b>एरिया :</b> @Model.MemberPersonalInfo.AreaM</label>
-
-                                    </div>
-
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>शहर : </b>@Model.MemberPersonalInfo.CityM</span>
-
-                                    </div>
-
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>पिन कोड : </b>@Model.MemberPersonalInfo.PincodeM</span>
-
-                                    </div>
-
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>तालुका : </b>@Model.MemberPersonalInfo.TalukaM</span>
-
-                                    </div>
-
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>जिल्हा : </b>@Model.MemberPersonalInfo.DistrictM</span>
-
-                                    </div>
-
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>राज्य :</b> @Model.MemberPersonalInfo.StateM</span>
-
-                                    </div>
-
-
-
-
-
-
-                                </form>
+                               </form>
                             </div>
 
                         </div>
@@ -162,56 +120,22 @@
 
                     <div class="section-top-border">
                         <div class="row">
-                            <div class="col-lg-10 col-md-10">
+                            <div class="col-lg-10 col-md-10" style="margin-left:10px">
                                 <form asp-controller="MemberDashboard" asp-action="MemberContactInfo" method="post" enctype="multipart/form-data">
                                     <input type="hidden" asp-for="MemberConatctInfo.MemberId" />
                                     <div class="input-group-icon mt-3">
-                                        <span><b>सभासदाचे मुळगाव : </b>@Model.MemberConatctInfo.NativePlaceM</span>
-
+                                        <span><b>सभासदाचे मुळगाव : </b> <br />@Model.MemberConatctInfo.NativePlaceM</span><br /><br />
+                                        <span><b>मुळगाव तालुका :</b><br />@Model.MemberConatctInfo.NativePlaceTalukaM</span><br /><br />
+                                        <span><b>मुळगाव जिल्हा :</b><br /> @Model.MemberConatctInfo.NativePlaceDistM</span><br /><br />
+                                        <span><b>संपर्क १ : </b><br />@Model.MemberConatctInfo.Mobile1M</span><br /><br />
+                                        <span><b>संपर्क २ : </b><br />@Model.MemberConatctInfo.Mobile2M</span><br /><br />
+                                        <span><b>ई-मेल : </b><br />@Model.MemberConatctInfo.EmailId</span><br /><br />
+                                        <span><b>जवळच्या नातेवाईकाचे संपूर्ण नाव : </b><br />@Model.MemberConatctInfo.RelativeNameM</span><br /><br />
+                                        <span><b>जवळच्या नातेवाईकाचा संपूर्ण पत्ता : </b><br />@Model.MemberConatctInfo.RelativeAddressM</span><br /><br />
+                                        <span><b>जवळच्या नातेवाईकाचा संपर्क नं  १: </b><br />@Model.MemberConatctInfo.RelativeContact1M</span><br /><br />
+                                        <span><b>जवळच्या नातेवाईकाचा संपर्क नं  २: </b><br />@Model.MemberConatctInfo.RelativeContact2M</span><br /><br />
                                     </div>
-
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>मुळगाव तालुका : @Model.MemberConatctInfo.NativePlaceTalukaM</b></span>
-
-                                    </div>
-
-                                    <div class="input-group-icon mt-10">
-
-                                        <span><b>मुळगाव जिल्हा : @Model.MemberConatctInfo.NativePlaceDistM</b></span>
-                                    </div>
-
-
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>संपर्क १ : </b>@Model.MemberConatctInfo.Mobile1M</span>
-
-                                    </div>
-
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>संपर्क २ : </b>@Model.MemberConatctInfo.Mobile2M</span>
-
-                                    </div>
-
-                                    <div class="input-group-icon mt-10">
-
-                                        <span><b>ई-मेल : </b>@Model.MemberConatctInfo.EmailId</span>
-                                    </div>
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>जवळच्या नातेवाईकाचे संपूर्ण नाव : </b>@Model.MemberConatctInfo.RelativeNameM</span>
-
-                                    </div>
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>जवळच्या नातेवाईकाचा संपूर्ण पत्ता : </b>@Model.MemberConatctInfo.RelativeAddressM</span>
-                                    </div>
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>जवळच्या नातेवाईकाचा संपर्क नं  १: </b>@Model.MemberConatctInfo.RelativeContact1M</span>
-
-                                    </div>
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>जवळच्या नातेवाईकाचा संपर्क नं  २: </b>@Model.MemberConatctInfo.RelativeContact2M</span>
-
-                                    </div>
-
-                                </form>
+</form>
                             </div>
 
                         </div>
@@ -223,36 +147,18 @@
 
                     <div class="section-top-border">
                         <div class="row">
-                            <div class="col-lg-10 col-md-10">
+                            <div class="col-lg-10 col-md-10" style="margin-left:10px">
                                 <form asp-action="MemberEduEmpInfo" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
                                     <input type="hidden" asp-for="MemberEducationEmploymentInfo.MemberId" />
                                     <div class="input-group-icon mt-10">
-                                        <span><b>सभासदाचे शिक्षण : </b>@Model.MemberEducationEmploymentInfo.QualificationM</span>
-
+                                        <span><b>सभासदाचे शिक्षण : </b><br />@Model.MemberEducationEmploymentInfo.QualificationM</span><br /><br />
+                                        <span><b>व्यवसाय/नोकरी शेतकरी/विद्यार्थी : </b><br />@Model.MemberEducationEmploymentInfo.ProffessionM</span><br /><br />
+                                        <span><b>कंपनीचे नाव :</b><br />@Model.MemberEducationEmploymentInfo.CompanyNameM</span><br /><br />
+                                        <span><b>कंपनीचा पत्ता  :</b><br />@Model.MemberEducationEmploymentInfo.CompanyAddressM</span><br /><br />
+                                        <span><b>व्यवसायाचे नाव :</b><br />@Model.MemberEducationEmploymentInfo.BusinessNameM</span><br /><br />
+                                        <span><b>व्यवसायाचा पत्ता  :</b><br />@Model.MemberEducationEmploymentInfo.BusinessAddressM</span><br /><br />
                                     </div>
-                                    <div class="input-group-icon mt-10">
-
-                                        <span><b>व्यवसाय/नोकरी शेतकरी/विद्यार्थी : </b>@Model.MemberEducationEmploymentInfo.ProffessionM</span>
-                                    </div>
-
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>कंपनीचे नाव :</b>@Model.MemberEducationEmploymentInfo.CompanyNameM</span>
-
-                                    </div>
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>कंपनीचा पत्ता  :</b>@Model.MemberEducationEmploymentInfo.CompanyAddressM</span>
-
-                                    </div>
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>व्यवसायाचे नाव :</b>@Model.MemberEducationEmploymentInfo.BusinessNameM</span>
-
-                                    </div>
-                                    <div class="input-group-icon mt-10">
-                                        <span><b>व्यवसायाचा पत्ता  :</b>@Model.MemberEducationEmploymentInfo.BusinessAddressM</span>
-
-                                    </div>
-
-                                </form>
+                                    </form>
                             </div>
 
                         </div>
@@ -276,8 +182,8 @@
                                             <table class="table table-striped" id="tblFamily">
                                                 <thead>
                                                     <tr>
-                                                        <td>कुटुंबातील व्यक्तीचे नाव</td>
-                                                        <td>नाते</td>
+                                                        <td><b>कुटुंबातील व्यक्तीचे नाव</b></td>
+                                                        <td><b>नाते</b></td>
 
                                                         @* <td>कुटुंबातील व्यक्तीचे काम </td>
                                                             <td>रक्त गट</td>*@
