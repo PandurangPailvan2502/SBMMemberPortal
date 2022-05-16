@@ -67,33 +67,34 @@
                         <form asp-action="MemberPersonalInfo" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
                             <input type="hidden" asp-for="MemberPersonalInfo.MemberId" />
                             <div class="view_profile_content">
-                                <label class="viewprofilelabel">सभासदाचे नाव:</label>
-                                <span class="vpc">@Model.MemberPersonalInfo.PrefixM @Model.MemberPersonalInfo.FirstNameM @Model.MemberPersonalInfo.MiddleNameM @Model.MemberPersonalInfo.LastNameM</span><br />
+                                <!--label class="viewprofilelabel">सभासदाचे नाव:</label-->
+                                <span class="vpc" style="font-weight:bold; font-size:20px">@Model.MemberPersonalInfo.PrefixM @Model.MemberPersonalInfo.FirstNameM @Model.MemberPersonalInfo.MiddleNameM @Model.MemberPersonalInfo.LastNameM</span><br />
                                 @*<label class="viewprofilelabel">स्री / पुरुष:</label>
                                     <span class="vpc">@Model.MemberPersonalInfo.GenderM</span><br />*@
-                                <label class="viewprofilelabel">वैवाहिक स्थिती:</label>
-                                <span class="vpc">@Model.MemberPersonalInfo.MaritalStatusM</span><br />
+                                <br /><label class="viewprofilelabel">वैवाहिक स्थिती:</label><br />
+                                <span class="vpc">@Model.MemberPersonalInfo.MaritalStatusM</span><br /><br />
+
                                 <label class="viewprofilelabel">जन्म तारीख:</label>
                                 <span class="vpc">
                                     @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
                                     {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()}
-                            </span><br />
-                            <label class="viewprofilelabel">रक्त गट:</label>
-                            <span class="vpc">@Model.MemberPersonalInfo.BloodGroup</span><br />
-                            <label class="viewprofilelabel">संपूर्ण पत्ता:</label>
-                            <span class="vpc">@Model.MemberPersonalInfo.AddressM</span><br />
-                            <label class="viewprofilelabel">एरिया:</label>
-                            <span class="vpc">@Model.MemberPersonalInfo.AreaM</span><br />
-                            <label class="viewprofilelabel">शहर:</label>
-                            <span class="vpc">@Model.MemberPersonalInfo.CityM</span><br />
-                            <label class="viewprofilelabel">पिन कोड:</label>
-                            <span class="vpc">@Model.MemberPersonalInfo.PincodeM</span><br />
-                            <label class="viewprofilelabel">तालुका:</label>
-                            <span class="vpc">@Model.MemberPersonalInfo.TalukaM</span><br />
-                            <label class="viewprofilelabel">जिल्हा:</label>
-                            <span class="vpc">@Model.MemberPersonalInfo.DistrictM</span><br />
-                            <label class="viewprofilelabel">राज्य:</label>
-                            <span class="vpc">@Model.MemberPersonalInfo.StateM</span><br />
+                            </span><br /><br />
+                            <label class="viewprofilelabel">रक्त गट:</label><br />
+                            <span class="vpc">@Model.MemberPersonalInfo.BloodGroup</span><br /><br />
+                            <label class="viewprofilelabel">संपूर्ण पत्ता:</label><br />
+                            <span class="vpc">@Model.MemberPersonalInfo.AddressM</span><br /><br />
+                            <label class="viewprofilelabel">एरिया:</label><br />
+                            <span class="vpc">@Model.MemberPersonalInfo.AreaM</span><br /><br />
+                            <label class="viewprofilelabel">शहर:</label><br />
+                            <span class="vpc">@Model.MemberPersonalInfo.CityM</span><br /><br />
+                            <label class="viewprofilelabel">पिन कोड:</label><br />
+                            <span class="vpc">@Model.MemberPersonalInfo.PincodeM</span><br /><br />
+                            <label class="viewprofilelabel">तालुका:</label><br />
+                            <span class="vpc">@Model.MemberPersonalInfo.TalukaM</span><br /><br />
+                            <label class="viewprofilelabel">जिल्हा:</label><br />
+                            <span class="vpc">@Model.MemberPersonalInfo.DistrictM</span><br /><br />
+                            <label class="viewprofilelabel">राज्य:</label><br />
+                            <span class="vpc">@Model.MemberPersonalInfo.StateM</span><br /><br />
                         </div>
                     </form>
                 </div>
@@ -106,25 +107,34 @@
                     <form asp-controller="MemberDashboard" asp-action="MemberContactInfo" method="post" enctype="multipart/form-data">
                         <input type="hidden" asp-for="MemberConatctInfo.MemberId" />
 
-                        <label class="viewprofilelabel">सभासदाचे मुळगाव:</label>
-                        <span class="vpc">@Model.MemberConatctInfo.NativePlaceM</span><br />
-                        <label class="viewprofilelabel">मुळगाव तालुका:</label>
-                        <span class="vpc">@Model.MemberConatctInfo.NativePlaceTalukaM</span><br />
-                        <label class="viewprofilelabel">मुळगाव जिल्हा:</label>
-                        <span class="vpc">@Model.MemberConatctInfo.NativePlaceDistM</span><br />
-                        <label class="viewprofilelabel">संपर्क १:</label>
-                        <span class="vpc">@Model.MemberConatctInfo.Mobile1M</span><br />
-                        <label class="viewprofilelabel">संपर्क २:</label>
-                        <span class="vpc">@Model.MemberConatctInfo.Mobile2M</span><br />
-                        <label class="viewprofilelabel">ई-मेल:</label>
-                        <span class="vpc">@Model.MemberConatctInfo.EmailId</span><br />
-                        <label class="viewprofilelabel">जवळच्या नातेवाईकाचे संपूर्ण नाव:</label>
-                        <span class="vpc">@Model.MemberConatctInfo.RelativeNameM</span><br />
-                        <label class="viewprofilelabel">जवळच्या नातेवाईकाचा संपूर्ण पत्ता:</label>
-                        <span class="vpc">@Model.MemberConatctInfo.RelativeAddressM</span><br />
-                        <label class="viewprofilelabel">जवळच्या नातेवाईकाचा संपर्क नं  १:</label>
-                        <span class="vpc">@Model.MemberConatctInfo.RelativeContact1M</span><br />
-                        <label class="viewprofilelabel">जवळच्या नातेवाईकाचा संपर्क नं  २:</label>
+                        <label class="viewprofilelabel">सभासदाचे मुळगाव:</label><br />
+                        <span class="vpc">@Model.MemberConatctInfo.NativePlaceM</span><br /><br />
+
+                        <label class="viewprofilelabel">मुळगाव तालुका:</label><br />
+                        <span class="vpc">@Model.MemberConatctInfo.NativePlaceTalukaM</span><br /><br />
+
+                        <label class="viewprofilelabel">मुळगाव जिल्हा:</label><br />
+                        <span class="vpc">@Model.MemberConatctInfo.NativePlaceDistM</span><br /><br />
+
+                        <label class="viewprofilelabel">संपर्क १:</label><br />
+                        <span class="vpc">@Model.MemberConatctInfo.Mobile1M</span><br /><br />
+
+                        <label class="viewprofilelabel">संपर्क २:</label><br />
+                        <span class="vpc">@Model.MemberConatctInfo.Mobile2M</span><br /><br />
+
+                        <label class="viewprofilelabel">ई-मेल:</label><br />
+                        <span class="vpc">@Model.MemberConatctInfo.EmailId</span><br /><br />
+
+                        <label class="viewprofilelabel">जवळच्या नातेवाईकाचे संपूर्ण नाव:</label><br />
+                        <span class="vpc">@Model.MemberConatctInfo.RelativeNameM</span><br /><br />
+
+                        <label class="viewprofilelabel">जवळच्या नातेवाईकाचा संपूर्ण पत्ता:</label><br />
+                        <span class="vpc">@Model.MemberConatctInfo.RelativeAddressM</span><br /><br />
+
+                        <label class="viewprofilelabel">जवळच्या नातेवाईकाचा संपर्क नं  १:</label><br />
+                        <span class="vpc">@Model.MemberConatctInfo.RelativeContact1M</span><br /><br />
+
+                        <label class="viewprofilelabel">जवळच्या नातेवाईकाचा संपर्क नं  २:</label><br />
                         <span class="vpc">@Model.MemberConatctInfo.RelativeContact2M</span><br />
                     </form>
                 </div>
@@ -135,20 +145,26 @@
                 <div class="profile_view_content">
                     <form asp-action="MemberEduEmpInfo" asp-controller="MemberDashboard" method="post" enctype="multipart/form-data">
                         <input type="hidden" asp-for="MemberEducationEmploymentInfo.MemberId" />
-                        <label class="viewprofilelabel">सभासदाचे शिक्षण:</label>
-                        <span class="vpc">@Model.MemberEducationEmploymentInfo.QualificationM</span><br />
-                        <label class="viewprofilelabel">व्यवसाय/नोकरी शेतकरी/विद्यार्थी:</label>
-                        <span class="vpc">@Model.MemberEducationEmploymentInfo.ProffessionM</span><br />
-                        <label class="viewprofilelabel">कंपनीचे नाव:</label>
-                        <span class="vpc">@Model.MemberEducationEmploymentInfo.CompanyNameM</span><br />
-                        <label class="viewprofilelabel">कंपनीचा पत्ता:</label>
-                        <span class="vpc">@Model.MemberEducationEmploymentInfo.CompanyAddressM</span><br />
-                        <label class="viewprofilelabel">कंपनीचा पत्ता:</label>
-                        <span class="vpc">@Model.MemberEducationEmploymentInfo.CompanyAddressM</span><br />
-                        <label class="viewprofilelabel">व्यवसायाचे नाव:</label>
-                        <span class="vpc">@Model.MemberEducationEmploymentInfo.BusinessNameM</span><br />
-                        <label class="viewprofilelabel">व्यवसायाचा पत्ता:</label>
-                        <span class="vpc">@Model.MemberEducationEmploymentInfo.BusinessAddressM</span><br />
+                        <label class="viewprofilelabel">सभासदाचे शिक्षण:</label><br />
+                        <span class="vpc">@Model.MemberEducationEmploymentInfo.QualificationM</span><br /><br />
+
+                        <label class="viewprofilelabel">व्यवसाय/नोकरी शेतकरी/विद्यार्थी:</label><br />
+                        <span class="vpc">@Model.MemberEducationEmploymentInfo.ProffessionM</span><br /><br />
+
+                        <label class="viewprofilelabel">कंपनीचे नाव:</label><br />
+                        <span class="vpc">@Model.MemberEducationEmploymentInfo.CompanyNameM</span><br /><br />
+
+                        <label class="viewprofilelabel">कंपनीचा पत्ता:</label><br />
+                        <span class="vpc">@Model.MemberEducationEmploymentInfo.CompanyAddressM</span><br /><br />
+
+                        <label class="viewprofilelabel">कंपनीचा पत्ता:</label><br />
+                        <span class="vpc">@Model.MemberEducationEmploymentInfo.CompanyAddressM</span><br /><br />
+
+                        <label class="viewprofilelabel">व्यवसायाचे नाव:</label><br />
+                        <span class="vpc">@Model.MemberEducationEmploymentInfo.BusinessNameM</span><br /><br />
+
+                        <label class="viewprofilelabel">व्यवसायाचा पत्ता:</label><br />
+                        <span class="vpc">@Model.MemberEducationEmploymentInfo.BusinessAddressM</span><br /><br />
                     </form>
                 </div>
             </section>
@@ -166,8 +182,8 @@
                                 <table class="table table-striped" id="tblFamily">
                                     <thead>
                                         <tr>
-                                            <td>कुटुंबातील व्यक्तीचे नाव</td>
-                                            <td>नाते</td>
+                                            <td><b>कुटुंबातील व्यक्तीचे नाव</b></td>
+                                            <td><b>नाते</b></td>
 
                                             @*<td>शिक्षण </td>
                                                 <td>कुटुंबातील व्यक्तीचे काम </td>
