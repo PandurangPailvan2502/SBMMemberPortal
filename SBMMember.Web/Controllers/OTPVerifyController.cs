@@ -327,7 +327,7 @@ namespace SBMMember.Web.Controllers
             MemberFamilyInfoViewModel familyInfoViewModel = new MemberFamilyInfoViewModel();
             familyInfoViewModel.MemberId = MemberId;
             familyInfoViewModel.IsNew = true;
-            familyInfoViewModel.DOB = familyInfoViewModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoViewModel.DOB;
+            //familyInfoViewModel.DOB = familyInfoViewModel.DOB == DateTime.MinValue ? DateTime.Now.AddYears(-72) : familyInfoViewModel.DOB;
             familyInfoViewModel.MemberFamilyDetails = memberFamilies;
             commonViewModel.MemberFamilyInfo = familyInfoViewModel;
             if (memberFamilies.Count > 0)

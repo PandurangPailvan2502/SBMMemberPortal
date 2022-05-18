@@ -106,8 +106,8 @@ namespace SBMMember.Web.Controllers
             if (paymentStatus == "Fail")
                 return View("PaymentFail");
 
-            var validSignature = CompareSignatures(orderId, paymentId, signature);
-            if (validSignature)
+            //var validSignature = CompareSignatures(orderId, paymentId, signature);
+            if (paymentStatus == "Success")
             {
                 Member_PaymentsAndReciepts member_Payments = new Member_PaymentsAndReciepts()
                 {
@@ -147,7 +147,7 @@ namespace SBMMember.Web.Controllers
             if (member != null && member.MemberId > 0)
             {
                 string memberName = $"{member.FirstName} {member.LastName}";
-                string smsTemplate = $"Dear {memberName}, Thank you for your membership registration at Samata Bhratru Mandal (PCMC Pune). Your profile is under verification & you will be notified once it is approved.";
+                string smsTemplate = $"Dear {member.FirstName}, Thank you for your membership registration at Samata Bhratru Mandal (PCMC Pune). Your profile is under verification %26 you will be notified once it is approved.";
                 SMSHelper.SendSMS(member.Mobile, smsTemplate);
             }
         }

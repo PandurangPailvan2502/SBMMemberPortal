@@ -229,28 +229,31 @@ namespace SBMMember.Web.Controllers
             {
                 Directory.CreateDirectory(path);
             }
-            foreach (IFormFile postedFile in model.FormFiles)
+            if (model.FormFiles != null)
             {
-                string fileName = Path.GetFileName(postedFile.FileName);
-                string fullPath = Path.Combine(path, fileName);
-                using (FileStream stream = new FileStream(fullPath, FileMode.Create))
+                foreach (IFormFile postedFile in model.FormFiles)
                 {
-                    postedFile.CopyTo(stream);
+                    string fileName = Path.GetFileName(postedFile.FileName);
+                    string fullPath = Path.Combine(path, fileName);
+                    using (FileStream stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        postedFile.CopyTo(stream);
 
+                    }
+                    EventGallery gallery = new EventGallery()
+                    {
+                        FilePath = $"~/EventGallery/{fileName}",
+                        EventId = info.EventId,
+                        Status = "Active",
+                        CreateDate = DateTime.Now,
+                        DocType = "jpg"
+                    };
+                    eventDataFactory.AddEventGallery(gallery);
                 }
-                EventGallery gallery = new EventGallery()
-                {
-                    FilePath = $"~/EventGallery/{fileName}",
-                    EventId = info.EventId,
-                    Status = "Active",
-                    CreateDate = DateTime.Now,
-                    DocType = "jpg"
-                };
-                eventDataFactory.AddEventGallery(gallery);
             }
             ModelState.Clear();
             _toastNotification.AddSuccessToastMessage("Event details added Successfully.");
-            return View();
+            return RedirectToAction("AddEvent");
         }
         public IActionResult DeleteEvent(int Id)
         {
@@ -267,7 +270,9 @@ namespace SBMMember.Web.Controllers
                 EventName = eventInfo.EventName,
                 EventDescription = eventInfo.EventDescription,
                 EventYear = eventInfo.EventYear,
-                eventGalleries = eventDataFactory.GetGalleryphotosByeventId(Id)
+                eventGalleries = eventDataFactory.GetGalleryphotosByeventId(Id),
+                EventTitles = eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList(),
+                EventYears = YearHelper.GetYears()
             };
             return View(detailsViewModel);
 
@@ -284,6 +289,33 @@ namespace SBMMember.Web.Controllers
 
             };
             eventDataFactory.UpdateEventInfo(eventInfo);
+            string path = Path.Combine(this.Environment.WebRootPath, "EventGallery");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            if (model.FormFiles != null)
+            {
+                foreach (IFormFile postedFile in model.FormFiles)
+                {
+                    string fileName = Path.GetFileName(postedFile.FileName);
+                    string fullPath = Path.Combine(path, fileName);
+                    using (FileStream stream = new FileStream(fullPath, FileMode.Create))
+                    {
+                        postedFile.CopyTo(stream);
+
+                    }
+                    EventGallery gallery = new EventGallery()
+                    {
+                        FilePath = $"~/EventGallery/{fileName}",
+                        EventId = model.EventId,
+                        Status = "Active",
+                        CreateDate = DateTime.Now,
+                        DocType = "jpg"
+                    };
+                    eventDataFactory.AddEventGallery(gallery);
+                }
+            }
             _toastNotification.AddSuccessToastMessage("EventInfo Added successfully");
             return RedirectToAction("AddEvent");
         }
@@ -428,6 +460,8 @@ namespace SBMMember.Web.Controllers
         {
             UpcomingEvent evnt = upcomingEventsDataFactory.GetDetailsById(id);
             UpcomingEventsViewModel viewModel = mapper.Map<UpcomingEventsViewModel>(evnt);
+            viewModel.EventTitles = eventTitlesDataFactory.GetEventTitles().Select(x => new SelectListItem() { Value = x.EventTitle, Text = x.EventTitle }).ToList();
+            viewModel.EventTitles.Insert(0, new SelectListItem() { Text = " Select Event Title ", Value = "0" });
             return View(viewModel);
         }
         [HttpPost]

@@ -28,14 +28,7 @@
 
                                 <div class="input-group-icon mt-10">
                                     <div class="form-select" id="default-select">
-                                        <select asp-for="EventTitle">
-                                            <option value=" 1">Select Event Title</option>
-                                            <option value="२६ जानेवारी प्रजासत्ताक दिवस">२६ जानेवारी प्रजासत्ताक दिवस</option>
-                                            <option value="१५ ऑगस्ट स्वातंत्र्यदिन">१५ ऑगस्ट स्वातंत्र्यदिन</option>
-                                            <option value="१ मे कामगार दिन व मेळावा">१ मे कामगार दिन व मेळावा</option>
-                                            <option value="वधू - वर मेळावा">वधू - वर मेळावा</option>
-                                            <option value="वृक्षारोप">वृक्षारोपण</option>
-                                            <option value="सरदार वल्लभ भाई पटेल जयंती">सरदार वल्लभ भाई पटेल जयंती</option>
+                                        <select asp-for="EventTitle" asp-items="Model.EventTitles">
                                         </select>
                                     </div>
                                 </div>
@@ -46,7 +39,7 @@
 
                                 <div class="mt-10" style="float:right">
                                     <input type="submit" class="genric-btn primary" style="background-color:#77002e;margin-right:20px">
-                                    <input type="button" id="btnCancel" class="genric-btn primary" style="background-color:#77002e;margin-right:20px" value="Cancel">
+                                    <a asp-action="UpcomingEvents" asp-controller="AdminDashboard" id="btnCancel" class="genric-btn primary" style="background-color:#77002e;margin-right:20px" value="Cancel">Cancel</a>
                                 </div>
                             </form>
                         </div>

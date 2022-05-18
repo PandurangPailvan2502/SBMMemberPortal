@@ -97,7 +97,7 @@
                                     <td>
                                         <label class="lbl_profile">
                                             जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
-                                            {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()}
+                                            {@Model.MemberPersonalInfo.BirthDate.ToString("dd-MM-yyyy")}
                                         </label>
                                     </td>
                                 </tr>
@@ -194,9 +194,9 @@
                                             </div>
                                             <div class="input-group-icon mt-10">
                                                 <label>Date of Birth</label>
-                                                <input type="date" name="MemberPersonalInfo.BirthDate" asp-for="MemberPersonalInfo.BirthDate" class="single-input">
-                                                <input type="text" name="MemberPersonalInfo.BirthDateM" asp-for="MemberPersonalInfo.BirthDateM" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Gender'"
-                                                       required class="single-input">
+                                                <input type="date" name="MemberPersonalInfo.BirthDate"  asp-for="MemberPersonalInfo.BirthDate" class="single-input">
+                                                @*<input type="text" name="MemberPersonalInfo.BirthDate" asp-for="MemberPersonalInfo.BirthDate" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Gender'"
+                                                       required class="single-input">*@
                                             </div>
                                             <div class="input-group-icon mt-10">
                                                 <div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
