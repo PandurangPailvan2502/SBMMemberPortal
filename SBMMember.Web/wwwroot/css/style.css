@@ -567,6 +567,9 @@ tr, td, th {
 .pic_content {
     width:70%;
 }
+.pic_content1 {
+    width: 100%;
+}
 .search_cont {
     padding: 5px 0px 0px 20px;
     text-align: left
