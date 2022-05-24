@@ -77,7 +77,7 @@ namespace SBMMember.Data.DataFactory
                 member_FormStatus.VerifiedDate = member_Form.VerifiedDate;
                 member_FormStatus.ApprovedBy = member_Form.ApprovedBy;
                 member_FormStatus.ApprovedDate = member_Form.ApprovedDate;
-
+                member_FormStatus.AdminComments = member_Form.AdminComments;
                 int affectedRows = 0;
                 affectedRows = dBContext.SaveChanges();
                 if (affectedRows > 0)

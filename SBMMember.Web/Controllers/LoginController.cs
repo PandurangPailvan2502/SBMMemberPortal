@@ -66,9 +66,13 @@ namespace SBMMember.Web.Controllers
 
                     return RedirectToAction("Index", "MemberDashboard");
                 }
+                else if (memberFormStatus.FormStatus == "DeActivated")
+                {
+                    ViewBag.ErrorOnLogin = "Your Member profilehas been deactivated.";
+                }
                 else
                 {
-                    ViewBag.ErrorOnLogin = "Your Member profile is not approved yet by Admin.";
+                    ViewBag.ErrorOnLogin = "Your Member profile is not approved by Admin.";
                 }
             }
             else

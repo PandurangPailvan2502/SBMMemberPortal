@@ -21,17 +21,17 @@ namespace SBMMember.Web.Helper
 
             var response = restClient.Get(request);
             List<CandidateSearchResponse> _banner = JsonConvert.DeserializeObject<List<CandidateSearchResponse>>(response.Content.ToString());
-            
+
             return _banner.Select(x => new CandidateSearchResponse()
             {
-                candidateId=x.candidateId,
+                candidateId = x.candidateId,
                 userId = x.userId,
-                fullName =x.fullName,
-                age=x.age,
-                education=x.education,
+                fullName = x.fullName,
+                age = x.age,
+                education = x.education,
                 profileImage = "https://samatabhratrumandal.com" + x.profileImage
 
-            }).OrderBy(x=>x.fullName).ToList();
+            }).OrderBy(x => x.fullName).ToList();
         }
 
         public static List<CandidateSearchResponse> GetAllVar()

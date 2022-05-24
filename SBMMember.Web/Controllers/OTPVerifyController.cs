@@ -255,7 +255,7 @@ namespace SBMMember.Web.Controllers
                     contactInfoViewModel.ActiveTab = "Checked";
                 else if (member_education.MemberId == 0)
                     educationEmploymentInfoViewModel.ActiveTab = "Checked";
-                else if ((memberFamilies.Count == 0 || member_Payments.MemberId > 0) && member_Payments.MemberId == 0)
+                else if (memberFamilies.Count == 0 || member_Payments.MemberId == 0)
                     ViewBag.FamilyTab = "Checked";
                 //else if (member_Payments.MemberId == 0)
                 //    paymentViewModel.ActiveTab = "Checked";

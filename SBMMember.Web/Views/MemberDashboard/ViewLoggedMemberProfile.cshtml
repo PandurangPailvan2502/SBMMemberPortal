@@ -77,7 +77,7 @@
                                 <label class="viewprofilelabel">जन्म तारीख:</label>
                                 <span class="vpc">
                                     @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
-                                    {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()}
+                                    {@Model.MemberPersonalInfo.BirthDate.ToString("dd-MM-yyyy")}
                             </span><br /><br />
                             <label class="viewprofilelabel">रक्त गट:</label><br />
                             <span class="vpc">@Model.MemberPersonalInfo.BloodGroup</span><br /><br />

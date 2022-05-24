@@ -31,25 +31,32 @@ namespace SBMMember.Web.Controllers
         public IActionResult AdminLogin(AdminLoginViewModel model)
         {
             AdminUsers admin = adminUsersDataFactory.GetAdminUserByMobile(model.Mobile);
-            if (admin.MobileNo == model.Mobile.Trim() && model.Password == admin.Password.Trim())
+            if (admin != null)
             {
-                //Create the identity for the user  
-                var identity = new ClaimsIdentity(new[] {
+                if (admin.MobileNo == model.Mobile.Trim() && model.Password == admin.Password.Trim())
+                {
+                    //Create the identity for the user  
+                    var identity = new ClaimsIdentity(new[] {
                     new Claim(ClaimTypes.Name,$"{admin.FirstName} {admin.LastName}"),
-               
+
                     new Claim(ClaimTypes.PrimarySid,Convert.ToString( admin.MobileNo))
-                   
+
                 }, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                var principal = new ClaimsPrincipal(identity);
+                    var principal = new ClaimsPrincipal(identity);
 
-                var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                    var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
-                return RedirectToAction("AdminHome", "AdminDashboard");
+                    return RedirectToAction("AdminHome", "AdminDashboard");
+                }
+                else
+                {
+                    ViewBag.ErrorOnLogin = "Invalid Mobile number or MPin";
+                }
             }
             else
             {
-                ViewBag.ErrorOnLogin = "Invalid Mobile number or MPin";
+                ViewBag.ErrorOnLogin = "No Admin details available for provided Mobile number.";
             }
             return View();
         }

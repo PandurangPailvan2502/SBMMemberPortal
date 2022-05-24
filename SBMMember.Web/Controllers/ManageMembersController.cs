@@ -151,6 +151,8 @@ namespace SBMMember.Web.Controllers
             return View("VerifyMemberProfile", commonViewModel);
             //return  RedirectToAction("NewMemberList");
         }
+
+       
         public IActionResult EditFamilyMember(int id)
         {
             Member_FamilyDetails member_Family = familyDetailsDataFactory.GetDetailsByMemberId(id);
@@ -285,7 +287,20 @@ namespace SBMMember.Web.Controllers
             return RedirectToAction("NewMemberList");
         }
 
-
+        public IActionResult DeActivateMemberProfile(int memberId)
+        {
+            Members member = memberDataFactory.GetDetailsByMemberId(memberId);
+            string memberName = $"{member.FirstName} {member.LastName}";
+            Member_FormStatus formStatus = formStatusDataFactory.GetDetailsByMemberId(memberId);
+            formStatus.FormStatus = "DeActivated";
+            formStatus.AdminComments = "Member profile DeActivated successfully.";
+           ResponseDTO response= formStatusDataFactory.UpdateDetails(formStatus);
+            if (response.Result == "Success")
+                _toastNotification.AddSuccessToastMessage($"Member profile for:{memberName} DeActivated successfully.");
+            else
+                _toastNotification.AddErrorToastMessage(response.Message);
+            return RedirectToAction("VerifyMemberProfile", new { MemberId = memberId });
+        }
 
     }
 }

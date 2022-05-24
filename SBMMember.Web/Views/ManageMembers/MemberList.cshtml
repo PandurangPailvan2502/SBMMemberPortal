@@ -71,7 +71,10 @@
                             <td>@member.MobileNumber</td>
                             <td>@member.City</td>
                             <td>@member.FormStatus</td>
-                            <td> <a title="Verfify" href="@Url.Action("VerifyMemberProfile","ManageMembers",new { memberId = member.MemberId})"><i class="ti-search"></i> View Profile</a></td>
+                            <td>
+                                <a title="View Profile" href="@Url.Action("VerifyMemberProfile","ManageMembers",new { memberId = member.MemberId})"><i class="ti-search"></i> View Profile</a>
+                                <a title="DeActivate" href="@Url.Action("DeActivateMemberProfile","ManageMembers",new { memberId = member.MemberId})"><i class="ti-control-pause"></i> DeActivate</a>
+                            </td>
                         </tr>
                             }
 

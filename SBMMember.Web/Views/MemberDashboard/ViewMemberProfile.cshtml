@@ -94,7 +94,7 @@
                                             <label><b>वैवाहिक स्थिती : </b><br /> @Model.MemberPersonalInfo.MaritalStatusM</label><br /><br />
                                             
                                             <label><b>जन्म तारीख : </b><br /> @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
-                                            {@Model.MemberPersonalInfo.BirthDate.ToShortDateString()}
+                                            {@Model.MemberPersonalInfo.BirthDate.ToString("dd-MM-yyyy")}
                                             </label><br /><br />
                                     
                                             <label><b>रक्त गट : </b><br /> @Model.MemberPersonalInfo.BloodGroup</label><br /><br />
