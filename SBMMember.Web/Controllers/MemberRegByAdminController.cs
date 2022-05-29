@@ -396,7 +396,7 @@ namespace SBMMember.Web.Controllers
             };
 
             formStatusDataFactory.AddDetails(member_Form);
-            sendRegistrationSMS(model.MemberPaymentInfo.MemberId);
+            //sendRegistrationSMS(model.MemberPaymentInfo.MemberId);
             return RedirectToActionPermanent("NewMemberList", "ManageMembers");
         }
 
