@@ -137,7 +137,7 @@ namespace SBMMember.Data.DataFactory
                     responseDTO = new ResponseDTO()
                     {
                         Result = "Success",
-                        Message = "Member  MPIN updated successfully."
+                        Message = "Member MPIN updated successfully."
                     };
                 }
             }

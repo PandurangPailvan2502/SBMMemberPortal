@@ -44,6 +44,9 @@
 
 
         });//document close
+
+
+       
     </script>
 </head>
 
@@ -85,7 +88,9 @@
     </div>
 
     <!--================login Area=================-->
-
+    <div class="container">
+        @await Component.InvokeAsync("NToastNotify")
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-lg-4"></div>
@@ -108,17 +113,17 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 mt-sm-50">
-                                        <input type="text" name="MobileNumber" asp-for="MobileNumber"  maxlength="10" placeholder="Mobile No." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mobile No.'"
+                                        <input type="text" name="MobileNumber" asp-for="MobileNumber" maxlength="10" placeholder="Mobile No." onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mobile No.'"
                                                required class="single-input-primary">
                                     </div>
                                     <div class="col-lg-6 col-md-6 mt-sm-50">
-                                        <input type="password" name="MPIN" asp-for="MPIN" placeholder="6 Digit Code" onfocus="this.placeholder = ''" onblur="this.placeholder = '6 Digit Code'"
+                                        <input type="password" name="MPIN" asp-for="MPIN" value="@Model.MPIN" maxlength="6" placeholder="6 Digit Code" onfocus="this.placeholder = ''" onblur="this.placeholder = '6 Digit Code'"
                                                required class="single-input-primary">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4">
-                                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" class="check">
+                                        <input type="checkbox" id="RememberMe" name="RememberMe" asp-for="RememberMe" class="check">
                                         <label for="vehicle1"> Keep me Logged In</label>
                                     </div>
                                     <div class="col-lg-4 col-md-4"></div>
@@ -142,7 +147,7 @@
                 </div>
             </div>
         </div>
- </div>
+    </div>
 
     <div class="container demo">
         <div class="modal left fade" id="exampleModal" tabindex="" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

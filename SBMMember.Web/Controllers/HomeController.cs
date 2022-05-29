@@ -9,6 +9,7 @@ using System;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Linq;
+using NToastNotify;
 namespace SBMMember.Web.Controllers
 {
     public class HomeController : Controller
@@ -18,14 +19,15 @@ namespace SBMMember.Web.Controllers
         private readonly IConfiguration configuration;
         private readonly IUpcomingEventsDataFactory upcomingEventsDataFactory;
         private readonly IMarqueeDataFactory marqueeDataFactory;
-
-        public HomeController(ILogger<HomeController> logger, IMemberDataFactory memberDataFactory, IConfiguration _config, IUpcomingEventsDataFactory _upcomingEventsDataFactory, IMarqueeDataFactory _marqueeDataFactory)
+        private readonly IToastNotification toastNotification;
+        public HomeController(ILogger<HomeController> logger, IMemberDataFactory memberDataFactory, IConfiguration _config, IUpcomingEventsDataFactory _upcomingEventsDataFactory, IMarqueeDataFactory _marqueeDataFactory,IToastNotification toast)
         {
             _logger = logger;
             memberdataFactory = memberDataFactory;
             configuration = _config;
             upcomingEventsDataFactory = _upcomingEventsDataFactory;
             marqueeDataFactory = _marqueeDataFactory;
+            toastNotification = toast;
         }
 
         public IActionResult Index()
@@ -145,7 +147,12 @@ namespace SBMMember.Web.Controllers
                 Mobile = model.MobileNumber,
                 Mpin = model.MPIN
             };
-            memberdataFactory.UpdateMPIN(members);
+          ResponseDTO response=  memberdataFactory.UpdateMPIN(members);
+            if (response.Result == "Success")
+                toastNotification.AddSuccessToastMessage(response.Message);
+            else
+                toastNotification.AddErrorToastMessage(response.Message);
+
             return RedirectToActionPermanent("Login", "Login");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

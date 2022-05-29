@@ -79,7 +79,7 @@ namespace SBMMember.Data.DataFactory
             ResponseDTO responseDTO = new ResponseDTO();
             try
             {
-                var jobPost = dBContext.JobPostings.Where(x => x.Id == Id && x.Status == "Active").FirstOrDefault();
+                var jobPost = dBContext.MarqueeTexts.Where(x => x.Id == Id && x.Status == "Active").FirstOrDefault();
 
                 jobPost.Status = "InActive";
 

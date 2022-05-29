@@ -24,6 +24,7 @@ namespace SBMMember.Web.Models
         public string  GenderM { get; set; }
         public string  MaritalStatus { get; set; }
         public string  MaritalStatusM { get; set; }
+       
         public DateTime  BirthDate { get; set; }
         public string  BirthDateM { get; set; }
         public int  Age { get; set; }

@@ -452,6 +452,7 @@
                                                                 <option value="Son">Son</option>
                                                                 <option value="Father">Father</option>
                                                                 <option value="Mother">Mother</option>
+                                                                <option value="Brother">Brother</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -474,7 +475,7 @@
                                                     </div>
 
                                                     <div class="input-group-icon mt-10">
-                                                        Date of Birth: @*<input type="date" id="familyDOB" min="1950-01-01" name="MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                                                        Date of Birth(mm/dd/yyyy): @*<input type="date" id="familyDOB" min="1950-01-01" name="MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
                                                                               required class="single-input">*@
                                                         @if (Model.MemberFamilyInfo.DOB == DateTime.MinValue)
                                                         {
