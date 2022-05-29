@@ -5,6 +5,7 @@
 }
 
 }
+<script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
 <script>
     $(document).ready(function () {
         $("#eventForm").hide();
@@ -54,7 +55,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-10">
-                                    <textarea class="single-textarea" name="EventDescription" asp-for="EventDescription" placeholder="EventDescription" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Description'"
+                                    <textarea class="single-textarea" id="text" name="EventDescription" asp-for="EventDescription" placeholder="EventDescription" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Description'"
                                               required></textarea>
                                 </div>
                                 <div class="mt-10">
@@ -124,3 +125,9 @@
         </div>
     </div>
 </section>
+
+<script>
+        $(function () {
+            CKEDITOR.replace('text');
+        });
+    </script>
