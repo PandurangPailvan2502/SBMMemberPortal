@@ -26,6 +26,69 @@
 
     $(document).ready(function () {
 
+        //Mobile change verification logic
+        var sentOtp;
+        $("#btnContactSubmit").click(function (e) {
+            // var ActionUrl = @Url.Action("SendOTP", "MemberDashboard");
+            var hiddenMob = @Model.MemberConatctInfo.Mobile1;
+            var mob = $("#Mobile1").val();
+            if (hiddenMob != mob) {
+                if (confirm("You have changed mobile,Are you sure?")) {
+                    $("#Mobile1").val(mob);
+                    //send otp through ajax.
+                    $.ajax({
+                        type: "POST",
+                        url: "@Url.Action("SendOTP", "MemberDashboard")",
+                        data: { "mobile": $("#Mobile1").val() },
+                        success: function (response) {
+                            //alert("Hello: " + response.Name + " .\nCurrent Date and Time: " + response.DateTime);
+                            //alert(response);
+                            //set sent tp to hidden field
+                            //$("#sentotp").val(JSON.stringify(response));
+                            $("#sentotptouser").attr('value', response);
+                            sentOtp = response;
+                            //show modal
+                            $("#btnverify").show();
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+
+                    //verify otp at client side and done
+
+                }
+                else {
+                    $("#Mobile1").val(hiddenMob);
+                    $("#formContact").submit();
+                }
+            }
+            else {
+                $("#formContact").submit();
+            }
+
+        });
+
+        $("#btnotpverify").click(function () {
+
+            //alert("Test");
+            //alert(sentOtp);
+            var inputotp = $("#otp").val();
+            if (inputotp == sentOtp) {
+                alert("OTP Verified successfully.");
+                $("#btnverify").hide();
+                $("#otpVerifyModel").hide();
+                $("#formContact").submit();
+            }
+            else
+                alert("Please enter valid otp.");
+            
+        });
+
+
         $("#btnSetProfile").bind("click", function (e) {
 
             var fileuploadValue = $("#file-input").val();
@@ -327,8 +390,10 @@
                             <div class="section-top-border">
                                 <div class="row">
                                     <div class="col-lg-10 col-md-10">
-                                        <form asp-controller="MemberDashboard" asp-action="MemberContactInfo" method="post" enctype="multipart/form-data">
+                                        <form id="formContact" asp-controller="MemberDashboard" asp-action="MemberContactInfo" method="post" enctype="multipart/form-data">
                                             <input type="hidden" asp-for="MemberConatctInfo.MemberId" />
+                                            @*<input type="hidden" id="hiddenMobile" asp-for="MemberConatctInfo.Mobile1" />*@
+                                            <input type="hidden" id="sentotptouser" value="" />
                                             <div class="input-group-icon mt-3">
                                                 <input type="text" name="MemberConatctInfo.NativePlace" asp-for="MemberConatctInfo.NativePlace" placeholder="Native Place" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Native Place'"
                                                        required class="single-input">
@@ -346,12 +411,12 @@
 
 
                                             <div class="input-group-icon mt-10">
-                                                <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" name="MemberConatctInfo.Mobile1" asp-for="MemberConatctInfo.Mobile1" placeholder="Personal Mobile 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 1'"
+                                                <input type="text" id="Mobile1" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" name="MemberConatctInfo.Mobile1" asp-for="MemberConatctInfo.Mobile1" placeholder="Personal Mobile 1" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Personal Mobile 1'"
                                                        required class="single-input">
                                             </div>
 
                                             <div class="input-group-icon mt-10">
-                                                <button type="button" class="allsubmitbtn">OTP Verify</button>
+                                                <button type="button" id="btnverify" style="display:none" class="allsubmitbtn" data-toggle="modal" data-target="#otpVerifyModel">OTP Verify</button>
                                             </div>
 
                                             <div class="input-group-icon mt-10">
@@ -380,7 +445,7 @@
                                                        class="single-input">
                                             </div>
                                             <div class="mt-10 center">
-                                                <button type="submit" class="genric-btn primary-border">Update</button>
+                                                <button type="button" id="btnContactSubmit" class="genric-btn primary-border">Update</button>
                                             </div>
                                         </form>
                                     </div>
@@ -490,15 +555,15 @@
 
                                             <div class="input-group-icon mt-10">
                                                 Date of Birth:
-                                                @if (Model.MemberFamilyInfo.DOB==DateTime.MinValue)
+                                                @if (Model.MemberFamilyInfo.DOB == DateTime.MinValue)
                                                 {
                                                     <input id="familyDOB" type="date" value="@DateTime.Today" name="MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
                                                            required class="single-input">
                                                 }
                                                 else
                                                 {
-                                                <input id="familyDOB" type="date" name="MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
-                                                       required class="single-input">
+                                                    <input id="familyDOB" type="date" name="MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                                                           required class="single-input">
                                                 }
                                             </div>
 
@@ -627,23 +692,36 @@
         </div>
     </div>
 </div>
-<script>
-    var i = 0;
-    function move() {
-        if (i == 0) {
-            i = 1;
-            var elem = document.getElementById("myBar");
-            var width = 1;
-            var id = setInterval(frame, 10);
-            function frame() {
-                if (width >= 100) {
-                    clearInterval(id);
-                    i = 0;
-                } else {
-                    width++;
-                    elem.style.width = width + "%";
-                }
-            }
-        }
-    }</script>
+<div class="modal fade" id="otpVerifyModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLongTitle">Verify Changed Mobile</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group-icon mt-10">
+                    <span><b>Enter OTP recieved on changed mobile number. </b></span>
+
+                </div>
+                <div class="input-group-icon mt-10">
+                    <input type="text" id="otp" />
+
+                </div>
+
+                <div class="input-group-icon mt-10">
+                    <button  id="btnotpverify">Verify OTP</button>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

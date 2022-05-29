@@ -41,8 +41,8 @@
                                     <td>
                                         <label class="lbl_profile">
                                             जन्म तारीख: @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
-                                            {@Model.MemberPersonalInfo.BirthDate.ToString("dd-MM-yyyy")}
-                                        </label>
+                                            {@Model.MemberPersonalInfo.BirthDate.ToString("dd-MM-yyyy")}<span style="font-size:smaller;">(dd-mm-yyyy)
+</label>
                                     </td>
                                 </tr>
                                 <tr><td><label class="lbl_profile">मोबाईल: @Model.MemberConatctInfo.Mobile1 </label></td></tr>
@@ -84,7 +84,7 @@
                                         <label class="viewprofilelabel">जन्म तारीख:</label>
                                         <span class="vpc">
                                             @if (Model.MemberPersonalInfo.BirthDate != DateTime.MinValue)
-                                            {@Model.MemberPersonalInfo.BirthDate.ToString("dd-MM-yyyy")}
+                                            {@Model.MemberPersonalInfo.BirthDate.ToString("dd-MM-yyyy")}<span style="font-size:smaller;">(dd-mm-yyyy)</span>
                                         </span><br /><br />
                                         <label class="viewprofilelabel">रक्त गट:</label><br />
                                         <span class="vpc">@Model.MemberPersonalInfo.BloodGroup</span><br /><br />
@@ -308,7 +308,14 @@
                         </div>
 
                         <div class="input-group-icon mt-10">
-                            <span><b>जन्म तारीख :  </b><span id="mem_dob">@familyMember.DOB.ToString("dd-MM-yyyy")</span></span>
+                            @if (familyMember.DOB != DateTime.MinValue)
+                            {
+                                <span><b>जन्म तारीख :  </b><span id="mem_dob">@familyMember.DOB.ToString("dd-MM-yyyy") <span style="font-size:smaller;">(dd-mm-yyyy)</span></span></span>
+                            }
+                            else
+                            {
+                                <span><b>जन्म तारीख :  </b><span id="mem_dob"></span></span>
+                            }
 
                         </div>
                         <div class="input-group-icon mt-10">

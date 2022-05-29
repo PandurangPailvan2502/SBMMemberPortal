@@ -81,6 +81,11 @@ namespace SBMMember.Web.Controllers
                                 SetCookie("Mobile", member.Mobile, 120);
                                 SetCookie("Mpin", member.Mpin, 120);
                             }
+                            else
+                            {
+                                Response.Cookies.Delete("Mobile");
+                                Response.Cookies.Delete("Mpin");
+                            }
 
                             return RedirectToAction("Index", "MemberDashboard");
                         }

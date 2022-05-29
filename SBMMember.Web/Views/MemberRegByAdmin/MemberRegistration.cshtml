@@ -235,7 +235,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="input-group-icon mt-10">
-                                                        <label>Date of Birth</label>
+                                                        <label>Date of Birth <span style="font-size:smaller;">(mm-dd-yyyy)</span></label>
                                                         
                                                         @if (Model.MemberPersonalInfo.BirthDate == DateTime.MinValue)
                                                         {
@@ -475,7 +475,7 @@
                                                     </div>
 
                                                     <div class="input-group-icon mt-10">
-                                                        Date of Birth(mm/dd/yyyy): @*<input type="date" id="familyDOB" min="1950-01-01" name="MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
+                                                        Date of Birth<span style="font-size:smaller;">(mm-dd-yyyy)</span>: @*<input type="date" id="familyDOB" min="1950-01-01" name="MemberFamilyInfo.DOB" asp-for="MemberFamilyInfo.DOB" placeholder="Date of Birth" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Date of Birth'"
                                                                               required class="single-input">*@
                                                         @if (Model.MemberFamilyInfo.DOB == DateTime.MinValue)
                                                         {

@@ -56,7 +56,7 @@ namespace SBMMember.Web.Controllers
             IConfiguration _configuration,
             IMarqueeDataFactory _marqueeDataFactory,
             IWebHostEnvironment _environment,
-            IJobPostingDataFactory _jobPostingDataFactory, IToastNotification toast,IMemberMeetingsDataFactory memberMeetingsDataFactory)
+            IJobPostingDataFactory _jobPostingDataFactory, IToastNotification toast, IMemberMeetingsDataFactory memberMeetingsDataFactory)
         {
             Logger = logger;
             mapper = Mapper;
@@ -91,7 +91,7 @@ namespace SBMMember.Web.Controllers
                 NotificationCount = 0,
                 NewMemberCount = searchDataFactory.GetRecentMembersCount(),
                 RecentJobCount = jobPostingDataFactory.RecentJobCount(),
-                MemberMeeting=meetingsDataFactory.GetMemberMeetings().Where(x=>x.Status=="Active" && x.IsActive==1).FirstOrDefault()
+                MemberMeeting = meetingsDataFactory.GetMemberMeetings().Where(x => x.Status == "Active" && x.IsActive == 1).FirstOrDefault()
 
             };
             return View(viewModel);
@@ -306,9 +306,9 @@ namespace SBMMember.Web.Controllers
         [HttpGet]
         public JsonResult GetFmemberDetails(int id)
         {
-           
+
             var familyMemberInfo = familyDetailsDataFactory.GetDetailsByMemberId(id);
-            
+
             return Json(familyMemberInfo);
         }
         [HttpPost]
@@ -326,6 +326,12 @@ namespace SBMMember.Web.Controllers
         public IActionResult MemberContactInfo(MemberFormCommonViewModel formCommonViewModel)
         {
             Member_ContactDetails member_Contact = mapper.Map<Member_ContactDetails>(formCommonViewModel.MemberConatctInfo);
+            Members member = new Members()
+            {
+                MemberId = formCommonViewModel.MemberConatctInfo.MemberId,
+                Mobile = formCommonViewModel.MemberConatctInfo.Mobile1
+            };
+            memberDataFactory.UpdateMobileNo(member);
             ResponseDTO response = contactDetailsDataFactory.UpdateDetails(member_Contact);
             if (response.Result == "Success")
                 _toastNotification.AddSuccessToastMessage(response.Message);
@@ -333,6 +339,29 @@ namespace SBMMember.Web.Controllers
                 _toastNotification.AddErrorToastMessage(response.Message);
 
             return RedirectToAction("ProfileUpdate");
+        }
+        [HttpPost]
+        public IActionResult SendOTP(string mobile)
+        {
+            var member = memberDataFactory.GetDetailsByMemberMobile(mobile);
+
+
+            string OTP = SMSHelper.GenerateOTP();
+            string message = $"{OTP} is your OTP for mobile change request. OTP valid for 5 min only. If you have not generated this request, please contact Samata Bhratru Mandal (PCMC Pune) on toll free 02071173733.";
+            SMSHelper.SendSMS(mobile, message);
+            string maskedMobile = mobile.Substring(mobile.Length - 4).PadLeft(mobile.Length, 'x');
+            ViewBag.MobileNumber = mobile;
+            ViewBag.MaskedMobile = maskedMobile;
+            ViewBag.SentOTP = OTP;
+            LoginViewModel loginViewModel = new LoginViewModel()
+            {
+                MobileNumber = mobile,
+                MaskedMobileNumber = maskedMobile,
+                SentOTP = OTP
+            };
+            return Json(OTP);
+
+
         }
         [HttpPost]
         public IActionResult MemberEduEmpInfo(MemberFormCommonViewModel formCommonViewModel)
@@ -353,9 +382,9 @@ namespace SBMMember.Web.Controllers
                 ResponseDTO response = new ResponseDTO();
                 Member_FamilyDetails member_Family = mapper.Map<Member_FamilyDetails>(model.MemberFamilyInfo);
                 if (model.MemberFamilyInfo.IsNew)
-                  response=  familyDetailsDataFactory.AddDetails(member_Family);
+                    response = familyDetailsDataFactory.AddDetails(member_Family);
                 else
-                  response=  familyDetailsDataFactory.UpdateDetails(member_Family);
+                    response = familyDetailsDataFactory.UpdateDetails(member_Family);
 
                 if (response.Result == "Success")
                     _toastNotification.AddSuccessToastMessage(response.Message);
@@ -586,7 +615,7 @@ namespace SBMMember.Web.Controllers
                 filteredMember.Add(responseViewModel);
             }
             searchViewModel.MemberList = filteredMember;
-            if(filteredMember.Count>0)
+            if (filteredMember.Count > 0)
             {
                 _toastNotification.AddInfoToastMessage($"{filteredMember.Count} matching results found..");
             }
