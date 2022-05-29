@@ -106,7 +106,7 @@
                             {
                         <tr>
                             <td>@eventAd.EventName</td>
-                            <td>@eventAd.EventDescription</td>
+                            <td>@Html.Raw(string.Join(" ", eventAd.EventDescription.Split().Take(20)))</td>
                             <td>@eventAd.EventYear</td>
                            
                             <td>
