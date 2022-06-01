@@ -77,6 +77,7 @@ namespace SBMMember.Data.DataFactory
                 //member_Family = member_FamilyDetails;
                 member_Family.BloodGroup = member_FamilyDetails.BloodGroup;
                 member_Family.BloodGroupM =TranslationHelper.Translate( member_FamilyDetails.BloodGroup);
+                if (member_FamilyDetails.DOB!=DateTime.MinValue)
                 member_Family.DOB = member_FamilyDetails.DOB;
                 member_Family.Education = member_FamilyDetails.Education;
                 member_Family.EducationM =TranslationHelper.Translate( member_FamilyDetails.Education);
@@ -119,6 +120,7 @@ namespace SBMMember.Data.DataFactory
                 //member_Family = member_FamilyDetails;
                 member_Family.BloodGroup = member_FamilyDetails.BloodGroup;
                 member_Family.BloodGroupM = member_FamilyDetails.BloodGroupM;
+                if (member_FamilyDetails.DOB!=DateTime.MinValue)
                 member_Family.DOB = member_FamilyDetails.DOB;
                 member_Family.Education = member_FamilyDetails.Education;
                 member_Family.EducationM = member_FamilyDetails.EducationM;
