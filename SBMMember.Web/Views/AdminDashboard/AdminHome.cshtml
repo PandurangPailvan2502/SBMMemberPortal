@@ -61,7 +61,8 @@
                         </a>
                     </div>
                     <div class="col-xs-4 r1c1 dashboard">
-                        <a asp-action="ManageBanners" asp-controller="Banner">
+                        @*<a asp-action="ManageBanners" asp-controller="Banner">*@
+                            <a asp-action="ManageBannerAds" asp-controller="AdminDashboard">
                             <img src="~/img/scrolingads.png" class="dashboard-icon">
                             <h3 style="color:#000000">Manage Scrolling Ads</h3>
                         </a>
@@ -109,35 +110,39 @@
     </div>
 </div>
 
-@*<div class="seperate"><hr style="border:1px dashed #a7a7a7"></div>
+<div class="seperate"><hr style="border:1px dashed #a7a7a7"></div>
+
 <div class="container ">
     <div class="row">
         <div class="col-lg-12" style="text-align:center">
-
+            <!------------icon dashbaord row-2--------------->
             <div class="container">
-                <table class="table" cellspacing="5" cellpadding="5">
-                    <tbody>
-                        <tr>
-                            <td>Notification</td>
-                            <td></td>
-                            <td>New member</td>
-                            <td></td>
-                            <td>Recent Jobs</td>
-                        </tr>
-                        <tr>
-                            <td style="background-color:#db044c;color:#ffffff;font-size:16px;">1</td>
-                            <td style="width:5px"></td>
-                            <td style="background-color:#ffda08;color:#ffffff;font-size:16px;">25</td>
-                            <td style="width:5px"></td>
-                            <td style="background-color:#be0303;color:#ffffff;font-size:16px;">3</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                <div class="row ">
+                    <div class="col-xs-4 r1c1 dashboard">
+                        <a asp-action="ManageSubscriptions" asp-controller="AdminDashboard">
+                            <img src="~/img/super-user.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Manage Subscription charges</h3>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 r1c1 dashboard">
+                        @*<a asp-action="ManaageMarquees" asp-controller="Marquee">
+                            <img src="~/img/marqueetext.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Manage Marquee Text</h3>
+                        </a>*@
+                    </div>
+                    <div class="col-xs-4 r1c1 dashboard">
+                        @*<a asp-action="MemberMeetings" asp-controller="AdminDashboard">
+                            <img src="~/img/m-meeting.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Manage Meetings</h3>
+                        </a>*@
+                    </div>
 
+                </div>
+            </div>
+            <!------------End of icon dashbaord row-2--------------->
         </div>
     </div>
-</div>*@
+</div>
 
 
 

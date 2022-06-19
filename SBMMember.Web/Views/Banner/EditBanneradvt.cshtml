@@ -1,0 +1,73 @@
+﻿@model BannerViewModel
+@{
+    ViewData["Title"] = "EditBanneradvt";
+    Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
+}
+
+<section class="blog_area single-post-area section_padding">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="scroll">
+                    <p>Edit Member Portal Slider Banners</p>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="section-top-border">
+            <div class="row" id="BusinessForm">
+                <div class="col-lg-12 col-md-12">
+                    <form asp-action="EditBanneradvt" asp-controller="Banner" method="post" enctype="multipart/form-data" >
+                        <input type="hidden" asp-for="Id" />
+                         <input type="hidden" asp-for="ImageURL" />
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <input type="text" name="Heading" asp-for="Heading" placeholder="Heading/Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Heading/Title'"
+                                       required class="single-input">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <input type="file" name="BannerFile" asp-for="BannerFile" placeholder="BannerFile" onfocus="this.placeholder = ''" onblur="this.placeholder = 'BannerFile'"
+                                        class="single-input">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p>uploaded image</p>
+                                <img style="width:180px; height:100px;" src="~/Banners/@Model.ImageURL.Split('/')[2]" alt="@Model.Heading">
+                            </div>
+                        </div>
+                       
+
+
+
+                        <div class="row">
+                            <div class="col-lg-4">
+                                @*<input type="Email" name="CompanyEmail" asp-for="CompanyEmail" placeholder="Company Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Company Email'"
+                                    required class="single-input">*@
+                            </div>
+                            <div class="col-lg-4" style="margin-top:10px">
+                                <input type="submit" class="genric-btn primary-border" value="Submit" />
+                                <input type="button" id="btnCancel" class="genric-btn primary-border" value="Cancel" />
+                            </div>
+                            <div class="col-lg-4">
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</section>
+

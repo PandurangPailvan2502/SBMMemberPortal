@@ -584,5 +584,15 @@ namespace SBMMember.Web.Controllers
                 _toastNotification.AddErrorToastMessage(response.Message);
             return RedirectToAction("MemberMeetings");
         }
+
+        public IActionResult ManageBannerAds()
+        {
+            return View();
+        }
+
+        public IActionResult ManageSubscriptions()
+        {
+            return View();
+        }
     }
 }

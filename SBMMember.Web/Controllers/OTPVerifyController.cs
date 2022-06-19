@@ -30,6 +30,7 @@ namespace SBMMember.Web.Controllers
         private readonly IMarqueeDataFactory marqueeDataFactory;
         private IWebHostEnvironment Environment;
         private IToastNotification _toastNotification;
+        private ISubscriptionDataFactory subscriptionDataFactory;
         //private static List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
 
         public OTPVerifyController(IMemberDataFactory dataFactory,
@@ -39,7 +40,9 @@ namespace SBMMember.Web.Controllers
             IMemberFamilyDetailsDataFactory memberFamilyDetailsDataFactory,
             IMemberPaymentsDataFactory _paymentsDataFactory,
             SBMMemberDBContext sBMMemberDBContext,
-            IConfiguration _configuration, IMapper _mapper, IMarqueeDataFactory _marqueeDataFactory, IWebHostEnvironment _Environment, IToastNotification toast)
+            IConfiguration _configuration, IMapper _mapper, IMarqueeDataFactory _marqueeDataFactory,
+            IWebHostEnvironment _Environment, IToastNotification toast,
+            ISubscriptionDataFactory subscriptionData)
         {
             MemberDataFactory = dataFactory;
             personalDataFactory = memberPersonalDataFactory;
@@ -53,6 +56,7 @@ namespace SBMMember.Web.Controllers
             marqueeDataFactory = _marqueeDataFactory;
             Environment = _Environment;
             _toastNotification = toast;
+            subscriptionDataFactory = subscriptionData;
         }
         public IActionResult Index()
         {
@@ -164,7 +168,8 @@ namespace SBMMember.Web.Controllers
                         MemberName = data.Name,
                         Mobile = data.Conatct,
                         Email = data.Email,
-                        Amount = Convert.ToInt32(configuration.GetSection("SubscriptionCharges").Value)
+                        //Amount = Convert.ToInt32(configuration.GetSection("SubscriptionCharges").Value)
+                        Amount=subscriptionDataFactory.Getsubscriptioncharges().FirstOrDefault().SubscribeCharges
                     };
 
                     return RedirectToAction("AcceptMemberPayment", "Payment", memberPayment);
@@ -594,7 +599,7 @@ namespace SBMMember.Web.Controllers
                 MemberName = data.Name,
                 Mobile = data.Conatct,
                 Email = data.Email,
-                Amount = Convert.ToInt32(configuration.GetSection("SubscriptionCharges").Value)
+                Amount = subscriptionDataFactory.Getsubscriptioncharges().FirstOrDefault().SubscribeCharges
             };
 
             return RedirectToAction("AcceptMemberPayment", "Payment", memberPayment);

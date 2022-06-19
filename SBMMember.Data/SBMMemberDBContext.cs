@@ -28,6 +28,8 @@ namespace SBMMember.Data
         public DbSet<UpcomingEvent> UpcomingEvents { get; set; }
         public DbSet<EventTitles> EventTitles { get; set; }
         public DbSet<MemberMeetings> MemberMeetings { get; set; }
+        public DbSet<BannerAds> BannerAdvts { get; set; }
+        public DbSet<SubscriptionCharges> SubscriptionCharges { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Members>().ToTable("Members");
@@ -47,6 +49,8 @@ namespace SBMMember.Data
             modelBuilder.Entity<UpcomingEvent>().ToTable("UpcomingEvents");
             modelBuilder.Entity<EventTitles>().ToTable("EventTitles");
             modelBuilder.Entity<MemberMeetings>().ToTable("MemberMeetings");
+            modelBuilder.Entity<BannerAds>().ToTable("BannerAds");
+            modelBuilder.Entity<SubscriptionCharges>().ToTable("SubscriptionCharges");
         }
     }
 }

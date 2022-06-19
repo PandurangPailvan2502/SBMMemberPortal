@@ -20,7 +20,9 @@ namespace SBMMember.Web.Controllers
         private readonly IUpcomingEventsDataFactory upcomingEventsDataFactory;
         private readonly IMarqueeDataFactory marqueeDataFactory;
         private readonly IToastNotification toastNotification;
-        public HomeController(ILogger<HomeController> logger, IMemberDataFactory memberDataFactory, IConfiguration _config, IUpcomingEventsDataFactory _upcomingEventsDataFactory, IMarqueeDataFactory _marqueeDataFactory,IToastNotification toast)
+        private readonly IBannerAdsDataFactory bannerAdsDataFactory;
+        public HomeController(ILogger<HomeController> logger, IMemberDataFactory memberDataFactory, IConfiguration _config, IUpcomingEventsDataFactory _upcomingEventsDataFactory,
+            IMarqueeDataFactory _marqueeDataFactory, IToastNotification toast, IBannerAdsDataFactory adsDataFactory)
         {
             _logger = logger;
             memberdataFactory = memberDataFactory;
@@ -28,6 +30,7 @@ namespace SBMMember.Web.Controllers
             upcomingEventsDataFactory = _upcomingEventsDataFactory;
             marqueeDataFactory = _marqueeDataFactory;
             toastNotification = toast;
+            bannerAdsDataFactory = adsDataFactory;
         }
 
         public IActionResult Index()
@@ -37,11 +40,16 @@ namespace SBMMember.Web.Controllers
         }
         public IActionResult MemberHome()
         {
+
+            List<BannerClass> bannerClasses = bannerAdsDataFactory.GetBannerAds()
+                .Select(x => new BannerClass()
+                { heading = x.Heading, imageURL = x.ImageURL })
+                .ToList();
             List<string> marquess = marqueeDataFactory.GetMarquees().Select(x => x.Marquee).ToList();
             string marqueeText = string.Join(",", marquess);
             BannerAndMarqueeViewModel viewModel = new BannerAndMarqueeViewModel()
             {
-                Banners = BannerHelper.GetBanners(),
+                Banners = bannerClasses,
                 MarqueeString = marqueeText
             };
 
@@ -81,7 +89,7 @@ namespace SBMMember.Web.Controllers
             BannerAndMarqueeViewModel viewModel = new BannerAndMarqueeViewModel()
             {
                 EventInfos = upcomingEventsDataFactory.GetAll(),
-                MarqueeString=marqueeText
+                MarqueeString = marqueeText
             };
             return View(viewModel);
         }
@@ -147,7 +155,7 @@ namespace SBMMember.Web.Controllers
                 Mobile = model.MobileNumber,
                 Mpin = model.MPIN
             };
-          ResponseDTO response=  memberdataFactory.UpdateMPIN(members);
+            ResponseDTO response = memberdataFactory.UpdateMPIN(members);
             if (response.Result == "Success")
                 toastNotification.AddSuccessToastMessage(response.Message);
             else

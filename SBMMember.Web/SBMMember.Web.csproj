@@ -111,6 +111,7 @@
     <Folder Include="Views\MemberBloodGroupSearch\" />
     <Folder Include="Views\Shared\PartialViews\" />
     <Folder Include="wwwroot\EventAds\" />
+    <Folder Include="wwwroot\Banners\" />
   </ItemGroup>
 
   <ItemGroup>

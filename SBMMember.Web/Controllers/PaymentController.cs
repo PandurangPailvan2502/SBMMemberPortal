@@ -21,7 +21,10 @@ namespace SBMMember.Web.Controllers
         private readonly IMemberPaymentsDataFactory paymentsDataFactory;
         private readonly IMemberFormStatusDataFactory formStatusDataFactory;
         private readonly IMemberDataFactory memberDataFactory;
-        public PaymentController(IConfiguration configuration, IMemberPaymentsDataFactory dataFactory,IMemberFormStatusDataFactory _formStatusDataFactory, IMemberDataFactory _memberDataFactory)
+        private readonly ISubscriptionDataFactory subscriptionDataFactory;
+        public PaymentController(IConfiguration configuration, IMemberPaymentsDataFactory dataFactory,
+            IMemberFormStatusDataFactory _formStatusDataFactory, IMemberDataFactory _memberDataFactory,
+            ISubscriptionDataFactory subscriptionData)
         {
             Configuration = configuration;
             _Key = configuration.GetSection("PGKey").Value;
@@ -29,6 +32,7 @@ namespace SBMMember.Web.Controllers
             paymentsDataFactory = dataFactory;
             formStatusDataFactory = _formStatusDataFactory;
             memberDataFactory = _memberDataFactory;
+            subscriptionDataFactory = subscriptionData;
         }
         public ViewResult AcceptMemberPayment(MemberPaymentViewModel model)
         {
@@ -46,7 +50,7 @@ namespace SBMMember.Web.Controllers
                 Payment_Capture = 1,
                 Notes = new Dictionary<string, string>()
             {
-                {"Notes1","Test Notes" }
+                {"Notes1","SBM Notes" }
             }
             };
             string orderId = CreateOrder(orderModel);
@@ -66,7 +70,7 @@ namespace SBMMember.Web.Controllers
                 ProfileConatct = model.Mobile,
                 Notes = new Dictionary<string, string>()
                 {
-                    {"Notes1","Test for PP" }
+                    {"Notes1","SBM Notes" }
                 }
 
             };
@@ -114,7 +118,8 @@ namespace SBMMember.Web.Controllers
                     MemberId = memberId,
                     PaymentMode = "Online",
                     PaymentStatus = "Success",
-                    ChagesPaid = Convert.ToInt32(Configuration.GetSection("SubscriptionCharges").Value.ToString()),
+                    //ChagesPaid = Convert.ToInt32(Configuration.GetSection("SubscriptionCharges").Value.ToString()),
+                    ChagesPaid = subscriptionDataFactory.Getsubscriptioncharges().FirstOrDefault().SubscribeCharges,
                     Createdate = DateTime.Now,
                     RegistrationDate = DateTime.Now,
                     Status = "Active",

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "ManageBannerAds";
+    Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
+}
+
+
+<div class="container ">
+    <div class="row">
+        <div class="col-lg-12" style="text-align:center">
+            <!------------icon dashbaord row-1--------------->
+            <div class="container">
+                <div class="row ">
+                    <div class="col-xs-4 r1c1 dashboard">
+                        <a asp-action="ManageBanners" asp-controller="Banner">
+                            <img src="~/img/add-event.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Matrimony App BannerAds Details</h3>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 r1c1 dashboard">
+                        <a asp-action="BannerAds" asp-controller="Banner">
+                            <img src="~/img/upcoming-1.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Member Portal BannerAds Details</h3>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 r1c1 dashboard">
+                       @* <a asp-action="EventTitles" asp-controller="AdminDashboard">
+                            <img src="~/img/e-title.png" class="dashboard-icon">
+                            <h3 style="color:#000000">Add Event Titles</h3>
+                        </a>*@
+                    </div>
+
+                </div>
+            </div>
+            <!------------End of icon dashbaord row-1--------------->
+        </div>
+    </div>
+</div>
+<div class="seperate"><hr style="border:1px dashed #a7a7a7"></div>
+

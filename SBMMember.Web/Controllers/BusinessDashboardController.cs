@@ -17,18 +17,22 @@ namespace SBMMember.Web.Controllers
         private readonly IMemberBusinessDataFactory businessDataFactory;
         private readonly IMapper mapper;
         private readonly IToastNotification _toastNotification;
-        public BusinessDashboardController(IMemberBusinessDataFactory dataFactory, IMapper _mapper, IToastNotification toast)
+        private readonly IBannerAdsDataFactory bannerAdsDataFactory;
+        public BusinessDashboardController(IMemberBusinessDataFactory dataFactory, IMapper _mapper, IToastNotification toast,IBannerAdsDataFactory adsDataFactory)
         {
             businessDataFactory = dataFactory;
             mapper = _mapper;
             _toastNotification = toast;
+            bannerAdsDataFactory=adsDataFactory;
         }
 
         public IActionResult BusinessDashboard()
         {
+            List<BannerClass> bannerClasses = bannerAdsDataFactory.GetBannerAds().Select(x => new BannerClass() { heading = x.Heading, imageURL = x.ImageURL }).ToList();
             BannerAndMarqueeViewModel viewModel = new BannerAndMarqueeViewModel()
             {
-                Banners = BannerHelper.GetBanners()
+                //Banners = BannerHelper.GetBanners()
+                Banners = bannerClasses
             };
             return View(viewModel);
         }

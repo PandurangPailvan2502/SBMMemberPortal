@@ -25,7 +25,7 @@ namespace SBMMember.Web.Controllers
         private static List<MemberFamilyInfoViewModel> memberFamilies = new List<MemberFamilyInfoViewModel>();
         private readonly SBMMemberDBContext dBContext;
         private readonly IConfiguration configuration;
-
+        private readonly ISubscriptionDataFactory subscriptionDataFactory;
         public MemberController(IMemberDataFactory dataFactory,
             IMemberPersonalDataFactory memberPersonalDataFactory,
             IMemberContactDetailsDataFactory memberContactDetailsDataFactory,
@@ -34,7 +34,8 @@ namespace SBMMember.Web.Controllers
             ILogger<MemberController> logger,
             IMapper Mapper,
             SBMMemberDBContext memberDBContext,
-            IConfiguration _configuration)
+            IConfiguration _configuration,
+            ISubscriptionDataFactory subscriptionData)
         {
             Logger = logger;
             mapper = Mapper;
@@ -45,6 +46,7 @@ namespace SBMMember.Web.Controllers
             familyDetailsDataFactory = memberFamilyDetailsDataFactory;
             dBContext = memberDBContext;
             configuration = _configuration;
+            subscriptionDataFactory = subscriptionData;
 
         }
 
@@ -228,7 +230,8 @@ namespace SBMMember.Web.Controllers
                 MemberName = data.Name,
                 Mobile = data.Conatct,
                 Email = data.Email,
-                Amount =Convert.ToInt32( configuration.GetSection("SubscriptionCharges").Value)
+               // Amount =Convert.ToInt32( configuration.GetSection("SubscriptionCharges").Value)
+               Amount=subscriptionDataFactory.Getsubscriptioncharges().FirstOrDefault().SubscribeCharges
             };
 
             return RedirectToAction("AcceptMemberPayment","Payment",memberPayment);

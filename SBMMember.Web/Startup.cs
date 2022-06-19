@@ -74,6 +74,8 @@ namespace SBMMember.Web
             services.AddScoped<IUpcomingEventsDataFactory, UpcomingEventsDataFactory>();
             services.AddScoped<IEventTitlesDataFactory, EventTitlesDataFactory>();
             services.AddScoped<IMemberMeetingsDataFactory, MemberMeetingsDataFactory>();
+            services.AddScoped<IBannerAdsDataFactory, BannerAdsDataFactory>();
+            services.AddScoped<ISubscriptionDataFactory, SubscriptionDataFactory>();
             // services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
            services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
            {

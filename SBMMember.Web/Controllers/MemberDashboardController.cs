@@ -43,6 +43,7 @@ namespace SBMMember.Web.Controllers
         private readonly IJobPostingDataFactory jobPostingDataFactory;
         private readonly IToastNotification _toastNotification;
         private readonly IMemberMeetingsDataFactory meetingsDataFactory;
+        private readonly IBannerAdsDataFactory bannerAdsDataFactory;
         public MemberDashboardController(IMemberDataFactory dataFactory,
             IMemberPersonalDataFactory memberPersonalDataFactory,
             IMemberContactDetailsDataFactory memberContactDetailsDataFactory,
@@ -56,7 +57,9 @@ namespace SBMMember.Web.Controllers
             IConfiguration _configuration,
             IMarqueeDataFactory _marqueeDataFactory,
             IWebHostEnvironment _environment,
-            IJobPostingDataFactory _jobPostingDataFactory, IToastNotification toast, IMemberMeetingsDataFactory memberMeetingsDataFactory)
+            IJobPostingDataFactory _jobPostingDataFactory, IToastNotification toast, 
+            IMemberMeetingsDataFactory memberMeetingsDataFactory,
+            IBannerAdsDataFactory adsDataFactory)
         {
             Logger = logger;
             mapper = Mapper;
@@ -74,7 +77,7 @@ namespace SBMMember.Web.Controllers
             jobPostingDataFactory = _jobPostingDataFactory;
             _toastNotification = toast;
             meetingsDataFactory = memberMeetingsDataFactory;
-
+            bannerAdsDataFactory = adsDataFactory;
         }
 
         [Authorize]
@@ -398,9 +401,12 @@ namespace SBMMember.Web.Controllers
         }
         public IActionResult MemberSearchDashBoard()
         {
+            List<BannerClass> bannerClasses = bannerAdsDataFactory.GetBannerAds().Select(x => new BannerClass() { heading = x.Heading, imageURL = x.ImageURL }).ToList();
+
             BannerAndMarqueeViewModel viewModel = new BannerAndMarqueeViewModel()
             {
-                Banners = BannerHelper.GetBanners()
+                //Banners = BannerHelper.GetBanners()
+                Banners=bannerClasses
             };
             return View(viewModel);
         }

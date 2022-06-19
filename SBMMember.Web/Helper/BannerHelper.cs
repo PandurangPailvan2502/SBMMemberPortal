@@ -6,12 +6,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using SBMMember.Data.DataFactory;
 namespace SBMMember.Web.Helper
 {
     public class BannerHelper
     {
-
+        
         public static List<BannerClass> GetBanners()
         {
             Dictionary<string, string> banners = new Dictionary<string, string>();
