@@ -119,7 +119,7 @@ namespace SBMMember.Web.Controllers
                     PaymentMode = "Online",
                     PaymentStatus = "Success",
                     //ChagesPaid = Convert.ToInt32(Configuration.GetSection("SubscriptionCharges").Value.ToString()),
-                    ChagesPaid = subscriptionDataFactory.Getsubscriptioncharges().FirstOrDefault().SubscribeCharges,
+                    ChagesPaid = subscriptionDataFactory.Getsubscriptioncharges().FirstOrDefault().SubscriptionCharges,
                     Createdate = DateTime.Now,
                     RegistrationDate = DateTime.Now,
                     Status = "Active",

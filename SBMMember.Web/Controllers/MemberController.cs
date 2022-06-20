@@ -231,7 +231,7 @@ namespace SBMMember.Web.Controllers
                 Mobile = data.Conatct,
                 Email = data.Email,
                // Amount =Convert.ToInt32( configuration.GetSection("SubscriptionCharges").Value)
-               Amount=subscriptionDataFactory.Getsubscriptioncharges().FirstOrDefault().SubscribeCharges
+               Amount=subscriptionDataFactory.Getsubscriptioncharges().FirstOrDefault().SubscriptionCharges
             };
 
             return RedirectToAction("AcceptMemberPayment","Payment",memberPayment);

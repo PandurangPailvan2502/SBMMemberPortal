@@ -11,28 +11,49 @@ namespace SBMMember.Web.Controllers
     {
 
         private readonly ISubscriptionDataFactory _subscriptionDataFactory;
+        private readonly IMatrimonySubscriptionDataFactory matrimonySubscriptionDataFactory;
         private readonly IToastNotification toastNotification;
-        public SubscriptionsController(ISubscriptionDataFactory subscriptionDataFactory,IToastNotification toast)
+        public SubscriptionsController(ISubscriptionDataFactory subscriptionDataFactory,IToastNotification toast,
+            IMatrimonySubscriptionDataFactory matrimonySubscriptionData)
         {
             _subscriptionDataFactory = subscriptionDataFactory;
             toastNotification = toast;
+            matrimonySubscriptionDataFactory = matrimonySubscriptionData;
         }
         public IActionResult MatrimonySubscriptionCharges()
         {
 
-            return View();
-        }
-
-        public IActionResult MemberPortalSubscriptionCharges()
-        {
-            List<SubscriptionCharges> subscriptions = _subscriptionDataFactory.Getsubscriptioncharges();
+            List<SBMSubscriptionCharges> subscriptions = matrimonySubscriptionDataFactory.Getsubscriptioncharges();
             List<SubscriptionViewModel> subscriptionsViewModel = new List<SubscriptionViewModel>();
             foreach (var item in subscriptions)
             {
                 SubscriptionViewModel viewModel = new SubscriptionViewModel()
                 {
                     Id = item.Id,
-                    Charges = item.SubscribeCharges
+                    Charges = item.SubscriptionCharges
+                };
+                subscriptionsViewModel.Add(viewModel);
+            }
+            SubscriptionViewModel model = new SubscriptionViewModel()
+            {
+                SubCharges = subscriptionsViewModel
+            };
+
+
+            return View(model);
+
+        }
+
+        public IActionResult MemberPortalSubscriptionCharges()
+        {
+            List<SBMSubscriptionCharges> subscriptions = _subscriptionDataFactory.Getsubscriptioncharges();
+            List<SubscriptionViewModel> subscriptionsViewModel = new List<SubscriptionViewModel>();
+            foreach (var item in subscriptions)
+            {
+                SubscriptionViewModel viewModel = new SubscriptionViewModel()
+                {
+                    Id = item.Id,
+                    Charges = item.SubscriptionCharges
                 };
                 subscriptionsViewModel.Add(viewModel);
             }
@@ -51,7 +72,7 @@ namespace SBMMember.Web.Controllers
             SubscriptionViewModel subscriptionViewModel = new SubscriptionViewModel()
             {
                 Id = sub.Id,
-                Charges = sub.SubscribeCharges
+                Charges = sub.SubscriptionCharges
             };
             return View(subscriptionViewModel);
         }
@@ -61,10 +82,10 @@ namespace SBMMember.Web.Controllers
         {
             if(viewModel!=null)
             {
-                SubscriptionCharges subscription = new SubscriptionCharges()
+                SBMSubscriptionCharges subscription = new SBMSubscriptionCharges()
                 {
                     Id = viewModel.Id,
-                    SubscribeCharges = viewModel.Charges
+                    SubscriptionCharges = viewModel.Charges
                 };
                 ResponseDTO response=_subscriptionDataFactory.UpdateSubscriptionDetails(subscription);
                 if(response!=null && response.Result=="Success")
@@ -78,6 +99,38 @@ namespace SBMMember.Web.Controllers
             }
             return RedirectToAction("MemberPortalSubscriptionCharges");
         }
+        public IActionResult EditMatrimonysubscription(int id)
+        {
+            var sub = matrimonySubscriptionDataFactory.Getsubscriptioncharges().Where(x => x.Id == id).FirstOrDefault();
+            SubscriptionViewModel subscriptionViewModel = new SubscriptionViewModel()
+            {
+                Id = sub.Id,
+                Charges = sub.SubscriptionCharges
+            };
+            return View(subscriptionViewModel);
+        }
 
+        [HttpPost]
+        public IActionResult EditMatrimonysubscription(SubscriptionViewModel viewModel)
+        {
+            if (viewModel != null)
+            {
+                SBMSubscriptionCharges subscription = new SBMSubscriptionCharges()
+                {
+                    Id = viewModel.Id,
+                    SubscriptionCharges = viewModel.Charges
+                };
+                ResponseDTO response = matrimonySubscriptionDataFactory.UpdateSubscriptionDetails(subscription);
+                if (response != null && response.Result == "Success")
+                {
+                    toastNotification.AddSuccessToastMessage(response.Message);
+                }
+                else
+                {
+                    toastNotification.AddErrorToastMessage(response.Message);
+                }
+            }
+            return RedirectToAction("MatrimonySubscriptionCharges");
+        }
     }
 }

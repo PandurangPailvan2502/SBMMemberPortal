@@ -54,8 +54,8 @@ namespace SBMMember.Web.Mapper
             CreateMap<MemberMeetingsViewModel, MemberMeetings>();
             CreateMap<MemberMeetings, MemberMeetingsViewModel>();
 
-            CreateMap<SubscriptionViewModel, SubscriptionCharges>();
-            CreateMap<SubscriptionCharges, SubscriptionViewModel>();
+            CreateMap<SubscriptionViewModel, SBMSubscriptionCharges>();
+            CreateMap<SBMSubscriptionCharges, SubscriptionViewModel>();
 
         }
     }

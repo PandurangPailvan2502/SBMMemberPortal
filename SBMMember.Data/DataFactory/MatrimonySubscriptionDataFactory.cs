@@ -3,20 +3,21 @@ using SBMMember.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SBMMember.Data.DataFactory
 {
-    public class SubscriptionDataFactory: ISubscriptionDataFactory
+    public class MatrimonySubscriptionDataFactory: IMatrimonySubscriptionDataFactory
     {
-        private readonly SBMMemberDBContext dBContext;
-        private readonly ILogger<SubscriptionDataFactory> logger;
-        public SubscriptionDataFactory(SBMMemberDBContext memberDBContext, ILogger<SubscriptionDataFactory> _logger)
+
+        private readonly MatrimonyDBContext dBContext;
+        private readonly ILogger<MatrimonySubscriptionDataFactory> logger;
+        public MatrimonySubscriptionDataFactory(MatrimonyDBContext matrimonyDBContext,ILogger<MatrimonySubscriptionDataFactory> _logger)
         {
-            dBContext = memberDBContext;
-            logger = _logger;
+            dBContext=matrimonyDBContext;
+            logger=_logger;
+
         }
+
         public ResponseDTO UpdateSubscriptionDetails(SBMSubscriptionCharges charges)
         {
             ResponseDTO responseDTO = new ResponseDTO();
@@ -34,18 +35,18 @@ namespace SBMMember.Data.DataFactory
                     responseDTO = new ResponseDTO()
                     {
                         Result = "Success",
-                        Message = "subscription details updated successfully."
+                        Message = "Matrimony subscription details updated successfully."
                     };
                 }
             }
             catch (Exception ex)
             {
 
-                logger.LogError($"Error occured while updating subcription details. Exception:{ex.Message}");
+                logger.LogError($"Error occured while updating Matrimony subcription details. Exception:{ex.Message}");
                 responseDTO = new ResponseDTO()
                 {
                     Result = "Failed",
-                    Message = "Subscription charges update operation failed."
+                    Message = "Matrimony Subscription charges update operation failed."
                 };
             }
 
@@ -57,7 +58,8 @@ namespace SBMMember.Data.DataFactory
             return dBContext.SubscriptionCharges.ToList();
         }
     }
-    public interface ISubscriptionDataFactory
+
+    public interface IMatrimonySubscriptionDataFactory
     {
         ResponseDTO UpdateSubscriptionDetails(SBMSubscriptionCharges charges);
         List<SBMSubscriptionCharges> Getsubscriptioncharges();

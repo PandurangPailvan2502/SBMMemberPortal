@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SBMMember.Models
 {
-    public class SubscriptionCharges
+    public class SBMSubscriptionCharges
     {
         
         public int Id { get; set; }
-        public int SubscribeCharges { get; set; }
+        public int SubscriptionCharges { get; set; }
     }
 }

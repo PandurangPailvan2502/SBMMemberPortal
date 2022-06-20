@@ -57,6 +57,18 @@ namespace SBMMember.Web
 
              )
              );
+            services.AddDbContext<MatrimonyDBContext>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("MatrimonyConnection"),
+             sqlServerOptionsAction: sqlOptions =>
+             {
+                 sqlOptions.EnableRetryOnFailure(
+                 maxRetryCount: 10,
+                 maxRetryDelay: TimeSpan.FromSeconds(30),
+                 errorNumbersToAdd: null);
+             }
+
+             )
+             );
             services.AddTransient<IMemberDataFactory, MemberDataFactory>();
             services.AddTransient<IMemberSearchDataFactory, MemberSearchDataFactory>();
             services.AddScoped<IMemberContactDetailsDataFactory, MemberContactDetailsDataFactory>();
@@ -76,6 +88,8 @@ namespace SBMMember.Web
             services.AddScoped<IMemberMeetingsDataFactory, MemberMeetingsDataFactory>();
             services.AddScoped<IBannerAdsDataFactory, BannerAdsDataFactory>();
             services.AddScoped<ISubscriptionDataFactory, SubscriptionDataFactory>();
+            services.AddScoped<IMatrimonySubscriptionDataFactory, MatrimonySubscriptionDataFactory>();
+
             // services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
            services.AddRazorPages().AddNToastNotifyNoty(new NotyOptions
            {

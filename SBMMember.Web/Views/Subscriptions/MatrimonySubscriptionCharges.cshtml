@@ -1,8 +1,77 @@
-﻿
+﻿@model SubscriptionViewModel
 @{
     ViewData["Title"] = "MatrimonySubscriptionCharges";
     Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
 }
 
-<h1>MatrimonySubscriptionCharges</h1>
+
+<script>
+    $(document).ready(function () {
+       
+        $('#tblJobPost').DataTable();
+       
+    });
+</script>
+
+<section class="blog_area single-post-area section_padding">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="scroll">
+                    <p>Matrimony App Subscription charges</p>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+
+
+
+       
+    </div>
+
+
+    <div class="container">
+       @* <div class="col-lg-12">
+            <button value="Add New" id="btnAddNew" class="btn btn-danger">Add New</button>
+        </div>
+        <br />*@
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="tblJobPost" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            
+                            <th>Matrimony App Subscription charges</th>
+                            
+                            <th>Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.SubCharges != null)
+                        {
+                            foreach (var marquee in Model.SubCharges)
+                            {
+                                <tr>
+                                    <td>@marquee.Charges</td>
+                                   
+                                   
+
+                                    <td>
+                                        <a title="Edit" href="@Url.Action("EditMatrimonysubscription","Subscriptions",new { id = marquee.Id})"><i class="ti-pencil"></i></a>
+                                        
+                                    </td>
+                                </tr>
+                            }
+
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section>
 
