@@ -188,14 +188,20 @@ namespace SBMMember.Web.Controllers
         //}
         public IActionResult UploadProfileImage(MemberFormCommonViewModel commonViewModel)
         {
+            string newFileName = "";
+
             string path = Path.Combine(this.Environment.WebRootPath, "MemberProfileImages");
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
-            string FilePath = $"~/MemberProfileImages/{commonViewModel.file.FileName}";
-            string fileName = Path.GetFileName(commonViewModel.file.FileName);
-            string fullPath = Path.Combine(path, fileName);
+            string extension = Path.GetExtension(commonViewModel.file.FileName);
+            newFileName = "MemberId:" + commonViewModel.MemberId + extension;
+            string FilePath = $"~/MemberProfileImages/{newFileName}";
+
+            string fullPath = Path.Combine(path, newFileName);
+
+
             using (FileStream stream = new FileStream(fullPath, FileMode.Create))
             {
                 commonViewModel.file.CopyTo(stream);
