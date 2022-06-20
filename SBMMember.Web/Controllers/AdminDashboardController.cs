@@ -34,7 +34,7 @@ namespace SBMMember.Web.Controllers
         private readonly IMemberMeetingsDataFactory meetingsDataFactory;
         public AdminDashboardController(IMemberBusinessDataFactory dataFactory, IMapper _mapper, IJobPostingDataFactory _jobPostingDataFactory, IEventDataFactory _eventDataFactory, IWebHostEnvironment hostEnvironment,
             IEventAdsDataFactory adsDataFactory, IUpcomingEventsDataFactory _upcomingEventsDataFactory, IEventTitlesDataFactory _eventTitlesDataFactory,
-            IToastNotification toast,IMemberMeetingsDataFactory memberMeetings)
+            IToastNotification toast, IMemberMeetingsDataFactory memberMeetings)
         {
             businessDataFactory = dataFactory;
             mapper = _mapper;
@@ -526,7 +526,7 @@ namespace SBMMember.Web.Controllers
 
         public IActionResult DeleteEventTitle(int id)
         {
-          ResponseDTO response=  eventTitlesDataFactory.DeleteEventTitle(id);
+            ResponseDTO response = eventTitlesDataFactory.DeleteEventTitle(id);
             if (response.Result == "Success")
                 _toastNotification.AddSuccessToastMessage(response.Message);
             else
@@ -593,6 +593,15 @@ namespace SBMMember.Web.Controllers
         public IActionResult ManageSubscriptions()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult DeleteEventPhoto(string id)
+        {
+            int Id = Convert.ToInt32(id);
+            ResponseDTO response = eventDataFactory.DeleteEventGalleryImageById(Id);
+
+            return Json(response.Message);
         }
     }
 }

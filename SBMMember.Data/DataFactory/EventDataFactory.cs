@@ -39,7 +39,35 @@ namespace SBMMember.Data.DataFactory
             eventInfo.Status = "InActive";
             eventDBContext.SaveChanges();
         }
+        public ResponseDTO DeleteEventGalleryImageById(int id)
+        {
+            ResponseDTO responseDTO = new ResponseDTO();
 
+            try
+            {
+                EventGallery gallery = eventDBContext.EventGalleries.Where(x => x.Id == id && x.Status == "Active").FirstOrDefault();
+                gallery.Status = "InActive";
+
+                int affectedrows = eventDBContext.SaveChanges();
+                if (affectedrows > 0)
+                    return responseDTO = new ResponseDTO()
+                    {
+                        Result = "Success",
+                        Message = "Event Gallery Image deleted Successfully."
+                    };
+            }
+            catch (Exception ex)
+            {
+
+                Logger.LogError($"Error occured while deleting Event Gallery details:{ex.Message}");
+                return responseDTO = new ResponseDTO()
+                {
+                    Result = "Failed",
+                    Message = $"Error occured while deleting Event Gallery details by Id:{id}:{ex.Message}"
+                };
+            }
+            return responseDTO;
+        }
         public ResponseDTO AddEventGallery(EventGallery eventGallery)
         {
             ResponseDTO responseDTO = new ResponseDTO();
@@ -125,5 +153,7 @@ namespace SBMMember.Data.DataFactory
         List<EventGallery> GetGalleryphotosByeventId(int eventId);
         void UpdateEventInfo(EventInfo eventInfo);
         void DeleteEventInfo(int eventId);
+        ResponseDTO DeleteEventGalleryImageById(int id);
+        
     }
 }

@@ -4,6 +4,32 @@
     Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
 }
 <script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
+<script>
+      $(document).ready(function(){
+     $('input[type="button"]').click(function(){
+        var id= $(this).prop("id");
+
+                       $.ajax({
+                         type: "POST",
+                         url: "@Url.Action("DeleteEventPhoto", "AdminDashboard")",
+                         data: { "id": $(this).prop("id") },
+                         success: function (response) {
+
+                            $("#"+id).hide();
+                            $("#img"+id).hide();
+                             alert(response);
+                         },
+                         failure: function (response) {
+                             alert(response.responseText);
+                         },
+                         error: function (response) {
+                             alert(response.responseText);
+                         }
+                     });
+     });
+
+      });
+</script>
 <div class="container">
     <div class="row">
         <div class="col-lg-12 posts-list">
@@ -37,7 +63,7 @@
                                 </div>
                             </div>
                             <div class="mt-10">
-                                <textarea class="single-textarea"  id="text" name="EventDescription" asp-for="EventDescription" placeholder="EventDescription" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Description'"
+                                <textarea class="single-textarea" id="text" name="EventDescription" asp-for="EventDescription" placeholder="EventDescription" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Description'"
                                           required></textarea>
                             </div>
                             <div class="mt-10">
@@ -47,7 +73,8 @@
                                     foreach (var item in Model.eventGalleries)
                                     {
                                         <span class="cssbox_full">
-                                            <img src="~/EventGallery/@item.FilePath.Split('/')[2]" style="width:100px;height:100px;">
+                                            <img id=@("img"+@item.Id) src="~/EventGallery/@item.FilePath.Split('/')[2]" style="width:100px;height:100px;">
+                                            <input type="button" id="@item.Id" value="Remove" />
                                         </span>
                                     }
                                 }
