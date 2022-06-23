@@ -499,7 +499,7 @@ namespace SBMMember.Web.Controllers
                 Directory.CreateDirectory(path);
             }
             string extension = Path.GetExtension(commonViewModel.file.FileName);
-            newFileName = "MemberId:" + commonViewModel.MemberId + extension;
+            newFileName = "MemberId" + commonViewModel.MemberId + extension;
             string FilePath = $"~/MemberProfileImages/{newFileName}";
 
             string fullPath = Path.Combine(path, newFileName);
