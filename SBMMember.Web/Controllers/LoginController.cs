@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using SBMMember.Data.DataFactory;
-
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
@@ -78,8 +77,8 @@ namespace SBMMember.Web.Controllers
 
                             if (model.RememberMe)
                             {
-                                SetCookie("Mobile", member.Mobile, 120);
-                                SetCookie("Mpin", member.Mpin, 120);
+                                SetCookie("Mobile", member.Mobile, 365);
+                                SetCookie("Mpin", member.Mpin, 365);
                             }
                             else
                             {
@@ -135,7 +134,7 @@ namespace SBMMember.Web.Controllers
             CookieOptions option = new CookieOptions();
 
             if (expireTime.HasValue)
-                option.Expires = DateTime.Now.AddMinutes(expireTime.Value);
+                option.Expires = DateTime.Now.AddDays(expireTime.Value);
             else
                 option.Expires = DateTime.Now.AddMilliseconds(10);
 

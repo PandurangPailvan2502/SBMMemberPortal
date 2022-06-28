@@ -57,7 +57,7 @@ namespace SBMMember.Web.Controllers
             IConfiguration _configuration,
             IMarqueeDataFactory _marqueeDataFactory,
             IWebHostEnvironment _environment,
-            IJobPostingDataFactory _jobPostingDataFactory, IToastNotification toast, 
+            IJobPostingDataFactory _jobPostingDataFactory, IToastNotification toast,
             IMemberMeetingsDataFactory memberMeetingsDataFactory,
             IBannerAdsDataFactory adsDataFactory)
         {
@@ -114,9 +114,9 @@ namespace SBMMember.Web.Controllers
                 Directory.CreateDirectory(path);
             }
             string extension = Path.GetExtension(commonViewModel.file.FileName);
-            newFileName = "MemberId"+commonViewModel.MemberId + extension;
+            newFileName = "MemberId" + commonViewModel.MemberId + extension;
             string FilePath = $"~/MemberProfileImages/{newFileName}";
-            
+
             string fullPath = Path.Combine(path, newFileName);
 
 
@@ -141,12 +141,16 @@ namespace SBMMember.Web.Controllers
             int MemberId = Convert.ToInt32(memberId);
             commonViewModel.ProfilePercentage = 0;
             commonViewModel.MemberId = MemberId;
+
+            
             Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(MemberId);
             if (member_Personal.MemberId > 0)
             {
                 MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
                 commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
                 commonViewModel.ProfilePercentage += 20;
+                
+
             }
 
             Member_ContactDetails member_contact = contactDetailsDataFactory.GetDetailsByMemberId(MemberId);
@@ -155,6 +159,7 @@ namespace SBMMember.Web.Controllers
                 MemberContactInfoViewModel contactInfoViewModel = mapper.Map<MemberContactInfoViewModel>(member_contact);
                 commonViewModel.MemberConatctInfo = contactInfoViewModel;
                 commonViewModel.ProfilePercentage += 20;
+               // contactInfoViewModel.ActiveTab = TempData["ContactTabActive"].ToString();
             }
             Member_EducationEmploymentDetails member_education = educationEmploymentDataFactory.GetDetailsByMemberId(MemberId);
             if (member_education.MemberId > 0)
@@ -187,9 +192,36 @@ namespace SBMMember.Web.Controllers
                 commonViewModel.MemberPaymentInfo = paymentViewModel;
                 commonViewModel.ProfilePercentage += 20;
             }
+            if (TempData.ContainsKey("PersonalTabActive"))
+            {
+                commonViewModel.MemberPersonalInfo.ActiveTab = "Checked";
+                TempData.Remove("PersonalTabActive");
+            }
+            else if (TempData.ContainsKey("ContactTabActive"))
+            {
+                commonViewModel.MemberConatctInfo.ActiveTab = "Checked";
+                TempData.Remove("ContactTabActive");
+            }
+            else if(TempData.ContainsKey("EduEmpTabActive"))
+            {
+                commonViewModel.MemberEducationEmploymentInfo.ActiveTab = "Checked";
+                TempData.Remove("EduEmpTabActive");
+            }
+            else if(TempData.ContainsKey("FamilyTabActive"))
+            {
+                commonViewModel.MemberFamilyInfo.ActiveTab = "Checked";
+                TempData.Remove("FamilyTabActive");
+            }
+            else
+            {
+                commonViewModel.MemberPersonalInfo.ActiveTab = "Checked";
+            }
 
+            ViewBag.Message = TempData["Message"];
             return View(commonViewModel);
         }
+
+     
         public IActionResult ProfileUpdateForFamily(MemberFamilyInfoViewModel memberFamily)
         {
             MemberFormCommonViewModel commonViewModel = new MemberFormCommonViewModel();
@@ -325,6 +357,8 @@ namespace SBMMember.Web.Controllers
         {
             Member_PersonalDetails member_Personal = mapper.Map<Member_PersonalDetails>(formCommonViewModel.MemberPersonalInfo);
             ResponseDTO response = personalDataFactory.UpdateMemberPersonalDetailsForProfileUpdate(member_Personal);
+            TempData["PersonalTabActive"] = "Checked";
+            TempData["Message"] = "Personal details updated successfully.";
             if (response.Result == "Success")
                 _toastNotification.AddSuccessToastMessage(response.Message);
             else
@@ -341,6 +375,8 @@ namespace SBMMember.Web.Controllers
                 Mobile = formCommonViewModel.MemberConatctInfo.Mobile1
             };
             memberDataFactory.UpdateMobileNo(member);
+            TempData["ContactTabActive"] = "Checked";
+            TempData["Message"] = "Contact details updated successfully.";
             ResponseDTO response = contactDetailsDataFactory.UpdateDetails(member_Contact);
             if (response.Result == "Success")
                 _toastNotification.AddSuccessToastMessage(response.Message);
@@ -377,6 +413,8 @@ namespace SBMMember.Web.Controllers
         {
             Member_EducationEmploymentDetails member_Education = mapper.Map<Member_EducationEmploymentDetails>(formCommonViewModel.MemberEducationEmploymentInfo);
             ResponseDTO response = educationEmploymentDataFactory.UpdateDetails(member_Education);
+            TempData["EduEmpTabActive"] = "Checked";
+            TempData["Message"] = "Education and Employment details updated successfully.";
             if (response.Result == "Success")
                 _toastNotification.AddSuccessToastMessage(response.Message);
             else
@@ -394,7 +432,8 @@ namespace SBMMember.Web.Controllers
                     response = familyDetailsDataFactory.AddDetails(member_Family);
                 else
                     response = familyDetailsDataFactory.UpdateDetails(member_Family);
-
+                TempData["Message"] = "Family Member details Added/updated successfully.";
+                TempData["FamilyTabActive"] = "Checked";
                 if (response.Result == "Success")
                     _toastNotification.AddSuccessToastMessage(response.Message);
                 else
@@ -412,7 +451,7 @@ namespace SBMMember.Web.Controllers
             BannerAndMarqueeViewModel viewModel = new BannerAndMarqueeViewModel()
             {
                 //Banners = BannerHelper.GetBanners()
-                Banners=bannerClasses
+                Banners = bannerClasses
             };
             return View(viewModel);
         }

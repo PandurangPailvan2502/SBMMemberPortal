@@ -190,7 +190,8 @@
 
     });//document close
 </script>
-<div class="container" style="margin-top:25px;">
+
+<div class="container" style="margin-top:30px;">
     <div class="row">
         <div class="col-lg-12">
             <table>
@@ -249,8 +250,9 @@
             </table>
             <div>
                 <div id="myProgress1">
-                    <label for="file" style="font-size:12px;">Member Profile Completion Status: @Model.ProfilePercentage%</label>
+                    <label for="file" style="font-size:12px;">Member Profile Completion Status: @Model.ProfilePercentage% </label>
                     <progress style="vertical-align:bottom;height:30px;width:100%;" id="file" value="@Model.ProfilePercentage" max="100"></progress>
+                    <p style="color:cornflowerblue">@ViewBag.Message</p>
                 </div>
             </div>
             <div class="rt-container">
@@ -261,10 +263,10 @@
                             <label for="tab2" class="yel"><img src="~/img/contact-details-m.png" class="matri-icon"><br /> मुळगाव व संपर्क</label>
                             <label for="tab3" class="yel"><img src="~/img/mortarboard.png" class="matri-icon"><br> शिक्षण / नोकरी </label>
                             <label for="tab4" class="yel"><img src="~/img/people.png" class="matri-icon"><br> कुटुंबाविषयी माहिती </label>
-                            <label for="tab5" class="yel"><img src="~/img/contact-img.png" class="matri-icon"><br> सभासदत्व माहिती</label>
+                          @*  <label for="tab5" class="yel"><img src="~/img/contact-img.png" class="matri-icon"><br> सभासदत्व माहिती</label>*@
                         </section>
 
-                        <input name="tab" id="tab1" type="radio" checked />
+                        <input name="tab" id="tab1" type="radio" @Model.MemberPersonalInfo.ActiveTab />
 
                         <section class="tab-content">
                             <div class="section-top-border updatep">
@@ -385,7 +387,7 @@
                         </section>
 
 
-                        <input name="tab" id="tab2" type="radio" />
+                        <input name="tab" id="tab2" type="radio" @Model.MemberConatctInfo.ActiveTab />
                         <section class="tab-content">
                             <div class="section-top-border">
                                 <div class="row">
@@ -454,7 +456,7 @@
                             </div>
                         </section>
 
-                        <input name="tab" id="tab3" type="radio" />
+                        <input name="tab" id="tab3" type="radio" @Model.MemberEducationEmploymentInfo.ActiveTab />
                         <section class="tab-content">
 
                             <div class="section-top-border">
@@ -505,7 +507,7 @@
                             </div>
                         </section>
 
-                        <input name="tab" id="tab4" type="radio" />
+                        <input name="tab" id="tab4" type="radio" @Model.MemberFamilyInfo.ActiveTab />
                         <section class="tab-content">
 
                             <div class="section-top-border">
@@ -637,7 +639,7 @@
                             </div>
                         </section>
 
-                        <input name="tab" id="tab5" type="radio" />
+                        <input name="tab" id="tab5" type="radio" @Model.MemberPaymentInfo.ActiveTab />
                         <section class="tab-content">
                             <div class="section-top-border">
                                 <div class="row">
