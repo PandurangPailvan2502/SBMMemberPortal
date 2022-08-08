@@ -4,6 +4,67 @@
 .btn_1, .btn_2:hover, .main_menu .navbar-toggler:after, .banner_part .banner_text .btn_1, .feature_part .single_feature:hover span {
   background-image: linear-gradient(to left, #ee390f 0%, #f9b700 51%, #ee390f 100%);
 }
+
+/*Member Card start*/
+    .col-xs-6 {
+  flex-basis: 50%;
+}
+        .cont{-webkit-box-shadow: 0px 9px 8px -7px rgba(163,163,163,1);
+-moz-box-shadow: 0px 9px 8px -7px rgba(163,163,163,1);
+box-shadow: 0px 9px 8px -7px rgba(163,163,163,1);}
+       .cid-bg{background-color:#95abd3}
+       .cid_img{background: url('img/SBM-ID_BG.jpg') no-repeat; }
+       .txt-bcl{margin-left:10px;margin-top:10px}
+        @media only screen and (min-width: 1201px)
+            {
+                .cid_logo{width:80%; height:auto}
+                .photo_id{width:60%; height:145px; text-align:left; margin-top:-60px}
+                
+                .sign{width:50%; padding-left:10px}
+            }
+            @media only screen and (min-width: 992px) and (max-width: 1200px)
+            {
+                .cid_logo{width:80%; height:auto}
+                .photo_id{width:60%; height:145px; text-align:left; margin-top:-60px}
+               
+                .sign{width:50%; padding-left:10px}
+            }
+            @media only screen and (min-width: 768px) and (max-width: 991px) 
+            {
+                .cid_logo{width:80%; height:auto}
+                .photo_id{width:60%; height:145px; text-align:left; margin-top:-60px}
+                
+                .sign{width:50%; padding-left:10px}
+            } 
+            @media only screen and (min-width: 650px) and (max-width: 767px)
+            {
+                .cid_logo{width:80%; height:auto}
+                .photo_id{width:60%; height:145px; text-align:left; margin-top:-60px}
+                
+                .sign{width:50%; padding-left:10px}
+            } 
+            @media only screen and (min-width: 531px) and (max-width: 649px)
+            {  
+                .cid_logo{width:80%; height:auto}
+                .photo_id{width:60%; height:145px; text-align:left; margin-top:-60px}
+                
+                .sign{width:50%; padding-left:10px}
+            }
+            @media only screen and (min-width: 501px) and (max-width: 530px)
+            {  
+                .cid_logo{width:80%; height:auto}
+                .photo_id{width:54%; height:140px; text-align:left; margin-top:-50px}
+                
+                .sign{width:50%; padding-left:10px}
+            }
+            @media only screen and (min-width: 300px) and (max-width: 500px)
+            {  
+                .cid_logo{width:80%; height:auto}
+                .photo_id{width:55%; height:135px; text-align:center; margin-top:-30px}
+                .sign{width:50%; padding-left:10px} 
+                
+            }
+/*Member card end*/
 /*Business directory start*/
 .next {background-color: #b3027d;color: white; padding: 8px 16px; font-size:12px}
 .round {

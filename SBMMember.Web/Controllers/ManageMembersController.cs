@@ -109,6 +109,36 @@ namespace SBMMember.Web.Controllers
             paymentViewModel.LastMemberShipId = paymentsDataFactory.LastMembershipNo();
             commonViewModel.MemberPaymentInfo = paymentViewModel;
 
+            if (TempData.ContainsKey("PersonalTabActive"))
+            {
+                commonViewModel.MemberPersonalInfo.ActiveTab = "Checked";
+                TempData.Remove("PersonalTabActive");
+            }
+            else if (TempData.ContainsKey("ContactTabActive"))
+            {
+                commonViewModel.MemberConatctInfo.ActiveTab = "Checked";
+                TempData.Remove("ContactTabActive");
+            }
+            else if (TempData.ContainsKey("EduEmpTabActive"))
+            {
+                commonViewModel.MemberEducationEmploymentInfo.ActiveTab = "Checked";
+                TempData.Remove("EduEmpTabActive");
+            }
+            else if (TempData.ContainsKey("FamilyTabActive"))
+            {
+                commonViewModel.MemberFamilyInfo.ActiveTab = "Checked";
+                TempData.Remove("FamilyTabActive");
+            }
+            else if(TempData.ContainsKey("PaymentTabActive"))
+            {
+                commonViewModel.MemberPaymentInfo.ActiveTab = "Checked";
+                TempData.Remove("PaymentTabActive");
+            }
+            else
+            {
+                commonViewModel.MemberPersonalInfo.ActiveTab = "Checked";
+            }
+
             return View(commonViewModel);
             //return  RedirectToAction("NewMemberList");
         }
@@ -179,7 +209,7 @@ namespace SBMMember.Web.Controllers
                 _toastNotification.AddSuccessToastMessage(response.Message);
             else
                 _toastNotification.AddErrorToastMessage(response.Message);
-
+            TempData["FamilyTabActive"] = "Checked";
             return RedirectToAction("VerifyMemberProfile", new { MemberId = commonViewModel.MemberFamilyInfo.MemberId });
         }
         //public IActionResult ApproveMemberProfile(int memberId)
@@ -219,6 +249,7 @@ namespace SBMMember.Web.Controllers
         {
             Member_PersonalDetails member_Personal = mapper.Map<Member_PersonalDetails>(formCommonViewModel.MemberPersonalInfo);
             ResponseDTO response = personalDataFactory.UpdateMemberPersonalDetailsNoTranslation(member_Personal);
+            TempData["PersonalTabActive"] = "Checked";
             if (response.Result == "Success")
                 _toastNotification.AddSuccessToastMessage(response.Message);
             else
@@ -230,6 +261,7 @@ namespace SBMMember.Web.Controllers
         {
             Member_ContactDetails member_Contact = mapper.Map<Member_ContactDetails>(formCommonViewModel.MemberConatctInfo);
             ResponseDTO response = contactDetailsDataFactory.UpdateDetailsNoTransalation(member_Contact);
+            TempData["ContactTabActive"] = "Checked";
             if (response.Result == "Success")
                 _toastNotification.AddSuccessToastMessage(response.Message);
             else
@@ -242,6 +274,7 @@ namespace SBMMember.Web.Controllers
         {
             Member_EducationEmploymentDetails member_Education = mapper.Map<Member_EducationEmploymentDetails>(formCommonViewModel.MemberEducationEmploymentInfo);
             ResponseDTO response = educationEmploymentDataFactory.UpdateDetailsNoTranslation(member_Education);
+            TempData["EduEmpTabActive"] = "Checked";
             if (response.Result == "Success")
                 _toastNotification.AddSuccessToastMessage(response.Message);
             else
@@ -253,6 +286,7 @@ namespace SBMMember.Web.Controllers
         {
             Member_PaymentsAndReciepts member_Payments = mapper.Map<Member_PaymentsAndReciepts>(memberFormCommon.MemberPaymentInfo);
             ResponseDTO response = paymentsDataFactory.UpdateDetails(member_Payments);
+            TempData["PaymentTabActive"] = "Checked";
             if (response.Result == "Success")
                 _toastNotification.AddSuccessToastMessage(response.Message);
             else

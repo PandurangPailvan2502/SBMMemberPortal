@@ -392,7 +392,8 @@ namespace SBMMember.Web.Controllers
 
 
             string OTP = SMSHelper.GenerateOTP();
-            string message = $"{OTP} is your OTP for mobile change request. OTP valid for 5 min only. If you have not generated this request, please contact Samata Bhratru Mandal (PCMC Pune) on toll free 02071173733.";
+            //string message = $"{OTP} is your OTP for mobile change request. OTP valid for 5 min only. If you have not generated this request, please contact Samata Bhratru Mandal (PCMC Pune) on toll free 02071173733.";
+            string message = $"{OTP} is your OTP for mobile change request. Valid for 5 min only. If you have not generated this request, please contact Samata Bhratru Mandal (PCMC Pune) on toll free 02071173733.";
             SMSHelper.SendSMS(mobile, message);
             string maskedMobile = mobile.Substring(mobile.Length - 4).PadLeft(mobile.Length, 'x');
             ViewBag.MobileNumber = mobile;
@@ -709,6 +710,11 @@ namespace SBMMember.Web.Controllers
             commonViewModel.MemberPaymentInfo = paymentViewModel;
 
             return View(commonViewModel);
+        }
+
+        public IActionResult ViewAndDownloadMemberCard()
+        {
+            return View();
         }
     }
 }

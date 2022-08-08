@@ -125,7 +125,7 @@
                             <label for="tab5" class="yel"><img src="~/img/contact-img.png" class="matri-icon"><br> सभासदत्व माहिती</label>
                         </section>
 
-                        <input name="tab" id="tab1" type="radio" checked />
+                        <input name="tab" id="tab1" type="radio" @Model.MemberPersonalInfo.ActiveTab />
 
                         <section class="tab-content">
                             <div class="section-top-border updatep">
@@ -274,7 +274,7 @@
                         </section>
 
 
-                        <input name="tab" id="tab2" type="radio" />
+                        <input name="tab" id="tab2" type="radio" @Model.MemberConatctInfo.ActiveTab/>
                         <section class="tab-content">
                             <div class="section-top-border">
                                 <div class="row">
@@ -359,7 +359,7 @@
                             </div>
                         </section>
 
-                        <input name="tab" id="tab3" type="radio" />
+                        <input name="tab" id="tab3" type="radio" @Model.MemberEducationEmploymentInfo.ActiveTab/>
                         <section class="tab-content">
 
                             <div class="section-top-border">
@@ -422,7 +422,7 @@
                             </div>
                         </section>
 
-                        <input name="tab" id="tab4" type="radio" />
+                        <input name="tab" id="tab4" type="radio" @Model.MemberFamilyInfo.ActiveTab />
                         <section class="tab-content">
 
                             <div class="section-top-border">
@@ -569,7 +569,7 @@
                             </div>
                         </section>
 
-                        <input name="tab" id="tab5" type="radio" />
+                        <input name="tab" id="tab5" type="radio" @Model.MemberPaymentInfo.ActiveTab/>
                         <section class="tab-content">
                             <div class="section-top-border">
                                 <div class="row">
