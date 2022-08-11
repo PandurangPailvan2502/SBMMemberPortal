@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <div class="edit4btn">
-            <p class="padding:20px;margin:10px; color:#ffffff; background-color:#000000"><i class="ti-pencil-alt"></i><a asp-action="ProfileUpdate" asp-controller="MemberDashboard"> Edit Profile</a><i class="ti-pencil-alt" style="margin-left:5px;"></i><a style="margin-left:5px;" asp-action="ViewAndDownloadMemberCard" asp-controller="MemberDashboard">View & download Membership Card</a></p>
+            <p class="padding:20px;margin:10px; color:#ffffff; background-color:#000000"><i class="ti-pencil-alt"></i><a asp-action="ProfileUpdate" asp-controller="MemberDashboard"> Edit Profile</a><i class="ti-pencil-alt" style="margin-left:5px;"></i><a style="margin-left:5px;" asp-action="ViewAndDownloadMemberCard" asp-controller="MemberDashboard" asp-route-id="@Model.MemberPersonalInfo.MemberId">View & download Membership Card</a></p>
             
         </div>
        

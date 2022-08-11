@@ -142,14 +142,14 @@ namespace SBMMember.Web.Controllers
             commonViewModel.ProfilePercentage = 0;
             commonViewModel.MemberId = MemberId;
 
-            
+
             Member_PersonalDetails member_Personal = personalDataFactory.GetMemberPersonalDetailsByMemberId(MemberId);
             if (member_Personal.MemberId > 0)
             {
                 MemberPerosnalInfoViewModel perosnalInfoViewModel = mapper.Map<MemberPerosnalInfoViewModel>(member_Personal);
                 commonViewModel.MemberPersonalInfo = perosnalInfoViewModel;
                 commonViewModel.ProfilePercentage += 20;
-                
+
 
             }
 
@@ -159,7 +159,7 @@ namespace SBMMember.Web.Controllers
                 MemberContactInfoViewModel contactInfoViewModel = mapper.Map<MemberContactInfoViewModel>(member_contact);
                 commonViewModel.MemberConatctInfo = contactInfoViewModel;
                 commonViewModel.ProfilePercentage += 20;
-               // contactInfoViewModel.ActiveTab = TempData["ContactTabActive"].ToString();
+                // contactInfoViewModel.ActiveTab = TempData["ContactTabActive"].ToString();
             }
             Member_EducationEmploymentDetails member_education = educationEmploymentDataFactory.GetDetailsByMemberId(MemberId);
             if (member_education.MemberId > 0)
@@ -202,12 +202,12 @@ namespace SBMMember.Web.Controllers
                 commonViewModel.MemberConatctInfo.ActiveTab = "Checked";
                 TempData.Remove("ContactTabActive");
             }
-            else if(TempData.ContainsKey("EduEmpTabActive"))
+            else if (TempData.ContainsKey("EduEmpTabActive"))
             {
                 commonViewModel.MemberEducationEmploymentInfo.ActiveTab = "Checked";
                 TempData.Remove("EduEmpTabActive");
             }
-            else if(TempData.ContainsKey("FamilyTabActive"))
+            else if (TempData.ContainsKey("FamilyTabActive"))
             {
                 commonViewModel.MemberFamilyInfo.ActiveTab = "Checked";
                 TempData.Remove("FamilyTabActive");
@@ -221,7 +221,7 @@ namespace SBMMember.Web.Controllers
             return View(commonViewModel);
         }
 
-     
+
         public IActionResult ProfileUpdateForFamily(MemberFamilyInfoViewModel memberFamily)
         {
             MemberFormCommonViewModel commonViewModel = new MemberFormCommonViewModel();
@@ -712,8 +712,26 @@ namespace SBMMember.Web.Controllers
             return View(commonViewModel);
         }
 
-        public IActionResult ViewAndDownloadMemberCard()
+        public IActionResult ViewAndDownloadMemberCard(string id)
         {
+            int memberId = Convert.ToInt32(id);
+            var memberPersonalInfo = personalDataFactory.GetMemberPersonalDetailsByMemberId(memberId);
+            var paymentInfo = paymentsDataFactory.GetDetailsByMemberId(memberId);
+            MemberCardViewModel memberCardViewModel = new MemberCardViewModel()
+            {
+                MemberId = memberId,
+                MemberName = $"{memberPersonalInfo.FirstName} {memberPersonalInfo.MiddleName} {memberPersonalInfo.LastName}",
+                MemberProfileImage = memberPersonalInfo.MemberProfileImage,
+                MembershipId = paymentInfo.MembershipId
+            };
+            return View(memberCardViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult ViewAndDownloadMemberCard(MemberCardViewModel model)
+        {
+
+
             return View();
         }
     }

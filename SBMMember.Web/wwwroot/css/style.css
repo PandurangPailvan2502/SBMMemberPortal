@@ -16,7 +16,8 @@
     display: block;
     position: absolute;
     text-align: center;
-    background-image: url('~/img/SBM-I Card-347x192.jpg');
+    background-image: url('../img/SBM-I Card-347x192.jpg');
+    
 }
 
 .ID_content {
@@ -36,9 +37,9 @@
 }
 
 .photo_id {
-    width: 95px;
+    width: 100px;
     height: 100px;
-    text-align: right;
+    
 }
 
 .text-block p {
@@ -55,7 +56,7 @@
 
 .text-block-sign {
     text-align: left;
-    margin-top: -5px
+    margin-top: -15px
 }
 
 .sign_img {

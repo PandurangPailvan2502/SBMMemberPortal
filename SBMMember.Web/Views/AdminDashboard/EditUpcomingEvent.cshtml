@@ -3,6 +3,7 @@
     ViewData["Title"] = "EditUpcomingEvent";
     Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
 }
+<script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
 <section class="blog_area single-post-area section_padding">
     <div class="container">
         <div class="row">
@@ -33,7 +34,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-10">
-                                    <textarea class="single-textarea" name="EventDesc" asp-for="EventDesc" placeholder="EventDescription" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Description'"
+                                    <textarea class="single-textarea" id="text" name="EventDesc" asp-for="EventDesc" placeholder="EventDescription" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Description'"
                                               required></textarea>
                                 </div>
 
@@ -59,3 +60,8 @@
     @*Event list*@
     
 </section>
+<script>
+    $(function () {
+        CKEDITOR.replace('text');
+    });
+</script>

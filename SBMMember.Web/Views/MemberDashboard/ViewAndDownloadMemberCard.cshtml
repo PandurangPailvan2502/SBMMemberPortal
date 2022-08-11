@@ -1,44 +1,93 @@
-﻿
+﻿@model MemberCardViewModel
 @{
     ViewData["Title"] = "ViewAndDownloadMemberCard";
     Layout = "~/Views/Shared/_LayoutMemberDashboard.cshtml";
 }
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.rawgit.com/niklasvh/html2canvas/master/dist/html2canvas.min.js"></script>*@
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
 
-lass="container">
-<div class="row">
-<div class="col-lg-3"></div>    
+        var element = $("#IdCard");
+        var getCanvas;
+       $("#btn-Convert-Html2Image").on('click', function () {
 
-            <div class="col-lg-6">
-                <div class="id_box">
-                      
-                    <!----Content section-->
-                        <div class="container">
-                            <div class="row ID_content">
-                                <div class="col-xs-12" style="padding-right:10px; padding-top:10px;">
-                                <div style="float:right"><img src="~/img/pic.png" class="photo_id" /></div>
-                                
-                                <div class="text-block"><p style="color:#000000">Member</p></div>
-                                <div class="text-block-mem">
-                                    <p style="color:#000000; font-size:12px">Member ID:</p>
-                                    <p style="color:#000000; font-size:12px;margin-top:-5px;">Name:</p>
-                                </div> 
-                                <div class="text-block-sign">
-                                    <img src="~/img/sign-1.png" class="sign_img" />
-                                    <p style="color:#000000; margin-top:-10px; font-size:10px">Authorized Signatory </p>
-                                </div> 
-                                
+           html2canvas(element, {
+
+                    onrendered: function (canvas) {
+
+                        //$("#previewImage").append(canvas);
+
+                        getCanvas = canvas;
+
+                    }
+
+                });
+                var imgageData = getCanvas.toDataURL("image/png");
+
+                var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+
+                $("#btn-Convert-Html2Image").attr("download", "MemberCard.png").attr("href", newData);
+                // $("#btn-Convert-Html2Image").attr("download", @Model.MemberName+".png").attr("href", newData);
+
+
+            });
+    
+    });
+
+</script>
+<div class="container" style="margin-top:50px">
+    <div class="row">
+        <div class="col-lg-3"></div>
+
+        <div class="col-lg-6">
+            <div class="id_box" id="IdCard">
+
+                <!----Content section-->
+                <div class="container">
+                    <div class="row ID_content">
+                        <div class="col-xs-12" style="padding-right:0px; padding-top:10px;">
+                            <div style="float:right"><img src="~/MemberProfileImages/@Model.MemberProfileImage.Split('/')[2]" class="photo_id" /></div>
+
+                            <div class="text-block"><p style="color:#000000">Member</p></div>
+                            <div class="text-block-mem">
+                                <p style="color:#000000; font-size:11px">Member ID:@Model.MembershipId</p>
+                                <p style="color:#000000; font-size:11px;margin-top:-5px;">Name:@Model.MemberName</p>
                             </div>
+                            <div class="text-block-sign">
+                                <img src="~/img/sign-1.png" class="sign_img" />
+                                <p style="color:#000000; margin-top:-5px; font-size:10px">Authorized Signatory </p>
                             </div>
-                               
+
                         </div>
-                        
-
-                        
-                        
-
-                    <!----End of Content section-->
+                    </div>
 
                 </div>
-            </div>    
-<div class="col-lg-3"></div>    
+
+
+
+
+
+                <!----End of Content section-->
+            </div>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6" style="text-align:left">
+            <a id="btn-Convert-Html2Image" href="#" class="primary" style="position:absolute; margin-top:185px;margin-right: 100px; font-size:12px; color:#ffffff; border:none; background-color:#a7045e">Download Member Card</a>
+            @*<form asp-action="ViewAndDownloadMemberCard" asp-controller="MemberDashboard" method="post">
+                <input type="hidden" id="hashstring" asp-for="hashstring" />
+                <button id="btn"  class="primary" style="position:absolute; margin-top:185px;margin-right: 100px; font-size:12px; color:#ffffff; border:none; background-color:#a7045e">Download Here</button>
+                </form>*@
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+
+
 </div>
+

@@ -3,7 +3,7 @@
     ViewData["Title"] = "UpcomingEvents";
     Layout = "~/Views/Shared/_LayoutAdminDashboard.cshtml";
 }
-
+<script src="https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js"></script>
 <script>
     $(document).ready(function () {
         $("#eventForm").hide();
@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-10">
-                                    <textarea class="single-textarea" name="EventDesc" asp-for="EventDesc" placeholder="EventDescription" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Description'"
+                                    <textarea class="single-textarea" id="text" name="EventDesc" asp-for="EventDesc" placeholder="EventDescription" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Event Description'"
                                               required></textarea>
                                 </div>
                                 
@@ -90,7 +90,7 @@
                                 <tr>
                                     <td>@eventAd.EventDate.ToString("dd-MM-yyyy")</td>
                                     <td>@eventAd.EventTitle</td>
-                                    <td>@eventAd.EventDesc</td>
+                                    <td>@Html.Raw(string.Join(" ", eventAd.EventDesc.Split().Take(20)))</td>
 
                                     <td>
                                         <a href="@Url.Action("EditUpcomingEvent","AdminDashboard",new { id = eventAd.Id})"><i class="ti-pencil"></i></a>
@@ -109,4 +109,8 @@
     </div>
 </section>
 
-
+<script>
+        $(function () {
+            CKEDITOR.replace('text');
+        });
+    </script>
