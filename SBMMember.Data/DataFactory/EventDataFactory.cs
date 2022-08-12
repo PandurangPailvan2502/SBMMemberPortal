@@ -98,7 +98,7 @@ namespace SBMMember.Data.DataFactory
         public List<EventInfo> GetEventListByEventParameters(Dictionary<string, string> keyValuePairs)
         {
             var pr = GetDynamicExpression(keyValuePairs);
-            return eventDBContext.EventInfos.Where(pr).ToList();
+            return eventDBContext.EventInfos.Where(pr).Where(x=>x.Status=="Active").ToList();
         }
         public List<EventInfo> GetAllEventList()
         {
