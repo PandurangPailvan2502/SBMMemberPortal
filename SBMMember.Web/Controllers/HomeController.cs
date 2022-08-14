@@ -121,7 +121,7 @@ namespace SBMMember.Web.Controllers
             {
                 string mobile = model.MobileNumber;
                 string OTP = SMSHelper.GenerateOTP();
-                string message = $"{OTP} is your OTP for forgot password request. If you have not generated this, please contact Samata Bhratru Mandal (PCMC Pune). Please do not share your OTP with anyone.";
+                string message = $"{OTP} is your OTP for forgot password request. If you have not generated this, please contact Samata Bhratru Mandal (PCMC Pune). Please do not share your OTP with anybody.";
                 SMSHelper.SendSMS(model.MobileNumber, message);
                 string maskedMobile = mobile.Substring(mobile.Length - 4).PadLeft(mobile.Length, 'x');
                 ViewBag.MobileNumber = mobile;
