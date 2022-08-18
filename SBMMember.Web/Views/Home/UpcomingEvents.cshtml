@@ -23,9 +23,9 @@
             {
                 <div class="col-lg-12">
                     <div class="upcoming-event">
-                        <h6><span style="color:#7c0053;font-weight:bold">Event Date:</span> @item.EventDate.ToString("dd-MM-yyyy")</h6>
-                        <h6><span style="color:#7c0053;font-weight:bold">Event title:</span> @item.EventTitle</h6>
-                        <h6><span style="color:#7c0053;font-weight:bold">Event Description:</span><br> @Html.Raw(item.EventDesc)</h6>
+                        <h6><span style="color:#7c0053;font-weight:bold">Event Date:</span> <span style="font-weight:bold; font-size:13px">@item.EventDate.ToString("dd-MM-yyyy")</span></h6>
+                        <h6><span style="color:#7c0053;font-weight:bold">Event title:</span> <span style="font-weight:bold; font-size:14px"> @item.EventTitle </span></h6>
+                        <h6><span style="color:#7c0053;font-weight:bold">Event Description:</span><br></h6><span style="margin-top:8px; line-height:2.0"> @Html.Raw(item.EventDesc) </span>
                     </div>
                 </div>
             }

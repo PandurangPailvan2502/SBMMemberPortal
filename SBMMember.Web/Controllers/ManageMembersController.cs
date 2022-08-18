@@ -178,8 +178,41 @@ namespace SBMMember.Web.Controllers
             paymentViewModel.LastMemberShipId = paymentsDataFactory.LastMembershipNo();
             commonViewModel.MemberPaymentInfo = paymentViewModel;
 
+
+            if (TempData.ContainsKey("PersonalTabActive"))
+            {
+                commonViewModel.MemberPersonalInfo.ActiveTab = "Checked";
+                TempData.Remove("PersonalTabActive");
+            }
+            else if (TempData.ContainsKey("ContactTabActive"))
+            {
+                commonViewModel.MemberConatctInfo.ActiveTab = "Checked";
+                TempData.Remove("ContactTabActive");
+            }
+            else if (TempData.ContainsKey("EduEmpTabActive"))
+            {
+                commonViewModel.MemberEducationEmploymentInfo.ActiveTab = "Checked";
+                TempData.Remove("EduEmpTabActive");
+            }
+            else if (TempData.ContainsKey("FamilyTabActive"))
+            {
+                commonViewModel.MemberFamilyInfo.ActiveTab = "Checked";
+                TempData.Remove("FamilyTabActive");
+            }
+            else if (TempData.ContainsKey("PaymentTabActive"))
+            {
+                commonViewModel.MemberPaymentInfo.ActiveTab = "Checked";
+                TempData.Remove("PaymentTabActive");
+            }
+            else
+            {
+                commonViewModel.MemberPersonalInfo.ActiveTab = "Checked";
+            }
+
+
             return View("VerifyMemberProfile", commonViewModel);
             //return  RedirectToAction("NewMemberList");
+           // return RedirectToAction("VerifyMemberProfile", new { MemberId = commonViewModel.MemberFamilyInfo.MemberId });
         }
 
        
@@ -187,7 +220,7 @@ namespace SBMMember.Web.Controllers
         {
             Member_FamilyDetails member_Family = familyDetailsDataFactory.GetDetailsByMemberId(id);
             MemberFamilyInfoViewModel model = mapper.Map<MemberFamilyInfoViewModel>(member_Family);
-
+            TempData["FamilyTabActive"] = "Checked";
             return RedirectToAction("VerifyMemberProfileNew", model);
         }
         public IActionResult DeleteFamilyMember(int id, int memberId)

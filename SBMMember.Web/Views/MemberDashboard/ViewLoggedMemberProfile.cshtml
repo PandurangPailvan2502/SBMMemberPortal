@@ -9,8 +9,11 @@
 <div class="container">
     <div class="row">
         <div class="edit4btn">
-            <p class="padding:20px;margin:10px; color:#ffffff; background-color:#000000"><i class="ti-pencil-alt"></i><a class="btn btn-info" asp-action="ProfileUpdate" asp-controller="MemberDashboard"> Edit Profile</a><i class="ti-eye" style="margin-left:5px;"></i><a class="btn btn-info" style="margin-left:5px;" asp-action="ViewAndDownloadMemberCard" asp-controller="MemberDashboard" asp-route-id="@Model.MemberPersonalInfo.MemberId">View Membership Card</a></p>
-            
+            <p class="padding:20px;margin:5px; color:#ffffff; background-color:#000000">
+                <a class="btn btn-info" asp-action="ProfileUpdate" asp-controller="MemberDashboard"> <i class="ti-pencil-alt"></i> Edit Profile</a>
+                <a class="btn btn-info" asp-action="ViewAndDownloadMemberCard" asp-controller="MemberDashboard" asp-route-id="@Model.MemberPersonalInfo.MemberId"> <i class="ti-eye"></i> View Membership Card</a>
+            </p>
+          
         </div>
        
     </div>
