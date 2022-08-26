@@ -34,7 +34,7 @@
 
 
             });
-    
+
     });
 
 </script>
@@ -49,8 +49,15 @@
                 <div class="container">
                     <div class="row ID_content">
                         <div class="col-xs-12" style="padding-right:0px; padding-top:10px;">
-                            <div style="float:right"><img src="~/MemberProfileImages/@Model.MemberProfileImage.Split('/')[2]" class="photo_id" /></div>
-
+                            @if (!string.IsNullOrEmpty(Model.MemberProfileImage))
+                            {
+                                <div style="float:right"><img src="~/MemberProfileImages/@Model.MemberProfileImage.Split('/')[2]" class="photo_id" /></div>
+                            }
+                            else
+                            {
+                                <div style="float:right"><img src="~/img/Noavatar.png" class="photo_id" /></div>
+                                
+                            }
                             <div class="text-block"><p style="color:#000000">Member</p></div>
                             <div class="text-block-mem">
                                 <p style="color:#000000; font-size:11px">Member ID:@Model.MembershipId</p>

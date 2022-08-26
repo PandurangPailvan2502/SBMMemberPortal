@@ -293,6 +293,12 @@ namespace SBMMember.Web.Controllers
         public IActionResult MemberContactInfo(MemberFormCommonViewModel formCommonViewModel)
         {
             Member_ContactDetails member_Contact = mapper.Map<Member_ContactDetails>(formCommonViewModel.MemberConatctInfo);
+            Members member = new Members()
+            {
+                MemberId = formCommonViewModel.MemberConatctInfo.MemberId,
+                Mobile = formCommonViewModel.MemberConatctInfo.Mobile1
+            };
+            memberDataFactory.UpdateMobileNo(member);
             ResponseDTO response = contactDetailsDataFactory.UpdateDetailsNoTransalation(member_Contact);
             TempData["ContactTabActive"] = "Checked";
             if (response.Result == "Success")
