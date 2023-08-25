@@ -353,7 +353,7 @@ namespace SBMMember.Web.Controllers
             Members member = memberDataFactory.GetDetailsByMemberId(memberId);
             string memberName = $"{member.FirstName} {member.LastName}";
             //string smstemp = $"Dear {memberName}, your membership is approved %26 activated by our team. {member_Payments.MembershipId} is your membership number. You can login to our official android app %26 enjoy the exclusive features by Samata Bhratru Mandal (PCMC Pune). Toll Free 02071173733.";
-            string smstemp = $"Dear {memberName}, your membership is approved & activated by our team. Your membership number is {member_Payments.MembershipId}. You may please log in to our official Android app & enjoy the exclusive features of Samata Bhratru Mandal (PCMC Pune). Toll-Free 02071173733.";
+            string smstemp = $"Dear {memberName}, your membership is approved %26 activated by our team. Your membership number is {member_Payments.MembershipId}. You may please log in to our official Android app %26 enjoy the exclusive features of Samata Bhratru Mandal (PCMC Pune). Toll-Free 02071173733.";
             if (member != null && member.MemberId > 0)
             {
                 SMSHelper.SendSMS(member.Mobile, smstemp);
